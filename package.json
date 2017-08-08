@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/addyosmani/essential-image-optimisation/issues"
   },
-  "homepage": "https://github.com/addyosmani/essential-image-optimisation#readme",  
+  "homepage": "https://github.com/addyosmani/essential-image-optimisation#readme",
   "devDependencies": {
     "apache-server-configs": "^2.14.0",
     "babel-core": "^6.14.0",

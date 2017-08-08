@@ -16,6 +16,7 @@ import {output as pagespeed} from 'psi';
 import pkg from './package.json';
 import template from 'gulp-md-template';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
+import rename from 'gulp-rename';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -27,14 +28,6 @@ gulp.task('lint', () =>
     .pipe($.eslint.format())
     .pipe($.if(!browserSync.active, $.eslint.failAfterError()))
 );
-
-// Process markdown
-gulp.task('markdown', () => {
-  gulp.src('app/*.html')
-    .pipe(template('app/partials'))
-    .pipe(gulp.dest('.tmp'))
-    .pipe(gulp.dest('dist'));
-});
 
 // Optimize images
 gulp.task('images', () =>
@@ -105,7 +98,8 @@ gulp.task('scripts', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
-      './app/scripts/main.js'
+      './app/scripts/main.js',
+      './node_modules/lazysizes/lazysizes.min.js'
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
@@ -122,9 +116,25 @@ gulp.task('scripts', () =>
       .pipe(gulp.dest('.tmp/scripts'))
 );
 
+// Process markdown
+gulp.task('markdown', () => {
+  // Read the template
+  gulp.src('app/index.html')
+    // Read the partials for book content
+    .pipe(template('app/partials'))
+    // Rename this output to book.html
+    .pipe(rename('book.html'))
+    .pipe(gulp.dest('.tmp'))
+    .pipe(gulp.dest('dist'));
+});
+
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {
-  return gulp.src('app/**/*.html')
+  // return gulp.src('.tmp/*.html')
+  return gulp.src('app/index.html')
+    // Read the partials for book content
+    .pipe(template('app/partials'))
+
     .pipe($.useref({
       searchPath: '{.tmp,app}',
       noAssets: true
@@ -144,6 +154,7 @@ gulp.task('html', () => {
     })))
     // Output files
     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
+    .pipe(gulp.dest('.tmp'))
     .pipe(gulp.dest('dist'));
 });
 
@@ -151,7 +162,7 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles', 'markdown'], () => {
+gulp.task('serve', ['scripts', 'styles', 'html'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -165,6 +176,7 @@ gulp.task('serve', ['scripts', 'styles', 'markdown'], () => {
   });
 
   gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/**/*.md'], ['html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
   gulp.watch(['app/images/**/*'], reload);
@@ -190,7 +202,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['lint', 'html', 'scripts', 'images', 'markdown', 'copy'],
+    ['markdown', 'lint', 'html', 'scripts', 'images', 'copy'],
     'generate-service-worker',
     cb
   )
