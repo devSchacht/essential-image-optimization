@@ -16,6 +16,10 @@ figcaption {
     color: #757575;
 }
 
+img:parent {
+  max-width: 90%;
+}
+
 @media (min-width: 768px) and (max-width :1024px) {
     .container {
         max-width: 740px;

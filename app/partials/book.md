@@ -9,7 +9,7 @@ By [Addy Osmani](https://twitter.com/addyosmani). With thanks to tech reviewers:
 In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change and content that doesn't go through a build pipeline can easily slip.
 To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvps](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist. 
 
-Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
+Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
 
 The amount of time you'll spend reading blog posts and tweaking your config is >> the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier!). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
 
