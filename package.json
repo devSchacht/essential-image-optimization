@@ -1,0 +1,40 @@
+{
+  "name": "essential-image-optimisation",
+  "version": "1.0.0",
+  "description": "Techniques for modern image optimisation",
+  "main": "index.md",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/addyosmani/essential-image-optimisation.git"
+  },
+  "keywords": [
+    "image",
+    "optimisation",
+    "compression",
+    "jpeg",
+    "png",
+    "webp",
+    "mozjpeg"
+  ],
+  "author": "Addy Osmani",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/addyosmani/essential-image-optimisation/issues"
+  },
+  "homepage": "https://github.com/addyosmani/essential-image-optimisation#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "imagemin-guetzli": "^1.0.0",
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "lazysizes": "^4.0.0-rc3"
+  },
+  "devDependencies": {
+    "gulp-imagemin": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-webp": "^2.3.0",
+    "imagemin-mozjpeg": "^6.0.0"
+  }
+}
