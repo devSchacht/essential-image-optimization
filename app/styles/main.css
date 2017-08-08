@@ -10,6 +10,12 @@ will be correctly compiled during `gulp serve` and `gulp`
     text-align: left
 }
 
+figcaption {
+    font-size: 0.9em;
+    text-align: center;
+    color: #757575;
+}
+
 @media (min-width: 768px) and (max-width :1024px) {
     .container {
         max-width: 740px;

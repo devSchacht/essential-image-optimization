@@ -1,6 +1,6 @@
 ## Essential Image Optimisation
 
-Addy Osmani. 
+By [Addy Osmani](https://twitter.com/addyosmani). With thanks to tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.
 
 ***
 
@@ -32,26 +32,29 @@ The smaller in file-size you can make your images, the better a network experien
 
 Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. Images now account for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the average site and 45% of these image requests are JPEGs. 
 
+<figure>
 <img class="lazyload" data-src="images/Modern-Image00.png"/>
-
-Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.
+<figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.
+</figcaption>
+</figure>
 
 Image optimisation consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
 
 <img class="lazyload" data-src="images/image-optimisation.jpg"/>
 
-
-Caption: Common image optimisations include compression, responsively serving them down based on screen size using [<picture>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
+Common image optimisations include compression, responsively serving them down based on screen size using [<picture>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
 <aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. It also supports MozJPEG and Guetzli to take advantage of newer optimising JPEG encoders. If you're a designer, there's a new [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.</aside>
 
 
 #### How can I tell if my images need to be optimized?
 
-Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images"). Clicking through will display a report with a list of images that can be compressed more efficiently.
+Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images"). 
 
-
+<figure>
 <img class="lazyload" data-src="images/Modern-Image1.jpg"/>
+<figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.</figcaption>
+</figure>
 
 <img class="lazyload" data-src="images/Modern-Image2.jpg"/>
 
@@ -111,10 +114,10 @@ Baseline JPEGs (the default for most image editing & optimisation tools) are enc
 Progressive JPEGs divide the image into a number of scans. The first scans show the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
 
 
+<figure>
 <img class="lazyload" data-src="images/Modern-Image7.jpg"/>
-
-
-Caption: Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. A Cloudinary demo of [decoded in slow motion](http://res.cloudinary.com/jon/video/upload/non_progressive_vs_progressive_JPEG.mp4) is available too.
+<figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. A Cloudinary demo of [decoded in slow motion](http://res.cloudinary.com/jon/video/upload/non_progressive_vs_progressive_JPEG.mp4) is available too.</figcaption>
+</figure>
 
 Lossless JPEG optimization can be achieved by removing EXIF data added by digital cameras or editors, optimizing an image's [Huffman tables](https://en.wikipedia.org/wiki/Huffman_coding) or rescanning the image. Tools like jpegtran achieve lossless compression by rearranging the compressed data without image degradation. jpegrescan, jpegoptim and mozjpeg (which we'll cover shortly) also support lossless JPEG compression.
 
@@ -125,10 +128,10 @@ The ability for PJPEGs to offer low-resolution "previews" of an image as it load
 
 On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been sent down and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
 
+<figure>
 <img class="lazyload" data-src="images/Modern-Image8.jpg"/>
-
-
-Caption:[ Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time. 
+<figcaption>[Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
+</figure>
 
 PJPEGs can improve compression, consuming [2-10% ](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc. take advantage of PJPEG's flexibility to pack data better. 
 
@@ -177,9 +180,10 @@ gulp.task('images', function () {
 
 Most image editing tools save images as Baseline JPEG files by default. 
 
+<figure>
 <img class="lazyload" data-src="images/photoshop.jpg"/>
-
-You can save any image you create in Photoshop in Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the 'Progressive' checkbox while saving your images.
+<figcaption>You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the 'Progressive' checkbox while saving your images.</figcaption>
+</figure>
 
 
 ### How far have we come from the JPEG?
@@ -272,7 +276,6 @@ Tools like ImageOptim support Guetzli optimization (in [the latest versions](htt
 
 ```js
 const gulp = require('gulp');
-
 const imagemin = require('gulp-imagemin');
 const imageminGuetzli = require('imagemin-guetzli');
 
@@ -322,18 +325,17 @@ A number of methods exist for determining if compressed images are visually simi
 
 [Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a human might notice the point of image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
 
-
+<figure>
 <img class="lazyload" data-src="images/Modern-Image14.jpg"/>
-
-
-Caption: Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough that a user would be able to notice something wasn't that clear. It resulted in a 65% reduction in total file size.
+<figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough that a user would be able to notice something wasn't that clear. It resulted in a 65% reduction in total file size.</figcaption>
+</figure>
 
 In practice, you would define a target goal for visual quality and then run through a number of different image optimisation strategies, looking at your Butteraugli scores, before choosing something that fits the best balance of file- size and level.
 
+<figure>
 <img class="lazyload" data-src="images/Modern-Image15.jpg"/>
-
-
-Caption: All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward - specify the two images to compare (a source and compressed version) - and it will give you a score to work off.
+<figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward - specify the two images to compare (a source and compressed version) - and it will give you a score to work off.</figcaption>
+</figure>
 
 **How does Butteraugli differ to other ways of comparing visual similarity?**
 
@@ -393,20 +395,17 @@ Google reported a 30-35% savings using WebP over other lossy compression schemes
 
 WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/compression) goes into this topic in depth but let's summarize some highlights. WebP's lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP's lossy encoding:
 
-
-
-1.  **Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision. 
+**Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision. 
 
 <img class="lazyload" data-src="images/Modern-Image18.png"/>
 
 
-2. **Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <img class="lazyload" data-src="images/Modern-Image19.png"/>
 
-
-3. A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
+A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
 
 
 ### Browser Support
@@ -484,6 +483,9 @@ Similar to JPEGs, it's possible to notice compression artefacts in our output. E
 
 
 ```js
+const imagemin = require('imagemin');
+const imageminWebp = require('imagemin-webp');
+
 imagemin(['images/*.{jpg,png}'], 'build/images', {
     use: [
         imageminWebp({lossless: true})
@@ -591,10 +593,10 @@ Browsers without WebP support can end up not displaying an image at all, which i
 
 <img class="lazyload" data-src="images/play-format-webp.jpg"/>
 
+<figure>
 <img class="lazyload" data-src="images/play-format-type.jpg"/>
-
-
-Caption: The Play store conditionally serves WebP images to supported browsers and fallback to JPEGs for browsers like Firefox.
+<figcaption>The Play store conditionally serves WebP images to supported browsers and fallback to JPEGs for browsers like Firefox.</figcaption>
+</figure>
 
 Here are some of the options for getting WebP images from your server to your user: 
 
@@ -693,7 +695,7 @@ Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service ca
 
 **Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize 100 images a month for free; then the price jumps up. 5,000 images per month are currently $4.99 USD. 12,000 per month are $9.99. 55,000 per month are $29.99. This is more expensive than Optimizer. The difference lies in other features such as web page optimization and other non-WebP tools not covered here, but that web developers may find interesting.
 
-**Compressing Animated GIFs and why <video> is better**
+**Compressing Animated GIFs and why `<video>` is better**
 
 Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the[ GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The[ number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. However, switching to video offers the largest savings. 
 
@@ -745,11 +747,10 @@ Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangl
 
 SVGO can also reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
 
-
+<figure>
 <img class="lazyload" data-src="images/svgo-precision.jpg"/>
-
-
-It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.
+<figcaption>It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.</figcaption>
+</figure>
 
 *Using SVGO at the command-line:*
 
@@ -798,11 +799,12 @@ Recompressing images has consequences. Let's say you take a JPEG that's already 
 
 To avoid this trap, **set the lowest good quality you're willing to accept in the first place**. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
 
+Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. 
 
+<figure>
 <img class="lazyload" data-src="images/generational-loss.jpg"/>
-
-
-Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. Above, from this[ excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and[ accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.
+<figcaption>Above, from this[ excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and[ accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.</figcaption>
+</figure>
 
 MozJPEG (perhaps accidentally) has a better resistance to recompression degradation thanks to trellis quantization. Instead of compressing all DCT values as they are exactly, it can check close values within a +1/-1 range to see if similar values compress to fewer bits. Lossy FLIF has a hack similar to lossy PNG in that prior to (re)compression, it can look at the data and decide what to throw away. Recompressed PNGs have "holes" it can detect to avoid changing data further.
 
@@ -864,7 +866,9 @@ For examples of lazy loading, look at most any major site that hosts a lot of im
 <img class="lazyload" data-src="images/Modern-Image35.jpg"/>
 
 
-A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it's been fetched. José M. Pérez has written about how to implement the Medium effect using [CSS filters](https://jmperezperez.com/medium-image-progressive-loading-placeholder/) and experimented with [different image formats](https://jmperezperez.com/webp-placeholder-images/) to support such placeholders. Facebook also did a write-up on their famous 200-byte approach to such placeholders for their [cover photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/) that is worth a read. If you're a Webpack user, [LQIP loader](https://lqip-loader.firebaseapp.com/) can help automate some of this work away.
+A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it's been fetched. 
+
+José M. Pérez has written about how to implement the Medium effect using [CSS filters](https://jmperezperez.com/medium-image-progressive-loading-placeholder/) and experimented with [different image formats](https://jmperezperez.com/webp-placeholder-images/) to support such placeholders. Facebook also did a write-up on their famous 200-byte approach to such placeholders for their [cover photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/) that is worth a read. If you're a Webpack user, [LQIP loader](https://lqip-loader.firebaseapp.com/) can help automate some of this work away.
 
 In fact, you can search for your favorite source of high-res photos and then scroll down the page. In almost all cases you'll experience how the website loads only a few full-resolution images at a time, with the rest being placeholder colors or images. As you continue to scroll, the placeholder images are replaced with full-resolution images. This is lazy loading in action.
 
@@ -934,8 +938,6 @@ Optionally you can also add a src attribute with a low quality image:
 
 Clearly, lazysizes is not your only option. Here are more lazy loading libraries:
 
-
-
 *   [Lazy Load XT](http://ressio.github.io/lazy-load-xt/)
 *   [BLazy.js](https://github.com/dinbror/blazy) (or [Be]Lazy)
 *   [Unveil](http://luis-almeida.github.io/unveil/) 
@@ -988,10 +990,10 @@ Third, API access is provided by both services. Developers can access the CDN pr
 
 For now, let's limit our discussion to static images. Both Cloudinary and Imgix offer a range of image manipulation methods, and both support primary functions such as compression, resizing, cropping and thumbnail creation in their standard and free plans.
 
+<figure>
 <img class="lazyload" data-src="images/Modern-Image36.jpg"/>
- 
-
-By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.
+<figcaption>By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
+</figure>
 
 Cloudinary lists [seven broad image transformation](http://cloudinary.com/documentation/image_transformations) categories, with a total of 48 subcategories within them. Imgix advertises over [100 image processing operations](https://docs.imgix.com/apis/url?_ga=2.52377449.1538976134.1501179780-2118608066.1501179780). 
 
@@ -1096,7 +1098,6 @@ Happy compressing!
 
 <aside class="note"><b>Note:</b> For more practical guidance on how to optimize images, I heavily recommend [Web Performance in Action](https://www.manning.com/books/web-performance-in-action) by Jeremy Wagner. It's a fantastic book. [High Performance Images](http://shop.oreilly.com/product/0636920039730.do) is also filled with excellent, nuanced advice on this topic.</aside>
 
-With thanks to our tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.
 
 </body>
 </html>
