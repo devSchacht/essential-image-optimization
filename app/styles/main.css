@@ -1,0 +1,24 @@
+/*
+Note: any .css or .scss files included in the 'styles' directory
+will be correctly compiled during `gulp serve` and `gulp`
+ */
+
+.container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 16px;
+    text-align: left
+}
+
+@media (min-width: 768px) and (max-width :1024px) {
+    .container {
+        max-width: 740px;
+        width: 740px
+    }
+}
+
+@media (min-width: 1025px) {
+    .container {
+        width: 740px
+    }
+}
