@@ -3,12 +3,36 @@ Note: any .css or .scss files included in the 'styles' directory
 will be correctly compiled during `gulp serve` and `gulp`
  */
 
-.container {
-    max-width: 940px;
-    margin: 0 auto;
-    padding: 0 16px;
-    text-align: left
+html {
+  font-size: 1.2em;
 }
+
+.container {
+    margin-top: 65px;
+}
+
+p, pre, ul, h1, h2, h3, h4 {
+    max-width: 940px; 
+    padding: 0 16px;
+    text-align: left;
+    margin: 0 auto 16px;
+}
+
+aside.note, aside.key-point {
+    margin: 0 auto 16px;
+    max-width: 940px;   
+}
+
+figure {
+    margin: 0;
+    padding: 16px;
+    text-align: center;
+}
+
+figure img.small {
+    max-width: 70%;
+}
+
 
 figcaption {
     font-size: 0.9em;
@@ -16,19 +40,29 @@ figcaption {
     color: #757575;
 }
 
+img {
+  width: 90%;
+}
+
 img:parent {
+  margin: 0 auto;
+  text-align: center;
+}
+
+img:parent, figure:parent, img {
+  width: 90%;
   max-width: 90%;
 }
 
-@media (min-width: 768px) and (max-width :1024px) {
-    .container {
+/* @media (min-width: 768px) and (max-width :1024px) {
+    p {
         max-width: 740px;
         width: 740px
     }
 }
 
 @media (min-width: 1025px) {
-    .container {
+    p {
         width: 740px
     }
-}
+} */
