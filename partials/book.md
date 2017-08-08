@@ -1,14 +1,6 @@
-<!--
-https://developers.google.com/internal/publishing/reference/styles#callouts_notes_etc
--->
-<link rel="stylesheet"
-        href="https://developers.google.com/_static/2ceb35fd6c/css/devsite-google-blue.css">
-        
 ## Essential Image Optimisation
 
 Addy Osmani. 
-
-Tech reviewers: Kornel Lesiński, Jeremy Wagner, Tim Kadlec, Nolan O'Brien, Kristofer Baxter
 
 ***
 
@@ -40,13 +32,13 @@ The smaller in file-size you can make your images, the better a network experien
 
 Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. Images now account for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the average site and 45% of these image requests are JPEGs. 
 
-![](dist/images/Modern-Image00.png "image_tooltip")
+![](images/Modern-Image00.png "image_tooltip")
 
 Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.
 
 Image optimisation consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
 
-![](dist/images/image-optimisation.jpg "image_tooltip")
+![](images/image-optimisation.jpg "image_tooltip")
 
 
 Caption: Common image optimisations include compression, responsively serving them down based on screen size using [<picture>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
@@ -59,19 +51,19 @@ Caption: Common image optimisations include compression, responsively serving th
 Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images"). Clicking through will display a report with a list of images that can be compressed more efficiently.
 
 
-![](dist/images/Modern-Image1.jpg "image_tooltip")
+![](images/Modern-Image1.jpg "image_tooltip")
 
-![](dist/images/Modern-Image2.jpg "image_tooltip")
+![](images/Modern-Image2.jpg "image_tooltip")
 
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse/) is a Chrome extension that can audit for performance best practices on your local machine. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded:
 
-![](dist/images/Modern-Image3.jpg "image_tooltip")
+![](images/Modern-Image3.jpg "image_tooltip")
 
 
 As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
 
-![](dist/images/Modern-Image4.jpg "image_tooltip")
+![](images/Modern-Image4.jpg "image_tooltip")
 
 
 You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit. 
@@ -87,7 +79,7 @@ JPEG is a lossy compression algorithm that discards information in order to save
 
 Formats like JPEG are best suited for photographs or images with a number of color regions. Most optimisation tools will allow you to set what level of compression you're happy with; higher compression reduces file size but can introduce artifacts, halos or blocky degrading. 
 
-![](dist/images/Modern-Image5.jpg "image_tooltip")
+![](images/Modern-Image5.jpg "image_tooltip")
 
 
 When choosing what quality setting to opt for, consider what quality bucket your images fall into:
@@ -113,13 +105,13 @@ The JPEG image format has a number of different [compression modes](http://web.e
 Baseline JPEGs (the default for most image editing & optimisation tools) are encoded and decoded in a relatively simple manner: top to bottom. When baseline JPEGs load on slow or spotty connections, users see the top of the image with more of it revealed as the image loads. Lossless JPEGs are similar but have a smaller compression ratio.
 
 
-![](dist/images/Modern-Image6.jpg "image_tooltip")
+![](images/Modern-Image6.jpg "image_tooltip")
 
 
 Progressive JPEGs divide the image into a number of scans. The first scans show the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
 
 
-![](dist/images/Modern-Image7.jpg "image_tooltip")
+![](images/Modern-Image7.jpg "image_tooltip")
 
 
 Caption: Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. A Cloudinary demo of [decoded in slow motion](http://res.cloudinary.com/jon/video/upload/non_progressive_vs_progressive_JPEG.mp4) is available too.
@@ -133,7 +125,7 @@ The ability for PJPEGs to offer low-resolution "previews" of an image as it load
 
 On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been sent down and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
 
-![](dist/images/Modern-Image8.jpg "image_tooltip")
+![](images/Modern-Image8.jpg "image_tooltip")
 
 
 Caption:[ Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time. 
@@ -185,7 +177,7 @@ gulp.task('images', function () {
 
 Most image editing tools save images as Baseline JPEG files by default. 
 
-![](dist/images/photoshop.jpg "image_tooltip")
+![](images/photoshop.jpg "image_tooltip")
 
 You can save any image you create in Photoshop in Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the 'Progressive' checkbox while saving your images.
 
@@ -196,7 +188,7 @@ You can save any image you create in Photoshop in Progressive JPEG by going to F
 
 *tl;dr - there's a lot of fragmentation. You need to conditionally serve different formats to different browsers to take advantage of anything modern.*
 
-![](dist/images/format-comparison.jpg "image_tooltip")
+![](images/format-comparison.jpg "image_tooltip")
 
 *   **[JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) (2000)** - an improvement to JPEG switching from a discrete cosine based transform to a wavelet-based method. **Browser support: Safari desktop + iOS**
 *   **[JPEG XR](https://en.wikipedia.org/wiki/JPEG_XR) (2009)** - alternative to JPEG and JPEG 2000 supporting [HDR](http://wikivisually.com/wiki/High_dynamic_range_imaging) and wide [gamut](http://wikivisually.com/wiki/Gamut) color spaces. Produces smaller files than JPEG at slightly slower encode/decode speeds. **Browser support: Edge, IE.**
@@ -253,10 +245,10 @@ gulp.task('mozjpeg', () =>
 );
 ```
 
-![](dist/images/Modern-Image10.jpg "image_tooltip")
+![](images/Modern-Image10.jpg "image_tooltip")
 
 
-![](dist/images/Modern-Image11.jpg "image_tooltip")
+![](images/Modern-Image11.jpg "image_tooltip")
 
 
 I used jpeg-compress from the [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive) project to calculate the SSIM (The Structural Similarity) scores for a source image. SSIM is a method for measuring the similarity between two images, where we score the quality of one image relative to another that is considered "perfect".
@@ -297,13 +289,13 @@ gulp.task('guetzli', () =>
 ```
 
 
-![](dist/images/Modern-Image12.jpg "image_tooltip")
+![](images/Modern-Image12.jpg "image_tooltip")
 
 
 It took multiple minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
 
 
-![](dist/images/Modern-Image13.jpg "image_tooltip")
+![](images/Modern-Image13.jpg "image_tooltip")
 
 
 <aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g JPEGs of quality 84 or lower), results can be poorer.</aside>
@@ -331,14 +323,14 @@ A number of methods exist for determining if compressed images are visually simi
 [Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a human might notice the point of image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
 
 
-![](dist/images/Modern-Image14.jpg "image_tooltip")
+![](images/Modern-Image14.jpg "image_tooltip")
 
 
 Caption: Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough that a user would be able to notice something wasn't that clear. It resulted in a 65% reduction in total file size.
 
 In practice, you would define a target goal for visual quality and then run through a number of different image optimisation strategies, looking at your Butteraugli scores, before choosing something that fits the best balance of file- size and level.
 
-![](dist/images/Modern-Image15.jpg "image_tooltip")
+![](images/Modern-Image15.jpg "image_tooltip")
 
 
 Caption: All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward - specify the two images to compare (a source and compressed version) - and it will give you a score to work off.
@@ -361,7 +353,7 @@ For larger images, I found combining Guetzli with **lossless compression **in Mo
 In the last year, WebP gained a few percent compression-wise in lossy and lossless  modes and speed-wise the algorithm got twice as fast with a 10% improvement in decompression.  WebP is not a tool for all purposes, but it has some standing and a growing user base in the image compression community. Let's examine why.
 
 
-![](dist/images/Modern-Image16.jpg "image_tooltip")
+![](images/Modern-Image16.jpg "image_tooltip")
 
 
 ### How Does WebP Perform? 
@@ -395,7 +387,7 @@ Many large companies are using WebP in production to reduce costs and decrease w
 
 Google reported a 30-35% savings using WebP over other lossy compression schemes, serving 43 billion image requests a day, 26% of that being lossless compression. That's a lot of requests and significant savings. Savings would undoubtedly be larger if browser support were better and more widespread.
 
-![](dist/images/webp-conversion.jpg "image_tooltip")
+![](images/webp-conversion.jpg "image_tooltip")
 
 ### How does WebP encoding work? 
 
@@ -405,13 +397,13 @@ WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/comp
 
 1.  **Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision. 
 
-![](dist/images/Modern-Image18.png "image_tooltip")
+![](images/Modern-Image18.png "image_tooltip")
 
 
 2. **Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
-![](dist/images/Modern-Image19.png "image_tooltip")
+![](images/Modern-Image19.png "image_tooltip")
 
 
 3. A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
@@ -447,9 +439,9 @@ Several commercial and open source image editing and processing packages support
 XnConvert enables batch image processing, compatible with over 500 image formats. You can combine over 80 separate actions to transform or edit your images in multiple ways. 
 
 
-![](dist/images/Modern-Image20.jpg "image_tooltip")
+![](images/Modern-Image20.jpg "image_tooltip")
 
-![](dist/images/Modern-Image21.jpg "image_tooltip")
+![](images/Modern-Image21.jpg "image_tooltip")
 
 
 Some of the options listed on the xnview website include:
@@ -478,7 +470,7 @@ We can then require() in both modules and run them over any images (e.g JPEGs) i
 const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 
-imagemin(['images/*.{jpg}'], 'dist/images', {
+imagemin(['images/*.{jpg}'], 'images', {
     use: [
         imageminWebp({quality: 60})
     ]
@@ -587,7 +579,7 @@ Although you can drag and drop WebP images to Blink-based browsers (Chrome, Oper
 
 On Mac, try the [Quick Look plugin for WebP](https://github.com/Nyx0uf/qlImageSize) (qlImageSize). It works pretty well:
 
-![](dist/images/Modern-Image22.jpg "image_tooltip")
+![](images/Modern-Image22.jpg "image_tooltip")
 
 On Windows, you can also download the [WebP codec package](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe) allowing WebP images to be previewed in the File Explorer and Windows Photo Viewer.  
 
@@ -597,9 +589,9 @@ On Windows, you can also download the [WebP codec package](https://storage.googl
 Browsers without WebP support can end up not displaying an image at all, which isn't ideal. To avoid this there are a few strategies we can use for conditionally serving WebP based on browser support.
 
 
-![](dist/images/play-format-webp.jpg "image_tooltip")
+![](images/play-format-webp.jpg "image_tooltip")
 
-![](dist/images/play-format-type.jpg "image_tooltip")
+![](images/play-format-type.jpg "image_tooltip")
 
 
 Caption: The Play store conditionally serves WebP images to supported browsers and fallback to JPEGs for browsers like Firefox.
@@ -706,7 +698,7 @@ Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service ca
 Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the[ GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The[ number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. However, switching to video offers the largest savings. 
 
 
-![](dist/images/animated-gif.jpg "image_tooltip")
+![](images/animated-gif.jpg "image_tooltip")
 
 
 Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to[ Twitter](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW) or[ Imgur](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/), they'll silently convert it to an MP4 for you. Why are GIFs many times[ larger](https://www.quora.com/For-a-given-scene-why-does-an-animated-GIF-have-a-much-bigger-file-size-than-its-video-source-e-g-in-MP4-format)?.
@@ -733,7 +725,7 @@ For more information, checkout the[ Book of GIF](https://rigor.com/wp-content/up
 
 #### Keeping SVGs lean means stripping out anything unnecessary. SVG files created with editors usually contain a large quantity of redundant information (metadata, comments, hidden layers and so forth). This content can often be safely removed or converted to a more minimal form without impacting the final SVG that's being rendered.
 
-![](dist/images/Modern-Image26.jpg "image_tooltip")
+![](images/Modern-Image26.jpg "image_tooltip")
 
 
 **Some SVG optimization good rules of thumb:**
@@ -748,13 +740,13 @@ Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangl
 *   Optimize your SVGs through[ SVGO](https://github.com/svg/svgo) - a Node-based tool for trimming.[ SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for SVGO by Jake Archibald that I've also found invaluable. A handy [Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/) on your SVGs when exporting them is also available.
 
 
-![](dist/images/svgo-precision.jpg "image_tooltip")
+![](images/svgo-precision.jpg "image_tooltip")
 
 
 SVGO can also reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
 
 
-![](dist/images/svgo-precision.jpg "image_tooltip")
+![](images/svgo-precision.jpg "image_tooltip")
 
 
 It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.
@@ -783,14 +775,14 @@ See the SVGO [readme](https://github.com/svg/svgo) for the full list of supporte
 
 **Don't forget to compress SVGs!**
 
-![](dist/images/before-after-svgo.jpg "image_tooltip")
+![](images/before-after-svgo.jpg "image_tooltip")
 
 
 Also, don't forget to [Gzip your SVG assets](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) or serve them using Brotli. As they're text based, they'll compress really well (~50% of the original sources).
 
 When Google shipped a new logo, we announced that the smallest version of it was only 305 bytes in size.
 
-![](dist/images/Modern-Image30.jpg "image_tooltip")
+![](images/Modern-Image30.jpg "image_tooltip")
 
 
 There are [lots of advanced SVG tricks](https://www.clicktorelease.com/blog/svg-google-logo-in-305-bytes/) you can use to trim this down even further (all the way to 146 bytes)! Suffice to say, whether it's through tools or manual clean-up, there's probably a *little* more you can shave off your SVGs.
@@ -807,7 +799,7 @@ Recompressing images has consequences. Let's say you take a JPEG that's already 
 To avoid this trap, **set the lowest good quality you're willing to accept in the first place**. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
 
 
-![](dist/images/generational-loss.jpg "image_tooltip")
+![](images/generational-loss.jpg "image_tooltip")
 
 
 Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. Above, from this[ excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and[ accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.
@@ -824,13 +816,13 @@ We've all shipped large, higher resolution images than needed to our users befor
 Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). 
 
 
-![](dist/images/image-decoding.jpg "image_tooltip")
+![](images/image-decoding.jpg "image_tooltip")
 
 
  When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
 
 
-![](dist/images/responsive-art-direction.jpg "image_tooltip")
+![](images/responsive-art-direction.jpg "image_tooltip")
 
 
 Although shipping the right resolution to users is important, some sites also need to think about this in terms of **[art direction](http://usecases.responsiveimages.org/#art-direction)**. If a user is on a smaller screen, you may want to zoom in and display the subject to make best use of available space. Although art direction is outside the scope of this write-up, services like[ Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20) provide tools to try automating this as much as possible. 
@@ -841,7 +833,7 @@ Although shipping the right resolution to users is important, some sites also ne
 Lazy loading is a web performance pattern that delays the loading of images in the browser until the user needs to see it. One example is as you scroll, images load asynchronously on demand. This can further compliment the byte-savings you see from having an image compression strategy.
 
 
-![](dist/images/scrolling-viewport.jpg "image_tooltip")
+![](images/scrolling-viewport.jpg "image_tooltip")
 
 
 Images that must appear "above the fold," or when the web page first appears are loaded straight away. The images which follow "below the fold," however, are not yet visible to the user. They do not have to be immediately loaded into the browser. They can be loaded later — or lazy loaded — only if and when the user scrolls down and it becomes necessary to show them. 
@@ -869,7 +861,7 @@ Use it for long-lists of images (e.g products) or avatars in lists of users. Don
 For examples of lazy loading, look at most any major site that hosts a lot of images. Some notable sites are [Medium](https://medium.com/) and [Pinterest](https://www.pinterest.com/).
 
 
-![](dist/images/Modern-Image35.jpg "image_tooltip")
+![](images/Modern-Image35.jpg "image_tooltip")
 
 
 A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it's been fetched. José M. Pérez has written about how to implement the Medium effect using [CSS filters](https://jmperezperez.com/medium-image-progressive-loading-placeholder/) and experimented with [different image formats](https://jmperezperez.com/webp-placeholder-images/) to support such placeholders. Facebook also did a write-up on their famous 200-byte approach to such placeholders for their [cover photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/) that is worth a read. If you're a Webpack user, [LQIP loader](https://lqip-loader.firebaseapp.com/) can help automate some of this work away.
@@ -996,7 +988,7 @@ Third, API access is provided by both services. Developers can access the CDN pr
 
 For now, let's limit our discussion to static images. Both Cloudinary and Imgix offer a range of image manipulation methods, and both support primary functions such as compression, resizing, cropping and thumbnail creation in their standard and free plans.
 
-![](dist/images/Modern-Image36.jpg "image_tooltip")
+![](images/Modern-Image36.jpg "image_tooltip")
  
 
 By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.
@@ -1051,14 +1043,14 @@ If you are currently serving your own images or planning to, perhaps you should 
 
 As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
 
-![](dist/images/Modern-Image37.jpg "image_tooltip")
+![](images/Modern-Image37.jpg "image_tooltip")
 
 
 [Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
 
 [Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g logos) offering a high-resolution and zoom like SVG handle this use case better. 
 
-![](dist/images/Modern-Image38.jpg "image_tooltip")
+![](images/Modern-Image38.jpg "image_tooltip")
 
 
 The logical flow for choosing the right format can be fraught with peril. Jeremy Wagner covers some of the considerations you might want to think about [here](http://jlwagner.net/talks/these-images/#/2/2).
@@ -1103,3 +1095,8 @@ If you **can** conditionally serve (using <picture>, the Accept header or Pictur
 Happy compressing!
 
 <aside class="note"><b>Note:</b> For more practical guidance on how to optimize images, I heavily recommend [Web Performance in Action](https://www.manning.com/books/web-performance-in-action) by Jeremy Wagner. It's a fantastic book. [High Performance Images](http://shop.oreilly.com/product/0636920039730.do) is also filled with excellent, nuanced advice on this topic.</aside>
+
+With thanks to our tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.
+
+</body>
+</html>

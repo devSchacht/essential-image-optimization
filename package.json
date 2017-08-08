@@ -27,6 +27,8 @@
   "homepage": "https://github.com/addyosmani/essential-image-optimisation#readme",
   "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-markdown": "^1.2.0",
+    "gulp-md-template": "^1.1.2",
     "imagemin-guetzli": "^1.0.0",
     "imagemin-jpeg-recompress": "^5.1.0",
     "lazysizes": "^4.0.0-rc3"
