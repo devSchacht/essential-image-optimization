@@ -1,8 +1,9 @@
 # Essential Image Optimisation
 
-By [Addy Osmani](https://twitter.com/addyosmani). With thanks to tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.
+By [Addy Osmani](https://twitter.com/addyosmani) <div class="reviewers">With thanks to tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.</div>
 
-***
+### The tl;dr
+
 **Everyone should be automating their image compression.**
 
 In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change and content that doesn't go through a build pipeline can easily slip.
@@ -45,7 +46,7 @@ Image optimisation consists of different measures that can reduce the filesize o
 
 Common image optimisations include compression, responsively serving them down based on screen size using [<picture>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
-<aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. It also supports MozJPEG and Guetzli to take advantage of newer optimising JPEG encoders. If you're a designer, there's a new [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.</aside>
+<aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. If you're a designer, there's a new [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.</aside>
 
 
 ### How can I tell if my images need to be optimized?
@@ -136,9 +137,9 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
 <figcaption>[Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
 </figure>
 
-PJPEGs can improve compression, consuming [2-10% ](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc. take advantage of PJPEG's flexibility to pack data better. 
+PJPEGs can improve compression, consuming [2-10% ](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc.) take advantage of PJPEG's flexibility to pack data better. 
 
-*Why do PJPEGs compress better? Similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block end up being encoded together which can compress better than simple/baseline JPEGs whose blocks are encoded one at a time.*
+<aside class="note"><b>Note:</b> Why do PJPEGs compress better? Similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block end up being encoded together which can compress better than simple/baseline JPEGs whose blocks are encoded one at a time.</aside>
 
 
 ### Who's using Progressive JPEGs in production?
@@ -156,7 +157,7 @@ Progressive JPEGs are also not *always* smaller. For very small images (like thu
 
 This means that when deciding whether or not to ship PJPEGs, you'll need to experiment and find the right balance of file-size, network latency and use of CPU cycles.
 
-Note: PJPEGs (and all JPEGs) can sometimes be hardware decodable on mobile devices. It doesn't improve on RAM impact, but it can negate some of the CPU concerns. Not all Android devices have H/W support, but high end devices do, and so do all iOS devices.
+Note: PJPEGs (and all JPEGs) can sometimes be hardware decodable on mobile devices. It doesn't improve on RAM impact, but it can negate some of the CPU concerns. Not all Android devices have hardware-acceleration support, but high end devices do, and so do all iOS devices.
 
 Some users may consider progressive loading to be a disadvantage as it can become hard to tell when an image has completed loading. As this can vary heavily per audience, evaluate what makes sense for your own users.
 
@@ -220,15 +221,12 @@ Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files whil
 ***tl;dr Which optimising JPEG Encoder should you use?***
 
 * General web assets: MozJPEG
-
 * Quality is your key concern and you don't mind long encode times: use Guetzli
-
 * If you need configurability: JPEGRecompress (which uses MozJPEG under the hood)
 
 There's also: 
 
 * [JPEGMini](http://www.jpegmini.com/). It's similar to Guetzli - chooses best quality automatically. It's not as technically sophisticated as Guetzli, but it's faster, and aims at quality range more suitable for the web.
-
 * [ImageOptim API](https://imageoptim.com/api) (with free online interface here: https://imageoptim.com/online) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
 
 
@@ -317,11 +315,9 @@ Comparing different JPEG encoders is complex - one needs to compare both the qua
 
 How does Guetzli compare to MozJPEG? - Kornel's take:
 
-- Guetzli is tuned for higher-quality images (butteraugli is said to be best for q=90+, MozJPEG's sweet spot is around q=75)
-
-- Guetzli is much slower to compress (both produce standard JPEGs, so decoding is fast as usual)
-
-- MozJPEG doesn't automagically pick quality setting, but you can find optimal quality using an external tool, e.g. https://github.com/danielgtaylor/jpeg-archive
+* Guetzli is tuned for higher-quality images (butteraugli is said to be best for `q=90`+, MozJPEG's sweet spot is around `q=75`)
+* Guetzli is much slower to compress (both produce standard JPEGs, so decoding is fast as usual)
+* MozJPEG doesn't automagically pick quality setting, but you can find optimal quality using an external tool, e.g. https://github.com/danielgtaylor/jpeg-archive
 
 A number of methods exist for determining if compressed images are visually similar or perceivably similar to their sources. Image quality studies often use methods like [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity). Guetzli however optimizes for Butteraugli.
 
@@ -560,19 +556,12 @@ Jeremy Wagner has a more comprehensive post on[ image optimization using Bash](h
 **Other WebP image processing and editing apps include:**
 
    * Leptonica — An entire website of open source image processing and analysis 
-
 Apps.
 
-
-
 *   Sketch supports outputting directly to WebP
-
     * GIMP — Free, open source Photoshop alternative. Image editor.
-
     * ImageMagick — Create, compose, convert, or edit bitmap images. Free. Command-Line app.
-
     * Pixelmator — Commercial image editor for Mac.
-
     * Photoshop WebP Plugin — Free. Image import and export. From Google.
 
 **Android:** You can convert existing BMP, JPG, PNG or static GIF images to WebP format using Android Studio. For more information, see [Create WebP Images Using Android Studio](https://developer.android.com/studio/write/convert-webp.html).
@@ -622,15 +611,12 @@ Here is a sample .htaccess file for the Apache web server:
   RewriteEngine On
 
   # Check if browser support WebP images
-
   RewriteCond %{HTTP_ACCEPT} image/webp
 
   # Check if WebP replacement image exists
-
   RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
 
   # Serve WebP image instead
-
   RewriteRule (.+)\.(jpe?g|png)$ $1.webp [T=image/webp,E=accept:1]
 
 </IfModule>
@@ -660,7 +646,7 @@ image/webp webp;
 
 https://github.com/vincentorback/WebP-images-with-htaccess
 
-***Using the <picture> Tag***
+***Using the `<picture>` Tag***
 
 The browser itself is capable of choosing which image format to display through the use of the `<picture>` tag. The `<picture>` tag utilizes multiple `<source>` elements, with one `<img>` tag, which is the actual DOM element which contains the image. The browser cycles through the sources and retrieves the first match. If the `<picture>` tag isn't supported in the user's browser, a `<div>` is rendered and the `<img>` tag is used. 
 
@@ -860,7 +846,6 @@ Lazy loading is not yet natively supported in the browser itself (although there
 This "lazy" way of loading images only if and when necessary has many benefits:
 
 * The experience can consume less data. As you aren't assuming the user will need every image fetched ahead of time you're only loading the minimal number of resources. This is always a good thing, especially on mobile with more restrictive data plans.
-
 * Less workload for the user's browser which can save on battery life. 
 
 Decreasing your overall page load time on an image heavy website from several seconds to almost nothing is also a tremendous boost to your user experience. In fact, it could be the difference between a user staying around to enjoy your site and just another bounce statistic.
@@ -924,17 +909,11 @@ Optionally you can also add a src attribute with a low quality image:
 **Lazysizes features include:**
 
 * Automatically detects visibility changes on current and future lazyload elements
-
 * Includes standard responsive image support (picture and srcset)
-
 * Adds automatic sizes calculation and alias names for media queries feature
-
 * Can be used with hundreds of images/iframes on CSS and JS-heavy pages or web apps
-
 * Extendable: Supports plugins
-
 * Lightweight but mature solution
-
 * SEO improved: Does not hide images/assets from crawlers
 
 **More Lazy Loading Options**
@@ -1074,15 +1053,15 @@ Ultimately, choosing an image optimization strategy will come down to the types 
 If you **can't** invest in conditionally serving formats based on browser support:
 
 
-*   Guetzli + MozJPEG's jpegtran is a good format for JPEG quality > 90. 
-    *   For the web q=90 is wastefully high. You can get away with q=80, and on 2x displays even with q=50. Since Guetzli doesn't go that low, for the web you can MozJPEG. 
-    *   Kornel recently improved mozjpeg's cjpeg command to add tiny sRGB profile to help Chrome display natural color on wide-gamut displays
-*   PNG pngquant + advpng has a pretty good speed/compression ratio
+* Guetzli + MozJPEG's jpegtran is a good format for JPEG quality > 90. 
+    * For the web `q=90` is wastefully high. You can get away with `q=80`, and on 2x displays even with `q=50`. Since Guetzli doesn't go that low, for the web you can MozJPEG. 
+    * Kornel recently improved mozjpeg's cjpeg command to add tiny sRGB profile to help Chrome display natural color on wide-gamut displays
+* PNG pngquant + advpng has a pretty good speed/compression ratio
 * If you **can** conditionally serve (using `<picture>`, the [Accept header](https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/) or [Picturefill](https://scottjehl.github.io/picturefill/)):
-    *   Serve WebP down to browsers that support it
-        *   Create WebP images from original 100% quality images. Otherwise you'll be giving browsers that do support it worse-looking images with JPEG distortions *and* WebP distortions! If you compress uncompressed source images using WebP it'll have the less visible WebP distortions and can compress better too.
-        *   The default settings the WebP team use of `-m 4 -q 75` are usually good for most cases where they optimize for speed/ratio.
-        *   WebP also has a special mode for lossless (`-m 6 -q 100`) which can reduce a file to its smallest size by exploring all parameter combinations. It's an order of magnitude slower but is worth it for static assets.
+    * Serve WebP down to browsers that support it
+        * Create WebP images from original 100% quality images. Otherwise you'll be giving browsers that do support it worse-looking images with JPEG distortions *and* WebP distortions! If you compress uncompressed source images using WebP it'll have the less visible WebP distortions and can compress better too.
+        * The default settings the WebP team use of `-m 4 -q 75` are usually good for most cases where they optimize for speed/ratio.
+        * WebP also has a special mode for lossless (`-m 6 -q 100`) which can reduce a file to its smallest size by exploring all parameter combinations. It's an order of magnitude slower but is worth it for static assets.
     *   As a fallback, serve Guetzli/MozJPEG compressed sources to other browsers
 
 Happy compressing!
