@@ -1079,16 +1079,12 @@ If you **can't** invest in conditionally serving formats based on browser suppor
     *   For the web q=90 is wastefully high. You can get away with q=80, and on 2x displays even with q=50. Since Guetzli doesn't go that low, for the web you can MozJPEG. 
     *   Kornel recently improved mozjpeg's cjpeg command to add tiny sRGB profile to help Chrome display natural color on wide-gamut displays
 *   PNG pngquant + advpng has a pretty good speed/compression ratio
-
-If you **can** conditionally serve (using <picture>, the Accept header or Picturefill):
-
-
-
-*   Serve WebP down to browsers that support it (e.g Chrome, Opera)
-    *   Create WebP images from original 100% quality images. Otherwise you'll be giving browsers that do support it worse-looking images with JPEG distortions *and* WebP distortions! If you compress uncompressed source images using WebP it'll have the less visible WebP distortions and can compress better too.
-    *   The default settings the WebP team use of `-m 4 -q 75` are usually good for most cases where they optimize for speed/ratio.
-    *   WebP also has a special mode for lossless (`-m 6 -q 100`) which can reduce a file to its smallest size by exploring all parameter combinations. It's an order of magnitude slower but is worth it for static assets.
-*   As a fallback, serve Guetzli/MozJPEG compressed sources to other browsers
+* If you **can** conditionally serve (using `<picture>`, the Accept header or Picturefill):
+    *   Serve WebP down to browsers that support it (e.g Chrome/Opera)
+        *   Create WebP images from original 100% quality images. Otherwise you'll be giving browsers that do support it worse-looking images with JPEG distortions *and* WebP distortions! If you compress uncompressed source images using WebP it'll have the less visible WebP distortions and can compress better too.
+        *   The default settings the WebP team use of `-m 4 -q 75` are usually good for most cases where they optimize for speed/ratio.
+        *   WebP also has a special mode for lossless (`-m 6 -q 100`) which can reduce a file to its smallest size by exploring all parameter combinations. It's an order of magnitude slower but is worth it for static assets.
+    *   As a fallback, serve Guetzli/MozJPEG compressed sources to other browsers
 
 Happy compressing!
 
