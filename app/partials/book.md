@@ -61,15 +61,14 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 <img class="lazyload" data-src="images/Modern-Image2.jpg"/>
 
 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse/) is a Chrome extension that can audit for performance best practices on your local machine. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded:
-
-<img class="lazyload" data-src="images/Modern-Image3.jpg"/>
-
+[Lighthouse](https://developers.google.com/web/tools/lighthouse/) is a Chrome extension that can audit for performance best practices on your local machine. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded. 
 
 As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
 
-<img class="lazyload" data-src="images/Modern-Image4.jpg"/>
-
+<figure>
+<img class="lazyload small" data-src="images/hbo.jpg"/>
+<figcaption>Lighthouse can audit for Web Performance, Best Practices and Progressive Web App features.</figcaption>
+</figure>
 
 You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit. 
 
@@ -872,9 +871,9 @@ Use it for long-lists of images (e.g products) or avatars in lists of users. Don
 
 For examples of lazy loading, look at most any major site that hosts a lot of images. Some notable sites are [Medium](https://medium.com/) and [Pinterest](https://www.pinterest.com/).
 
-
+<figure>
 <img class="lazyload" data-src="images/Modern-Image35.jpg"/>
-
+</figure>
 
 A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it's been fetched. 
 
@@ -899,31 +898,21 @@ Optionally you can also add a src attribute with a low quality image:
 
 ```html
 <!-- non-responsive: -->
-
 <img data-src="image.jpg" class="lazyload" />
 
 <!-- responsive example with automatic sizes calculation: -->
-
 <img
-
     data-sizes="auto"
-
     data-src="image2.jpg"
-
     data-srcset="image1.jpg 300w,
-
     image2.jpg 600w,
-
     image3.jpg 900w" class="lazyload" />
 
 <!-- iframe example -->
 
 <iframe frameborder="0"
-
     class="lazyload"
-
     allowfullscreen=""
-
     data-src="//www.youtube.com/embed/ZfV-aYdU4uE">
 </iframe>
 ```
@@ -955,18 +944,11 @@ Clearly, lazysizes is not your only option. Here are more lazy loading libraries
 **What's the catch with Lazy Loading?**
 
 
-
 *   Screen readers, some search bots and any users with JavaScript disabled will not be able to view images lazy loaded with JavaScript. This is however something that we can work around with a `<noscript>` fallback.
 *   Scroll listeners, such as used for determining when to load a lazy-loaded image, can have an adverse impact on browser scrolling performance. They can cause the browser to redraw many times, slowing the process to a crawl - however, smart lazy loading libraries will use throttling to mitigate this. One possible solution is Intersection Observer, which is supported by lazysizes. 
 
-Lazy loading images is a widespread pattern for reducing bandwidth, decreasing costs, and improving user experience. Evaluate whether it makes sense for your experience.
-
-Further reading:
-
-https://jmperezperez.com/lazy-loading-images/
-
-https://jmperezperez.com/medium-image-progressive-loading-placeholder/ 
-
+Lazy loading images is a widespread pattern for reducing bandwidth, decreasing costs, and improving user experience. Evaluate whether it makes sense for your experience. For further
+reading see [lazy loading images](https://jmperezperez.com/lazy-loading-images/) and [implementing Medium's progressive loading](https://jmperezperez.com/medium-image-progressive-loading-placeholder/).
 
 ## Does an Image Processing CDN Make Sense for You?
 
