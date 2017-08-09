@@ -717,7 +717,7 @@ For more information, checkout the[ Book of GIF](https://rigor.com/wp-content/up
 ## SVG Optimization
 
 
-#### Keeping SVGs lean means stripping out anything unnecessary. SVG files created with editors usually contain a large quantity of redundant information (metadata, comments, hidden layers and so forth). This content can often be safely removed or converted to a more minimal form without impacting the final SVG that's being rendered.
+Keeping SVGs lean means stripping out anything unnecessary. SVG files created with editors usually contain a large quantity of redundant information (metadata, comments, hidden layers and so forth). This content can often be safely removed or converted to a more minimal form without impacting the final SVG that's being rendered.
 
 <img class="lazyload" data-src="images/Modern-Image26.jpg"/>
 
