@@ -3,7 +3,6 @@
 By [Addy Osmani](https://twitter.com/addyosmani). With thanks to tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.
 
 ***
-
 **Everyone should be automating their image compression.**
 
 In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change and content that doesn't go through a build pipeline can easily slip.
@@ -818,18 +817,23 @@ MozJPEG (perhaps accidentally) has a better resistance to recompression degradat
 **When editing your source files, store them in a lossless format like PNG or TIFF so you preserve as much quality as you can.** Your build tools or image compression service than then handle outputting the compressed version you serve to users with minimal loss in quality. 
 
 
-## Reduce unnecessary image resizes
+## Reduce unnecessary image decode and resize costs
 
 We've all shipped large, higher resolution images than needed to our users before. This has a cost to it. Decoding and resizing images are expensive operations for a browser on average mobile hardware. If sending down large images and rescaling using CSS or width/height attributes, you're likely to see this happen and it can impact performance. 
 
 Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). 
 
+<figure>
+<img class="lazyload small" data-src="images/devtools-decode.jpg"/>
+<figcaption>Browsers have to go through a number of steps to paint images on the screen. In addition to fetching them, images need to be decoded and often resized. These events can be
+audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/performance-reference). </figcaption>
+</figure>
 
+<figure>
 <img class="lazyload" data-src="images/image-decoding.jpg"/>
-
+</figure>
 
  When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
-
 
 <figure>
 <img class="lazyload" data-src="images/responsive-art-direction.jpg"/>
