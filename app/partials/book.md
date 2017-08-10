@@ -136,7 +136,7 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
 <figcaption>[Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
 </figure>
 
-PJPEGs can improve compression, consuming [2-10% ](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc.) take advantage of PJPEG's flexibility to pack data better. 
+PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc.) take advantage of PJPEG's flexibility to pack data better. 
 
 <aside class="note"><b>Note:</b> Why do PJPEGs compress better? Similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block end up being encoded together which can compress better than simple/baseline JPEGs whose blocks are encoded one at a time.</aside>
 
@@ -550,7 +550,7 @@ and trim those SVGs down using [svgo](https://github.com/svg/svgo) (which we'll 
 find ./ -type f -name '*.svg' -exec svgo {} \;
 ```
 
-Jeremy Wagner has a more comprehensive post on[ image optimization using Bash](https://jeremywagner.me/blog/bulk-image-optimization-in-bash) and another on doing this work in [parallel](https://jeremywagner.me/blog/faster-bulk-image-optimization-in-bash) worth reading.
+Jeremy Wagner has a more comprehensive post on [image optimization using Bash](https://jeremywagner.me/blog/bulk-image-optimization-in-bash) and another on doing this work in [parallel](https://jeremywagner.me/blog/faster-bulk-image-optimization-in-bash) worth reading.
 
 **Other WebP image processing and editing apps include:**
 
@@ -688,21 +688,21 @@ Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service ca
 
 **Compressing Animated GIFs and why `<video>` is better**
 
-Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the[ GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The[ number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. However, switching to video offers the largest savings. 
+Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the [GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The [number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. However, switching to video offers the largest savings. 
 
 
 <img class="lazyload" data-src="images/animated-gif.jpg"/>
 
 
-Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to[ Twitter](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW) or[ Imgur](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/), they'll silently convert it to an MP4 for you. Why are GIFs many times[ larger](https://www.quora.com/For-a-given-scene-why-does-an-animated-GIF-have-a-much-bigger-file-size-than-its-video-source-e-g-in-MP4-format)?.
+Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to [Twitter](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW) or [Imgur](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/), they'll silently convert it to an MP4 for you. Why are GIFs many times [larger](https://www.quora.com/For-a-given-scene-why-does-an-animated-GIF-have-a-much-bigger-file-size-than-its-video-source-e-g-in-MP4-format)?.
 
 Animated GIFs store each frame as a lossless GIF image - yes, lossless. The degraded quality we often experience is due to GIFs being limited to a 256-color palette. The format is often large as it doesn't consider neighbor frames for compression, unlike video codecs like H.264. An MP4 video stores each key frame as a lossy JPEG, which discards some of the original data to achieve better compression. 
 
 **If you can switch to videos**
 
-*   Use[ ffmpeg](https://www.ffmpeg.org/) to convert your animated GIFs (or sources) to H.264 MP4s. I use this one-liner from[ Rigor](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video):
+*   Use [ffmpeg](https://www.ffmpeg.org/) to convert your animated GIFs (or sources) to H.264 MP4s. I use this one-liner from[ Rigor](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video):
 ffmpeg -i animated.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
-*   Cloudinary has an[ excellent workflow](http://cloudinary.com/blog/reduce_size_of_animated_gifs_automatically_convert_to_webm_and_mp4) for autoconverting sources (or animated GIFs) to H.264 and WEBM. I found this tip about their[ lossy mode](https://www.noupe.com/design/creating-animated-gifs-right-way-cloudinary-98607.html) useful.
+*   Cloudinary has an [excellent workflow](http://cloudinary.com/blog/reduce_size_of_animated_gifs_automatically_convert_to_webm_and_mp4) for autoconverting sources (or animated GIFs) to H.264 and WEBM. I found this tip about their [lossy mode](https://www.noupe.com/design/creating-animated-gifs-right-way-cloudinary-98607.html) useful.
 *   ImageOptim API [supports this too](https://imageoptim.com/api/ungif) and also [removes dithering from GIFs](https://github.com/pornel/undither#examples) which can help video codecs compress even more.
 
 **If you must use animated GIFs**
@@ -715,10 +715,12 @@ For more information, checkout the[ Book of GIF](https://rigor.com/wp-content/up
 
 ## SVG Optimization
 
-
 Keeping SVGs lean means stripping out anything unnecessary. SVG files created with editors usually contain a large quantity of redundant information (metadata, comments, hidden layers and so forth). This content can often be safely removed or converted to a more minimal form without impacting the final SVG that's being rendered.
 
-<img class="lazyload" data-src="images/Modern-Image26.jpg"/>
+<figure>
+<img class="lazyload small" data-src="images/Modern-Image26.jpg" alt="svgo"/>
+<figcaption>SVGO - The SVG Optimisation tool in action using Jake Archibald's [SVGOMG](https://jakearchibald.github.io/svgomg/) Web UI.</figcaption>
+</figure>
 
 
 **Some SVG optimization good rules of thumb:**
@@ -730,16 +732,15 @@ Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangl
 *   Delete layers that are invisible.
 *   Avoid any Photoshop or Illustrator effects. They can get converted to large raster images.
 *   Double check for any embedded raster images that aren't SVG-friendly
-*   Optimize your SVGs through[ SVGO](https://github.com/svg/svgo) - a Node-based tool for trimming.[ SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for SVGO by Jake Archibald that I've also found invaluable. A handy [Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/) on your SVGs when exporting them is also available.
+*   Optimize your SVGs through [SVGO](https://github.com/svg/svgo) - a Node-based tool for trimming.[SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for SVGO by Jake Archibald that I've also found invaluable. A handy [Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/) on your SVGs when exporting them is also available.
 
 
-<img class="lazyload" data-src="images/svgo-precision.jpg"/>
-
+<img class="lazyload" data-src="images/svgo-precision.jpg" alt="svgo precision reduction can sometimes have a positive impact on size"/>
 
 SVGO can also reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image28.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image28.jpg" alt="where svgo can go wrong, oversimplifying paths and artwork"/>
 <figcaption>It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.</figcaption>
 </figure>
 
@@ -767,21 +768,21 @@ See the SVGO [readme](https://github.com/svg/svgo) for the full list of supporte
 
 **Don't forget to compress SVGs!**
 
-<img class="lazyload" data-src="images/before-after-svgo.jpg"/>
+<img class="lazyload" data-src="images/before-after-svgo.jpg" alt="before and after running an image through svgo"/>
 
 
 Also, don't forget to [Gzip your SVG assets](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) or serve them using Brotli. As they're text based, they'll compress really well (~50% of the original sources).
 
-When Google shipped a new logo, we announced that the smallest version of it was only 305 bytes in size.
+When Google shipped a new logo, we announced that the [smallest](https://twitter.com/addyosmani/status/638753485555671040) version of it was only 305 bytes in size.
 
-<img class="lazyload" data-src="images/Modern-Image30.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image30.jpg" alt="the smallest version of the new google logo was only 305 bytes in size"/>
 
 
 There are [lots of advanced SVG tricks](https://www.clicktorelease.com/blog/svg-google-logo-in-305-bytes/) you can use to trim this down even further (all the way to 146 bytes)! Suffice to say, whether it's through tools or manual clean-up, there's probably a *little* more you can shave off your SVGs.
 
 **Further reading**
 
-Sara Soueidan's[ tips for optimising SVG delivery for the web](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) and Chris Coyier's [Practical SVG book](https://abookapart.com/products/practical-svg) are excellent. I've also found Andreas Larsen's optimizing SVG posts enlightening ([part 1](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035),[ part 2](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)).[ Preparing and exporting SVG icons in Sketch](https://medium.com/sketch-app-sources/preparing-and-exporting-svg-icons-in-sketch-1a3d65b239bb) was also a great read.
+Sara Soueidan's [tips for optimising SVG delivery for the web](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) and Chris Coyier's [Practical SVG book](https://abookapart.com/products/practical-svg) are excellent. I've also found Andreas Larsen's optimizing SVG posts enlightening ([part 1](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035),[part 2](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)).[Preparing and exporting SVG icons in Sketch](https://medium.com/sketch-app-sources/preparing-and-exporting-svg-icons-in-sketch-1a3d65b239bb) was also a great read.
 
 
 ## Avoid recompressing images with lossy codecs
@@ -793,8 +794,8 @@ To avoid this trap, **set the lowest good quality you're willing to accept in th
 Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. 
 
 <figure>
-<img class="lazyload" data-src="images/generational-loss.jpg"/>
-<figcaption>Above, from this[ excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and[ accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.</figcaption>
+<img class="lazyload" data-src="images/generational-loss.jpg" alt="generational loss when re-encoding an image multiple times"/>
+<figcaption>Above, from this [excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and [accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.</figcaption>
 </figure>
 
 MozJPEG (perhaps accidentally) has a better resistance to recompression degradation thanks to trellis quantization. Instead of compressing all DCT values as they are exactly, it can check close values within a +1/-1 range to see if similar values compress to fewer bits. Lossy FLIF has a hack similar to lossy PNG in that prior to (re)compression, it can look at the data and decide what to throw away. Recompressed PNGs have "holes" it can detect to avoid changing data further.
@@ -809,19 +810,19 @@ We've all shipped large, higher resolution images than needed to our users befor
 Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). 
 
 <figure>
-<img class="lazyload small" data-src="images/devtools-decode.jpg"/>
+<img class="lazyload small" data-src="images/devtools-decode.jpg" alt="image decode costs shown in the chrome devtools"/>
 <figcaption>Browsers have to go through a number of steps to paint images on the screen. In addition to fetching them, images need to be decoded and often resized. These events can be
 audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/performance-reference). </figcaption>
 </figure>
 
 <figure>
-<img class="lazyload" data-src="images/image-decoding.jpg"/>
+<img class="lazyload" data-src="images/image-decoding.jpg" alt="image decode cost improvements for twitter on mobile"/>
 </figure>
 
  When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
 
 <figure>
-<img class="lazyload" data-src="images/responsive-art-direction.jpg"/>
+<img class="lazyload" data-src="images/responsive-art-direction.jpg" alt="responsive art direction in action, adapting to show more or less of an image in a cropped manner depending on device"/>
 <figcaption>Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
 
@@ -833,7 +834,7 @@ Although shipping the right resolution to users is important, some sites also ne
 Lazy loading is a web performance pattern that delays the loading of images in the browser until the user needs to see it. One example is as you scroll, images load asynchronously on demand. This can further compliment the byte-savings you see from having an image compression strategy.
 
 
-<img class="lazyload" data-src="images/scrolling-viewport.jpg"/>
+<img class="lazyload" data-src="images/scrolling-viewport.jpg" alt="lazy-loading images"/>
 
 
 Images that must appear "above the fold," or when the web page first appears are loaded straight away. The images which follow "below the fold," however, are not yet visible to the user. They do not have to be immediately loaded into the browser. They can be loaded later — or lazy loaded — only if and when the user scrolls down and it becomes necessary to show them. 
@@ -860,7 +861,8 @@ Use it for long-lists of images (e.g products) or avatars in lists of users. Don
 For examples of lazy loading, look at most any major site that hosts a lot of images. Some notable sites are [Medium](https://medium.com/) and [Pinterest](https://www.pinterest.com/).
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image35.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image35.jpg" alt="inline previews for images on medium.com"/>
+<figcaption>An example of Gaussian-blurred inline previews for images on Medium.com</figcaption>
 </figure>
 
 A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it's been fetched. 
@@ -965,7 +967,7 @@ Third, API access is provided by both services. Developers can access the CDN pr
 For now, let's limit our discussion to static images. Both Cloudinary and Imgix offer a range of image manipulation methods, and both support primary functions such as compression, resizing, cropping and thumbnail creation in their standard and free plans.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image36.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image36.jpg" alt="cloudinary media library"/>
 <figcaption>By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
 </figure>
 
@@ -1019,14 +1021,14 @@ If you are currently serving your own images or planning to, perhaps you should 
 
 As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
 
-<img class="lazyload" data-src="images/Modern-Image37.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image37.jpg" alt="vector vs raster images"/>
 
 
 [Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
 
 [Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g logos) offering a high-resolution and zoom like SVG handle this use case better. 
 
-<img class="lazyload" data-src="images/Modern-Image38.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image38.jpg" alt="choosing the wrong image format can cost you"/>
 
 
 The logical flow for choosing the right format can be fraught with peril. Jeremy Wagner covers some of the considerations you might want to think about [here](http://jlwagner.net/talks/these-images/#/2/2).
