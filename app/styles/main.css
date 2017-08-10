@@ -6,11 +6,33 @@ will be correctly compiled during `gulp serve` and `gulp`
 html, body {
     font-size: 1.275em;
     line-height: 1.25;
-    font-family: Roboto, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #000;
+    padding: 80px 0 80px 0;
+}
+
+header h1 {
+    font-size: 4em;
+    color: #fff;
+}
+
+.author {
+    color: #fff;
+    max-width: 940px; 
+    padding: 0 16px;
+    text-align: left;
+    margin: 0 auto 24px;
 }
 
 .reviewers {
-    color: #959595;
+    color:#d4d3d3;
     max-width: 940px;
     padding: 0 16px;
     text-align: left;
@@ -86,6 +108,8 @@ figcaption {
     font-size: 0.9em;
     text-align: center;
     color: #757575;
+    margin: 0 auto;
+    width: 70%;
 }
 
 img {
@@ -110,8 +134,18 @@ img:parent, figure:parent, img {
     html, body {
         font-size: 1.1em;
         line-height: 1.25;
-        font-family: Roboto, Arial, sans-serif;
     }
+
+    header {
+        background-color: #000;
+        padding: 40px 0 40px 0;
+    }
+
+    header h1 {
+        font-size: 2em;
+        color: #fff;
+    }
+
 
     h1 {
         font-size: 2.1em;

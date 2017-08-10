@@ -1,6 +1,3 @@
-# Essential Image Optimisation
-
-By [Addy Osmani](https://twitter.com/addyosmani) <div class="reviewers">With thanks to tech reviewers: Kornel Lesinski, Jeremy Wagner, Tim Kadlec, Nolan O'Brien and Kristofer Baxter.</div>
 
 ### The tl;dr
 
@@ -37,13 +34,13 @@ Images take up massive amounts of internet bandwidth because they often have lar
 </figcaption>
 </figure>
 
-Image optimisation consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
+Image optimization consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
 
 <figure>
-<img class="lazyload" data-src="images/image-optimisation.jpg" alt="Image optimisation consists of different measures that can reduce the filesize of your images"/>
+<img class="lazyload" data-src="images/image-optimisation.jpg" alt="Image optimization consists of different measures that can reduce the filesize of your images"/>
 </figure>
 
-Common image optimisations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
+Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
 <aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. If you're a designer, there's a new [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.</aside>
 
