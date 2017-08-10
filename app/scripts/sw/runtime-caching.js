@@ -30,4 +30,7 @@
   global.toolbox.router.get('/(.*)', global.toolbox.fastest, {
     origin: /\.(?:googleapis|gstatic)\.com$/
   });
+
+  // Catch-all for runtime caching images.
+  global.toolbox.router.get('/(.*)', global.toolbox.fastest);
 })(self);

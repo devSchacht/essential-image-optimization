@@ -21,7 +21,6 @@ If you can spare the extra CPU cycles, need higher-than-web-average quality & ar
 Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
 
 There's always more you can do. Tools exists to generate and serve srcset breakpoints. Resource selection can be automated with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in the browser using the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
-***
 
 
 The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality. 
@@ -44,7 +43,7 @@ Image optimisation consists of different measures that can reduce the filesize o
 <img class="lazyload" data-src="images/image-optimisation.jpg"/>
 </figure>
 
-Common image optimisations include compression, responsively serving them down based on screen size using [<picture>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
+Common image optimisations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
 <aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. If you're a designer, there's a new [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.</aside>
 

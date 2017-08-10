@@ -139,4 +139,10 @@ img:parent, figure:parent, img {
         font-size: 0.8em;
         line-height: 1.7;
     }
+
+    pre {
+        font-size: 0.8em;
+        max-width: 400px;
+        overflow: scroll;
+    }
 }
