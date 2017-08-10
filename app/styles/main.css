@@ -31,13 +31,21 @@ header h1 {
     margin: 0 auto 24px;
 }
 
+.author a {
+    color: #F2CC68;
+}
+
 .reviewers {
     color:#d4d3d3;
     max-width: 940px;
     padding: 0 16px;
     text-align: left;
     margin: 0 auto 24px;
-    font-size: 0.8em;
+    font-size: 0.7em;
+}
+
+.reviewers a {
+    color: #eceff1;
 }
 
 a {
