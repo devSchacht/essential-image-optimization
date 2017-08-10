@@ -32,7 +32,7 @@ The smaller in file-size you can make your images, the better a network experien
 Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. Images now account for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the average site and 45% of these image requests are JPEGs. 
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image00.png"/>
+<img class="lazyload small" data-src="images/Modern-Image00.png" alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions"/>
 <figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.
 </figcaption>
 </figure>
@@ -40,7 +40,7 @@ Images take up massive amounts of internet bandwidth because they often have lar
 Image optimisation consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
 
 <figure>
-<img class="lazyload" data-src="images/image-optimisation.jpg"/>
+<img class="lazyload" data-src="images/image-optimisation.jpg" alt="Image optimisation consists of different measures that can reduce the filesize of your images"/>
 </figure>
 
 Common image optimisations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
@@ -53,11 +53,11 @@ Common image optimisations include compression, responsively serving them down b
 Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images"). 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image1.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image1.jpg" alt="WebPage test supports auditing for image compression via the compress images section"/>
 <figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.</figcaption>
 </figure>
 
-<img class="lazyload" data-src="images/Modern-Image2.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image2.jpg" alt="image compression recommendations from webpagetest"/>
 
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse/) is a Chrome extension that can audit for performance best practices on your local machine. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded. 
@@ -65,7 +65,7 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
 
 <figure>
-<img class="lazyload small" data-src="images/hbo.jpg"/>
+<img class="lazyload small" data-src="images/hbo.jpg" alt="Lighthouse audit for HBO.com, displaying image optimisation recommendations"/>
 <figcaption>Lighthouse can audit for Web Performance, Best Practices and Progressive Web App features.</figcaption>
 </figure>
 
@@ -83,7 +83,7 @@ JPEG is a lossy compression algorithm that discards information in order to save
 Formats like JPEG are best suited for photographs or images with a number of color regions. Most optimisation tools will allow you to set what level of compression you're happy with; higher compression reduces file size but can introduce artifacts, halos or blocky degrading. 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image5.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image5.jpg" alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest"/>
 <figcaption>Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest.</figcaption>
 </figure>
 
@@ -110,7 +110,7 @@ Baseline JPEGs (the default for most image editing & optimisation tools) are enc
 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image6.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image6.jpg" alt="baseline JPEGs load top to bottom"/>
 <figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
 </figure>
 
@@ -118,7 +118,7 @@ Progressive JPEGs divide the image into a number of scans. The first scans show 
 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image7.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image7.jpg" alt="progressive JPEGs load from low-resolution to high-resolution"/>
 <figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. A Cloudinary demo of [decoded in slow motion](http://res.cloudinary.com/jon/video/upload/non_progressive_vs_progressive_JPEG.mp4) is available too.</figcaption>
 </figure>
 
@@ -132,7 +132,7 @@ The ability for PJPEGs to offer low-resolution "previews" of an image as it load
 On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been sent down and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image8.jpg"/>
+<img class="lazyload small" data-src="images/Modern-Image8.jpg" alt="impact to wait time of switching to progressive jpeg"/>
 <figcaption>[Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
 </figure>
 
@@ -182,7 +182,7 @@ gulp.task('images', function () {
 Most image editing tools save images as Baseline JPEG files by default. 
 
 <figure>
-<img class="lazyload" data-src="images/photoshop.jpg"/>
+<img class="lazyload" data-src="images/photoshop.jpg" alt="photoshop supports exporting to progressive jpeg from the file export menu"/>
 <figcaption>You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the 'Progressive' checkbox while saving your images.</figcaption>
 </figure>
 
@@ -194,7 +194,7 @@ Most image editing tools save images as Baseline JPEG files by default.
 *tl;dr - there's a lot of fragmentation. You often need to conditionally serve different formats to different browsers to take advantage of anything modern.*
 
 <figure>
-<img class="lazyload" data-src="images/format-comparison.jpg"/>
+<img class="lazyload" data-src="images/format-comparison.jpg" alt="modern image formats compared based on quality."/>
 <figcaption>Different modern image formats (and optimisers) used to demonstrate what is possible at a target file-size of 26KB.</figcaption>
 </figure>
 
@@ -250,10 +250,10 @@ gulp.task('mozjpeg', () =>
 );
 ```
 
-<img class="lazyload" data-src="images/Modern-Image10.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image10.jpg" alt="mozjpeg being run from the command-line"/>
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image11.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image11.jpg" alt="mozjpeg compression at different qualities"/>
 </figure>
 
 
@@ -294,13 +294,13 @@ gulp.task('guetzli', () =>
 ```
 
 
-<img class="lazyload" data-src="images/Modern-Image12.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image12.jpg" alt="guetzli being run from gulp for optimisation"/>
 
 
 It took multiple minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image13.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image13.jpg" alt="comparison of guetzli at different qualities"/>
 </figure>
 
 <aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g JPEGs of quality 84 or lower), results can be poorer.</aside>
@@ -326,14 +326,14 @@ A number of methods exist for determining if compressed images are visually simi
 [Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a human might notice the point of image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image14.jpg"/>
+<img class="lazyload small" data-src="images/Modern-Image14.jpg" alt="butteraugli validating an image of a parrot"/>
 <figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough that a user would be able to notice something wasn't that clear. It resulted in a 65% reduction in total file size.</figcaption>
 </figure>
 
 In practice, you would define a target goal for visual quality and then run through a number of different image optimisation strategies, looking at your Butteraugli scores, before choosing something that fits the best balance of file- size and level.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image15.jpg"/>
+<img class="lazyload small" data-src="images/Modern-Image15.jpg" alt="butteraugli being run from the command line"/>
 <figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward - specify the two images to compare (a source and compressed version) - and it will give you a score to work off.</figcaption>
 </figure>
 
@@ -355,7 +355,7 @@ For larger images, I found combining Guetzli with **lossless compression **in Mo
 In the last year, WebP gained a few percent compression-wise in lossy and lossless  modes and speed-wise the algorithm got twice as fast with a 10% improvement in decompression.  WebP is not a tool for all purposes, but it has some standing and a growing user base in the image compression community. Let's examine why.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image16.jpg"/>
+<img class="lazyload" data-src="images/Modern-Image16.jpg" alt="comparison of webp at different quality settings"/>
 </figure>
 
 ### How Does WebP Perform? 
