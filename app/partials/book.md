@@ -1,4 +1,3 @@
-
 ### The tl;dr
 
 **Everyone should be automating their image compression.**
@@ -29,7 +28,23 @@ The smaller in file-size you can make your images, the better a network experien
 Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. Images now account for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the average site and 45% of these image requests are JPEGs. 
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image00.png" alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image00.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image00.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
+        alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions" />
+</picture>
+
 <figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.
 </figcaption>
 </figure>
@@ -37,8 +52,27 @@ Images take up massive amounts of internet bandwidth because they often have lar
 Image optimization consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
 
 <figure>
-<img class="lazyload" data-src="images/image-optimisation.jpg" alt="Image optimization consists of different measures that can reduce the filesize of your images"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/image-optimisation"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/image-optimisation"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
+        alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions" />
+</picture>
+
+<figcaption>Image optimization consists of different measures that can reduce the filesize of your images
+</figcaption>
 </figure>
+
 
 Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
@@ -50,11 +84,46 @@ Common image optimizations include compression, responsively serving them down b
 Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images"). 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image1.jpg" alt="WebPage test supports auditing for image compression via the compress images section"/>
-<figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.</figcaption>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image1.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image1.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image1.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image1.jpg"
+        alt="WebPage test supports auditing for image compression via the compress images section" />
+</picture>
+
+<figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.
+</figcaption>
 </figure>
 
-<img class="lazyload" data-src="images/Modern-Image2.jpg" alt="image compression recommendations from webpagetest"/>
+
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image2.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image2.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image2.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image2.jpg"
+        alt="image compression recommendations from webpagetest" />
+</picture>
+</figure>
 
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse/) is a Chrome extension that can audit for performance best practices on your local machine. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded. 
@@ -62,9 +131,25 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
 
 <figure>
-<img class="lazyload small" data-src="images/hbo.jpg" alt="Lighthouse audit for HBO.com, displaying image optimisation recommendations"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/hbo.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/hbo.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg"
+        alt="Lighthouse audit for HBO.com, displaying image optimisation recommendations" />
+</picture>
 <figcaption>Lighthouse can audit for Web Performance, Best Practices and Progressive Web App features.</figcaption>
 </figure>
+
 
 You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit. 
 
@@ -80,9 +165,25 @@ JPEG is a lossy compression algorithm that discards information in order to save
 Formats like JPEG are best suited for photographs or images with a number of color regions. Most optimisation tools will allow you to set what level of compression you're happy with; higher compression reduces file size but can introduce artifacts, halos or blocky degrading. 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image5.jpg" alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image5.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image5.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"
+        alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest" />
+</picture>
 <figcaption>Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest.</figcaption>
 </figure>
+
 
 When choosing what quality setting to opt for, consider what quality bucket your images fall into:
 
@@ -107,15 +208,44 @@ Baseline JPEGs (the default for most image editing & optimisation tools) are enc
 
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image6.jpg" alt="baseline JPEGs load top to bottom"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image6.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image6.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"
+        alt="baseline JPEGs load top to bottom" />
+</picture>
 <figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
 </figure>
 
 Progressive JPEGs divide the image into a number of scans. The first scans show the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
 
-
 <figure>
-<img class="lazyload" data-src="images/Modern-Image7.jpg" alt="progressive JPEGs load from low-resolution to high-resolution"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image7.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image7.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"
+        alt="progressive JPEGs load from low-resolution to high-resolution" />
+</picture>
 <figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. A Cloudinary demo of [decoded in slow motion](http://res.cloudinary.com/jon/video/upload/non_progressive_vs_progressive_JPEG.mp4) is available and Pat Meenan wrote an [interactive tool](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) to test out and learn about Progressive JPEG scans too.</figcaption>
 </figure>
 
@@ -129,9 +259,25 @@ The ability for PJPEGs to offer low-resolution "previews" of an image as it load
 On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been sent down and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image8.jpg" alt="impact to wait time of switching to progressive jpeg"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image8.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image8.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image8.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image8.jpg"
+        alt="impact to wait time of switching to progressive jpeg" />
+</picture>
 <figcaption>[Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
 </figure>
+
 
 PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc.) take advantage of PJPEG's flexibility to pack data better. 
 
@@ -179,7 +325,22 @@ gulp.task('images', function () {
 Most image editing tools save images as Baseline JPEG files by default. 
 
 <figure>
-<img class="lazyload" data-src="images/photoshop.jpg" alt="photoshop supports exporting to progressive jpeg from the file export menu"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/photoshop.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/photoshop.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/photoshop.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/photoshop.jpg"
+        alt="photoshop supports exporting to progressive jpeg from the file export menu" />
+</picture>
 <figcaption>You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the 'Progressive' checkbox while saving your images.</figcaption>
 </figure>
 
@@ -191,7 +352,22 @@ Most image editing tools save images as Baseline JPEG files by default.
 *tl;dr - there's a lot of fragmentation. You often need to conditionally serve different formats to different browsers to take advantage of anything modern.*
 
 <figure>
-<img class="lazyload" data-src="images/format-comparison.jpg" alt="modern image formats compared based on quality."/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/format-comparison.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/format-comparison.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"
+        alt="modern image formats compared based on quality." />
+</picture>
 <figcaption>Different modern image formats (and optimisers) used to demonstrate what is possible at a target file-size of 26KB.</figcaption>
 </figure>
 
@@ -247,10 +423,43 @@ gulp.task('mozjpeg', () =>
 );
 ```
 
-<img class="lazyload" data-src="images/Modern-Image10.jpg" alt="mozjpeg being run from the command-line"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image10.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image10.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image10.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image10.jpg"
+        alt="mozjpeg being run from the command-line" />
+</picture>
+</figure>
+
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image11.jpg" alt="mozjpeg compression at different qualities"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image11.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image11.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"
+        alt="mozjpeg compression at different qualities" />
+</picture>
 </figure>
 
 
@@ -291,14 +500,47 @@ gulp.task('guetzli', () =>
 ```
 
 
-<img class="lazyload" data-src="images/Modern-Image12.jpg" alt="guetzli being run from gulp for optimisation"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image12.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image12.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg"
+        alt="guetzli being run from gulp for optimisation" />
+</picture>
+</figure>
 
 
 It took multiple minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image13.jpg" alt="comparison of guetzli at different qualities"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image13.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image13.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"
+        alt="comparison of guetzli at different qualities" />
+</picture>
 </figure>
+
 
 <aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g JPEGs of quality 84 or lower), results can be poorer.</aside>
 
@@ -323,14 +565,45 @@ A number of methods exist for determining if compressed images are visually simi
 [Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a human might notice the point of image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image14.jpg" alt="butteraugli validating an image of a parrot"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image14.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image14.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"
+        alt="butteraugli validating an image of a parrot" />
+</picture>
 <figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough that a user would be able to notice something wasn't that clear. It resulted in a 65% reduction in total file size.</figcaption>
 </figure>
+
 
 In practice, you would define a target goal for visual quality and then run through a number of different image optimisation strategies, looking at your Butteraugli scores, before choosing something that fits the best balance of file- size and level.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image15.jpg" alt="butteraugli being run from the command line"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image15.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image15.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"
+        alt="butteraugli being run from the command line" />
+</picture>
 <figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward - specify the two images to compare (a source and compressed version) - and it will give you a score to work off.</figcaption>
 </figure>
 
@@ -352,8 +625,25 @@ For larger images, I found combining Guetzli with **lossless compression **in Mo
 In the last year, WebP gained a few percent compression-wise in lossy and lossless  modes and speed-wise the algorithm got twice as fast with a 10% improvement in decompression.  WebP is not a tool for all purposes, but it has some standing and a growing user base in the image compression community. Let's examine why.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image16.jpg" alt="comparison of webp at different quality settings"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image16.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image16.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"
+        alt="comparison of webp at different quality settings" />
+</picture>
+
 </figure>
+
 
 ### How Does WebP Perform? 
 
@@ -386,7 +676,27 @@ Many large companies are using WebP in production to reduce costs and decrease w
 
 Google reported a 30-35% savings using WebP over other lossy compression schemes, serving 43 billion image requests a day, 26% of that being lossless compression. That's a lot of requests and significant savings. Savings would undoubtedly be larger if browser support were better and more widespread.
 
-<img class="lazyload" data-src="images/webp-conversion.jpg"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/webp-conversion.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/webp-conversion.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/webp-conversion.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/webp-conversion.jpg"
+        alt="webp conversion" />
+</picture>
+
+</figure>
+
+
 
 ### How does WebP encoding work? 
 
@@ -394,13 +704,50 @@ WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/comp
 
 **Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision. 
 
-<img class="lazyload" data-src="images/Modern-Image18.png"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image18.png"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image18.png"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"
+         />
+</picture>
+
+</figure>
 
 
 **Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
-<img class="lazyload" data-src="images/Modern-Image19.png"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image19.png"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image19.png"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"
+         />
+</picture>
+
+</figure>
+
 
 A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
 
@@ -430,23 +777,61 @@ Several commercial and open source image editing and processing packages support
 
 <aside class="note"><b>Note:</b> It's important to avoid converting low or average quality JPEGs to WebP. This is a common mistake and can generate WebP images with JPEG compression artifacts. This can lead to WebP being less efficient as it has to save the image _and_ the distortions added by JPEG, leading to you losing on quality twice. Feed conversion apps the best quality source file available.</aside>
 
-*[XnConvert](http://www.xnview.com/en/xnconvert/)*
+**[XnConvert](http://www.xnview.com/en/xnconvert/)**
 
 XnConvert enables batch image processing, compatible with over 500 image formats. You can combine over 80 separate actions to transform or edit your images in multiple ways. 
 
 
-<img class="lazyload" data-src="images/Modern-Image20.jpg"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image20.png"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image20.png"
+        media="(max-width: 1024px)" />
 
-<img class="lazyload" data-src="images/Modern-Image21.jpg"/>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image20.png" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image20.png"
+         />
+</picture>
+
+</figure>
+
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image21.png"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image21.png"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image21.png" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image21.png"
+         />
+</picture>
+
+</figure>
+
 
 
 Some of the options listed on the xnview website include:
 
 *   Metadata: Editing
-*   Transforms: Rotate, Crop, Resize, … 
-*   Adjustments: Brightness, Contrast, Saturation, … 
-*   Filters: Blur, Emboss, Sharpen, …
-*   Effects: Masking, Watermark, Vignetting, …
+*   Transforms: Rotate, Crop, Resize
+*   Adjustments: Brightness, Contrast, Saturation
+*   Filters: Blur, Emboss, Sharpen
+*   Effects: Masking, Watermark, Vignetting
+
 The results of your operations can be exported to about 70 different file formats, including WebP. XnConvert is free for Linux, Mac, and Windows. XnConvert is highly recommended, especially for small businesses.
 
 **Node modules**
@@ -571,7 +956,26 @@ Although you can drag and drop WebP images to Blink-based browsers (Chrome, Oper
 
 On Mac, try the [Quick Look plugin for WebP](https://github.com/Nyx0uf/qlImageSize) (qlImageSize). It works pretty well:
 
-<img class="lazyload" data-src="images/Modern-Image22.jpg"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image22.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image22.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image22.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image22.jpg"
+         />
+</picture>
+
+</figure>
+
 
 On Windows, you can also download the [WebP codec package](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe) allowing WebP images to be previewed in the File Explorer and Windows Photo Viewer.  
 
@@ -581,17 +985,50 @@ On Windows, you can also download the [WebP codec package](https://storage.googl
 Browsers without WebP support can end up not displaying an image at all, which isn't ideal. To avoid this there are a few strategies we can use for conditionally serving WebP based on browser support.
 
 <figure>
-<img class="lazyload small" data-src="images/play-format-webp.jpg"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/play-format-webp.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/play-format-webp.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-webp.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-webp.jpg"
+         />
+</picture>
+
 </figure>
 
+
 <figure>
-<img class="lazyload small" data-src="images/play-format-type.jpg"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/play-format-type.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/play-format-type.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-type.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-type.jpg"
+         />
+</picture>
 <figcaption>The Play store conditionally serves WebP images to supported browsers and fallback to JPEGs for browsers like Firefox.</figcaption>
 </figure>
 
+
 Here are some of the options for getting WebP images from your server to your user: 
 
-*Using .htaccess to Serve WebP Copies*
+**Using .htaccess to Serve WebP Copies**
 
 Here's how to use a .htaccess file to serve WebP files to supported browsers when a matching .webp version of a JPEG/PNG file exists on the server.
 
@@ -640,9 +1077,9 @@ Nginx: add the following code to your mime.types file:
 image/webp webp;
 ```
 
-https://github.com/vincentorback/WebP-images-with-htaccess
+For more information, see https://github.com/vincentorback/WebP-images-with-htaccess
 
-***Using the `<picture>` Tag***
+**Using the `<picture>` Tag**
 
 The browser itself is capable of choosing which image format to display through the use of the `<picture>` tag. The `<picture>` tag utilizes multiple `<source>` elements, with one `<img>` tag, which is the actual DOM element which contains the image. The browser cycles through the sources and retrieves the first match. If the `<picture>` tag isn't supported in the user's browser, a `<div>` is rendered and the `<img>` tag is used. 
 
@@ -688,7 +1125,24 @@ Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service ca
 Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the [GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The [number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. However, switching to video offers the largest savings. 
 
 
-<img class="lazyload" data-src="images/animated-gif.jpg"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/animated-gif.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/animated-gif.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/animated-gif.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/animated-gif.jpg"
+         />
+</picture>
+</figure>
 
 
 Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to [Twitter](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW) or [Imgur](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/), they'll silently convert it to an MP4 for you. Why are GIFs many times [larger](https://www.quora.com/For-a-given-scene-why-does-an-animated-GIF-have-a-much-bigger-file-size-than-its-video-source-e-g-in-MP4-format)?.
@@ -715,7 +1169,23 @@ For more information, checkout the[ Book of GIF](https://rigor.com/wp-content/up
 Keeping SVGs lean means stripping out anything unnecessary. SVG files created with editors usually contain a large quantity of redundant information (metadata, comments, hidden layers and so forth). This content can often be safely removed or converted to a more minimal form without impacting the final SVG that's being rendered.
 
 <figure>
-<img class="lazyload small" data-src="images/Modern-Image26.jpg" alt="svgo"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image26.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image26.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image26.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image26.jpg"
+        alt="svgo"
+         />
+</picture>
 <figcaption>SVGO - The SVG Optimisation tool in action using Jake Archibald's [SVGOMG](https://jakearchibald.github.io/svgomg/) Web UI.</figcaption>
 </figure>
 
@@ -732,16 +1202,51 @@ Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangl
 *   Optimize your SVGs through [SVGO](https://github.com/svg/svgo) - a Node-based tool for trimming.[SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for SVGO by Jake Archibald that I've also found invaluable. A handy [Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/) on your SVGs when exporting them is also available.
 
 
-<img class="lazyload" data-src="images/svgo-precision.jpg" alt="svgo precision reduction can sometimes have a positive impact on size"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/svgo-precision.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/svgo-precision.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/svgo-precision.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/svgo-precision.jpg"
+        alt="svgo precision reduction can sometimes have a positive impact on size"
+         />
+</picture>
+</figure>
+
 
 SVGO can also reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image28.jpg" alt="where svgo can go wrong, oversimplifying paths and artwork"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image28.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image28.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image28.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image28.jpg"
+        alt="where svgo can go wrong, oversimplifying paths and artwork"
+         />
+</picture>
 <figcaption>It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.</figcaption>
 </figure>
 
-*Using SVGO at the command-line:*
+**Using SVGO at the command-line:**
 
 SVGO can be installed as a [global npm CLI](https://www.npmjs.com/package/svgo) should you prefer that to a GUI:
 
@@ -765,14 +1270,50 @@ See the SVGO [readme](https://github.com/svg/svgo) for the full list of supporte
 
 **Don't forget to compress SVGs!**
 
-<img class="lazyload" data-src="images/before-after-svgo.jpg" alt="before and after running an image through svgo"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/before-after-svgo.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/before-after-svgo.jpg"
+        media="(max-width: 1024px)" />
 
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/before-after-svgo.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/before-after-svgo.jpg"
+        alt="before and after running an image through svgo"
+         />
+</picture>
+<figcaption>It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.</figcaption>
+</figure>
 
 Also, don't forget to [Gzip your SVG assets](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) or serve them using Brotli. As they're text based, they'll compress really well (~50% of the original sources).
 
 When Google shipped a new logo, we announced that the [smallest](https://twitter.com/addyosmani/status/638753485555671040) version of it was only 305 bytes in size.
 
-<img class="lazyload" data-src="images/Modern-Image30.jpg" alt="the smallest version of the new google logo was only 305 bytes in size"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image30.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image30.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image30.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image30.jpg"
+        alt="the smallest version of the new google logo was only 305 bytes in size"
+         />
+</picture>
+</figure>
 
 
 There are [lots of advanced SVG tricks](https://www.clicktorelease.com/blog/svg-google-logo-in-305-bytes/) you can use to trim this down even further (all the way to 146 bytes)! Suffice to say, whether it's through tools or manual clean-up, there's probably a *little* more you can shave off your SVGs.
@@ -791,9 +1332,26 @@ To avoid this trap, **set the lowest good quality you're willing to accept in th
 Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. 
 
 <figure>
-<img class="lazyload" data-src="images/generational-loss.jpg" alt="generational loss when re-encoding an image multiple times"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/generational-loss.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/generational-loss.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/generational-loss.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/generational-loss.jpg"
+        alt="generational loss when re-encoding an image multiple times"
+         />
+</picture>
 <figcaption>Above, from this [excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and [accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.</figcaption>
 </figure>
+
 
 MozJPEG (perhaps accidentally) has a better resistance to recompression degradation thanks to trellis quantization. Instead of compressing all DCT values as they are exactly, it can check close values within a +1/-1 range to see if similar values compress to fewer bits. Lossy FLIF has a hack similar to lossy PNG in that prior to (re)compression, it can look at the data and decide what to throw away. Recompressed PNGs have "holes" it can detect to avoid changing data further.
 
@@ -806,20 +1364,70 @@ We've all shipped large, higher resolution images than needed to our users befor
 
 Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). 
 
+
 <figure>
-<img class="lazyload small" data-src="images/devtools-decode.jpg" alt="image decode costs shown in the chrome devtools"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/devtools-decode.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/devtools-decode.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/devtools-decode.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/devtools-decode.jpg"
+        alt="image decode costs shown in the chrome devtools"
+         />
+</picture>
 <figcaption>Browsers have to go through a number of steps to paint images on the screen. In addition to fetching them, images need to be decoded and often resized. These events can be
 audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/performance-reference). </figcaption>
 </figure>
 
+
 <figure>
-<img class="lazyload" data-src="images/image-decoding.jpg" alt="image decode cost improvements for twitter on mobile"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/image-decoding.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/image-decoding.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-decoding.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-decoding.jpg"
+         />
+</picture>
 </figure>
 
  When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
 
+
 <figure>
-<img class="lazyload" data-src="images/responsive-art-direction.jpg" alt="responsive art direction in action, adapting to show more or less of an image in a cropped manner depending on device"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/responsive-art-direction.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/responsive-art-direction.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg" 
+        alt="responsive art direction in action, adapting to show more or less of an image in a cropped manner depending on device"
+         />
+</picture>
 <figcaption>Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
 
@@ -831,8 +1439,25 @@ Although shipping the right resolution to users is important, some sites also ne
 Lazy loading is a web performance pattern that delays the loading of images in the browser until the user needs to see it. One example is as you scroll, images load asynchronously on demand. This can further compliment the byte-savings you see from having an image compression strategy.
 
 
-<img class="lazyload" data-src="images/scrolling-viewport.jpg" alt="lazy-loading images"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/scrolling-viewport.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/scrolling-viewport.jpg"
+        media="(max-width: 1024px)" />
 
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/scrolling-viewport.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/scrolling-viewport.jpg" 
+        alt="lazy-loading images"
+         />
+</picture>
+</figure>
 
 Images that must appear "above the fold," or when the web page first appears are loaded straight away. The images which follow "below the fold," however, are not yet visible to the user. They do not have to be immediately loaded into the browser. They can be loaded later — or lazy loaded — only if and when the user scrolls down and it becomes necessary to show them. 
 
@@ -862,7 +1487,23 @@ If you wait until the user is scrolling you will see they are likely to see plac
 For examples of lazy loading, look at most any major site that hosts a lot of images. Some notable sites are [Medium](https://medium.com/) and [Pinterest](https://www.pinterest.com/).
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image35.jpg" alt="inline previews for images on medium.com"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image35.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image35.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image35.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image35.jpg" 
+        alt="inline previews for images on medium.com"
+         />
+</picture>
 <figcaption>An example of Gaussian-blurred inline previews for images on Medium.com</figcaption>
 </figure>
 
@@ -949,7 +1590,6 @@ Because of the complexity and changing nature of image manipulation, we're going
 "If your product is not image manipulation, then don't do this yourself. Services like Cloudinary [or imgix, Ed.] do this much more efficiently and much better than you will, so use them. And if you're worried about the cost, think about how much it'll cost you in development and upkeep, as well as hosting, storage, and delivery costs." — [Chris Gmyr](https://medium.com/@cmgmyr/moving-from-self-hosted-image-service-to-cloudinary-bd7370317a0d) 
 
  
-
 For the moment, we are going to agree and suggest that you consider using a CDN for your image processing needs. Two CDNs will be examined to see how they compare relative to the list of tasks we raised earlier. 
 
 **Cloudinary and imgix**
@@ -969,7 +1609,23 @@ Third, API access is provided by both services. Developers can access the CDN pr
 For now, let's limit our discussion to static images. Both Cloudinary and Imgix offer a range of image manipulation methods, and both support primary functions such as compression, resizing, cropping and thumbnail creation in their standard and free plans.
 
 <figure>
-<img class="lazyload" data-src="images/Modern-Image36.jpg" alt="cloudinary media library"/>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image36.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image36.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image36.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image36.jpg" 
+        alt="cloudinary media library"
+         />
+</picture>
 <figcaption>By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
 </figure>
 
@@ -1023,14 +1679,52 @@ If you are currently serving your own images or planning to, perhaps you should 
 
 As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
 
-<img class="lazyload" data-src="images/Modern-Image37.jpg" alt="vector vs raster images"/>
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502469573/essential-image-optimization/rastervvector.png"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502469573/essential-image-optimization/rastervvector.png"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png" />
+
+<img
+        class="lazyload very-small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png" 
+        alt="vector vs raster images"
+         />
+</picture>
+</figure>
 
 
 [Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
 
 [Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g logos) offering a high-resolution and zoom like SVG handle this use case better. 
 
-<img class="lazyload" data-src="images/Modern-Image38.jpg" alt="choosing the wrong image format can cost you"/>
+
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image38.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image38.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image38.jpg" />
+
+<img
+        class="lazyload"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image38.jpg" 
+        alt="choosing the wrong image format can cost you"
+         />
+</picture>
+<figcaption>By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
+</figure>
 
 
 The logical flow for choosing the right format can be fraught with peril. Jeremy Wagner covers some of the considerations you might want to think about [here](http://jlwagner.net/talks/these-images/#/2/2).
@@ -1069,7 +1763,7 @@ If you **can't** invest in conditionally serving formats based on browser suppor
 
 Happy compressing!
 
-<aside class="note"><b>Note:</b> For more practical guidance on how to optimize images, I heavily recommend [Web Performance in Action](https://www.manning.com/books/web-performance-in-action) by Jeremy Wagner. It's a fantastic book. [High Performance Images](http://shop.oreilly.com/product/0636920039730.do) is also filled with excellent, nuanced advice on this topic.</aside>
+<aside class="note"><b>Note:</b> For more practical guidance on how to optimize images, I heavily recommend [Web Performance in Action](https://www.manning.com/books/web-performance-in-action) by Jeremy Wagner. [High Performance Images](http://shop.oreilly.com/product/0636920039730.do) is also filled with excellent, nuanced advice on this topic.</aside>
 
 
 </body>

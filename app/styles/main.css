@@ -111,6 +111,9 @@ figure img.small {
     max-width: 70%;
 }
 
+figure img.very-small {
+    max-width: 396px;
+}
 
 figcaption {
     font-size: 0.9em;
@@ -121,7 +124,7 @@ figcaption {
 }
 
 img {
-  width: 90%;
+  max-width: 90%;
 }
 
 img:parent {
