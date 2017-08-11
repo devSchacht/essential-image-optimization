@@ -924,7 +924,8 @@ Clearly, lazysizes is not your only option. Here are more lazy loading libraries
 
 *   [Lazy Load XT](http://ressio.github.io/lazy-load-xt/)
 *   [BLazy.js](https://github.com/dinbror/blazy) (or [Be]Lazy)
-*   [Unveil](http://luis-almeida.github.io/unveil/) 
+*   [Unveil](http://luis-almeida.github.io/unveil/)
+*   [yall.js (Yet Another Lazy Loader)](https://github.com/malchata/yall.js) which is ~1KB and uses Intersection Observer where supported.
 
 **What's the catch with Lazy Loading?**
 
