@@ -1549,6 +1549,31 @@ Optionally you can also add a src attribute with a low quality image:
 </iframe>
 ```
 
+For the web version of this book, I paired Lazysizes (athough you can use any alternative) 
+with Cloudinary for on-demand responsive images. This allowed me the freedom to experiment
+with different values for scale, quality, format and whether or not to progressively load 
+with minimal effort:
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpgg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpg" 
+        alt="Cloudinary supports on-demand control of image quality, format and several other features."
+         />
+</picture>
+</figure>
+
 **Lazysizes features include:**
 
 * Automatically detects visibility changes on current and future lazyload elements
@@ -1569,7 +1594,6 @@ Clearly, lazysizes is not your only option. Here are more lazy loading libraries
 *   [yall.js (Yet Another Lazy Loader)](https://github.com/malchata/yall.js) which is ~1KB and uses Intersection Observer where supported.
 
 **What's the catch with Lazy Loading?**
-
 
 *   Screen readers, some search bots and any users with JavaScript disabled will not be able to view images lazy loaded with JavaScript. This is however something that we can work around with a `<noscript>` fallback.
 *   Scroll listeners, such as used for determining when to load a lazy-loaded image, can have an adverse impact on browser scrolling performance. They can cause the browser to redraw many times, slowing the process to a crawl - however, smart lazy loading libraries will use throttling to mitigate this. One possible solution is Intersection Observer, which is supported by lazysizes. 
@@ -1650,7 +1674,7 @@ Currently, it has [four different methods](https://docs.imgix.com/apis/url/auto)
 
 Imgix supports the following image formats: JPEG, JPEG2000, PNG, GIF, Animated GIF, TIFF, BMP, ICNS, ICO, PDF, PCT, PSD, AI
 
-Cloudinary supports the following image formats: JPEG, JPEG 2000, JPEG XR, PNG, GIF, Animated GIF, WebP, Animated WebP,BMPs, TIFF, ICOs, PDF, EPS, PSD, SVG, AI, DjVu, FLIF, TARGA
+Cloudinary supports the following image formats: JPEG, JPEG 2000, JPEG XR, PNG, GIF, Animated GIF, WebP, Animated WebP,BMPs, TIFF, ICOs, PDF, EPS, PSD, SVG, AI, DjVu, FLIF, TARGA.
 
 **What About Performance?**
 
