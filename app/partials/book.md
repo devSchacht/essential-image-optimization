@@ -16,7 +16,7 @@ If you can spare the extra CPU cycles, need higher-than-web-average quality & ar
 
 Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
 
-There's always more you can do. Tools exists to generate and serve srcset breakpoints. Resource selection can be automated with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in the browser using the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
+There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in the browser using the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
 
 
 The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality. 
@@ -1385,7 +1385,7 @@ MozJPEG (perhaps accidentally) has a better resistance to recompression degradat
 
 We've all shipped large, higher resolution images than needed to our users before. This has a cost to it. Decoding and resizing images are expensive operations for a browser on average mobile hardware. If sending down large images and rescaling using CSS or width/height attributes, you're likely to see this happen and it can impact performance. 
 
-Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). 
+Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) - we'll cover `srcset` shortly. 
 
 
 <figure>
@@ -1430,8 +1430,55 @@ audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tool
 </picture>
 </figure>
 
- When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
+ So, keep an eye on your image decode and resize costs. When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
 
+ ### Delivering HiDPI images using `srcset`
+
+Users may access your site through a range of mobile and desktop devices with high-resolution screens. The [Device Pixel Ratio](https://stackoverflow.com/a/21413366) (DPR) (also called the "CSS pixel ratio") determines how a device’s screen resolution is interpreted by CSS. DPR was created by phone manufacturers to enable increasing the resolution and sharpness of mobile screens without making elements appear too small.
+
+To match the image quality users might expect, deliver the most appropriate resolution images to their devices. Sharp, high-DPR images (e.g 2x, 3x) can be served to devices that support them. Low and standard-DPR images should be served to users without high-res screens as such 2x+ images will
+often weigh significantly more bytes. 
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502570356/essential-image-optimization/device-pixel-ratio.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502570356/essential-image-optimization/device-pixel-ratio.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502570356/essential-image-optimization/device-pixel-ratio.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502570356/essential-image-optimization/device-pixel-ratio.jpg"
+         />
+</picture>
+<figcaption>Many sites track the DPR for popular devices including [material.io](https://material.io/devices/) and [mydevice.io](https://mydevice.io/devices/).</figcaption>
+</figure>
+
+
+[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) allows a browser to select the best available image per device, e.g selecting a 2x image for a 2x mobile display. Browsers without `srcset` support can fallback to the default `src` specified in the `<img>` tag.
+
+```
+<img srcset="paul-irish-320w.jpg,
+             paul-irish-640w.jpg 2x,
+             paul-irish-960w.jpg 3x"
+     src="paul-irish-960w.jpg" alt="Paul Irish cameo">
+```
+
+Image CDNs like [Cloudinary](http://cloudinary.com/blog/how_to_automatically_adapt_website_images_to_retina_and_hidpi_devices) and [Imgix](https://docs.imgix.com/apis/url/dpr) both support controlling image density to serve the best
+density to users from a single canonical source.
+
+<aside class="note"><b>Note:</b> You can learn more about Device Pixel Ratio and responsive images in this free [Udacity](https://www.udacity.com/course/responsive-images--ud882) course and the [Images](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images) guide on Web Fundamentals.</aside>
+
+A friendly reminder that [Client Hints](https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/) can also provide an alternative to specifying each possible pixel density and format in your responsive image markup. Instead, they append this information to the HTTP request so web servers can pick the best fit for the current device's screen density.
+
+### Art direction
+
+Although shipping the right resolution to users is important, some sites also need to think about this in terms of **[art direction](http://usecases.responsiveimages.org/#art-direction)**. If a user is on a smaller screen, you may want to crop or zoom in and display the subject to make best use of available space. Although art direction is outside the scope of this write-up, services like[ Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20) provide tools to try automating this as much as possible. 
 
 <figure>
 <picture>
@@ -1454,7 +1501,6 @@ audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tool
 <figcaption>Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
 
-Although shipping the right resolution to users is important, some sites also need to think about this in terms of **[art direction](http://usecases.responsiveimages.org/#art-direction)**. If a user is on a smaller screen, you may want to zoom in and display the subject to make best use of available space. Although art direction is outside the scope of this write-up, services like[ Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20) provide tools to try automating this as much as possible. 
 
 
 ## Lazy Load non-critical Images
