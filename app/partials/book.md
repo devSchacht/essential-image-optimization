@@ -76,8 +76,31 @@ Image optimization consists of different measures that can reduce the filesize o
 
 Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
-<aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. If you're a designer, there's a new [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.</aside>
+<aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality.</aside>
 
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502519576/essential-image-optimization/image-optim.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502519576/essential-image-optimization/image-optim.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"
+        alt="ImageOptim in use on Mac" />
+</picture>
+
+<figcaption>ImageOptim is free, reduces image size through modern compression techniques and by stripping unnecessary EXIF meta-data.
+</figcaption>
+</figure>
+
+If you're a designer, there's also an [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.
 
 ### How can I tell if my images need to be optimized?
 
