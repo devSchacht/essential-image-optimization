@@ -76,7 +76,7 @@ Image optimization consists of different measures that can reduce the filesize o
 
 Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
 
-<aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality.</aside>
+<aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. Windows and Linux [alternatives](https://imageoptim.com/versions.html) are also available.</aside>
 
 <figure>
 <picture>
