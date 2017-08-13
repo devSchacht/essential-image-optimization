@@ -1626,7 +1626,7 @@ with minimal effort:
 <figure>
 <picture>
 <source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpgg"
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpg"
         media="(max-width: 640px)" />
 <source
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502501095/essential-image-optimization/cloudinary-responsive-images.jpg"
