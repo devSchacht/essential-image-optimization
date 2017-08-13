@@ -24,7 +24,7 @@ $ npm install --global gulp
 
 ### Local dependencies
 
-Next, install the local dependencies Web Starter Kit requires:
+Next, install the local dependencies the repo requires:
 
 ```sh
 $ npm install

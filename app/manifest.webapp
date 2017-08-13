@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "name": "Web Starter Kit",
+  "name": "Essential Image Optimization",
   "launch_path": "/index.html",
-  "description": "A front-end template that helps you build fast, modern mobile web apps.",
+  "description": "A book on modern image optimisation techniques.",
   "icons": {
     "128": "/images/touch/icon-128x128.png"
   },
@@ -18,8 +18,8 @@
   },
   "locales": {
     "en": {
-      "name": "Web Starter Kit",
-      "description": "A front-end template that helps you build fast, modern mobile web apps."
+      "name": "Essential Image Optimization",
+      "description": "A book on image optimization techniques"
     }
   }
 }
