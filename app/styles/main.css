@@ -211,6 +211,17 @@ img:parent, figure:parent, img {
         line-height: 1.25;
     }
 
+    p, pre, ul, h1, h2, h3, h4 {
+        max-width: 90%; 
+        padding: 0 16px;
+        text-align: left;
+        margin: 0 auto 24px;
+    }
+
+    figure img.very-small {
+        max-width: 90%;
+    }
+
     header {
         background-color: #000;
         padding: 40px 0 40px 0;
@@ -220,7 +231,6 @@ img:parent, figure:parent, img {
         font-size: 2em;
         color: #fff;
     }
-
 
     h1 {
         font-size: 2.1em;
@@ -244,14 +254,14 @@ img:parent, figure:parent, img {
 
     aside.key-point, aside.note {
         margin: 0 auto 30px;
-        max-width: 939px;
+        max-width: 90%;
         font-size: 0.8em;
         line-height: 1.7;
     }
 
     pre {
         font-size: 0.8em;
-        max-width: 400px;
+        max-width: 90%;
         overflow: scroll;
     }
 }
