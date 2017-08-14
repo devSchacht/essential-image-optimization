@@ -1100,7 +1100,9 @@ Nginx: add the following code to your mime.types file:
 image/webp webp;
 ```
 
-For more information, see https://github.com/vincentorback/WebP-images-with-htaccess
+<aside class="note"><b>Note:</b> Vincent Orback has a sample [htaccess config](https://github.com/vincentorback/WebP-images-with-htaccess) for serving WebP for reference and Ilya Grigorik maintains a collection of [configuration
+scripts for serving WebP](https://github.com/igrigorik/webp-detect) that can be useful.</aside>
+
 
 **Using the `<picture>` Tag**
 
@@ -1133,7 +1135,7 @@ Here is some sample HTML:
 
 **Automatic CDN Conversion**
 
-Some CDNs automatically perform browser sniffing and serve up WebP images whenever possible. Check with your CDN to see if WebP support is included in their service. You may have an easy solution just waiting for implementation.
+Some CDNs support automated conversion to WebP and can use client hints to serve up WebP images [whenever possible](http://cloudinary.com/documentation/responsive_images#automating_responsive_images_with_client_hints). Check with your CDN to see if WebP support is included in their service. You may have an easy solution just waiting for you.
 
 **WordPress WebP Support**
 
