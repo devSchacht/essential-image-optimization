@@ -1682,7 +1682,7 @@ To achieve optimal page load times, you need to optimize your image loading. Thi
 
 **Using Your Server vs. a CDN**
 
-Because of the complexity and changing nature of image manipulation, we're going to offer a quote from someone with experience in the field, then proceed with a suggestion.
+Because of the complexity and ever-evolving nature of image manipulation, we're going to offer a quote from someone with experience in the field, then proceed with a suggestion.
 
 "If your product is not image manipulation, then don't do this yourself. Services like Cloudinary [or imgix, Ed.] do this much more efficiently and much better than you will, so use them. And if you're worried about the cost, think about how much it'll cost you in development and upkeep, as well as hosting, storage, and delivery costs." — [Chris Gmyr](https://medium.com/@cmgmyr/moving-from-self-hosted-image-service-to-cloudinary-bd7370317a0d) 
 
