@@ -1389,7 +1389,6 @@ We've all shipped large, higher resolution images than needed to our users befor
 
 Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) - we'll cover `srcset` shortly. 
 
-
 <figure>
 <picture>
 <source
@@ -1412,6 +1411,9 @@ Sending down images that a browser can render without needing to resize at all i
 audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/performance-reference). </figcaption>
 </figure>
 
+Larger images also come with an increase in memory size costs. Decoded images are ~4 bytes per pixel. If
+you're not careful, you can literally crash the browser; on low-end devices it doesn't take that much to
+start memory swapping. So, keep an eye on your image decode, resize and memory costs.
 
 <figure>
 <picture>
@@ -1432,7 +1434,7 @@ audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tool
 </picture>
 </figure>
 
- So, keep an eye on your image decode and resize costs. When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
+When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
 
  ### Delivering HiDPI images using `srcset`
 
