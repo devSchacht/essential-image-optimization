@@ -2,21 +2,21 @@
 
 **Everyone should be automating their image compression.**
 
-In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change and content that doesn't go through a build pipeline can easily slip.
+In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
 To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvps](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist. 
 
-Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Cloudflare's Polish](https://blog.cloudflare.com/introducing-polish-automatic-image-optimizati/) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
+Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
 
-The amount of time you'll spend reading blog posts and tweaking your config is >> the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier!). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
+The amount of time you'll spend reading blog posts and tweaking your config is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier!). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
 
 **Everyone should be compressing their images efficiently.**
 
-At minimum: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) & consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy). 
-If you can spare the extra CPU cycles, need higher-than-web-average quality & are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html). 
+At minimum: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) and consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy). 
+If you can spare the extra CPU cycles, need higher-than-web-average quality and are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html). 
 
 Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
 
-There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in the browser using the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
+There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in the browser using the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
 
 
 The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality. 
@@ -25,7 +25,7 @@ The smaller in file-size you can make your images, the better a network experien
 
 **Images are still the number one cause of bloat on the web.**
 
-Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. Images now account for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the average site and 45% of these image requests are JPEGs. 
+Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. Images now account for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the 3.0MB average site.
 
 <figure>
 <picture>
@@ -49,7 +49,7 @@ Images take up massive amounts of internet bandwidth because they often have lar
 </figcaption>
 </figure>
 
-Image optimization consists of different measures that can reduce the filesize of your images. It ultimately depends on what visual fidelity your images require.
+Image optimization consists of different measures that can reduce the file size of your images. It ultimately depends on what visual fidelity your images require.
 
 <figure>
 <picture>
@@ -74,7 +74,7 @@ Image optimization consists of different measures that can reduce the filesize o
 </figure>
 
 
-Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) and resizing them to reduce image decode costs. 
+Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), and resizing them to reduce image decode costs. 
 
 <aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. Windows and Linux [alternatives](https://imageoptim.com/versions.html) are also available.</aside>
 
@@ -149,7 +149,7 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 </figure>
 
 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse/) is a Chrome extension that can audit for performance best practices on your local machine. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded. 
+[Lighthouse](https://developers.google.com/web/tools/lighthouse/) audits for performance best practices. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded. 
 
 As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
 
@@ -181,7 +181,7 @@ You may also be familiar of other performance auditing tools like [PageSpeed Ins
 
 The [JPEG](https://en.wikipedia.org/wiki/JPEG) may well be the world's most widely used image format. As noted earlier, [45% of the images](http://httparchive.org/interesting.php) seen on sites crawled by HTTP Archive are JPEGs. Your phone, your digital SLR, that old webcam - everything pretty much supports this codec. It's also very old, dating all the way back to 1992 when it was first released. In that time, there's been an immense body of research done attempting to improve what it offers. 
 
-JPEG is a lossy compression algorithm that discards information in order to save space and many of the efforts that came after it attempted to preserve visual fidelity while keeping file-sizes as low as possible.
+JPEG is a lossy compression algorithm that discards information in order to save space and many of the efforts that came after it attempted to preserve visual fidelity while keeping file sizes as small as possible.
 
 **What image quality is acceptable for your use-case?**
 
@@ -227,7 +227,7 @@ The JPEG image format has a number of different [compression modes](http://web.e
 
 ### What's the difference between a baseline/sequential JPEG and a Progressive JPEG?
 
-Baseline JPEGs (the default for most image editing & optimisation tools) are encoded and decoded in a relatively simple manner: top to bottom. When baseline JPEGs load on slow or spotty connections, users see the top of the image with more of it revealed as the image loads. Lossless JPEGs are similar but have a smaller compression ratio.
+Baseline JPEGs (the default for most image editing and optimisation tools) are encoded and decoded in a relatively simple manner: top to bottom. When baseline JPEGs load on slow or spotty connections, users see the top of the image with more of it revealed as the image loads. Lossless JPEGs are similar but have a smaller compression ratio.
 
 
 <figure>
@@ -250,7 +250,7 @@ Baseline JPEGs (the default for most image editing & optimisation tools) are enc
 <figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
 </figure>
 
-Progressive JPEGs divide the image into a number of scans. The first scans show the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
+Progressive JPEGs, or PJPEGs, divide the image into a number of scans. The first scans show the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
 
 <figure>
 <picture>
@@ -269,10 +269,10 @@ Progressive JPEGs divide the image into a number of scans. The first scans show 
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"
         alt="progressive JPEGs load from low-resolution to high-resolution" />
 </picture>
-<figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. A Cloudinary demo of [decoded in slow motion](https://res.cloudinary.com/jon/video/upload/non_progressive_vs_progressive_JPEG.mp4) is available and Pat Meenan wrote an [interactive tool](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) to test out and learn about Progressive JPEG scans too.</figcaption>
+<figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. Pat Meenan wrote an [interactive tool](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) to test out and learn about Progressive JPEG scans too.</figcaption>
 </figure>
 
-Lossless JPEG optimization can be achieved by removing EXIF data added by digital cameras or editors, optimizing an image's [Huffman tables](https://en.wikipedia.org/wiki/Huffman_coding) or rescanning the image. Tools like jpegtran achieve lossless compression by rearranging the compressed data without image degradation. jpegrescan, jpegoptim and mozjpeg (which we'll cover shortly) also support lossless JPEG compression.
+Lossless JPEG optimization can be achieved by [removing EXIF data](http://www.verexif.com/en/) added by digital cameras or editors, optimizing an image's [Huffman tables](https://en.wikipedia.org/wiki/Huffman_coding) or rescanning the image. Tools like jpegtran achieve lossless compression by rearranging the compressed data without image degradation. jpegrescan, jpegoptim and mozjpeg (which we'll cover shortly) also support lossless JPEG compression.
 
 
 ### The advantages of Progressive JPEGs
@@ -298,20 +298,19 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image8.jpg"
         alt="impact to wait time of switching to progressive jpeg" />
 </picture>
-<figcaption>[Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
+<figcaption>In 2015, [Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time.</figcaption>
 </figure>
 
+PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) take advantage of PJPEG’s flexibility to pack data better. 
 
-PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG etc.) take advantage of PJPEG's flexibility to pack data better. 
-
-<aside class="note"><b>Note:</b> Why do PJPEGs compress better? Similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block end up being encoded together which can compress better than simple/baseline JPEGs whose blocks are encoded one at a time.</aside>
+<aside class="note"><b>Note:</b> Why do PJPEGs compress better? Baseline JPEG blocks are encoded one at a time. With PJPEGs, similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block can be encoded together leading to better compression.</aside>
 
 
 ### Who's using Progressive JPEGs in production?
 
 *   [Twitter.com ships Progressive JPEGs](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) with a baseline of quality of 85%. They measured user perceived latency (time to first scan and overall load time) and found overall, PJPEGs were competitive at addressing their requirements for low file-sizes, acceptable transcode and decode times.
 *   [Facebook ships Progressive JPEGs for their iOS app](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). They found it reduced data-usage by 15% and enabling them to show a good quality image 15% faster. 
-*   [Yelp switched to Progressive JPEGs](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) and found it was part responsible for ~4.5% of their image size reduction savings. They also saved an extra 13.8% using MozJPEG
+*   [Yelp switched to Progressive JPEGs](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) and found it was in part responsible for ~4.5% of their image size reduction savings. They also saved an extra 13.8% using MozJPEG
 
 
 ### The disadvantages of Progressive JPEGs
@@ -364,7 +363,7 @@ Most image editing tools save images as Baseline JPEG files by default.
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/photoshop.jpg"
         alt="photoshop supports exporting to progressive jpeg from the file export menu" />
 </picture>
-<figcaption>You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the 'Progressive' checkbox while saving your images.</figcaption>
+<figcaption>Most image editing tools save images as Baseline JPEG files by default. You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the ‘Progressive’ checkbox while saving your images.</figcaption>
 </figure>
 
 
@@ -391,7 +390,7 @@ Most image editing tools save images as Baseline JPEG files by default.
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"
         alt="modern image formats compared based on quality." />
 </picture>
-<figcaption>Different modern image formats (and optimisers) used to demonstrate what is possible at a target file-size of 26KB.</figcaption>
+<figcaption>Different modern image formats (and optimizers) used to demonstrate what is possible at a target file-size of 26KB. We can compare quality using [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity) or [Butteraugli](https://github.com/google/butteraugli), which we'll cover in more detail later.</figcaption>
 </figure>
 
 *   **[JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) (2000)** - an improvement to JPEG switching from a discrete cosine based transform to a wavelet-based method. **Browser support: Safari desktop + iOS**
@@ -502,6 +501,9 @@ For this phase, Guetzli uses [Butteraugli](https://github.com/google/butteraugli
 <aside class="note"><b>Note:</b> Image file-size is* much* more dependent on the choice of *quality* than the choice of codec. There are far far larger file-size differences between the lowest quality JPEG than the highest quality JPEG - compared to the difference switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
 
 Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with what this practically means in [this Github thread](https://github.com/google/guetzli/issues/50).
+
+<aside class="note"><b>Note:</b> Guetzli may be more suitable when you're optimizing images
+as part of a build process for a static site, or situations where image optimization is not performed on demand.</aside>
 
 Tools like ImageOptim support Guetzli optimization (in [the latest versions](https://imageoptim.com/)). 
 
@@ -1116,7 +1118,7 @@ scripts for serving WebP](https://github.com/igrigorik/webp-detect) that can be 
 
 The browser itself is capable of choosing which image format to display through the use of the `<picture>` tag. The `<picture>` tag utilizes multiple `<source>` elements, with one `<img>` tag, which is the actual DOM element which contains the image. The browser cycles through the sources and retrieves the first match. If the `<picture>` tag isn't supported in the user's browser, a `<div>` is rendered and the `<img>` tag is used. 
 
-<aside class="note"><b>Note:</b> Be careful with the position of `<source>` as order matters. Don't place image/webp sources after legacy formats, but instead put them before. Browsers that understand it will use them and those that don't will move onto more widely supported frameworks.</aside>
+<aside class="note"><b>Note:</b> Be careful with the position of `<source>` as order matters. Don't place image/webp sources after legacy formats, but instead put them before. Browsers that understand it will use them and those that don't will move onto more widely supported frameworks. You can also place your images in order of file size if they're all the same physical size (when not using the `media` attribute). Generally this is the same order as putting legacy last. </aside>
 
 Here is some sample HTML: 
 
@@ -1358,9 +1360,9 @@ Sara Soueidan's [tips for optimising SVG delivery for the web](https://calendar.
 
 ## Avoid recompressing images with lossy codecs
 
-Recompressing images has consequences. Let's say you take a JPEG that's already been compressed with a quality of 60. If you recompress this image with lossy encoding, it will look worse. Each additional round of compression is going to introduce generational loss - information will be lost and compression artifacts will start to build up. Even if you're re-compressing at a high quality setting.
+It is recommended to always compress from the original image. Recompressing images has consequences. Let's say you take a JPEG that's already been compressed with a quality of 60. If you recompress this image with lossy encoding, it will look worse. Each additional round of compression is going to introduce generational loss - information will be lost and compression artifacts will start to build up. Even if you're re-compressing at a high quality setting.
 
-To avoid this trap, **set the lowest good quality you're willing to accept in the first place**. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
+To avoid this trap, **set the lowest good quality you're willing to accept in the first place** and you'll get maximum file savings from the start. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
 
 Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. 
 
