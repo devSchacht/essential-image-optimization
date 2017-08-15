@@ -44,9 +44,7 @@ Images take up massive amounts of internet bandwidth because they often have lar
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
         alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions" />
 </picture>
-
-<figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.
-</figcaption>
+<figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were also the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.</figcaption>
 </figure>
 
 Image optimization consists of different measures that can reduce the file size of your images. It ultimately depends on what visual fidelity your images require.
@@ -68,11 +66,29 @@ Image optimization consists of different measures that can reduce the file size 
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
         alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions" />
 </picture>
-
-<figcaption>Image optimization consists of different measures that can reduce the filesize of your images
-</figcaption>
 </figure>
 
+Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), the <strong>median image savings per page on the web are ~80KB!</strong> There's plenty of room for us to collectively optimize images better.
+
+<figure>
+<picture>
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502834117/chart_naedwl.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502834117/chart_naedwl.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
+        alt="" />
+</picture>
+</figure>
+</figure>
 
 Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), and resizing them to reduce image decode costs. 
 
