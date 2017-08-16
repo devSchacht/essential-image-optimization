@@ -735,11 +735,10 @@ Google reported a 30-35% savings using WebP over other lossy compression schemes
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/webp-conversion.jpg"
-        alt="webp conversion" />
+        alt="WebP stats at Google: over 43B image requests a day" />
 </picture>
-
+<figcaption>WebP usage at Google: 43 billion WebP image requests a day are served across YouTube, Google Play, Chrome Data Saver and G+.</figcaption>
 </figure>
-
 
 
 ### How does WebP encoding work? 
@@ -1279,6 +1278,7 @@ Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangl
         alt="svgo precision reduction can sometimes have a positive impact on size"
          />
 </picture>
+<figcaption>An example of running an SVG source through SVGO in high-precision mode (leading to a 29% improvement in size) vs. low-precision mode (a 38% size improvement).</figcaption>
 </figure>
 
 
@@ -1540,9 +1540,8 @@ Although shipping the right resolution to users is important, some sites also ne
         alt="responsive art direction in action, adapting to show more or less of an image in a cropped manner depending on device"
          />
 </picture>
-<figcaption>Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
+<figcaption>Art direction: Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
-
 
 
 ## Lazy Load non-critical Images
@@ -1761,7 +1760,7 @@ For now, let's limit our discussion to static images. Both Cloudinary and Imgix 
         alt="cloudinary media library"
          />
 </picture>
-<figcaption>By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
+<figcaption>Cloudinary Media Library: By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
 </figure>
 
 Cloudinary lists [seven broad image transformation](http://cloudinary.com/documentation/image_transformations) categories, with a total of 48 subcategories within them. Imgix advertises over [100 image processing operations](https://docs.imgix.com/apis/url?_ga=2.52377449.1538976134.1501179780-2118608066.1501179780). 
@@ -1858,11 +1857,11 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
         alt="choosing the wrong image format can cost you"
          />
 </picture>
-<figcaption>By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
+<figcaption>The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care :)</figcaption>
 </figure>
 
 
-The logical flow for choosing the right format can be fraught with peril. Jeremy Wagner covers some of the considerations you might want to think about [here](http://jlwagner.net/talks/these-images/#/2/2).
+Jeremy Wagner covers some of the considerations you might want to think about [here](http://jlwagner.net/talks/these-images/#/2/2).
 
 
 ## Caching image assets
