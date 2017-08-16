@@ -74,18 +74,18 @@ Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), 
 <figure>
 <picture>
 <source
-        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502834117/chart_naedwl.jpg"
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502834117/chart_naedwl.jpg"
         media="(max-width: 640px)" />
 <source
-        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502834117/chart_naedwl.jpg"
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502834117/chart_naedwl.jpg"
         media="(max-width: 1024px)" />
 
 <source
-        data-srcset="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg" />
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg" />
 
 <img
         class="lazyload small"
-        data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
         alt="A histogram of potential image savings from the HTTP Archive validating the 80KB of median savings found per page" />
 </picture>
 </figure>
