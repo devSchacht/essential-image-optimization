@@ -17,6 +17,7 @@ import pkg from './package.json';
 import template from 'gulp-md-template';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import rename from 'gulp-rename';
+import puppeteer from 'puppeteer';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -197,6 +198,32 @@ gulp.task('serve:dist', ['default'], () =>
     port: 3001
   })
 );
+
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+gulp.task('generate-pdf', async() => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    await page.goto('https://essential-image-optim.firebaseapp.com', {
+      waitUntil: 'networkidle',
+      fullPage: true});
+
+    await page.evaluate(() => {
+      const images = document.querySelectorAll('img');
+      for (var i = 0; i < images.length; i++) {
+        var image = images[i];
+        lazySizes.loader.unveil(image);
+      }
+      return images.length;
+    });
+    await timeout(10000);
+
+    await page.pdf({path: 'dist/book.pdf', format: 'A4'});
+    browser.close();
+});
 
 // Build production files, the default task
 gulp.task('default', ['clean'], cb =>

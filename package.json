@@ -4,7 +4,8 @@
   "description": "Techniques for modern image optimisation",
   "main": "index.md",
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "pdf": "gulp generate-pdf"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "imagemin-jpeg-recompress": "^5.1.0",
     "imagemin-mozjpeg": "^6.0.0",
     "psi": "^2.0.4",
+    "puppeteer": "^0.9.0",
     "run-sequence": "^1.0.1",
     "sw-precache": "^3.2.0",
     "sw-toolbox": "^3.2.1"
