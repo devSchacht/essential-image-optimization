@@ -42,7 +42,7 @@ Images take up massive amounts of internet bandwidth because they often have lar
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
-        alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions" />
+        alt="Fewer images per page create more converstions. 19 images per page on average converted better than 31 images per page on average." />
 </picture>
 <figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were also the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.</figcaption>
 </figure>
@@ -64,8 +64,9 @@ Image optimization consists of different measures that can reduce the file size 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
-        alt="Per Google and Soasta research, images were the 2nd highest predictor of conversions" />
+        alt="Image optimisation covers a number of different techniques" />
 </picture>
+<figcaption>Image Optimisation: Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
 </figure>
 
 Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), the <strong>median image savings per page on the web are ~80KB!</strong> There's plenty of room for us to collectively optimize images better.
@@ -85,7 +86,7 @@ Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), 
 <img
         class="lazyload small"
         data-src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
-        alt="" />
+        alt="A histogram of potential image savings from the HTTP Archive validating the 80KB of median savings found per page" />
 </picture>
 </figure>
 </figure>
@@ -109,7 +110,7 @@ Common image optimizations include compression, responsively serving them down b
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"
-        alt="ImageOptim in use on Mac" />
+        alt="ImageOptim in use on Mac with a number of images that have been compressed with savings over 50%" />
 </picture>
 
 <figcaption>ImageOptim is free, reduces image size through modern compression techniques and by stripping unnecessary EXIF meta-data.
@@ -220,7 +221,7 @@ Formats like JPEG are best suited for photographs or images with a number of col
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"
         alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest" />
 </picture>
-<figcaption>Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest.</figcaption>
+<figcaption>JPEG: Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest.</figcaption>
 </figure>
 
 
@@ -496,8 +497,9 @@ gulp.task('mozjpeg', () =>
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"
-        alt="mozjpeg compression at different qualities" />
+        alt="mozjpeg compression at different qualities. At q=90, 841KB. At q=85, 562KB. At q=75, 324KB. Similarly, Butteraugli and SSIM scores get slightly worse as we lower quality." />
 </picture>
+<figcaption>MozJPEG: A comparison of file-sizes and visual similarity scores at different qualities.</figcaption>
 </figure>
 
 
@@ -578,8 +580,9 @@ It took multiple minutes (and high CPU usage) to encode 3 x 3MP images using Gue
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"
-        alt="comparison of guetzli at different qualities" />
+        alt="comparison of guetzli at different qualities. q=100, 945KB. q=90, 687KB. q=85, 542KB." />
 </picture>
+<figcaption>Guetzli: A comparison of file sizes and visual similarity scores at different qualities. </figcaption>
 </figure>
 
 
@@ -680,29 +683,29 @@ In the last year, WebP gained a few percent compression-wise in lossy and lossle
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"
-        alt="comparison of webp at different quality settings" />
+        alt="comparison of webp at different quality settings. q=90, 646KB. q=80= 290KB. q=75, 219KB. q=70, 199KB" />
 </picture>
-
+<figcaption>WebP: A comparison of file sizes and visual similarity scores at different qualities.</figcaption>
 </figure>
 
 
 ### How Does WebP Perform? 
 
-***Lossy Compression***
+**Lossy Compression**
 
 WebP lossy files, using a VP8 or VP9 video key frame encoding variant, are on average cited by the WebP team as being [25-34%](https://developers.google.com/speed/webp/docs/webp_study) smaller than JPEG files. 
 
 In the low-quality range (0-50), WebP has a large advantage over JPEG because it can blur away ugly blockiness artifacts. A medium quality setting (-m 4 -q 75) is the default balancing speed/file-size. In the higher-range (80-99), the advantages of WebP shrink. WebP is recommended where speed matters more than quality. 
 
-***Lossless Compression***
+**Lossless Compression**
 
 [WebP lossless files are 26% smaller than PNG files](https://developers.google.com/speed/webp/docs/webp_lossless_alpha_study). The lossless load-time decrease compared to PNG is 3%. That said, you generally don't want to deliver your users lossless on the web. There's a difference between lossless and sharp edges (e.g non-JPEG). Lossless WebP may be more suitable for archival content.
 
-***Transparency***
+**Transparency**
 
 WebP has a lossless 8-bit transparency channel with only 22% more bytes than PNG. It also supports lossy RGB transparency, which is a feature unique to WebP.
 
-***Metadata***
+**Metadata**
 
 The WebP file format supports EXIF photo metadata and XMP digital document metadata. It also contains an ICC Color Profile.
 
