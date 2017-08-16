@@ -51,6 +51,14 @@ $ gulp
 
 Build and optimize the current project, ready for deployment.
 
+#### Generate a PDF using Puppeteer
+
+```sh
+$ gulp generate-pdf
+```
+
+Builds a PDF of the book using the production deployment.
+
 #### Serve the Fully Built & Optimized Site
 
 ```sh
