@@ -16,7 +16,7 @@ If you can spare the extra CPU cycles, need higher-than-web-average quality and 
 
 Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
 
-There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in the browser using the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
+There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in-browser by heeding the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
 
 
 The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality. 
@@ -239,7 +239,7 @@ Next, let's talk about JPEG's compression modes as these can have a large impact
 
 ## JPEG compression modes
 
-The JPEG image format has a number of different [compression modes](http://web.ece.ucdavis.edu/cerl/ReliableJPEG/Cung/jpeg.html). Three popular modes are baseline (sequential), lossless and Progressive JPEG (PJPEG). 
+The JPEG image format has a number of different [compression modes](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Three popular modes are baseline (sequential), lossless and Progressive JPEG (PJPEG). 
 
 
 ### What's the difference between a baseline/sequential JPEG and a Progressive JPEG?
@@ -267,7 +267,7 @@ Baseline JPEGs (the default for most image editing and optimisation tools) are e
 <figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
 </figure>
 
-Progressive JPEGs, or PJPEGs, divide the image into a number of scans. The first scans show the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
+Progressive JPEGs, or PJPEGs, divide the image into a number of scans. The first scan shows the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
 
 <figure>
 <picture>
@@ -427,25 +427,23 @@ Next, let's talk about an option for when you can't conditionally serve differen
 
 ## Optimising JPEG Encoders
 
-Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files while maintaining compatibility with existing browsers and image processing apps. They avoid the need to introduce new image formats or changes in the ecosystem in order for compression gains to be possible. Two such options are MozJPEG and Guetzli.
+Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files while maintaining compatibility with existing browsers and image processing apps. They avoid the need to introduce new image formats or changes in the ecosystem in order for compression gains to be possible. Two such encoders are MozJPEG and Guetzli.
 
 ***tl;dr Which optimising JPEG Encoder should you use?***
 
 * General web assets: MozJPEG
 * Quality is your key concern and you don't mind long encode times: use Guetzli
-* If you need configurability: JPEGRecompress (which uses MozJPEG under the hood)
-
-There's also: 
-
-* [JPEGMini](http://www.jpegmini.com/). It's similar to Guetzli - chooses best quality automatically. It's not as technically sophisticated as Guetzli, but it's faster, and aims at quality range more suitable for the web.
-* [ImageOptim API](https://imageoptim.com/api) (with free online interface here: https://imageoptim.com/online) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
+* If you need configurability: 
+ * [JPEGRecompress](https://github.com/danielgtaylor/jpeg-archive) (which uses MozJPEG under the hood)
+ * [JPEGMini](http://www.jpegmini.com/). It's similar to Guetzli - chooses best quality automatically. It's not as technically sophisticated as Guetzli, but it's faster, and aims at quality range more suitable for the web.
+ * [ImageOptim API](https://imageoptim.com/api) (with free online interface here: https://imageoptim.com/online) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
 
 
 ### What is MozJPEG? 
 
 Mozilla offers a modernized JPEG encoder in the form of [MozJPEG](https://github.com/mozilla/mozjpeg). It [claims](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/) to shave up to 10% off JPEG files. Files compressed with MozJPEG work cross-browser and some of its features include progressive scan optimization, [trellis quantization](https://en.wikipedia.org/wiki/Trellis_quantization) (discarding details that compress the least) and a few decent [quantization table presets](https://calendar.perfplanet.com/2014/mozjpeg-3-0/) that help create smoother High-DPI images (although this is possible with ImageMagick if you're willing to wade through XML configs). 
 
-MozJPEG is supported in both [ImageOptim](https://github.com/ImageOptim/ImageOptim/issues/45) and there's a configurable [imagemin plugin](https://github.com/imagemin/imagemin-mozjpeg) for it I've found relatively reliable. Here's a sample of how I use it with Gulp:
+MozJPEG is supported in both [ImageOptim](https://github.com/ImageOptim/ImageOptim/issues/45) and there's a relatively reliable configurable [imagemin plugin](https://github.com/imagemin/imagemin-mozjpeg) for it. Here's a sample implementation with Gulp:
 
 ```js
 const gulp = require('gulp');
@@ -503,7 +501,7 @@ gulp.task('mozjpeg', () =>
 </figure>
 
 
-I used [jpeg-compress](https://github.com/imagemin/imagemin-jpeg-recompress) from the [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive) project to calculate the SSIM (The Structural Similarity) scores for a source image. SSIM is a method for measuring the similarity between two images, where we score the quality of one image relative to another that is considered "perfect".
+I used [jpeg-compress](https://github.com/imagemin/imagemin-jpeg-recompress) from the [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive) project to calculate the SSIM (The Structural Similarity) scores for a source image. SSIM is a method for measuring the similarity between two images, where the SSIM score is a quality measure of one image given the other is considered "perfect".
 
 In my experience, MozJPEG is a good option for compressing images for the web at a high visual quality while delivering reductions on file size. For small to medium sized images, I found MozJPEG (at quality=80-85) led to 30-40% savings on file size while maintaining acceptable SSIM, offering a 5-6% improvement on jpeg-turbo. It does come with a [slower encoding cost](http://www.libjpeg-turbo.org/About/Mozjpeg) than baseline JPEG, but you may not find this a show stopper.
 
@@ -512,11 +510,11 @@ In my experience, MozJPEG is a good option for compressing images for the web at
 
 ### What is Guetzli?
 
-[Guetzli](https://github.com/google/guetzli) is a promising, if slow, perceptual JPEG encoder from Google that tries to find the smallest JPEG that can't be easily distinguished from the original by the human eye. It performs a sequence of experiments that produces a proposal for the final JPEG, accounting for the psychovisual error of each proposal. Out of these, it selects the highest-scoring one as the final output.
+[Guetzli](https://github.com/google/guetzli) is a promising, if slow, perceptual JPEG encoder from Google that tries to find the smallest JPEG that is perceptually indistinguishable from the original to the human eye. It performs a sequence of experiments that produces a proposal for the final JPEG, accounting for the psychovisual error of each proposal. Out of these, it selects the highest-scoring proposal as the final output.
 
-For this phase, Guetzli uses [Butteraugli](https://github.com/google/butteraugli) (a model for measuring image difference based on human perception - more on that soon!) that can take into account a few properties of vision that other JPEG encoders. For example, there is a relationship between the amount of green light seen and sensitivity to blue so changes in blue in the vicinity of green can be encoded a little less precisely. 
+To measure the differences between images, Guetzli uses [Butteraugli](https://github.com/google/butteraugli), a model for measuring image difference based on human perception (discussed below). Guetzli can take into account a few properties of vision that other JPEG encoders do not. For example, there is a relationship between the amount of green light seen and sensitivity to blue, so changes in blue in the vicinity of green can be encoded a little less precisely. 
 
-<aside class="note"><b>Note:</b> Image file-size is* much* more dependent on the choice of *quality* than the choice of codec. There are far far larger file-size differences between the lowest quality JPEG than the highest quality JPEG - compared to the difference switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
+<aside class="note"><b>Note:</b> Image file-size is **much** more dependent on the choice of **quality** than the choice of **codec**. There are far far larger file-size differences between the lowest and highest quality JPEGs compared to the file-size savings made possible by  switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
 
 Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with what this practically means in [this Github thread](https://github.com/google/guetzli/issues/50).
 
@@ -562,8 +560,7 @@ gulp.task('guetzli', () =>
 </picture>
 </figure>
 
-
-It took multiple minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
+It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
 
 <figure>
 <picture>
@@ -588,7 +585,7 @@ It took multiple minutes (and high CPU usage) to encode 3 x 3MP images using Gue
 
 <aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g JPEGs of quality 84 or lower), results can be poorer.</aside>
 
-In my experience, compressing an image with Guetzli is very (very) time-consuming and will make your fans spin. That said, for larger images, this was worth it. I saw plenty of examples where it saved anywhere up to 40% on filesize while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I still saw some savings (in the 10-15KB range) but they were not quite as well pronounced.
+While compressing an image with Guetzli is very (very) time-consuming and will make your fans spin, for larger images, it is worth it. I saw plenty of examples where it saved anywhere up to 40% on file size while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I still saw some savings (in the 10-15KB range) but they were not quite as well pronounced.
 
 
 ### How does MozJPEG compare to Guetzli? 
@@ -625,7 +622,7 @@ A number of methods exist for determining if compressed images are visually simi
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"
         alt="butteraugli validating an image of a parrot" />
 </picture>
-<figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough that a user would be able to notice something wasn't that clear. It resulted in a 65% reduction in total file size.</figcaption>
+<figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough for a user to notice something wasn’t clear. It resulted in a 65% reduction in total file size.</figcaption>
 </figure>
 
 
@@ -648,7 +645,7 @@ In practice, you would define a target goal for visual quality and then run thro
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"
         alt="butteraugli being run from the command line" />
 </picture>
-<figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward - specify the two images to compare (a source and compressed version) - and it will give you a score to work off.</figcaption>
+<figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward: specify the two images to compare (a source and compressed version) and it will give you a score to work from.</figcaption>
 </figure>
 
 **How does Butteraugli differ to other ways of comparing visual similarity?**
