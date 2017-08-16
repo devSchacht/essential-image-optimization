@@ -760,11 +760,11 @@ WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/comp
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"
+        alt="Macro-blocking example of a Google Doodle where we break a range of pixels down into luma and chroma blocks."
          />
 </picture>
 
 </figure>
-
 
 **Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
@@ -784,6 +784,7 @@ WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/comp
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"
+        alt="Google Doodle example of a segment displaying the row, target block and column L when considering a prediction model."
          />
 </picture>
 
@@ -838,9 +839,10 @@ XnConvert enables batch image processing, compatible with over 500 image formats
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image20.png"
+        alt="XNConvert app on Mac where a number of images have been converted to WebP"
          />
 </picture>
-
+<figcaption>XnConvert supports batch image optimisation, allowing straight-forward conversion from source files to WebP and other formats. </figcaption>
 </figure>
 
 <figure>
@@ -858,12 +860,12 @@ XnConvert enables batch image processing, compatible with over 500 image formats
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image21.png"
+        alt="XnConvert displaying a second tab where image manipulation like metadata cleaning is also supported"
          />
 </picture>
+<figcaption>In addition to compression, XnConvert can also help with metadata stripping, cropping, color depth customisation and other transforms.</figcaption>
 
 </figure>
-
-
 
 Some of the options listed on the xnview website include:
 
@@ -1020,9 +1022,9 @@ On Mac, try the [Quick Look plugin for WebP](https://github.com/Nyx0uf/qlImageSi
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image22.jpg"
+        alt="Desktop on a mac showing a WebP file previewed using the Quick Look plugin for WebP files"
          />
 </picture>
-
 </figure>
 
 
@@ -1048,11 +1050,11 @@ Browsers without WebP support can end up not displaying an image at all, which i
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-webp.jpg"
+        alt="The Chrome DevTools Network panel displaying the waterfall for the Play Store in Chrome, where WebP is served."
          />
 </picture>
-
+<figcaption>The Chrome DevTools Network panel highlighting WebP files being conditionally served to Blink-based browsers under the "Type" column.</figcaption>
 </figure>
-
 
 <figure>
 <picture>
@@ -1069,9 +1071,10 @@ Browsers without WebP support can end up not displaying an image at all, which i
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-type.jpg"
+        alt="While the Play store delivers WebP to Blink, it falls back to JPEGs for browsers like Firefox."
          />
 </picture>
-<figcaption>The Play store conditionally serves WebP images to supported browsers and fallback to JPEGs for browsers like Firefox.</figcaption>
+<figcaption>While the Play store delivers WebP to Blink, it falls back to JPEGs for browsers like Firefox.</figcaption>
 </figure>
 
 
@@ -1191,8 +1194,10 @@ Animated GIFs continue to enjoy widespread use, despite being a very limited for
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/animated-gif.jpg"
+        alt="Animated GIF vs. Video: a comparison of file sizes at ~equivalent quality for different formats."
          />
 </picture>
+<figcaption>Animated GIF vs. Video: a comparison of file sizes at ~equivalent quality for different formats.</figcaption>
 </figure>
 
 
@@ -1456,8 +1461,10 @@ start memory swapping. So, keep an eye on your image decode, resize and memory c
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-decoding.jpg"
+        alt="Chrome DevTools Timeline/Performance panel highlighting image decode times before and after Twitter Lite optimized their image pipeline. Before was higher."
          />
 </picture>
+<figcaption>Chrome DevTools Timeline/Performance panel highlighting image decode times (in green) before and after Twitter Lite optimized their image pipeline.</figcaption>
 </figure>
 
 When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
@@ -1484,9 +1491,11 @@ often weigh significantly more bytes.
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502570356/essential-image-optimization/device-pixel-ratio.jpg"
+        alt="A diagram of the device pixel ratio at 1x, 2x and 3x. Image quality appears to sharpen
+        as DPR increases and a visual is shown comparing device pixels to CSS pixels."
          />
 </picture>
-<figcaption>Many sites track the DPR for popular devices including [material.io](https://material.io/devices/) and [mydevice.io](https://mydevice.io/devices/).</figcaption>
+<figcaption>Device Pixel Ratio: Many sites track the DPR for popular devices including [material.io](https://material.io/devices/) and [mydevice.io](https://mydevice.io/devices/).</figcaption>
 </figure>
 
 
