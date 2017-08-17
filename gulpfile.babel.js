@@ -10,7 +10,7 @@ import gulp from 'gulp';
 import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
-import swPrecache from 'sw-precache';
+import workboxBuild from 'workbox-build';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
@@ -18,6 +18,8 @@ import template from 'gulp-md-template';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import rename from 'gulp-rename';
 import puppeteer from 'puppeteer';
+import glob from 'glob';
+import replace from 'replace';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -160,10 +162,10 @@ gulp.task('html', () => {
 });
 
 // Clean output directory
-gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
+gulp.task('clean', () => del(['.tmp', 'dist/*', 'app/third_party/', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles', 'html'], () => {
+gulp.task('serve', ['scripts', 'styles', 'html', 'third-party:dev'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -230,7 +232,8 @@ gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
     ['markdown', 'lint', 'html', 'scripts', 'images', 'copy'],
-    'generate-service-worker',
+    ['third-party:prod', 'generate-service-worker'],
+    'service-worker:prod',
     cb
   )
 );
@@ -247,9 +250,15 @@ gulp.task('pagespeed', cb =>
 );
 
 // Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
-gulp.task('copy-sw-scripts', () => {
-  return gulp.src(['node_modules/sw-toolbox/sw-toolbox.js', 'app/scripts/sw/runtime-caching.js'])
-    .pipe(gulp.dest('dist/scripts/sw'));
+gulp.task('third-party:dev', () => {
+  return gulp.src(['node_modules/workbox-sw/build/importScripts/workbox-sw.dev.*.js'])
+    .pipe($.rename('workbox-sw.dev.js'))
+    .pipe(gulp.dest('app/third_party/workbox-sw/'));
+});
+
+gulp.task('third-party:prod', () => {
+  return gulp.src(['node_modules/workbox-sw/build/importScripts/workbox-sw.prod.*.js'])
+    .pipe(gulp.dest('dist/third_party/workbox-sw/'));
 });
 
 // See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
@@ -257,31 +266,43 @@ gulp.task('copy-sw-scripts', () => {
 // Generate a service worker file that will provide offline functionality for
 // local resources. This should only be done for the 'dist' directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
-gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
-  const rootDir = 'dist';
-  const filepath = path.join(rootDir, 'service-worker.js');
-
-  return swPrecache.write(filepath, {
-    // Used to avoid cache conflicts when serving on localhost.
-    cacheId: pkg.name || 'web-starter-kit',
-    // sw-toolbox.js needs to be listed first. It sets up methods used in runtime-caching.js.
-    importScripts: [
-      'scripts/sw/sw-toolbox.js',
-      'scripts/sw/runtime-caching.js'
-    ],
-    staticFileGlobs: [
-      // Add/remove glob patterns to match your directory setup.
-      // Don't cache images here otherwise it'll start fetching them
-      // early removing the point of lazy-loading
-      // `${rootDir}/images/**/*`,
-      `${rootDir}/scripts/**/*.js`,
-      `${rootDir}/styles/**/*.css`,
-      `${rootDir}/*.{html,json}`
+gulp.task('generate-service-worker', () => {
+  return workboxBuild.injectManifest({
+    swSrc: `app/service-worker.js`,
+    swDest: `dist/service-worker.js`,
+    globDirectory: `dist`,
+    // Add/remove glob patterns to match your directory setup.
+    globPatterns: [
+      // Images will be cached on the fly
+      // as they are lazy-loaded in
+      `images/touch/**/*`,
+      `scripts/**/*.js`,
+      `styles/**/*.css`,
+      `*.{html,json}`
     ],
     // Translates a static file path to the relative URL that it's served from.
     // This is '/' rather than path.sep because the paths returned from
     // glob always use '/'.
-    stripPrefix: rootDir + '/'
+    modifyUrlPrefix: {
+      'dist/': ''
+    }
+  });
+});
+
+gulp.task('service-worker:prod', () => {
+  const globResults = glob.sync('node_modules/workbox-sw/build/importScripts/workbox-sw.prod.*.js');
+  if (globResults.length !== 1) {
+    throw new Error('Unable to find the workbox-sw production file.');
+  }
+
+  return replace({
+    regex: 'workbox-sw.dev.js',
+    replacement: path.basename(globResults[0]),
+    paths: [
+      'dist/service-worker.js'
+    ],
+    recursive: true,
+    silent: true
   });
 });
 
