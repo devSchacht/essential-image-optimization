@@ -42,9 +42,9 @@ Images take up massive amounts of internet bandwidth because they often have lar
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
-        alt="Fewer images per page create more converstions. 19 images per page on average converted better than 31 images per page on average." />
+        alt="Fewer images per page create more conversions. 19 images per page on average converted better than 31 images per page on average." />
 </picture>
-<figcaption>Per [Soasta and Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) in 2016, images were also the 2nd highest predictor of conversions. Sessions converting users had 38% fewer images.</figcaption>
+<figcaption>Per [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) from 2016, images were the 2nd highest predictor of conversions with the best pages having 38% fewer images.</figcaption>
 </figure>
 
 Image optimization consists of different measures that can reduce the file size of your images. It ultimately depends on what visual fidelity your images require.
@@ -66,10 +66,10 @@ Image optimization consists of different measures that can reduce the file size 
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
         alt="Image optimisation covers a number of different techniques" />
 </picture>
-<figcaption>Image Optimisation: Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
+<figcaption><strong>Image optimization:</strong> Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
 </figure>
 
-Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), the <strong>median image savings per page on the web are ~80KB!</strong> There's plenty of room for us to collectively optimize images better.
+Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), and resizing them to reduce image decode costs. 
 
 <figure>
 <picture>
@@ -88,10 +88,10 @@ Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), 
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
         alt="A histogram of potential image savings from the HTTP Archive validating the 80KB of median savings found per page" />
 </picture>
-</figure>
+<figcaption>Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), the <strong>median image savings per page on the web are ~80KB!</strong></figcaption>
 </figure>
 
-Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), and resizing them to reduce image decode costs. 
+There's plenty of room for us to collectively optimize images better. 
 
 <aside class="key-point"><b>Note:</b> If nothing else, use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. Windows and Linux [alternatives](https://imageoptim.com/versions.html) are also available.</aside>
 
