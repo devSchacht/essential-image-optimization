@@ -715,7 +715,7 @@ WebP offers better compression at the cost of being more CPU intensive. Back in 
 
 Many large companies are using WebP in production to reduce costs and decrease web page load times. Google, of course, uses it in most of its properties like Gmail and YouTube. Netflix, Amazon, Quora, Yahoo, Walmart, Ebay, The Guardian, Fortune, and USA Today, all compress and serve images with WebP for browsers which support it. VoxMedia [shaved 1-3s off load times](https://product.voxmedia.com/2015/8/13/9143805/performance-update-2-electric-boogaloo) for The Verge by switching over to WebP for their Chrome users. There are quite a few more companies on board than this sample list indicates. 
 
-Google reported a 30-35% savings using WebP over other lossy compression schemes, serving 43 billion image requests a day, 26% of that being lossless compression. That's a lot of requests and significant savings. Savings would undoubtedly be larger if browser support were better and more widespread.
+Google reported a 30-35% savings using WebP over other lossy compression schemes, serving 43 billion image requests a day, 26% of that being lossless compression. That's a lot of requests and significant savings. Savings would undoubtedly be larger if [browser support](http://caniuse.com/#search=webp) were better and more widespread.
 
 <figure>
 <picture>
@@ -740,7 +740,7 @@ Google reported a 30-35% savings using WebP over other lossy compression schemes
 
 ### How does WebP encoding work? 
 
-WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/compression) goes into this topic in depth but let's summarize some highlights. WebP's lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP's lossy encoding:
+WebP's lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP's lossy encoding:
 
 **Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision. 
 
@@ -792,6 +792,8 @@ WebP [Compression Techniques](https://developers.google.com/speed/webp/docs/comp
 
 A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
 
+If you want to dive deeper, Google Developer’s article [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) goes into this topic in depth. 
+
 
 ### Browser Support
 
@@ -809,7 +811,7 @@ Here are the major browsers and support information for each:
 * Internet Explorer: No support
 * Safari: Some beta support
 
-WebP is not without its downsides. It lacks full-resolution color space options and does not support progressive decoding. That said, tooling for WebP is decent and browser-support, while limited to Chrome and Opera at the time of writing may well cover enough of your users for it to be worth considering with a fallback.
+WebP is not without its downsides. It lacks full-resolution color space options and does not support progressive decoding. That said, tooling for WebP is decent and browser-support, while limited to Chrome and Opera at the time of writing, may well cover enough of your users for it to be worth considering with a fallback.
 
 
 ### How Do I Convert My Images to WebP?
@@ -992,7 +994,7 @@ Apps.
 
 ### How do I view WebP images on my OS?
 
-Although you can drag and drop WebP images to Blink-based browsers (Chrome, Opera, Brave) to preview them, you can also preview them directly from your OS using an add-on for either Mac or Windows.
+While you can drag and drop WebP images to Blink-based browsers (Chrome, Opera, Brave) to preview them, you can also preview them directly from your OS using an add-on for either Mac or Windows.
 
 [Facebook experimented with WebP](https://www.cnet.com/news/facebook-tries-googles-webp-image-format-users-squawk/) a few years ago and found that users who tried to right-click on photos and save them to disk noticed they wouldn't be displayed outside their browser due to them being in WebP. There were three key problems here:
 
@@ -1085,7 +1087,7 @@ Here's how to use a .htaccess file to serve WebP files to supported browsers whe
 
 Vincent Orback recommended this approach:
 
-Browsers with WebP support signal their support explicitly in the Accept header. If you happen to control your backend, you can just return the WebP version of an image if it exists on disk instead of the JPEG or PNG. This, however, isn't always possible if using a static host like S3 or GitHub pages.
+Browsers can [signal WebP support explicitly](http://vincentorback.se/blog/using-webp-images-with-htaccess/) via an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept). If you control your backend, you can return a WebP version of an image if it exists on disk rather than formats like JPEG or PNG. This isn’t always possible however (e.g for static hosts like GitHub pages or S3) so be sure to check before considering this option.
 
 Here is a sample .htaccess file for the Apache web server:
 
