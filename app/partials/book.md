@@ -267,7 +267,7 @@ Baseline JPEGs (the default for most image editing and optimisation tools) are e
 <figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
 </figure>
 
-Progressive JPEGs, or PJPEGs, divide the image into a number of scans. The first scan shows the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
+Progressive JPEGs divide the image into a number of scans. The first scan shows the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
 
 <figure>
 <picture>
@@ -332,7 +332,7 @@ PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/cha
 
 ### The disadvantages of Progressive JPEGs
 
-PJPEGs can be slower to decode than baseline JPEGs - sometimes taking 3x as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you're basically decoding the image multiple times. These multiple passes can eat CPU cycles. libjpeg published a [performance study](http://www.libjpeg-turbo.org/About/Mozjpeg) including where PJPEG spends time available.
+PJPEGs can be slower to decode than baseline JPEGs - sometimes taking 3x as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you're basically decoding the image multiple times. These multiple passes can eat CPU cycles.
 
 Progressive JPEGs are also not *always* smaller. For very small images (like thumbnails), progressive JPEGs can be larger than their baseline counterparts. However for such small thumbnails, progressive rendering might not really offer as much value.
 
@@ -1150,14 +1150,14 @@ Here is some sample HTML:
     <source srcset='paul_irish.jxr' type='image/vnd.ms-photo'>  
     <source srcset='paul_irish.jp2' type='image/jp2'> 
     <source srcset='paul_irish.webp' type='image/webp'>
-    <img srcset='paul_irish.jpg' alt='paul'>
+    <img src='paul_irish.jpg' alt='paul'>
 </picture>
 
 <picture>
    <source srcset="photo.jxr" type="image/vnd.ms-photo">
    <source srcset="photo.jp2" type="image/jp2">
    <source srcset="photo.webp" type="image/webp">
-   <img srcset="photo.jpg" alt="My beautiful face">
+   <img src="photo.jpg" alt="My beautiful face">
 </picture>
 ```
 
@@ -1167,9 +1167,9 @@ Some CDNs support automated conversion to WebP and can use client hints to serve
 
 **WordPress WebP Support**
 
-Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service called Photon. With Photon you get seamless WebP image support. The Photon CDN is included in Jetpack's free level, so this is a good value and a hands-off implementation. The drawback is that Photon resizes your image, puts a query string in your URL and there is an extra DNS lookup required for each image.
+Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service called [Photon](https://jetpack.com/support/photon/). With Photon you get seamless WebP image support. The Photon CDN is included in Jetpack's free level, so this is a good value and a hands-off implementation. The drawback is that Photon resizes your image, puts a query string in your URL and there is an extra DNS lookup required for each image.
 
-**Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin Cache Enabler has a menu checkbox option for caching WebP images to be served if available and the current user's browser supports them. This makes serving WebP images easy. There is a drawback. Cache Enabler requires the use of a sister program called Optimizer, which costs at least $19 USD per year if you want to compress compatible WebP images servable with Cache Enabler. While inexpensive, this seems out of character for a genuinely open source solution. 
+**Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin [Cache Enabler](https://wordpress.org/plugins/cache-enabler/) has a menu checkbox option for caching WebP images to be served if available and the current user's browser supports them. This makes serving WebP images easy. There is a drawback. Cache Enabler requires the use of a sister program called Optimizer, which costs at least $19 USD per year if you want to compress compatible WebP images servable with Cache Enabler. While inexpensive, this seems out of character for a genuinely open source solution. 
 
 **Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize 100 images a month for free; then the price jumps up. 5,000 images per month are currently $4.99 USD. 12,000 per month are $9.99. 55,000 per month are $29.99. This is more expensive than Optimizer. The difference lies in other features such as web page optimization and other non-WebP tools not covered here, but that web developers may find interesting.
 
@@ -1199,17 +1199,16 @@ Animated GIFs continue to enjoy widespread use, despite being a very limited for
 <figcaption>Animated GIF vs. Video: a comparison of file sizes at ~equivalent quality for different formats.</figcaption>
 </figure>
 
+Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to Twitter ([GIFs on Twitter aren't actually GIFs](http://mashable.com/2014/06/20/twitter-gifs-mp4/#PoGJa8al0Zqs)) or Imgur ([Imgur converts GIFs to MP4s on upload](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/)), they’ll silently convert it to an MP4 for you.
 
-Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to [Twitter](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW) or [Imgur](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/), they'll silently convert it to an MP4 for you. Why are GIFs many times [larger](https://www.quora.com/For-a-given-scene-why-does-an-animated-GIF-have-a-much-bigger-file-size-than-its-video-source-e-g-in-MP4-format)?.
-
-Animated GIFs store each frame as a lossless GIF image - yes, lossless. The degraded quality we often experience is due to GIFs being limited to a 256-color palette. The format is often large as it doesn't consider neighbor frames for compression, unlike video codecs like H.264. An MP4 video stores each key frame as a lossy JPEG, which discards some of the original data to achieve better compression. 
+Why are GIFs many times larger?. Animated GIFs store each frame as a lossless GIF image - yes, lossless. The degraded quality we often experience is due to GIFs being limited to a 256-color palette. The format is often large as it doesn't consider neighbor frames for compression, unlike video codecs like H.264. An MP4 video stores each key frame as a lossy JPEG, which discards some of the original data to achieve better compression. 
 
 **If you can switch to videos**
 
 *   Use [ffmpeg](https://www.ffmpeg.org/) to convert your animated GIFs (or sources) to H.264 MP4s. I use this one-liner from[ Rigor](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video):
 ffmpeg -i animated.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
-*   Cloudinary has an [excellent workflow](http://cloudinary.com/blog/reduce_size_of_animated_gifs_automatically_convert_to_webm_and_mp4) for autoconverting sources (or animated GIFs) to H.264 and WEBM. I found this tip about their [lossy mode](https://www.noupe.com/design/creating-animated-gifs-right-way-cloudinary-98607.html) useful.
-*   ImageOptim API [supports this too](https://imageoptim.com/api/ungif) and also [removes dithering from GIFs](https://github.com/pornel/undither#examples) which can help video codecs compress even more.
+*   Cloudinary has an [excellent](http://cloudinary.com/blog/reduce_size_of_animated_gifs_automatically_convert_to_webm_and_mp4) [workflow](https://www.noupe.com/design/creating-animated-gifs-right-way-cloudinary-98607.html) for auto-converting sources (or animated GIFs) to H.264 and WEBM.
+*   ImageOptim API also supports [converting animated gifs to WebM/H.264 video](https://imageoptim.com/api/ungif), [removing dithering from GIFs](https://github.com/pornel/undither#examples) which can help video codecs compress even more.
 
 **If you must use animated GIFs**
 
@@ -1279,7 +1278,7 @@ Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangl
 </figure>
 
 
-SVGO can also reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
+[SVGO](https://github.com/svg/svgo) is a Node-based tool for optimizing SVG. SVGO can reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
 
 <figure>
 <picture>
