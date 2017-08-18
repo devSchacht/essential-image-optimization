@@ -64,7 +64,7 @@ Image optimization consists of different measures that can reduce the file size 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
-        alt="Image optimisation covers a number of different techniques" />
+        alt="Image optimization covers a number of different techniques" />
 </picture>
 <figcaption><strong>Image optimization:</strong> Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
 </figure>
@@ -1858,8 +1858,7 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 </figure>
 
 
-Jeremy Wagner covers some of the considerations you might want to think about [here](http://jlwagner.net/talks/these-images/#/2/2).
-
+Jeremy Wagner has covered [trade-offs](http://jlwagner.net/talks/these-images/#/2/2) worth considering when evaluating formats in his image optimization talks.
 
 ## Caching image assets
 
