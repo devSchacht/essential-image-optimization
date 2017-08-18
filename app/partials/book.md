@@ -1240,21 +1240,20 @@ Keeping SVGs lean means stripping out anything unnecessary. SVG files created wi
         alt="svgo"
          />
 </picture>
-<figcaption>SVGO - The SVG Optimisation tool in action using Jake Archibald's [SVGOMG](https://jakearchibald.github.io/svgomg/) Web UI.</figcaption>
+<figcaption>[SVGOMG](https://jakearchibald.github.io/svgomg/), by Jake Archibald, is a GUI interface enabling you to optimize your SVGs to your preference  by selecting optimizations, with a live preview of the outputted markup </figcaption>
 </figure>
 
 
-**Some SVG optimization good rules of thumb:**
+**Some general rules for SVG optimization (SVGO)::**
 
-*   Because SVGs are really just text assets expressed in XML, they can be minified to save space like CSS, HTML and JavaScript can.
-Instead of paths, use *predefined* shapes in SVG like circles, squares, rectangles and polygons
+*   Minify and gzip your SVG files. SVGs are really just text assets expressed in XML, like CSS, HTML and JavaScript, and should be minified and gzipped to improve performance.
+* Instead of paths, use predefined SVG shapes like `<rect>`, `<circle>`, `<ellipse>`, `<line>` and `<polygon>`
 *   If you must use paths, try to reduce your curves and paths. Simplify and combine them where you can. Illustrator's [simplify tool](http://jlwagner.net/talks/these-images/#/2/10) is adept at removing superfluous points in even complex artwork while smoothing out irregularities.
 *   Avoid using groups. If you can't, try to simplify them.
 *   Delete layers that are invisible.
 *   Avoid any Photoshop or Illustrator effects. They can get converted to large raster images.
 *   Double check for any embedded raster images that aren't SVG-friendly
-*   Optimize your SVGs through [SVGO](https://github.com/svg/svgo) - a Node-based tool for trimming.[SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for SVGO by Jake Archibald that I've also found invaluable. A handy [Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/) on your SVGs when exporting them is also available.
-
+* Use a tool to optimize your SVGs. (https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for [SVGO](https://github.com/svg/svgo) by Jake Archibald that I’ve found invaluable. If you use Sketch, the [SVGO Compressor plugin]([Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/)) can be used when exporting to shrink the file size.
 
 <figure>
 <picture>
