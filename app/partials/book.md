@@ -421,6 +421,8 @@ If you're more visual, you might appreciate [one](https://people.xiph.org/~xiphm
 
 So, **browser support is fragmented** and if you wish to take advantage of any of the above you'll likely need to conditionally serve fallbacks for each of your target browsers. At Google, we've seen some promise with WebP so we'll dive into it in more depth shortly.
 
+You can also serve image formats (e.g WebP, JPEG 2000) with a .jpg extension (or any other) as the browser can render an image it can decide the media type. This allows for server-side [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/) to decide which image to send without needing to change the HTML at all. Services like Instart Logic use this approach when delivering images to their customers.
+
 Next, let's talk about an option for when you can't conditionally serve different image formats: **optimising JPEG encoders**. 
 
 
