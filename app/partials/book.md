@@ -221,9 +221,8 @@ Formats like JPEG are best suited for photographs or images with a number of col
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"
         alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest" />
 </picture>
-<figcaption>JPEG: Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest.</figcaption>
+<figcaption>JPEG: Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest. Note that image quality scores in one tool can be very different to quality scores in another.</figcaption>
 </figure>
-
 
 When choosing what quality setting to opt for, consider what quality bucket your images fall into:
 
