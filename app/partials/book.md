@@ -1683,6 +1683,78 @@ Clearly, lazysizes is not your only option. Here are more lazy loading libraries
 Lazy loading images is a widespread pattern for reducing bandwidth, decreasing costs, and improving user experience. Evaluate whether it makes sense for your experience. For further
 reading see [lazy loading images](https://jmperezperez.com/lazy-loading-images/) and [implementing Medium's progressive loading](https://jmperezperez.com/medium-image-progressive-loading-placeholder/).
 
+
+## <a id="display-none-trap" href="#display-none-trap">Avoiding the display:none trap</a>
+
+Older responsive image solutions have mistaken how browsers handle image requests when setting the CSS  `display` property. This can cause significantly more images to be requested than you might be expecting and is another reason `<picture>` and `<img srcset>` are preferred for loading responsive images.
+
+Have you ever written a media query that sets an image to `display:none` at certain breakpoints? 
+
+```html
+<img src="img.jpg">
+<style>
+@media (max-width: 640px) {
+    img {
+        display: none;
+    }
+}
+</style>
+```
+
+Or toggled what images are hidden using a `display:none` class?
+
+```html
+<style>
+.hidden {
+  display: none;
+}
+</style>
+<img src="img.jpg">
+<img src=“img-hidden.jpg" class="hidden">
+```
+
+A quick check against the Chrome DevTools network panel will verify that images hidden using these approaches still get fetched, even when we expect them not to be. This behavior is actually correct per the embedded resources spec.
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503260160/essential-image-optimization/display-none-images.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503260160/essential-image-optimization/display-none-images.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503260160/essential-image-optimization/display-none-images.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503260160/essential-image-optimization/display-none-images.jpg" 
+        alt="Images hidden with display:none still get fetched"
+         />
+</picture>
+</figure>
+
+**Does `display:none` avoid triggering a request for an image `src`?**
+
+<div style="display:none"><img src="img.jpg"></div>
+
+No. The image specified will still get requested. A library cannot rely on display:none here as the image will be requested before JavaScript can alter the src.
+
+**Does `display:none` avoid triggering a request for a `background: url()`?**
+
+```html
+<div style="display:none">
+  <div style="background: url(img.jpg)"></div>
+</div>
+```
+
+Yes. CSS backgrounds aren’t fetched as soon as an element is parsed. Calculating CSS styles for children of elements with `display:none` would be less useful as they don’t impact rendering of the document. Background images on child elements are not calculated nor downloaded.
+
+Jake Archibald’s [Request Quest](https://jakearchibald.github.io/request-quest/) has an excellent quiz on the pitfalls of using `display:none` for your responsive images loading. When in doubt about how specific browser’s handle image request loading, pop open their DevTools and verify for yourself.
+
+Again, where possible, use `<picture>` and `<img srcset>` instead of relying on `display:none`.
+
 ## <a id="image-processing-cdns" href="#image-processing-cdns">Does an image processing CDN make sense for you?</a>
 
 *The time you'll spend reading the blog posts to setup your own image processing pipeline and tweaking your config is often >> the fee for a service. With [Cloudinary](http://cloudinary.com/) offering a free service, [Imgix](https://www.imgix.com/) a free trial and [Thumbor](https://github.com/thumbor/thumbor) existing as an OSS alternative, there are plenty of options available to you for automation.*
