@@ -1562,9 +1562,9 @@ Decreasing your overall page load time on an image heavy website from several se
 
 **But like all tools, with great power comes great responsibility.**
 
-**Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g products) or list of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
+**Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g products) or lists of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
 
-**Be very careful lazy-loading images when scrolling.**  If you wait until the user is scrolling you will see they are likely to see placeholders and may eventually get images, if they haven’t already scrolled past them. One recommendation would be to start lazy-loading after the above-the-fold images have loaded (but still load all of the images independent of user interaction).
+**Be very careful lazy-loading images when scrolling.**  If you wait until the user is scrolling they are likely to see placeholders and may eventually get images, if they haven’t already scrolled past them. One recommendation would be to start lazy-loading after the above-the-fold images have loaded, loading all of the images independent of user interaction.
 
 **Who Uses Lazy Loading?**
 
