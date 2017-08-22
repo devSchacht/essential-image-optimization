@@ -1155,13 +1155,13 @@ Some CDNs support automated conversion to WebP and can use client hints to serve
 
 Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service called [Photon](https://jetpack.com/support/photon/). With Photon you get seamless WebP image support. The Photon CDN is included in Jetpack's free level, so this is a good value and a hands-off implementation. The drawback is that Photon resizes your image, puts a query string in your URL and there is an extra DNS lookup required for each image.
 
-**Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin [Cache Enabler](https://wordpress.org/plugins/cache-enabler/) has a menu checkbox option for caching WebP images to be served if available and the current user's browser supports them. This makes serving WebP images easy. There is a drawback. Cache Enabler requires the use of a sister program called Optimizer, which costs at least $19 USD per year if you want to compress compatible WebP images servable with Cache Enabler. While inexpensive, this seems out of character for a genuinely open source solution. 
+**Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin [Cache Enabler](https://wordpress.org/plugins/cache-enabler/) has a menu checkbox option for caching WebP images to be served if available and the current user’s browser supports them. This makes serving WebP images easy. There is a drawback: Cache Enabler requires the use of a sister program called Optimizer, which has an annual fee. This seems out of character for a genuinely open source solution.  
 
-**Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize 100 images a month for free; then the price jumps up. 5,000 images per month are currently $4.99 USD. 12,000 per month are $9.99. 55,000 per month are $29.99. This is more expensive than Optimizer. The difference lies in other features such as web page optimization and other non-WebP tools not covered here, but that web developers may find interesting.
+**Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize upto 100 images a month for free.
 
 **Compressing Animated GIFs and why `<video>` is better**
 
-Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the [GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The [number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. However, switching to video offers the largest savings. 
+Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the [GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The [number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. Switching to video offers the largest savings.  
 
 
 <figure>
@@ -1185,15 +1185,14 @@ Animated GIFs continue to enjoy widespread use, despite being a very limited for
 <figcaption>Animated GIF vs. Video: a comparison of file sizes at ~equivalent quality for different formats.</figcaption>
 </figure>
 
-Delivering the same file as an MP4 video can often shave 80% or more off your file-size. This means that not only do GIFs often waste significant bandwidth, but they'll take longer to load, include fewer colors and can offer sub-part user experiences. Videos are so much better than when you upload an animated GIF to Twitter ([GIFs on Twitter aren't actually GIFs](http://mashable.com/2014/06/20/twitter-gifs-mp4/#PoGJa8al0Zqs)) or Imgur ([Imgur converts GIFs to MP4s on upload](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/)), they’ll silently convert it to an MP4 for you.
+Delivering the same file as an MP4 video can often shave 80% or more off your file-size. Not only do GIFs often waste significant bandwidth, but they take longer to load, include fewer colors and generally offer sub-part user experiences. You may have noticed animated GIFs uploaded to Twitter perform better on Twitter than on other websites. [Animated GIFs on Twitter aren't actually GIFs](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW). To improve user experience and reduce bandwidth consumption, animated GIFs uploaded to Twitter are actually converted to video. Similarly, [Imgur converts GIFs to videos](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/) on upload, silently converting it to an MP4 for you.
 
-Why are GIFs many times larger?. Animated GIFs store each frame as a lossless GIF image - yes, lossless. The degraded quality we often experience is due to GIFs being limited to a 256-color palette. The format is often large as it doesn't consider neighbor frames for compression, unlike video codecs like H.264. An MP4 video stores each key frame as a lossy JPEG, which discards some of the original data to achieve better compression. 
+Why are GIFs many times larger? Animated GIFs store each frame as a lossless GIF image - yes, lossless. The degraded quality we often experience is due to GIFs being limited to a 256-color palette. The format is often large as it doesn't consider neighbor frames for compression, unlike video codecs like H.264. An MP4 video stores each key frame as a lossy JPEG, which discards some of the original data to achieve better compression.
 
 **If you can switch to videos**
 
 *   Use [ffmpeg](https://www.ffmpeg.org/) to convert your animated GIFs (or sources) to H.264 MP4s. I use this one-liner from[ Rigor](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video):
 ffmpeg -i animated.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
-*   Cloudinary has an [excellent](http://cloudinary.com/blog/reduce_size_of_animated_gifs_automatically_convert_to_webm_and_mp4) [workflow](https://www.noupe.com/design/creating-animated-gifs-right-way-cloudinary-98607.html) for auto-converting sources (or animated GIFs) to H.264 and WEBM.
 *   ImageOptim API also supports [converting animated gifs to WebM/H.264 video](https://imageoptim.com/api/ungif), [removing dithering from GIFs](https://github.com/pornel/undither#examples) which can help video codecs compress even more.
 
 **If you must use animated GIFs**
@@ -1366,7 +1365,7 @@ It is recommended to always compress from the original image. Recompressing imag
 
 To avoid this trap, **set the lowest good quality you're willing to accept in the first place** and you'll get maximum file savings from the start. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
 
-Re-encoding a lossy file will almost always give you a smaller file, but this doesn't mean you're getting as much quality out of it as you may think. 
+Re-encoding a lossy file will almost always give you a smaller file, but this doesn’t mean you’re getting as much quality out of it as you may think.
 
 <figure>
 <picture>
@@ -1497,7 +1496,7 @@ A friendly reminder that [Client Hints](https://www.smashingmagazine.com/2016/01
 
 ### <a id="art-direction" href="#art-direction">Art direction</a>
 
-Although shipping the right resolution to users is important, some sites also need to think about this in terms of **[art direction](http://usecases.responsiveimages.org/#art-direction)**. If a user is on a smaller screen, you may want to crop or zoom in and display the subject to make best use of available space. Although art direction is outside the scope of this write-up, services like[ Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20) provide tools to try automating this as much as possible. 
+Although shipping the right resolution to users is important, some sites also need to think about this in terms of **[art direction](http://usecases.responsiveimages.org/#art-direction)**. If a user is on a smaller screen, you may want to crop or zoom in and display the subject to make best use of available space. Although art direction is outside the scope of this write-up, services like[ Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20) provide APIs to try automating this as much as possible. 
 
 <figure>
 <picture>
@@ -1553,20 +1552,17 @@ Lazy loading is not yet natively supported in the browser itself (although there
 
 This "lazy" way of loading images only if and when necessary has many benefits:
 
-* The experience can consume less data. As you aren't assuming the user will need every image fetched ahead of time you're only loading the minimal number of resources. This is always a good thing, especially on mobile with more restrictive data plans.
-* Less workload for the user's browser which can save on battery life. 
+* **Reduced data consumption**: As you aren’t assuming the user will need every image fetched ahead of time, you’re only loading the minimal number of resources. This is always a good thing, especially on mobile with more restrictive data plans.
+* **Reduced battery consumption**: Less workload for the user’s browser which can save on battery life. 
+* **Improved download speed**: Decreasing your overall page load time on an image heavy website from several seconds to almost nothing is a tremendous boost to user experience. In fact, it could be the difference between a user staying around to enjoy your site and just another bounce statistic. 
 
 Decreasing your overall page load time on an image heavy website from several seconds to almost nothing is also a tremendous boost to your user experience. In fact, it could be the difference between a user staying around to enjoy your site and just another bounce statistic.
 
 **But like all tools, with great power comes great responsibility.**
 
-**Avoid lazy-loading images above the fold.**
+**Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g products) or list of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
 
-Use it for long-lists of images (e.g products) or avatars in lists of users. Don't use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser's preloader, progressive loading and the JavaScript can create extra work for the browser.
-
-**Be very careful lazy-loading images when scrolling.**
-
-If you wait until the user is scrolling you will see they are likely to see placeholders and may eventually get images, if they haven’t already scrolled past them. One recommendation would be to start lazy-loading after the above-the-fold images have loaded (but still load all of the images independent of user interaction).
+**Be very careful lazy-loading images when scrolling.**  If you wait until the user is scrolling you will see they are likely to see placeholders and may eventually get images, if they haven’t already scrolled past them. One recommendation would be to start lazy-loading after the above-the-fold images have loaded (but still load all of the images independent of user interaction).
 
 **Who Uses Lazy Loading?**
 
@@ -1593,9 +1589,9 @@ For examples of lazy loading, look at most any major site that hosts a lot of im
 <figcaption>An example of Gaussian-blurred inline previews for images on Medium.com</figcaption>
 </figure>
 
-A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it's been fetched. 
+A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it has been fetched. 
 
-José M. Pérez has written about how to implement the Medium effect using [CSS filters](https://jmperezperez.com/medium-image-progressive-loading-placeholder/) and experimented with [different image formats](https://jmperezperez.com/webp-placeholder-images/) to support such placeholders. Facebook also did a write-up on their famous 200-byte approach to such placeholders for their [cover photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/) that is worth a read. If you're a Webpack user, [LQIP loader](https://lqip-loader.firebaseapp.com/) can help automate some of this work away.
+José M. Pérez has written about how to implement the Medium effect using [CSS filters](https://jmperezperez.com/medium-image-progressive-loading-placeholder/) and experimented with [different image formats](https://jmperezperez.com/webp-placeholder-images/) to support such placeholders. Facebook also did a write-up on their famous 200-byte approach for such placeholders for their [cover photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/) that is worth a read. If you’re a Webpack user, [LQIP loader](https://lqip-loader.firebaseapp.com/) can help automate some of this work away.
 
 In fact, you can search for your favorite source of high-res photos and then scroll down the page. In almost all cases you'll experience how the website loads only a few full-resolution images at a time, with the rest being placeholder colors or images. As you continue to scroll, the placeholder images are replaced with full-resolution images. This is lazy loading in action.
 
