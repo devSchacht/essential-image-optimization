@@ -511,7 +511,7 @@ To measure the differences between images, Guetzli uses [Butteraugli](https://gi
 
 <aside class="note"><b>Note:</b> Image file-size is **much** more dependent on the choice of **quality** than the choice of **codec**. There are far far larger file-size differences between the lowest and highest quality JPEGs compared to the file-size savings made possible by  switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
 
-Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with what this practically means in [this Github thread](https://github.com/google/guetzli/issues/50).
+Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with Guetzli in [this Github thread](https://github.com/google/guetzli/issues/50). It can be ideal for when you’re optimizing images as part of a build process for a static site but less so when performed on demand.
 
 <aside class="note"><b>Note:</b> Guetzli may be more suitable when you're optimizing images
 as part of a build process for a static site, or situations where image optimization is not performed on demand.</aside>
@@ -804,7 +804,7 @@ WebP is not without its downsides. It lacks full-resolution color space options 
 
 Several commercial and open source image editing and processing packages support WebP. One particularly useful application is XnConvert: a free, cross-platform, batch image processing converter.
 
-<aside class="note"><b>Note:</b> It's important to avoid converting low or average quality JPEGs to WebP. This is a common mistake and can generate WebP images with JPEG compression artifacts. This can lead to WebP being less efficient as it has to save the image _and_ the distortions added by JPEG, leading to you losing on quality twice. Feed conversion apps the best quality source file available.</aside>
+<aside class="note"><b>Note:</b> It's important to avoid converting low or average quality JPEGs to WebP. This is a common mistake and can generate WebP images with JPEG compression artifacts. This can lead to WebP being less efficient as it has to save the image _and_ the distortions added by JPEG, leading to you losing on quality twice. Feed conversion apps the best quality source file available, preferably the original.</aside>
 
 **[XnConvert](http://www.xnview.com/en/xnconvert/)**
 
@@ -1521,9 +1521,15 @@ Although shipping the right resolution to users is important, some sites also ne
 <figcaption>Art direction: Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
 
+## <a id="image-sprites" href="#image-sprites">Image sprites in an HTTP/2 world</a>
+
+Under HTTP/1.x, some developers used [spriting](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images#use_image_sprites) to combine smaller images into a larger sprite sheet so only one image was needed to all their logos and icons. This reduced HTTP requests, but can now be an HTTP/2 anti-pattern. 
+
+With [HTTP/2](https://hpbn.co/http2/), it may be best to [load individual images](https://deliciousbrains.com/performance-best-practices-http2/) since multiple requests within a single connection are now possible. Measure to evaluate whether this is the case for your own network setup.
+
 ## <a id="lazy-load-non-critical-images" href="#lazy-load-non-critical-images">Lazy-load non-critical images</a>
 
-Lazy loading is a web performance pattern that delays the loading of images in the browser until the user needs to see it. One example is as you scroll, images load asynchronously on demand. This can further compliment the byte-savings you see from having an image compression strategy.
+Lazy loading is a web performance pattern that delays the loading of images in the browser until the user needs to see it. One example is, as you scroll, images load asynchronously on demand. This can further compliment the byte-savings you see from having an image compression strategy.
 
 
 <figure>
