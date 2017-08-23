@@ -1767,7 +1767,9 @@ A quick check against the Chrome DevTools network panel will verify that images 
 
 **Does `display:none` avoid triggering a request for an image `src`?**
 
+```html
 <div style="display:none"><img src="img.jpg"></div>
+```
 
 No. The image specified will still get requested. A library cannot rely on display:none here as the image will be requested before JavaScript can alter the src.
 
