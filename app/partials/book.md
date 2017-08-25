@@ -1339,7 +1339,7 @@ Keeping SVGs lean means stripping out anything unnecessary. SVG files created wi
 **Some general rules for SVG optimization (SVGO):**
 
 *   Minify and gzip your SVG files. SVGs are really just text assets expressed in XML, like CSS, HTML and JavaScript, and should be minified and gzipped to improve performance.
-* Instead of paths, use predefined SVG shapes like `<rect>`, `<circle>`, `<ellipse>`, `<line>` and `<polygon>`
+* Instead of paths, use predefined SVG shapes like `<rect>`, `<circle>`, `<ellipse>`, `<line>` and `<polygon>`. Preferring predefined shapes decreases how much markup is needed to produce a final image, meaning less code to parse and rasterize by the browser. Reducing SVG complexity means a browser can display it more quickly.
 *   If you must use paths, try to reduce your curves and paths. Simplify and combine them where you can. Illustrator's [simplify tool](http://jlwagner.net/talks/these-images/#/2/10) is adept at removing superfluous points in even complex artwork while smoothing out irregularities.
 *   Avoid using groups. If you can't, try to simplify them.
 *   Delete layers that are invisible.
@@ -1561,6 +1561,29 @@ start memory swapping. So, keep an eye on your image decode, resize and memory c
 <figure>
 <picture>
 <source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503695136/essential-image-optimization/image-decoding-mobile.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503695136/essential-image-optimization/image-decoding-mobile.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503695136/essential-image-optimization/image-decoding-mobile.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503695136/essential-image-optimization/image-decoding-mobile.jpg" 
+        alt="Decoding images can be incredibly costly on average and lower-end mobile hardware"
+         />
+</picture>
+<figcaption>Decoding images can be incredibly costly on average and lower-end mobile phones. In some cases it can be 5x slower to decode (if not longer).</figcaption>
+</figure>
+
+When building their new [mobile web experience](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), Twitter improved image decode performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
+
+<figure>
+<picture>
+<source
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/image-decoding.jpg"
         media="(max-width: 640px)" />
 <source
@@ -1578,8 +1601,6 @@ start memory swapping. So, keep an eye on your image decode, resize and memory c
 </picture>
 <figcaption>Chrome DevTools Timeline/Performance panel highlighting image decode times (in green) before and after Twitter Lite optimized their image pipeline.</figcaption>
 </figure>
-
-When building their new mobile web experience, Twitter improved performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
 
 ### <a id="delivering-hidpi-with-srcset" href="#delivering-hidpi-with-srcset">Delivering HiDPI images using `srcset`</a>
 
@@ -1652,11 +1673,34 @@ Although shipping the right resolution to users is important, some sites also ne
 <figcaption>Art direction: Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
 
-## <a id="image-sprites" href="#image-sprites">Image sprites in an HTTP/2 world</a>
+## <a id="image-sprites" href="#image-sprites">Image spriting</a>
 
-Under HTTP/1.x, some developers used [spriting](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images#use_image_sprites) to combine smaller images into a larger sprite sheet so only one image was needed to all their logos and icons. This reduced HTTP requests, but can now be an HTTP/2 anti-pattern. 
+[Image sprites](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images#use_image_sprites) (or CSS sprites) have a long history on the web, are supported by all browsers and have been a popular way to reduce the number of images a page loads by combining them into a single larger image that is sliced. 
 
-With [HTTP/2](https://hpbn.co/http2/), it may be best to [load individual images](https://deliciousbrains.com/performance-best-practices-http2/) since multiple requests within a single connection are now possible. Measure to evaluate whether this is the case for your own network setup.
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503693437/essential-image-optimization/i2_2ec824b0_1.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503693437/essential-image-optimization/i2_2ec824b0_1.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503693437/essential-image-optimization/i2_2ec824b0_1.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503693437/essential-image-optimization/i2_2ec824b0_1.jpg" 
+        alt="Image sprites are still widely used in large, production sites, including the Google homepage."
+         />
+</picture>
+<figcaption>Image sprites are still widely used in large, production sites, including the Google homepage.</figcaption>
+</figure>
+
+Under HTTP/1.x, some developers used spriting to reduce HTTP requests. This came with a number of benefits, however care was needed as you quickly ran into challenges with cache-invalidation - changes to any small part of an image sprite would invalidate the entire image in a user's cache. 
+
+Spriting may now however be an [HTTP/2](https://hpbn.co/http2/) anti-pattern. With HTTP/2, it may be best to [load individual images](https://deliciousbrains.com/performance-best-practices-http2/) since multiple requests within a single connection are now possible. Measure to evaluate whether this is the case for your own network setup.
 
 ## <a id="lazy-load-non-critical-images" href="#lazy-load-non-critical-images">Lazy-load non-critical images</a>
 
@@ -1973,7 +2017,7 @@ Cloudinary supports the following image formats: JPEG, JPEG 2000, JPEG XR, PNG, 
 
 **What About Performance?**
 
-CDN delivery performance is mostly about latency and speed. 
+CDN delivery performance is mostly about [latency](https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2) and speed. 
 
 Latency always increases somewhat for completely uncached images. But once an image is cached and distributed among the network servers, the fact that a global CDN can find the shortest hop to the user, added to the byte savings of a properly-processed image, almost always mitigates latency issues when compared to poorly processed images or solitary servers trying to reach across the planet.
 
