@@ -36,6 +36,10 @@ header h1 {
     color: #eceff1;
 }
 
+.reviewers a:hover {
+    color: #f2cc68;
+}
+
 a {
     color: #056fa2;
     text-decoration: none;
