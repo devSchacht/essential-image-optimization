@@ -378,6 +378,115 @@ Most image editing tools save images as Baseline JPEG files by default.
 <figcaption>Most image editing tools save images as Baseline JPEG files by default. You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the ‘Progressive’ checkbox while saving your images.</figcaption>
 </figure>
 
+### <a id="chroma-subsampling" href="#chroma-subsampling">Chroma (or Color) Subsampling</a>
+
+Our eyes are more forgiving to loss of color detail in an image (chroma) than they are luminance (or luma for short - a measure of brightness). [Chroma subsampling](https://en.wikipedia.org/wiki/Chroma_subsampling) is a form of compression that reduces the precision of color in a signal in favor of luma. This reduces file size, in some cases by up to [15-17%](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/), without adversely affecting image quality and is an option available for JPEG images. Subsampling can also reduce image memory usage.
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503683718/essential-image-optimization/luma-signal.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503683718/essential-image-optimization/luma-signal.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683718/essential-image-optimization/luma-signal.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683718/essential-image-optimization/luma-signal.jpg"
+        alt="signal = chroma + luma" />
+</picture>
+</figure>
+
+As contrast is responsible for forming shapes that we see in an image, luma, which defines it, is pretty important. Older or filtered black and white photos may not contain color, but thanks to luma, they can be just as detailed as their color counterparts. Chroma (color) has less of an impact on visual perception.
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503683936/essential-image-optimization/no-subsampling.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503683936/essential-image-optimization/no-subsampling.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg"
+        alt="JPEG includes support for numerous subsampling types: none, horizontal and horizontal and vertical." />
+</picture>
+<figcaption>JPEG supports a number of different subsampling types: none, horizontal and horizontal and vertical. This diagram is from [JPEGs for the horseshoe crabs](http://frdx.free.fr/JPEG_for_the_horseshoe_crabs.pdf) by Frédéric Kayser.</figcaption>
+</figure>
+
+There are a number of common samples discussed when talking about subsampling. Generally, `4:4:4`, `4:2:2` and `4:2:0`. But what do these represent? Let’s say a subsample takes the format A:B:C. A is the number of pixels in a row and for JPEGs this is usually 4. B represents the amount of color in the first row and C the color in the second.
+
+* `4:4:4` has no compression, so color and luma are transported completely. 
+* `4:2:2` has half sampling horizontally and full sampling vertically. 
+* `4:2:0` samples colors out of half the first row’s pixels and ignores the second row.
+
+<aside class="note"><b>Note:</b> jpegtran and cjpeg support separate quality configuration of luminance and chroma. This can be done adding the `-sample` flag (e.g `-sample 2x1`). 
+
+Some good general rules:  subsampling (`-sample 2x2`) is great for photos. no-subsampling (`-sample 1x1`) is best for screenshots, banners and buttons. There's finally compromise (`2x1`) is you're unsure what to use.</aside>
+
+By reducing pixels in our chroma components, it’s possible to reduce the size of color components significantly, ultimately reducing byte size. 
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503684781/essential-image-optimization/subsampling.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503684781/essential-image-optimization/subsampling.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg"
+        alt="Chrome subsampling configurations for a JPEG at quality 80." />
+</picture>
+<figcaption>Chrome subsampling configurations for a JPEG at quality 80.</figcaption>
+</figure>
+
+Chroma subsampling is worth considering for most types of image. It does have some notable exceptions: as subsampling relies on limitations in our eyes, it is not great for compressing images where color detail may be as important as luminance (e.g medical images). 
+
+Images containing typefaces can also suffer as poor subsampling of text can decrease its legibility. Sharper edges are harder to compress with JPEG as it was designed to better handle photographic scenes with softer transitions.
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"
+        alt="Be careful when using heavy subsampling with images containing text" />
+</picture>
+<figcaption>[Understanding JPEG](http://compress-or-die.com/Understanding-JPG/) recommends sticking with a subsampling of 4:4:4 (1x1) when working with images containing text.</figcaption>
+</figure>
+
+Trivia: The exact method of Chroma subsampling wasn’t specified in the JPEG specification, so different decoders handle it differently. MozJPEG and libjpeg-turbo use the same scaling method. Older versions of libjpeg use a different method that adds ringing artifacts in colors. 
+
+<aside class="note"><b>Note:</b> Photoshop sets Chroma subsampling automatically when using the ‘Save for web’ feature. When image quality is set between 51-100, no subsampling is used at all (`4:4:4`). When quality is below this, a `4:2:0` subsampling is used instead. This is one reason a far greater file-size reduction can be observed when switching quality from 51 to 50.</aside>
+
+<aside class="note"><b>Note:</b> In subsampling discussions the term [YCbCr](https://en.wikipedia.org/wiki/YCbCr) is often mentioned. This is a model that can represent gamma-corrected [RGB](https://en.wikipedia.org/wiki/RGB_color_model) color spaces. Y is gamma-corrected luminance, Cb is the blue color’s chroma component and Cr is the red color’s chroma component. If you look at ExifData, you’ll see YCbCr next to sampling levels.</aside>
+
+For a further read on Chroma Subsampling, see [Why aren’t your images using Chroma subsampling?](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/).
+
 ### <a id="how-far-have-we-come-from-the-jpeg" href="#how-far-have-we-come-from-the-jpeg">How far have we come from the JPEG?</a>
 
 **Here's the current state of image formats on the web:**
