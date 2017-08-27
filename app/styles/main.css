@@ -5,7 +5,7 @@ will be correctly compiled during `gulp serve` and `gulp`
 
 
 html, body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'avenir next', avenir, sans-serif;
 }
 
 body {
@@ -13,11 +13,19 @@ body {
 }
 
 header {
-    background-color: #000;
-}
+    background-color: #282a36;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
 header h1 {
     color: #fff;
+    margin: 0 0 34px;
+    padding: 0;
+    text-align: center;
 }
 
 .author {
@@ -25,24 +33,43 @@ header h1 {
 }
 
 .author a {
-    color: #F2CC68;
+    color: #57c7ff;
+    font-weight: 600;
+    text-decoration: none;        
+    transition: all .3s ease-out;
+}
+
+.author a:hover {
+    color: #aae3ff;
 }
 
 .reviewers {
-    color:#d4d3d3;
+    color: #fff;
 }
 
 .reviewers a {
-    color: #eceff1;
+    color: #fff;
+    font-weight: 600;   
+    text-decoration: none;    
+    transition: color .2s ease-out; 
 }
 
 .reviewers a:hover {
-    color: #f2cc68;
+    color: #57c7ff; 
 }
 
-a {
-    color: #056fa2;
+.container a {
+    color: #345cd5;
+    font-weight: 600;    
     text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: border .2s,color .2s ease-out;  
+}
+
+.container a:hover {
+    color: #5c84ff;
+    text-decoration: none;
+    border-bottom: 3px solid #f1ece9;
 }
 
 pre {
@@ -53,20 +80,41 @@ pre {
 /* smartphones, iPhone, portrait 480x320 phones */
 @media (min-width:320px)  {  
     html, body {
-        font-size: 1.1em;
         line-height: 1.618;
     }
 
     .container {
+        margin: 0 auto;
         max-width: 90%;
         padding-top: 16px;
     }
 
-    p, pre, ul, h1, h2, h3, h4 {
+    .author {
+        padding: 0 16px;
+        margin: 0 auto 24px;
+        font-size: 1.3em;        
+    }
+
+    .reviewers {
+        padding: 0 16px;
+        margin: 0 auto 14px;
+        font-size: 0.8em;        
+    }
+
+    p, h1, h2, h3, h4 {
         max-width: 90%; 
         padding: 0 16px;
         text-align: left;
-        margin: 0 auto 24px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1.25em;
+    }
+
+    figure {
+        max-width: 90%;
+        padding: 0 16px;
+        text-align: center;
+        margin: 2em auto;        
     }
 
     figure source, figure img {
@@ -77,13 +125,19 @@ pre {
         max-width: 90%;
     }
 
+    figcaption {
+        font-size: 0.8em;
+        text-align: center;
+        color: #757575;
+        margin: 1em auto 2em;
+    }
+
     header {
-        background-color: #000;
         padding: 40px 0 40px 0;
     }
 
     header h1 {
-        font-size: 1.8em;
+        font-size: 1.7em;
         color: #fff;
         line-height: normal;
     }
@@ -91,19 +145,24 @@ pre {
     header .credits {
         font-size: 0.75em;
         padding: 0 16px;
-        text-align: left;
+        text-align: center;
         max-width: 84%;
     }
 
     aside.key-point, aside.note {
+        max-width: 60%;       
+        margin: 1.25em auto 0;        
         font-size: .8em;
         line-height: 1.7;
     }
 
     pre {
         font-size: 0.8em;
-        max-width: 90%;
+        max-width: 80%;
         overflow: scroll;
+        padding: 0 16px;
+        text-align: left;
+        margin: 1.25em auto 0;
     }
 }
 
@@ -115,9 +174,8 @@ pre {
 /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
 @media (min-width:641px)  {
     html, body {
-        font-size: 1.275em;
+        font-size: 1.15em;
         line-height: 1.618;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
 
     header {
@@ -125,7 +183,7 @@ pre {
     }
 
     header h1 {
-        font-size: 4em;
+        font-size: 2em;
         line-height: normal;
     }
 
@@ -133,24 +191,19 @@ pre {
         font-size: 1em;
         line-height: normal;
         padding: 0;
-        max-width: 100%;
+        max-width: 60%;
     }
 
     .author {
-        max-width: 940px; 
         padding: 0 16px;
-        text-align: left;
-        margin: 0 auto 24px;
+        margin: 0 auto 54px;
+        font-size: 1.3em;        
     }
 
-
     .reviewers {
-        color:#d4d3d3;
-        max-width: 940px;
         padding: 0 16px;
-        text-align: left;
-        margin: 0 auto 24px;
-        font-size: 0.7em;
+        margin: 0 auto 34px;
+        font-size: 0.8em;        
     }
 
     .github-corner {
@@ -164,11 +217,12 @@ pre {
 
     h2 {
         font-size: 2em;
-        line-height: 1.1;
+        line-height: 1.5;
+        margin-top: 20px; 
     }
 
     h3 {
-        font-size: 1.425em;
+        font-size: 1.7em;
         line-height: 1.27;
     }
 
@@ -177,6 +231,12 @@ pre {
         letter-spacing: .125em;
     }
 
+    ul {
+        max-width: 900px; 
+        padding-left: 80px;
+        text-align: left;
+        margin: 1.25em auto 0;
+    }
 
     ul li {
         margin: 15px 0px 15px 0;
@@ -188,24 +248,25 @@ pre {
         padding-top: 0px;
     }
 
-    p, pre, ul, h1, h2, h3, h4 {
-        max-width: 940px; 
+    p, pre, h1, h2, h3, h4 {
+        max-width: 900px; 
         padding: 0 16px;
         text-align: left;
-        margin: 0 auto 24px;
+        margin: 1.25em auto 0;
     }
 
-    aside.note, aside.key-point {
-        margin: 0 auto 30px;
-        max-width: 940px;
-        font-size: 1.075em;
-        line-height: 1.49;
+    pre {
+        max-width: 870px; 
+        padding: 0 16px;
+        text-align: left;
+        margin: 1.25em auto 0;
     }
-
+    
     figure {
-        margin: 0;
-        padding: 16px;
+        max-width: 900px; 
+        padding: 0 16px;
         text-align: center;
+        margin: 2em auto;        
     }
 
     figure img.small {
@@ -217,41 +278,57 @@ pre {
     }
 
     figcaption {
-        font-size: 0.9em;
+        font-size: 0.8em;
         text-align: center;
         color: #757575;
-        margin: 0 auto;
-        width: 70%;
+        margin: 1em auto 2em;
+        width: 80%;
+    }
+
+    aside.note, aside.key-point {
+        margin: 30px auto;
+        max-width: 820px;
+        font-size: 1.075em;
+        line-height: 1.49;
     }
 
     img {
-    max-width: 90%;
+        max-width: 90%;
     }
 
     img:parent {
-    margin: 0 auto;
-    text-align: center;
+        margin: 0 auto;
+        text-align: center;
     }
 
     img:parent, figure:parent, img {
-    width: 90%;
-    max-width: 90%;
+        width: 90%;
+        max-width: 90%;
     }
 }
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (min-width:961px)  {  
-
+    header h1 {
+        font-size: 2.2em;
+        line-height: normal;
+    }
 }
 
 /* big landscape tablets, laptops, and desktops */
 @media (min-width:1025px) {  
-
+    header h1 {
+        font-size: 2.5em;
+        line-height: normal;
+    }
 }
 
 /* hi-res laptops and desktops */
 @media (min-width:1281px) {  
-
+    header h1 {
+        font-size: 3.5em;
+        line-height: normal;
+    }
 }
 
 /* github ribbon */
@@ -285,7 +362,7 @@ pre {
   right: 0;
   height: 5rem;
   width: 5rem;
-  fill: #000;
+  fill: #282a36;
 }
 
 .github-corner:hover .octo-arm {
