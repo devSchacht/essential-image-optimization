@@ -14,7 +14,7 @@ body {
 
 header {
     background-color: #282a36;
-    height: 75vh;
+    height: 44vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@ header {
 
 header h1 {
     color: #fff;
-    margin: 0 0 34px;
+    margin: 34px 0;
     padding: 0;
     text-align: center;
 }
@@ -58,6 +58,10 @@ header h1 {
     color: #57c7ff; 
 }
 
+.container {
+    word-wrap: break-word;
+}
+
 .container a {
     color: #345cd5;
     font-weight: 600;    
@@ -80,6 +84,7 @@ pre {
 /* smartphones, iPhone, portrait 480x320 phones */
 @media (min-width:320px)  {  
     html, body {
+        font-size: 1.1em;
         line-height: 1.618;
     }
 
@@ -111,8 +116,6 @@ pre {
     }
 
     figure {
-        max-width: 90%;
-        padding: 0 16px;
         text-align: center;
         margin: 2em auto;        
     }
@@ -137,7 +140,7 @@ pre {
     }
 
     header h1 {
-        font-size: 1.7em;
+        font-size: 1.4em;
         color: #fff;
         line-height: normal;
     }
@@ -263,10 +266,7 @@ pre {
     }
     
     figure {
-        max-width: 900px; 
-        padding: 0 16px;
         text-align: center;
-        margin: 2em auto;        
     }
 
     figure img.small {
@@ -309,6 +309,11 @@ pre {
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (min-width:961px)  {  
+    html, body {
+        font-size: 1.2em;
+        line-height: 1.618;
+    }
+
     header h1 {
         font-size: 2.2em;
         line-height: normal;
@@ -317,8 +322,13 @@ pre {
 
 /* big landscape tablets, laptops, and desktops */
 @media (min-width:1025px) {  
+    html, body {
+        font-size: 1.225em;
+        line-height: 1.618;
+    }
+
     header h1 {
-        font-size: 2.5em;
+        font-size: 2em;
         line-height: normal;
     }
 }
@@ -326,7 +336,7 @@ pre {
 /* hi-res laptops and desktops */
 @media (min-width:1281px) {  
     header h1 {
-        font-size: 3.5em;
+        font-size: 2.5em;
         line-height: normal;
     }
 }
