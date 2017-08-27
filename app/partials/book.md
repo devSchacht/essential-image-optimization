@@ -541,7 +541,7 @@ Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files whil
 * If you need configurability: 
  * [JPEGRecompress](https://github.com/danielgtaylor/jpeg-archive) (which uses MozJPEG under the hood)
  * [JPEGMini](http://www.jpegmini.com/). It's similar to Guetzli - chooses best quality automatically. It's not as technically sophisticated as Guetzli, but it's faster, and aims at quality range more suitable for the web.
- * [ImageOptim API](https://imageoptim.com/api) (with free online interface here: https://imageoptim.com/online) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
+ * [ImageOptim API](https://imageoptim.com/api) (with free online interface [here](https://imageoptim.com/online)) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
 
 
 ### <a id="what-is-mozjpeg" href="#what-is-mozjpeg">What is MozJPEG?</a>
@@ -699,7 +699,7 @@ How does Guetzli compare to MozJPEG? - Kornel's take:
 
 * Guetzli is tuned for higher-quality images (butteraugli is said to be best for `q=90`+, MozJPEG's sweet spot is around `q=75`)
 * Guetzli is much slower to compress (both produce standard JPEGs, so decoding is fast as usual)
-* MozJPEG doesn't automagically pick quality setting, but you can find optimal quality using an external tool, e.g. https://github.com/danielgtaylor/jpeg-archive
+* MozJPEG doesn't automagically pick quality setting, but you can find optimal quality using an external tool, e.g. [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive)
 
 A number of methods exist for determining if compressed images are visually similar or perceivably similar to their sources. Image quality studies often use methods like [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity). Guetzli however optimizes for Butteraugli.
 
@@ -1345,7 +1345,7 @@ Keeping SVGs lean means stripping out anything unnecessary. SVG files created wi
 *   Delete layers that are invisible.
 *   Avoid any Photoshop or Illustrator effects. They can get converted to large raster images.
 *   Double check for any embedded raster images that aren't SVG-friendly
-* Use a tool to optimize your SVGs. (https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for [SVGO](https://github.com/svg/svgo) by Jake Archibald that I’ve found invaluable. If you use Sketch, the [SVGO Compressor plugin]([Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/)) can be used when exporting to shrink the file size.
+* Use a tool to optimize your SVGs. [SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for [SVGO](https://github.com/svg/svgo) by Jake Archibald that I’ve found invaluable. If you use Sketch, the [SVGO Compressor plugin]([Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/)) can be used when exporting to shrink the file size.
 
 <figure>
 <picture>
