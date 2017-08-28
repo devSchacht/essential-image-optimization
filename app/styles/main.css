@@ -5,7 +5,7 @@ will be correctly compiled during `gulp serve` and `gulp`
 
 
 html, body {
-    font-family: 'avenir next', avenir, sans-serif;
+    font: 1.1em/1.618 'avenir next', avenir, sans-serif;
 }
 
 body {
@@ -13,13 +13,13 @@ body {
 }
 
 header {
-    background-color: #282a36;
+    background: #282a36;
     height: 44vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
+}
 
 header h1 {
     color: #fff;
@@ -35,7 +35,7 @@ header h1 {
 .author a {
     color: #57c7ff;
     font-weight: 600;
-    text-decoration: none;        
+    text-decoration: none;
     transition: all .3s ease-out;
 }
 
@@ -49,13 +49,13 @@ header h1 {
 
 .reviewers a {
     color: #fff;
-    font-weight: 600;   
-    text-decoration: none;    
-    transition: color .2s ease-out; 
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s ease-out;
 }
 
 .reviewers a:hover {
-    color: #57c7ff; 
+    color: #57c7ff;
 }
 
 .container {
@@ -64,10 +64,10 @@ header h1 {
 
 .container a {
     color: #345cd5;
-    font-weight: 600;    
+    font-weight: 600;
     text-decoration: none;
     border-bottom: 3px solid transparent;
-    transition: border .2s,color .2s ease-out;  
+    transition: border .2s, color .2s ease-out;
 }
 
 .container a:hover {
@@ -77,101 +77,101 @@ header h1 {
 }
 
 pre {
-    background-color: #f7f7f7;
-    font-family: Roboto Mono, monospace;
+    background: #f7f7f7;
+    font: .8em Roboto Mono, monospace;
+    max-width: 80%;
+    overflow: scroll;
+    padding: 0 16px;
+    text-align: left;
+    margin: 1.25em auto 0;
 }
 
-/* smartphones, iPhone, portrait 480x320 phones */
-@media (min-width:320px)  {  
-    html, body {
-        font-size: 1.1em;
-        line-height: 1.618;
-    }
-
-    .container {
-        margin: 0 auto;
-        max-width: 90%;
-        padding-top: 16px;
-    }
-
-    .author {
-        padding: 0 16px;
-        margin: 0 auto 24px;
-        font-size: 1.3em;        
-    }
-
-    .reviewers {
-        padding: 0 16px;
-        margin: 0 auto 14px;
-        font-size: 0.8em;        
-    }
-
-    p, h1, h2, h3, h4 {
-        max-width: 90%; 
-        padding: 0 16px;
-        text-align: left;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 1.25em;
-    }
-
-    figure {
-        text-align: center;
-        margin: 2em auto;        
-    }
-
-    figure source, figure img {
-        max-width: 90%;
-    }
-
-    figure img.very-small {
-        max-width: 90%;
-    }
-
-    figcaption {
-        font-size: 0.8em;
-        text-align: center;
-        color: #757575;
-        margin: 1em auto 2em;
-    }
-
-    header {
-        padding: 40px 0 40px 0;
-    }
-
-    header h1 {
-        font-size: 1.4em;
-        color: #fff;
-        line-height: normal;
-    }
-
-    header .credits {
-        font-size: 0.75em;
-        padding: 0 16px;
-        text-align: center;
-        max-width: 84%;
-    }
-
-    aside.key-point, aside.note {
-        max-width: 60%;       
-        margin: 1.25em auto 0;        
-        font-size: .8em;
-        line-height: 1.7;
-    }
-
-    pre {
-        font-size: 0.8em;
-        max-width: 80%;
-        overflow: scroll;
-        padding: 0 16px;
-        text-align: left;
-        margin: 1.25em auto 0;
-    }
+.note:before,
+.key-point:before {
+    content: '';
+    width: 36px;
+    height: 24px;
+    background-position: center left;
+    background-repeat: no-repeat;
 }
 
-/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-@media (min-width:481px)  {  
+.note:before {
+    background-image: url('/images/icons/star.svg');
+}
 
+.key-point:before {
+    background-image: url('/images/icons/lightbulb.svg');
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 90%;
+    padding-top: 16px;
+}
+
+.author {
+    padding: 0 16px;
+    margin: 0 auto 24px;
+    font-size: 1.3em;
+}
+
+.reviewers {
+    padding: 0 16px;
+    margin: 0 auto 14px;
+    font-size: .8em;
+}
+
+p, h1, h2, h3, h4 {
+    max-width: 90%;
+    padding: 0 16px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.25em;
+}
+
+figure {
+    text-align: center;
+    margin: 2em auto;
+}
+
+figure source, figure img {
+    max-width: 90%;
+}
+
+figure img.very-small {
+    max-width: 90%;
+}
+
+figcaption {
+    font-size: .8em;
+    text-align: center;
+    color: #757575;
+    margin: 1em auto 2em;
+}
+
+header {
+    padding: 40px 0;
+}
+
+header h1 {
+    font-size: 1.4em;
+    color: #fff;
+    line-height: normal;
+}
+
+header .credits {
+    font-size: .75em;
+    padding: 0 16px;
+    text-align: center;
+    max-width: 84%;
+}
+
+aside.key-point, aside.note {
+    max-width: 60%;
+    margin: 1.25em auto 0;
+    font-size: .8em;
+    line-height: 1.7;
 }
 
 /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
@@ -182,7 +182,7 @@ pre {
     }
 
     header {
-        padding: 60px 0 60px 0;
+        padding: 60px 0;
     }
 
     header h1 {
@@ -200,17 +200,17 @@ pre {
     .author {
         padding: 0 16px;
         margin: 0 auto 54px;
-        font-size: 1.3em;        
+        font-size: 1.3em;
     }
 
     .reviewers {
         padding: 0 16px;
         margin: 0 auto 34px;
-        font-size: 0.8em;        
+        font-size: .8em;
     }
 
     .github-corner {
-        right: 0px;
+        right: 0;
     }
 
     h1 {
@@ -221,7 +221,7 @@ pre {
     h2 {
         font-size: 2em;
         line-height: 1.5;
-        margin-top: 20px; 
+        margin-top: 20px;
     }
 
     h3 {
@@ -235,36 +235,36 @@ pre {
     }
 
     ul {
-        max-width: 900px; 
+        max-width: 900px;
         padding-left: 80px;
         text-align: left;
         margin: 1.25em auto 0;
     }
 
     ul li {
-        margin: 15px 0px 15px 0;
+        margin: 15px 0;
     }
 
     .container {
         margin-top: 65px;
         max-width: 100%;
-        padding-top: 0px;
+        padding-top: 0;
     }
 
     p, pre, h1, h2, h3, h4 {
-        max-width: 900px; 
+        max-width: 900px;
         padding: 0 16px;
         text-align: left;
         margin: 1.25em auto 0;
     }
 
     pre {
-        max-width: 870px; 
+        max-width: 870px;
         padding: 0 16px;
         text-align: left;
         margin: 1.25em auto 0;
     }
-    
+
     figure {
         text-align: center;
     }
@@ -278,7 +278,7 @@ pre {
     }
 
     figcaption {
-        font-size: 0.8em;
+        font-size: .8em;
         text-align: center;
         color: #757575;
         margin: 1em auto 2em;
@@ -305,10 +305,15 @@ pre {
         width: 90%;
         max-width: 90%;
     }
+
+    .note:before,
+    .key-point:before {
+        margin-top: 4px;
+    }
 }
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
-@media (min-width:961px)  {  
+@media (min-width:961px)  {
     html, body {
         font-size: 1.2em;
         line-height: 1.618;
@@ -321,7 +326,7 @@ pre {
 }
 
 /* big landscape tablets, laptops, and desktops */
-@media (min-width:1025px) {  
+@media (min-width:1025px) {
     html, body {
         font-size: 1.225em;
         line-height: 1.618;
@@ -334,7 +339,7 @@ pre {
 }
 
 /* hi-res laptops and desktops */
-@media (min-width:1281px) {  
+@media (min-width:1281px) {
     header h1 {
         font-size: 2.5em;
         line-height: normal;
@@ -345,25 +350,25 @@ pre {
 .link-svg svg {
   height: 1.5rem;
   width: 1.5rem;
-  fill: #555; 
+  fill: #555;
 }
 
 .link-svg svg:hover {
-    fill: #000; 
+    fill: #000;
 }
 
 @media screen and (max-width: 30em) {
     .link-svg svg {
       height: 1rem;
-      width: 1rem; 
-    } 
+      width: 1rem;
+    }
 }
 
 @media screen and (min-width: 30em) and (max-width: 60em) {
     .link-svg svg {
       height: 1.25rem;
-      width: 1.25rem; 
-    } 
+      width: 1.25rem;
+    }
 }
 
 .github-corner {
@@ -376,30 +381,30 @@ pre {
 }
 
 .github-corner:hover .octo-arm {
-    animation: octocat-wave 560ms ease-in-out; 
+    animation: octocat-wave 560ms ease-in-out;
 }
 
 @keyframes octocat-wave {
   0%, 100% {
-    transform: rotate(0); 
+    transform: rotate(0);
     }
   20%,
     60% {
-    transform: rotate(-25deg); 
+    transform: rotate(-25deg);
     }
   40%,
     80% {
-    transform: rotate(10deg); 
-    } 
+    transform: rotate(10deg);
+    }
 }
 
 @media (max-width: 500px) {
     .github-corner:hover .octo-arm {
-        animation: none; 
+        animation: none;
     }
     .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out; 
-    } 
+    animation: octocat-wave 560ms ease-in-out;
+    }
 }
 
 /* github ribbon */
