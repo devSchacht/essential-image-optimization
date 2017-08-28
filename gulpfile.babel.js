@@ -16,6 +16,7 @@ import {output as pagespeed} from 'psi';
 import pkg from './package.json';
 import template from 'gulp-md-template';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
+import imageminSVGO from 'imagemin-svgo';
 import rename from 'gulp-rename';
 import puppeteer from 'puppeteer';
 import glob from 'glob';
@@ -37,10 +38,14 @@ gulp.task('images', () =>
   gulp.src('app/images/**/*')
     .pipe($.cache($.imagemin([
       imageminJpegRecompress({
-        loops: 4,
+        loops: 16, // More loops can take longer, but can sometimes yield smaller JPEGs.
         min: 60,
         max: 80,
         quality: 'high'
+      }),
+      imageminSVGO({
+        precision: 1,
+        multipass: true
       })
     ])))
     .pipe(gulp.dest('dist/images'))
