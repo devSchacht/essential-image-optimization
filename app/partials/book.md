@@ -1,6 +1,28 @@
-# Table of Contents
+### <a id="the-tldr" href="#the-tldr">The tl;dr</a>
 
-- [The tl;dr](#the-tldr)
+**Everyone should be automating their image compression.**
+
+In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
+To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvps](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist.
+
+Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
+
+The amount of time you'll spend reading blog posts and tweaking your config is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
+
+**Everyone should be compressing their images efficiently.**
+
+At minimum: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) and consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy).
+If you can spare the extra CPU cycles, need higher-than-web-average quality and are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
+
+Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
+
+There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in-browser by heeding the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
+
+
+The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality.
+
+## Table of Contents
+
 - [Introduction](#introduction)
 - [How can I tell if my images need to be optimized?](#do-my-images-need-optimization)
 - [The humble JPEG](#the-humble-jpeg)
@@ -36,29 +58,6 @@
 - [How do I choose an image format?](#choosing-an-image-format)
 - [Caching image assets](#caching-image-assets)
 - [Closing recommendations](#closing-recommendations)
-
-### <a id="the-tldr" href="#the-tldr">The tl;dr</a>
-
-**Everyone should be automating their image compression.**
-
-In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
-To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvps](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist.
-
-Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
-
-The amount of time you'll spend reading blog posts and tweaking your config is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
-
-**Everyone should be compressing their images efficiently.**
-
-At minimum: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) and consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy).
-If you can spare the extra CPU cycles, need higher-than-web-average quality and are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
-
-Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
-
-There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in-browser by heeding the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
-
-
-The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality.
 
 ### <a id="introduction" href="#introduction">Introduction</a>
 
