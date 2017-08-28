@@ -21,43 +21,58 @@ There's always more you can do. Tools exists to generate and serve `srcset` brea
 
 The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality.
 
-## Table of Contents
+<details>
+<summary><h2>Table of Contents</h2></summary>
+<p>
+		<ul>
+			<li><a href="#introduction">Introduction</a></li>
+			<li><a href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a></li>
+			<li><a href="#the-humble-jpeg">The humble JPEG</a></li>
+			<li><a href="#jpeg-compression-modes">JPEG compression modes</a>
+				<ul>
+					<li><a href="#the-advantages-of-progressive-jpegs">The advantages of Progressive JPEGs</a></li>
+					<li><a href="#whos-using-progressive-jpegs-in-production">Who's using Progressive JPEGs in production?</a></li>
+					<li><a href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a></li>
+					<li><a href="#how-to-create-progressive-jpegs">How do you create Progressive JPEGs?</a></li>
+					<li><a href="#chroma-subsampling">Chroma (or Color) Subsampling</a></li>
+					<li><a href="#how-far-have-we-come-from-the-jpeg">How far have we come from the JPEG?</a></li>
+					<li><a href="#optimizing-jpeg-encoders">Optimizing JPEG Encoders</a></li>
+					<li><a href="#what-is-mozjpeg">What is MozJPEG?</a></li>
+					<li><a href="#what-is-guetzli">What is Guetzli?</a></li>
+					<li><a href="#mozjpeg-vs-guetzli">How does MozJPEG compare to Guetzli?</a></li>
+					<li><a href="#butteraugli">Butteraugli</a></li>
+				</ul>
+			</li>
+			<li><a href="#what-is-webp">What is WebP?</a>
+				<ul>
+					<li><a href="#how-does-webp-perform">How does WebP perform?</a></li>
+					<li><a href="#whos-using-webp-in-production">Who's using WebP in production?</a></li>
+					<li><a href="#how-does-webp-encoding-work">How does WebP encoding work?</a></li>
+					<li><a href="#webp-browser-support">WebP browser support</a></li>
+					<li><a href="#how-do-i-convert-to-webp">How do I convert my images to WebP?</a></li>
+					<li><a href="#how-do-i-view-webp-on-my-os">How do I view WebP images on my OS?</a></li>
+					<li><a href="#how-do-i-serve-webp">How do I serve WebP?</a></li>
+				</ul>
+			</li>
+			<li><a href="#svg-optimization">SVG optimization</a></li>
+			<li><a href="#avoid-recompressing-images-lossy-codecs">Avoid recompressing images with lossy codecs</a></li>
+			<li><a href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
+				<ul>
+					<li><a href="#delivering-hidpi-with-srcset">Delivering HiDPI images using <code>srcset</code></a></li>
+					<li><a href="#art-direction">Art direction</a></li>
+				</ul>
+			</li>
+			<li><a href="#image-sprites">Image spriting</a></li>
+			<li><a href="#lazy-load-non-critical-images">Lazy-load non-critical images</a></li>
+			<li><a href="#display-none-trap">Avoiding the <code>display: none;</code> trap</a></li>
+			<li><a href="#image-processing-cdns">Does an image processing CDN make sense for you?</a></li>
+			<li><a href="#choosing-an-image-format">How do I choose an image format?</a></li>
+			<li><a href="#caching-image-assets">Caching image assets</a></li>
+			<li><a href="#closing-recommendations">Closing recommendations</a></li>
+		</ul>
+</p>
+</details>
 
-- [Introduction](#introduction)
-- [How can I tell if my images need to be optimized?](#do-my-images-need-optimization)
-- [The humble JPEG](#the-humble-jpeg)
-- [JPEG compression modes](#jpeg-compression-modes)
-  - [The advantages of Progressive JPEGs](#the-advantages-of-progressive-jpegs)
-  - [Who's using Progressive JPEGs in production?](#whos-using-progressive-jpegs-in-production)
-  - [The disadvantages of Progressive JPEGs](#the-disadvantages-of-progressive-jpegs)
-  - [How do you create Progressive JPEGs?](#how-to-create-progressive-jpegs)
-  - [Chroma (or Color) Subsampling](#chroma-subsampling)
-  - [How far have we come from the JPEG?](#how-far-have-we-come-from-the-jpeg)
-  - [Optimizing JPEG Encoders](#optimizing-jpeg-encoders)
-  - [What is MozJPEG?](#what-is-mozjpeg)
-  - [What is Guetzli?](#what-is-guetzli)
-  - [How does MozJPEG compare to Guetzli?](#mozjpeg-vs-guetzli)
-  - [Butteraugli](#butteraugli)
-- [What is WebP?](#what-is-webp)
-  - [How does WebP perform?](#how-does-webp-perform)
-  - [Who's using WebP in production?](#whos-using-webp-in-production)
-  - [How does WebP encoding work?](#how-does-webp-encoding-work)
-  - [WebP browser support](#webp-browser-support)
-  - [How do I convert my images to WebP?](#how-do-i-convert-to-webp)
-  - [How do I view WebP images on my OS?](#how-do-i-view-webp-on-my-os)
-  - [How do I serve WebP?](#how-do-i-serve-webp)
-- [SVG optimization](#svg-optimization)
-- [Avoid recompressing images with lossy codecs](#avoid-recompressing-images-lossy-codecs)
-- [Reduce unnecessary image decode and resize costs](#reduce-unnecessary-image-decode-costs)
-  - [Delivering HiDPI images using `srcset`](#delivering-hidpi-with-srcset)
-  - [Art direction](#art-direction)
-- [Image spriting](#image-sprites)
-- [Lazy-load non-critical images](#lazy-load-non-critical-images)
-- [Avoiding the `display: none;` trap](#display-none-trap)
-- [Does an image processing CDN make sense for you?](#image-processing-cdns)
-- [How do I choose an image format?](#choosing-an-image-format)
-- [Caching image assets](#caching-image-assets)
-- [Closing recommendations](#closing-recommendations)
 
 ### <a id="introduction" href="#introduction">Introduction</a>
 
