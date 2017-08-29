@@ -413,18 +413,18 @@ Most image editing tools save images as Baseline JPEG files by default.
 <figure>
 <picture>
 <source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/photoshop.jpg"
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/c_scale,w_500,/v1502426282/essential-image-optimization/photoshop.jpg"
         media="(max-width: 640px)" />
 <source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/photoshop.jpg"
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/c_scale,w_900/v1502426282/essential-image-optimization/photoshop.jpg"
         media="(max-width: 1024px)" />
 
 <source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/photoshop.jpg" />
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg" />
 
 <img
         class="lazyload"
-        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/photoshop.jpg"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg"
         alt="photoshop supports exporting to progressive jpeg from the file export menu" />
 </picture>
 <figcaption>Most image editing tools save images as Baseline JPEG files by default. You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the ‘Progressive’ checkbox while saving your images.</figcaption>
@@ -990,29 +990,7 @@ XnConvert enables batch image processing, compatible with over 500 image formats
         alt="XNConvert app on Mac where a number of images have been converted to WebP"
          />
 </picture>
-<figcaption>XnConvert supports batch image optimisation, allowing straight-forward conversion from source files to WebP and other formats. </figcaption>
-</figure>
-
-<figure>
-<picture>
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image21.png"
-        media="(max-width: 640px)" />
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image21.png"
-        media="(max-width: 1024px)" />
-
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image21.png" />
-
-<img
-        class="lazyload small"
-        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image21.png"
-        alt="XnConvert displaying a second tab where image manipulation like metadata cleaning is also supported"
-         />
-</picture>
-<figcaption>In addition to compression, XnConvert can also help with metadata stripping, cropping, color depth customisation and other transforms.</figcaption>
-
+<figcaption>XnConvert supports batch image optimisation, allowing straight-forward conversion from source files to WebP and other formats. In addition to compression, XnConvert can also help with metadata stripping, cropping, color depth customisation and other transforms.</figcaption>
 </figure>
 
 Some of the options listed on the xnview website include:
@@ -1506,7 +1484,7 @@ When Google shipped a new logo, we announced that the [smallest](https://twitter
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image30.jpg" />
 
 <img
-        class="lazyload small"
+        class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image30.jpg"
         alt="the smallest version of the new google logo was only 305 bytes in size"
          />
