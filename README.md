@@ -1,5 +1,7 @@
 # Essential Image Optimisation
 
+[![Build Status](https://travis-ci.com/addyosmani/essential-image-optimisation.svg?token=psYsstqxcc6sppMcnY8H&branch=master)](https://travis-ci.com/addyosmani/essential-image-optimisation)
+
 ## Prerequisites
 
 ### [Node.js](https://nodejs.org)
