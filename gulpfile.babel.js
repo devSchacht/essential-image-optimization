@@ -8,6 +8,7 @@
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
+import uncss from 'uncss';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import workboxBuild from 'workbox-build';
@@ -90,8 +91,14 @@ gulp.task('styles', () => {
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
-    // Concatenate and minify styles
+    // Remove unused styles with UnCSS
+    .pipe($.if('*.css', $.uncss({
+      html: ['dist/*.html']
+    })))
+    // Minify and optimize styles with cssnano
     .pipe($.if('*.css', $.cssnano()))
+    // Concatenate styles
+    .pipe($.if('*.css', $.concat('main.css')))
     .pipe($.size({title: 'styles'}))
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest('dist/styles'))
@@ -235,8 +242,8 @@ gulp.task('generate-pdf', async() => {
 // Build production files, the default task
 gulp.task('default', ['clean'], cb =>
   runSequence(
-    'styles',
     ['markdown', 'lint', 'html', 'scripts', 'images', 'copy'],
+    'styles',
     ['third-party:prod', 'generate-service-worker'],
     'service-worker:prod',
     cb
