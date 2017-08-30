@@ -68,6 +68,7 @@ The smaller in file-size you can make your images, the better a network experien
         <li><a href="#image-processing-cdns">Does an image processing CDN make sense for you?</a></li>
         <li><a href="#choosing-an-image-format">How do I choose an image format?</a></li>
         <li><a href="#caching-image-assets">Caching image assets</a></li>
+        <li><a href="#preload-critical-image-assets">Preloading critical image assets</a></li>
         <li><a href="#closing-recommendations">Closing recommendations</a></li>
         <li><a href="#trivia">Trivia</a></li>
 </ul>
@@ -2135,6 +2136,87 @@ Most of the images you deliver to users are static assets that will[ not change]
 When setting your HTTP caching headers, set Cache-Control with a max-age of a year (e.g `Cache-Control:public; max-age=31536000`). This type of aggressive caching works well for most types of images, especially those that are long-lived like avatars and image headers.
 
 <aside class="note"><b>Note:</b> If you're serving images using PHP, it can destroy caching due to the default [session_cache_limiter](http://php.net/manual/en/function.session-cache-limiter.php) setting. This can be a disaster for image caching and you may want to [work around](https://stackoverflow.com/a/3905468) this by setting session_cache_limiter('public') which will set public, max-age=. Disabling and setting custom cache-control headers is also fine.</aside>
+
+## <a id="preload-critical-image-assets" href="#preload-critical-image-assets">Preloading critical image assets</a>
+
+Critical image assets can be preloaded using [`<link rel=preload>`](https://www.w3.org/TR/preload/). 
+
+`<link rel=preload>` is a declarative fetch, allowing you to force the browser to make a request for a resource without blocking the document’s `onload` event. It enables increasing the priority of requests for resources that might otherwise not be discovered until later in the document parsing process. 
+
+Images can be preloaded by specifying an `as` value of `image`:
+
+```html
+<link rel="preload" as="image" href="logo.jpg"/>
+```
+
+Image resources for `<img>`, `<picture>`, `srcset` and SVGs can all take advantage of this optimization.
+
+<aside class="note"><b>Note:</b> `<link rel="preload">` is [supported](http://caniuse.com/#search=preload) in Chrome and Blink-based browsers like Opera, [Safari Tech Preview](https://developer.apple.com/safari/technology-preview/release-notes/) and has been [implemented](https://bugzilla.mozilla.org/show_bug.cgi?id=1222633) in Firefox.</aside>
+
+Sites like [Philips](https://www.usa.philips.com/), [FlipKart](https://www.flipkart.com/) and [Xerox](https://www.xerox.com/) use `<link rel=preload>` to preload their main logo assets (often used early in the document). [Kayak](https://kayak.com/) also uses preload to ensure the hero image for their header is loaded as soon as possible.
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1504057647/essential-image-optimization/preload-philips.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1504057647/essential-image-optimization/preload-philips.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504057647/essential-image-optimization/preload-philips.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504057647/essential-image-optimization/preload-philips.jpg"
+        alt="Philips use link rel=preload to preload their logo image"
+         />
+</picture>
+</figure>
+
+**What is the Link preload header?** 
+
+A preload link can be specified using either an HTML tag or an [HTTP Link header](https://www.w3.org/wiki/LinkHeader). In either case, a preload link directs the browser to begin loading a resource into the memory cache, indicating that the page expects with high confidence to use the resource and doesn’t want to wait for the preload scanner or the parser to discover it.
+
+A Link preload header for images would look similar to this:
+
+```
+Link: <https://example.com/logo-hires.jpg>; rel=preload; as=image
+```
+
+When the Financial Times introduced a Link preload header to their site, they shaved [1 second off](https://twitter.com/wheresrhys/status/843252599902167040) the time it took to display their masthead image:
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1504055773/essential-image-optimization/preload-financial-times.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1504055773/essential-image-optimization/preload-financial-times.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504055773/essential-image-optimization/preload-financial-times.jpg" />
+
+<img
+        class="lazyload"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504055773/essential-image-optimization/preload-financial-times.jpg"
+        alt="The FT using preload. Displayed are the WebPageTest before and after traces showing improvements."
+         />
+</picture>
+<figcaption>Bottom: with `<link rel=preload>`, Top: without. Comparison for a Moto G4 over 3G on WebPageTest both [before](https://www.webpagetest.org/result/170319_Z2_GFR/) and [after](https://www.webpagetest.org/result/170319_R8_G4Q/).</figcaption>
+</figure>
+
+Similarly, Wikipedia improved time-to-logo performance with the Link preload header as covered in their [case study](https://phabricator.wikimedia.org/phame/post/view/19/improving_time-to-logo_performance_with_preload_links/).
+
+**What caveats should be considered when using this optimization?**
+
+Be very certain that it's worth preloading image assets as, if they aren't critical to your user experience, there may be other content on the page worth focusing your efforts on loading earlier instead. By prioritizing image requests, you may end up pushing other resources further down the queue.
+
+It's important to avoid using `rel=preload` to preload image formats without broad browser support (e.g WebP). It's also good to avoid using it for responsive images defined in `srcset` where the retrieved source may vary based on device conditions. 
+
+To learn more about preloading, see [Preload, Prefetch and Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
 
 ## <a id="closing-recommendations" href="#closing-recommendations">Closing recommendations</a>
 
