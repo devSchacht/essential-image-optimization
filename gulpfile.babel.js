@@ -7,8 +7,10 @@
 
 import path from 'path';
 import gulp from 'gulp';
+import util from 'gulp-util';
 import del from 'del';
 import uncss from 'uncss';
+import {stream as critical} from 'critical';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import workboxBuild from 'workbox-build';
@@ -167,9 +169,24 @@ gulp.task('html', () => {
       removeStyleLinkTypeAttributes: true,
       removeOptionalTags: true
     })))
+
     // Output files
     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
     .pipe(gulp.dest('.tmp'))
+
+    // Inline critical CSS
+    .pipe(critical({
+      width: 1440,
+      height: 900,
+      inline: true,
+      css: [
+        'app/styles/main.css',
+        'app/styles/google-blue.css'
+      ],
+      base: 'app/',
+      minify: true
+    }))
+    .on('error', (err) => util.log(util.colors.red(err.message)))
     .pipe(gulp.dest('dist'));
 });
 
