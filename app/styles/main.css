@@ -13,12 +13,19 @@ body {
 }
 
 header {
-    background: #282a36;
+    background: #00c6ff;
+    background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);
+    background: linear-gradient(to right, #0072ff, #00c6ff);
     height: 44vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+header .logo {
+    max-width: 130px;
+    padding: 30px 0;
 }
 
 header h1 {
@@ -33,14 +40,17 @@ header h1 {
 }
 
 .author a {
-    color: #57c7ff;
+    color: #fff;
     font-weight: 600;
     text-decoration: none;
-    transition: all .3s ease-out;
+    border-bottom: 3px solid transparent;
+    transition: border .2s, color .2s ease-out;
 }
 
 .author a:hover {
-    color: #aae3ff;
+    color: #f1ece9;
+    text-decoration: none;
+    border-bottom: 3px solid #a0d9ff;
 }
 
 .reviewers {
@@ -51,11 +61,14 @@ header h1 {
     color: #fff;
     font-weight: 600;
     text-decoration: none;
-    transition: color .2s ease-out;
+    border-bottom: 3px solid transparent;
+    transition: border .2s, color .2s ease-out;
 }
 
 .reviewers a:hover {
-    color: #57c7ff;
+    color: #f1ece9;
+    text-decoration: none;
+    border-bottom: 3px solid #a0d9ff;
 }
 
 .container {
@@ -111,14 +124,14 @@ pre {
 
 .author {
     padding: 0 16px;
-    margin: 0 auto 24px;
-    font-size: 1.3em;
+    margin: 0 auto 30px;
+    font-size: 1.1em;
 }
 
 .reviewers {
     padding: 0 16px;
     margin: 0 auto 14px;
-    font-size: .8em;
+    font-size: .7em;
 }
 
 p, h1, h2, h3, h4 {
@@ -196,6 +209,11 @@ details h2 {
         line-height: 1.618;
     }
 
+    header .logo {
+        max-width: 200px;
+        padding: 40px 0;
+    }
+    
     header {
         padding: 60px 0;
     }
@@ -214,14 +232,14 @@ details h2 {
 
     .author {
         padding: 0 16px;
-        margin: 0 auto 54px;
-        font-size: 1.3em;
+        margin: 0 auto 30px;
+        font-size: 1.1em;
     }
 
     .reviewers {
         padding: 0 16px;
         margin: 0 auto 34px;
-        font-size: .8em;
+        font-size: .7em;
     }
 
     .github-corner {
@@ -407,7 +425,7 @@ details h2 {
   right: 0;
   height: 5rem;
   width: 5rem;
-  fill: #282a36;
+  fill: #00c3ff;
 }
 
 .github-corner:hover .octo-arm {
