@@ -1,6 +1,6 @@
-# Essential Image Optimisation
+# Essential Image Optimization
 
-[![Build Status](https://travis-ci.com/addyosmani/essential-image-optimisation.svg?token=psYsstqxcc6sppMcnY8H&branch=master)](https://travis-ci.com/addyosmani/essential-image-optimisation)
+[![Build Status](https://travis-ci.com/addyosmani/essential-image-optimisation.svg?token=psYsstqxcc6sppMcnY8H&branch=master)](https://travis-ci.com/addyosmani/essential-image-optimisation) [![WebPageTest](https://img.shields.io/badge/webpagetest-report-brightgreen.svg)](https://www.webpagetest.org/result/170901_EM_348e5bd8fa649e122b4684e0e6febc35/) [![Lighthouse](https://img.shields.io/badge/lighthouse-90+-blue.svg)](https://www.webpagetest.org/lighthouse.php?test=170901_EM_348e5bd8fa649e122b4684e0e6febc35&run=3)
 
 ## Prerequisites
 
