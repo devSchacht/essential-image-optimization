@@ -124,7 +124,7 @@ pre {
 
 .author {
     padding: 0 16px;
-    margin: 0 auto 30px;
+    margin: 0 auto 20px;
     font-size: 1.1em;
 }
 
@@ -202,7 +202,14 @@ details h2 {
     display: initial;
 }
 
-/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+/* landscape small phones (iPhone 4/5) */
+@media (max-height:320px)  {
+    .credits {
+        display: none;
+    }
+}
+
+/* landscape 800x480 or 854x480 phones */
 @media (min-width:641px)  {
     html, body {
         font-size: 1.15em;
@@ -210,8 +217,7 @@ details h2 {
     }
 
     header .logo {
-        max-width: 200px;
-        padding: 40px 0;
+        max-width: 100px;
     }
     
     header {
@@ -231,15 +237,12 @@ details h2 {
     }
 
     .author {
-        padding: 0 16px;
-        margin: 0 auto 30px;
-        font-size: 1.1em;
+        margin: 0 auto 30px;        
+        font-size: 0.8em;
     }
 
     .reviewers {
-        padding: 0 16px;
-        margin: 0 auto 34px;
-        font-size: .7em;
+        font-size: .5em;
     }
 
     .github-corner {
@@ -359,6 +362,22 @@ details h2 {
         display: initial;
     }
 }
+
+/* portrait tablets, portrait iPad, landscape e-readers, */
+@media (min-width:768px)  {
+    header .logo {
+        max-width: 200px;
+        padding: 40px 0;
+    }
+
+    .author {
+        font-size: 1.1em;
+    }
+
+    .reviewers {
+        font-size: .7em;
+    }
+}    
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (min-width:961px)  {
