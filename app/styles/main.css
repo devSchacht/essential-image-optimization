@@ -192,6 +192,7 @@ details {
     text-align: left;
     margin: 1.25em auto 0;
     max-width: 90%;
+    cursor: pointer;
 }
 
 details h2 {
@@ -219,7 +220,7 @@ details h2 {
     header .logo {
         max-width: 100px;
     }
-    
+
     header {
         padding: 60px 0;
     }
@@ -237,7 +238,7 @@ details h2 {
     }
 
     .author {
-        margin: 0 auto 30px;        
+        margin: 0 auto 30px;
         font-size: 0.8em;
     }
 
@@ -377,7 +378,7 @@ details h2 {
     .reviewers {
         font-size: .7em;
     }
-}    
+}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (min-width:961px)  {
