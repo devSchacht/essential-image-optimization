@@ -53,14 +53,6 @@ $ gulp
 
 Build and optimize the current project, ready for deployment.
 
-#### Generate a PDF using Puppeteer
-
-```sh
-$ gulp generate-pdf
-```
-
-Builds a PDF of the book using the production deployment.
-
 #### Serve the Fully Built & Optimized Site
 
 ```sh
@@ -72,12 +64,42 @@ $ gulp serve:dist
 It is important to note a difference between the `serve` and `serve:dist` tasks.
 
 * `serve` uses a no-op `service-worker.js` and cannot run offline.
-* `serve:dist` uses the `sw-precache`-generated output and can run offline.
+* `serve:dist` uses the `workbox`-generated output and can run offline.
 
 The `serve` task runs on port 3000 and `serve:dist` runs on port 3001.
 The main purpose is to ensure that different service workers will not impact each other's environment. 
-Using the `sw-precache`-generated output makes it very difficult to quickly test local changes which is not ideal for a development server environment.
+Using the `workbox`-generated output makes it very difficult to quickly test local changes which is not ideal for a development server environment.
+
+#### Generate a PDF of the book
+
+This repo supports generating a PDF of the book by doing a local checkout, installing our dependencies and then running:
+
+```sh
+$ gulp generate-pdf
+```
+
+This generates a PDF using the Chrome team's [Puppeteer](https://github.com/GoogleChrome/puppeteer) project.
+
+If doing this involves too many steps and you would like to just use a browser's "Print to PDF" feature, that is also
+supported. First, load up the book on [https://images.guide](https://images.guide), scroll down
+to ensure all images are lazy-loaded in and then safely print to PDF as per any other web page.
+
+#### Contributing
+
+I'd love your help improving this book. If interested in contributing a pull request, please:
+
+1. Make sure your PR has a valid title and description. 
+2. Your PR updates only touch the parts of the repo it needs to. In most cases this will be `app/partials/book.md`.
+
+If updating an opinion or recommendation in the book, please help us by providing data to back the change. This helps equip us with tools to make the best call on such updates.
+
+##### Translations
+
+If interested in translating this book, please file an issue and we can chat. Translations may be something we can cater for
+as part of the existing repo or something better handled as a fork. By coordinating with us, we'll have the best chance to
+serve readers in a way that keeps all versions of the book as syncronized as possible.
+
 
 ## License
 
-Copyright Addy Osmani, 2017.
+Except as otherwise noted, the content of this book is licensed under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/), and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
