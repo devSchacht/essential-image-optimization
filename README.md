@@ -84,6 +84,26 @@ If doing this involves too many steps and you would like to just use a browser's
 supported. First, load up the book on [https://images.guide](https://images.guide), scroll down
 to ensure all images are lazy-loaded in and then safely print to PDF as per any other web page.
 
+#### Additional repo details
+
+##### Templating
+
+This repo uses a very simplistic templating setup. `app/partials/book.md` is converted from markdown into HTML and 
+injected into a primary book template in `app/index.html`. I use `gulp-md-template` to achieve this.
+
+##### Images
+
+The vast majority of images in the book are hosted on my Cloudinary account. If a PR wishes to improve or add any 
+additional graphics, feel free to assume you can use `app/images/` to temporarily add them directly. I will take care 
+of appending commits that host any graphics back to Cloudinary as needed. Alternatively, just ping me on a PR and I can
+usually get back with a Cloudinary-hosted URL for the graphic you want to add.
+
+##### Syntax highlighting
+
+The initial version of this book takes a very barebones approach to syntax highlighting. That said, better highlighting using
+a lightweight library like [Prism](http://prismjs.com/) would be a welcome contribution to the project. We would want to
+load it in a way that doesn't impact the critical-path performance of the page.
+
 #### Contributing
 
 I'd love your help improving this book. If interested in contributing a pull request, please:
