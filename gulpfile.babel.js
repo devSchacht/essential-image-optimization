@@ -238,7 +238,7 @@ gulp.task('generate-pdf', async() => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    await page.goto('https://essential-image-optim.firebaseapp.com', {
+    await page.goto('https://images.guide', {
       waitUntil: 'networkidle',
       fullPage: true});
 
