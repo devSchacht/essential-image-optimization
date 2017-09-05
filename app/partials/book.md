@@ -769,7 +769,7 @@ gulp.task('guetzli', () =>
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg" />
 
 <img
-        class="lazyload"
+        class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg"
         alt="guetzli being run from gulp for optimisation" />
 <noscript>
@@ -959,7 +959,7 @@ There are quite a few more companies on board than this sample list indicates.
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/webp-conversion.jpg" />
 
 <img
-        class="lazyload"
+        class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/webp-conversion.jpg"
         alt="WebP stats at Google: over 43B image requests a day" />
 <noscript>
@@ -988,7 +988,7 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png" />
 
 <img
-        class="lazyload"
+        class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"
         alt="Macro-blocking example of a Google Doodle where we break a range of pixels down into luma and chroma blocks."/>
 <noscript>
@@ -1014,7 +1014,7 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png" />
 
 <img
-        class="lazyload small"
+        class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"
         alt="Google Doodle example of a segment displaying the row, target block and column L when considering a prediction model."/>
 <noscript>
@@ -1070,7 +1070,7 @@ XnConvert enables batch image processing, compatible with over 500 image formats
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image20.png" />
 
 <img
-        class="lazyload"
+        class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image20.png"
         alt="XNConvert app on Mac where a number of images have been converted to WebP"
          />
@@ -1233,7 +1233,7 @@ On Mac, try the [Quick Look plugin for WebP](https://github.com/Nyx0uf/qlImageSi
         data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image22.jpg" />
 
 <img
-        class="lazyload"
+        class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image22.jpg"
         alt="Desktop on a mac showing a WebP file previewed using the Quick Look plugin for WebP files"
          />
