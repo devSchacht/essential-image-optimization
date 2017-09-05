@@ -1,6 +1,16 @@
-# Essential Image Optimization
+<p align="center">
+  <a href="https://images.guide/">
+    <img src='/app/images/logo-banner.jpg' height='400px' alt="Essential Image Optimization banner"/>
+  </a>
+</p>
 
-[![Build Status](https://travis-ci.com/addyosmani/essential-image-optimisation.svg?token=psYsstqxcc6sppMcnY8H&branch=master)](https://travis-ci.com/addyosmani/essential-image-optimisation) [![WebPageTest](https://img.shields.io/badge/webpagetest-report-brightgreen.svg)](https://www.webpagetest.org/result/170901_EM_348e5bd8fa649e122b4684e0e6febc35/) [![Lighthouse](https://img.shields.io/badge/lighthouse-90+-blue.svg)](https://www.webpagetest.org/lighthouse.php?test=170901_EM_348e5bd8fa649e122b4684e0e6febc35&run=3)
+<p align="center">
+  <a href="https://travis-ci.com/addyosmani/essential-image-optimisation"><img alt="Build Status" src="https://travis-ci.com/addyosmani/essential-image-optimisation.svg?token=psYsstqxcc6sppMcnY8H&branch=master"></a>
+    <a href="https://www.webpagetest.org/result/170901_EM_348e5bd8fa649e122b4684e0e6febc35/"><img alt="WebPageTest" src="https://img.shields.io/badge/webpagetest-report-brightgreen.svg"></a>
+    <a href="https://www.webpagetest.org/lighthouse.php?test=170901_EM_348e5bd8fa649e122b4684e0e6febc35&run=3"><img alt="Lighthouse" src="https://img.shields.io/badge/lighthouse-90+-blue.svg"></a>
+</p>
+
+---
 
 ## Prerequisites
 
