@@ -362,6 +362,13 @@ details h2 {
         line-height: initial;
         display: initial;
     }
+
+    /* Edge doesn't support the details tag */
+    @supports (-ms-ime-align:auto) { 
+        details h2 {
+            padding: 50px 340px;
+        }
+     }
 }
 
 /* portrait tablets, portrait iPad, landscape e-readers, */
