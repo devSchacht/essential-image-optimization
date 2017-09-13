@@ -148,12 +148,12 @@ Common image optimizations include compression, responsively serving them down b
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
-        alt="A histogram of potential image savings from the HTTP Archive validating the 80KB of median savings found per page" />
+        alt="A histogram of potential image savings from the HTTP Archive validating the 30KB of potential image savings at the 95th percentile." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), the <strong>median image savings per page on the web are ~80KB!</strong></figcaption>
+<figcaption>Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), per-image savings at the 95th percentile (looking at the Cumulative Distribution Function) are 30KB!</strong></figcaption>
 </figure>
 
 There's plenty of room for us to collectively optimize images better.
