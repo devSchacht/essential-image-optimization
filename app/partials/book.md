@@ -316,7 +316,7 @@ Next, let's talk about JPEG's compression modes as these can have a large impact
 
 ## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">JPEG compression modes</a>
 
-The JPEG image format has a number of different [compression modes](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Three popular modes are baseline (sequential), lossless and Progressive JPEG (PJPEG).
+The JPEG image format has a number of different [compression modes](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Three popular modes are baseline (sequential), Progressive JPEG (PJPEG) and lossless.
 
 
 **How do baseline (or sequential) JPEGs and Progressive JPEGs differ?**
