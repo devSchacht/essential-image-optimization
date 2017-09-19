@@ -72,12 +72,12 @@ The smaller in file-size you can make your images, the better a network experien
         <li><a href="#image-processing-cdns">Does an image processing CDN make sense for you?</a></li>
         <li><a href="#caching-image-assets">Caching image assets</a></li>
         <li><a href="#preload-critical-image-assets">Preloading critical image assets</a></li>
+        <li><a href="#performance-budgets">Performance Budgets For Images</a></li>
         <li><a href="#closing-recommendations">Closing recommendations</a></li>
         <li><a href="#trivia">Trivia</a></li>
 </ul>
 </p>
 </details>
-
 
 ### <a id="introduction" href="#introduction">Introduction</a>
 
@@ -2493,6 +2493,64 @@ Be very certain that it's worth preloading image assets as, if they aren't criti
 It's important to avoid using `rel=preload` to preload image formats without broad browser support (e.g WebP). It's also good to avoid using it for responsive images defined in `srcset` where the retrieved source may vary based on device conditions. 
 
 To learn more about preloading, see [Preload, Prefetch and Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
+
+## <a id="performance-budgets" href="#performance-budgets">Web Performance Budgets For Images</a>
+
+A performance budget is a "budget" for web page performance that a team attempts to not exceed. For example, "images will not exceed 200KB on any page" or "the user experience must be usable in under 3 seconds". When a budget isn't being met, explore why this is and how you get back on target.
+
+Budgets provide a useful framework for discussing performance with stakeholders. When a design or business decision may impact site performance, consult the budget. They're a reference for pushing back or rethinking the change when it can harm a site's user experience.
+
+I've found teams have the best success with performance budgets when monitoring them is automated. Rather than manually inspecting network waterfalls for budget regressions, automation can flag when the budget is crossed. Two such services that are useful for performance budget tracking are [Calibre](https://calibreapp.com/docs/metrics/budgets) and [SpeedCurve](https://speedcurve.com/blog/tag/performance-budgets/).
+
+Once a performance budget for image sizes is defined, SpeedCurve starts monitoring and alerts you if the budget is exceeded:
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1505805372/essential-image-optimization/F2BCD61B-85C5-4E82-88CF-9E39CB75C9C0.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1505805372/essential-image-optimization/F2BCD61B-85C5-4E82-88CF-9E39CB75C9C0.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805372/essential-image-optimization/F2BCD61B-85C5-4E82-88CF-9E39CB75C9C0.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805372/essential-image-optimization/F2BCD61B-85C5-4E82-88CF-9E39CB75C9C0.jpg"
+        alt="SpeedCurve image size monitoring."
+         />
+<noscript>
+  <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805372/essential-image-optimization/F2BCD61B-85C5-4E82-88CF-9E39CB75C9C0.jpg"/>
+</noscript>
+</picture>
+</figure>
+
+Calibre offers a similar feature with support for setting budgets for each device-class you’re targeting. This is useful as your budget for image sizes on desktop over WiFi may vary heavily to your budgets on mobile.
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1505805371/essential-image-optimization/budgets.jpg"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1505805371/essential-image-optimization/budgets.jpg"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805371/essential-image-optimization/budgets.jpg" />
+
+<img
+        class="lazyload small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805371/essential-image-optimization/budgets.jpg"
+        alt="Calibre supports bugets for image sizes."
+         />
+<noscript>
+  <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805371/essential-image-optimization/budgets.jpg"/>
+</noscript>
+</picture>
+</figure>
 
 ## <a id="closing-recommendations" href="#closing-recommendations">Closing recommendations</a>
 
