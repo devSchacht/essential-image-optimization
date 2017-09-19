@@ -27,6 +27,7 @@ The smaller in file-size you can make your images, the better a network experien
 <ul>
         <li><a href="#introduction">Introduction</a></li>
         <li><a href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a></li>
+        <li><a href="#choosing-an-image-format">How do I choose an image format?</a></li>
         <li><a href="#the-humble-jpeg">The humble JPEG</a></li>
         <li><a href="#jpeg-compression-modes">JPEG compression modes</a>
                 <ul>
@@ -67,7 +68,6 @@ The smaller in file-size you can make your images, the better a network experien
         <li><a href="#lazy-load-non-critical-images">Lazy-load non-critical images</a></li>
         <li><a href="#display-none-trap">Avoiding the <code>display: none;</code> trap</a></li>
         <li><a href="#image-processing-cdns">Does an image processing CDN make sense for you?</a></li>
-        <li><a href="#choosing-an-image-format">How do I choose an image format?</a></li>
         <li><a href="#caching-image-assets">Caching image assets</a></li>
         <li><a href="#preload-critical-image-assets">Preloading critical image assets</a></li>
         <li><a href="#closing-recommendations">Closing recommendations</a></li>
@@ -269,6 +269,42 @@ As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.goo
 
 
 You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit.
+
+## <a id="choosing-an-image-format" href="#choosing-an-image-format">How do I choose an image format?</a>
+
+As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
+
+<figure>
+<picture>
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502469573/essential-image-optimization/rastervvector.png"
+        media="(max-width: 640px)" />
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502469573/essential-image-optimization/rastervvector.png"
+        media="(max-width: 1024px)" />
+
+<source
+        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png" />
+
+<img
+        class="lazyload very-small"
+        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"
+        alt="vector vs raster images"
+         />
+<noscript>
+  <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"/>
+</noscript>
+</picture>
+</figure>
+
+
+[Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
+
+[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g logos) offering a high-resolution and zoom like SVG handle this use case better.
+
+The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care. 
+
+Jeremy Wagner has covered [trade-offs](http://jlwagner.net/talks/these-images/#/2/2) worth considering when evaluating formats in his image optimization talks.
 
 ## <a id="the-humble-jpeg" href="#the-humble-jpeg">The humble JPEG.</a>
 
@@ -2353,66 +2389,6 @@ But if you're not comfortable working with image processing tools or APIs, then 
 **Conclusion**
 
 If you are currently serving your own images or planning to, perhaps you should give a CDN some consideration.
-
-## <a id="choosing-an-image-format" href="#choosing-an-image-format">How do I choose an image format?</a>
-
-As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
-
-<figure>
-<picture>
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502469573/essential-image-optimization/rastervvector.png"
-        media="(max-width: 640px)" />
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502469573/essential-image-optimization/rastervvector.png"
-        media="(max-width: 1024px)" />
-
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png" />
-
-<img
-        class="lazyload very-small"
-        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"
-        alt="vector vs raster images"
-         />
-<noscript>
-  <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"/>
-</noscript>
-</picture>
-</figure>
-
-
-[Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
-
-[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g logos) offering a high-resolution and zoom like SVG handle this use case better.
-
-
-<figure>
-<picture>
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image38.jpg"
-        media="(max-width: 640px)" />
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_900/v1502426282/essential-image-optimization/Modern-Image38.jpg"
-        media="(max-width: 1024px)" />
-
-<source
-        data-srcset="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image38.jpg" />
-
-<img
-        class="lazyload"
-        data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image38.jpg"
-        alt="choosing the wrong image format can cost you"
-         />
-<noscript>
-  <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image38.jpg"/>
-</noscript>
-</picture>
-<figcaption>The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care :)</figcaption>
-</figure>
-
-
-Jeremy Wagner has covered [trade-offs](http://jlwagner.net/talks/these-images/#/2/2) worth considering when evaluating formats in his image optimization talks.
 
 ## <a id="caching-image-assets" href="#caching-image-assets">Caching image assets</a>
 
