@@ -1644,8 +1644,13 @@ When Google shipped a new logo, we announced that the [smallest](https://twitter
 </picture>
 </figure>
 
-
 There are [lots of advanced SVG tricks](https://www.clicktorelease.com/blog/svg-google-logo-in-305-bytes/) you can use to trim this down even further (all the way to 146 bytes)! Suffice to say, whether it's through tools or manual clean-up, there's probably a *little* more you can shave off your SVGs.
+
+**SVG Sprites**
+
+SVG can be [powerful](https://css-tricks.com/icon-fonts-vs-svg/) for icons, offering a way to represent visualizations as a sprite without the [quirky](https://www.filamentgroup.com/lab/bulletproof_icon_fonts.html) workarounds needed for icon fonts. It has more granular CSS styling control than icon fonts (SVG stroke properties),  better positioning control (no need to hack around pseudo-elements and CSS `display`) and SVGs are much more [accessible](http://www.sitepoint.com/tips-accessible-svg/).
+
+Tools like [svg-sprite](https://github.com/jkphl/svg-sprite) and [IcoMoon](https://icomoon.io/) can automate combining SVGs into sprites which can be used via a [CSS Sprite](https://css-tricks.com/css-sprites/), [Symbol Sprite](https://css-tricks.com/svg-use-with-external-reference-take-2) or [Stacked Sprite](http://simurai.com/blog/2012/04/02/svg-stacks). Una Kravetz has a practical [write-up](https://una.im/svg-icons/#💁) on how to use gulp-svg-sprite for an SVG sprite workflow worth checking out. Sara Soudein also covers [making the transition from icon fonts to SVG](https://www.sarasoueidan.com/blog/icon-fonts-to-svg/) on her blog.
 
 **Further reading**
 
