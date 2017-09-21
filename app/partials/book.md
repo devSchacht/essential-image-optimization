@@ -1,8 +1,8 @@
 ### <a id="the-tldr" href="#the-tldr">The tl;dr</a>
 
-**Everyone should be automating their image compression.**
+**We should all be automating our image compression.**
 
-In 2017, if you're hand-tuning images, you're doing it wrong. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
+In 2017, image optimization should be automated. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
 To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvps](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist.
 
 Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
@@ -630,7 +630,7 @@ For a further read on Chroma Subsampling, see [Why aren’t your images using Ch
 
 **Here's the current state of image formats on the web:**
 
-*tl;dr - there's a lot of fragmentation. You often need to conditionally serve different formats to different browsers to take advantage of anything modern.*
+*tl;dr - there's a lot of fragmentation. We often need to conditionally serve different formats to different browsers to take advantage of anything modern.*
 
 <figure>
 <picture>
@@ -842,7 +842,7 @@ It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using
 
 <aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g JPEGs of quality 84 or lower), results can be poorer.</aside>
 
-While compressing an image with Guetzli is very (very) time-consuming and will make your fans spin, for larger images, it is worth it. I saw plenty of examples where it saved anywhere up to 40% on file size while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I still saw some savings (in the 10-15KB range) but they were not quite as well pronounced. Guetzli can introduce more liquify-esque distortion on smaller images while compressing.
+While compressing an image with Guetzli is very (very) time-consuming and will make your fans spin, for larger images, it is worth it. I have seen a number of examples where it saved anywhere up to 40% on file size while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I have still seen some savings (in the 10-15KB range) but they were not quite as well pronounced. Guetzli can introduce more liquify-esque distortion on smaller images while compressing.
 
 You may also be interested in Eric Portis research [comparing](https://cloudinary.com/blog/a_closer_look_at_guetzli) Guetzli to Cloudinary's auto-compression for a different data point on effectiveness.
 
@@ -860,7 +860,7 @@ A number of methods exist for determining if compressed images are visually simi
 
 ### <a id="butteraugli" href="#butteraugli">Butteraugli</a>
 
-[Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a human might notice the point of image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
+[Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a person may notice visual image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
 
 <figure>
 <picture>
@@ -1691,7 +1691,7 @@ Re-encoding a lossy file will almost always give you a smaller file, but this do
 
 MozJPEG (perhaps accidentally) has a better resistance to recompression degradation thanks to trellis quantization. Instead of compressing all DCT values as they are exactly, it can check close values within a +1/-1 range to see if similar values compress to fewer bits. Lossy FLIF has a hack similar to lossy PNG in that prior to (re)compression, it can look at the data and decide what to throw away. Recompressed PNGs have "holes" it can detect to avoid changing data further.
 
-**When editing your source files, store them in a lossless format like PNG or TIFF so you preserve as much quality as you can.** Your build tools or image compression service than then handle outputting the compressed version you serve to users with minimal loss in quality.
+**When editing your source files, store them in a lossless format like PNG or TIFF, so you preserve as much quality as you can.** Your build tools or image compression service than then handle outputting the compressed version you serve to users with minimal loss in quality.
 
 ## <a id="reduce-unnecessary-image-decode-costs" href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
 
@@ -2087,8 +2087,6 @@ This "lazy" way of loading images only if and when necessary has many benefits:
 * **Reduced battery consumption**: Less workload for the user’s browser which can save on battery life.
 * **Improved download speed**: Decreasing your overall page load time on an image heavy website from several seconds to almost nothing is a tremendous boost to user experience. In fact, it could be the difference between a user staying around to enjoy your site and just another bounce statistic.
 
-Decreasing your overall page load time on an image heavy website from several seconds to almost nothing is also a tremendous boost to your user experience. In fact, it could be the difference between a user staying around to enjoy your site and just another bounce statistic.
-
 **But like all tools, with great power comes great responsibility.**
 
 **Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g products) or lists of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
@@ -2205,7 +2203,7 @@ with minimal effort:
 
 **More Lazy Loading Options**
 
-Clearly, lazysizes is not your only option. Here are more lazy loading libraries:
+Lazysizes is not your only option. Here are more lazy loading libraries:
 
 *   [Lazy Load XT](http://ressio.github.io/lazy-load-xt/)
 *   [BLazy.js](https://github.com/dinbror/blazy) (or [Be]Lazy)
