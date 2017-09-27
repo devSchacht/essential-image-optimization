@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.com/addyosmani/essential-image-optimisation">
-    <img alt="Build Status" src="https://travis-ci.com/addyosmani/essential-image-optimisation.svg?token=psYsstqxcc6sppMcnY8H&branch=master">
+  <a href="https://travis-ci.com/googlechrome/essential-image-optimisation">
+    <img alt="Build Status" src="https://travis-ci.com/GoogleChrome/essential-image-optimization.svg?token=x9N5mUsYfWv1zz1h5KfF&branch=master">
   </a>
   <a href="https://www.webpagetest.org/result/170901_EM_348e5bd8fa649e122b4684e0e6febc35/">
     <img alt="WebPageTest" src="https://img.shields.io/badge/webpagetest-report-brightgreen.svg">
@@ -136,4 +136,4 @@ serve readers in a way that keeps all versions of the book as syncronized as pos
 
 ## License
 
-Except as otherwise noted, the content of this book is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0) license, and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Copyright Google, 2017.
+Except as otherwise noted, the content of this book is licensed under the  Creative Commons [Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0)](https://creativecommons.org/licenses/by-nc-nd/2.0/) license, and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Copyright Google, 2017.
