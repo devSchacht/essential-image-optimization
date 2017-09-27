@@ -89,6 +89,11 @@ header h1 {
     border-bottom: 3px solid #f1ece9;
 }
 
+.license {
+    color: #b9b5b5;
+    font-size: 0.8em;
+}
+
 pre {
     background: #f7f7f7;
     font: .8em Roboto Mono, monospace;
