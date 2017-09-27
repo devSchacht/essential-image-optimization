@@ -136,4 +136,4 @@ serve readers in a way that keeps all versions of the book as syncronized as pos
 
 ## License
 
-Except as otherwise noted, the content of this book is licensed under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/), and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+Except as otherwise noted, the content of this book is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0) license, and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Copyright Google, 2017.
