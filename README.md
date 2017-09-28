@@ -133,6 +133,11 @@ If interested in translating this book, please file an issue and we can chat. Tr
 as part of the existing repo or something better handled as a fork. By coordinating with us, we'll have the best chance to
 serve readers in a way that keeps all versions of the book as syncronized as possible.
 
+## Pagination
+
+The content in this book is being ported over to [Web Fundamentals](https://developers.google.com/web/fundamentals/). We'll be turning it into a new 
+chapter on automating image optimization, splitting the content here into different pages. 
+In the mean time, we're going to keep Essential Image Optimization a one-page format.
 
 ## License
 
