@@ -502,7 +502,6 @@ gulp.task('images', function () {
     return gulp.src('images/*.jpg')
         .pipe(imagemin({
             progressive: true
-
         }))
         .pipe(gulp.dest('dist'));       
 });
@@ -729,7 +728,6 @@ gulp.task('mozjpeg', () =>
     gulp.src('src/*.jpg')
     .pipe(imagemin([imageminMozjpeg({
         quality: 85
-
     })]))
     .pipe(gulp.dest('dist'))
 );
