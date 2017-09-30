@@ -502,7 +502,6 @@ gulp.task('images', function () {
     return gulp.src('images/*.jpg')
         .pipe(imagemin({
             progressive: true
-
         }))
         .pipe(gulp.dest('dist'));       
 });
@@ -729,7 +728,6 @@ gulp.task('mozjpeg', () =>
     gulp.src('src/*.jpg')
     .pipe(imagemin([imageminMozjpeg({
         quality: 85
-
     })]))
     .pipe(gulp.dest('dist'))
 );
@@ -796,7 +794,7 @@ To measure the differences between images, Guetzli uses [Butteraugli](https://gi
 
 <aside class="note"><b>Note:</b> Image file-size is **much** more dependent on the choice of **quality** than the choice of **codec**. There are far far larger file-size differences between the lowest and highest quality JPEGs compared to the file-size savings made possible by  switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
 
-Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with Guetzli in [this Github thread](https://github.com/google/guetzli/issues/50). It can be ideal for when you’re optimizing images as part of a build process for a static site but less so when performed on demand.
+Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with Guetzli in [this GitHub thread](https://github.com/google/guetzli/issues/50). It can be ideal for when you’re optimizing images as part of a build process for a static site but less so when performed on demand.
 
 <aside class="note"><b>Note:</b> Guetzli may be more suitable when you're optimizing images
 as part of a build process for a static site, or situations where image optimization is not performed on demand.</aside>
