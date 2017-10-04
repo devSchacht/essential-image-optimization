@@ -131,7 +131,7 @@ If updating an opinion or recommendation in the book, please help us by providin
 
 If interested in translating this book, please file an issue and we can chat. Translations may be something we can cater for
 as part of the existing repo or something better handled as a fork. By coordinating with us, we'll have the best chance to
-serve readers in a way that keeps all versions of the book as syncronized as possible.
+serve readers in a way that keeps all versions of the book as synchronized as possible.
 
 ## Pagination
 
