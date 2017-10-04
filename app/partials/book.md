@@ -5,9 +5,9 @@
 In 2017, image optimization should be automated. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
 To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvips](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist.
 
-Most CDNs (e.g [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
+Most CDNs (e.g. [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
 
-The amount of time you'll spend reading blog posts and tweaking your config is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
+The amount of time you'll spend reading blog posts and tweaking your configuration is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
 
 **Everyone should be compressing their images efficiently.**
 
@@ -16,7 +16,7 @@ At minimum: use [ImageOptim](https://imageoptim.com/). It can significantly redu
 More specifically: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) and consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy).
 If you can spare the extra CPU cycles, need higher-than-web-average quality and are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
 
-Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
+Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g. lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
 
 There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in-browser by heeding the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
 
@@ -302,7 +302,7 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 
 [Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
 
-[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g logos) offering a high-resolution and zoom like SVG handle this use case better.
+[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g. logos) offering a high-resolution and zoom like SVG handle this use case better.
 
 The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care. 
 
@@ -442,7 +442,7 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
 <figcaption>In 2015, [Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time, as shown in the figure above.</figcaption>
 </figure>
 
-PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) take advantage of PJPEG’s flexibility to pack data better.
+PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g. [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) take advantage of PJPEG’s flexibility to pack data better.
 
 <aside class="note"><b>Note:</b> Why do PJPEGs compress better? Baseline JPEG blocks are encoded one at a time. With PJPEGs, similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block can be encoded together leading to better compression.</aside>
 
@@ -589,7 +589,7 @@ There are a number of common samples discussed when talking about subsampling. G
 * `4:2:2` has half sampling horizontally and full sampling vertically.
 * `4:2:0` samples colors out of half the first row’s pixels and ignores the second row.
 
-<aside class="note"><b>Note:</b> jpegtran and cjpeg support separate quality configuration of luminance and chroma. This can be done adding the `-sample` flag (e.g `-sample 2x1`).
+<aside class="note"><b>Note:</b> jpegtran and cjpeg support separate quality configuration of luminance and chroma. This can be done adding the `-sample` flag (e.g. `-sample 2x1`).
 
 Some good general rules:  subsampling (`-sample 2x2`) is great for photos. no-subsampling (`-sample 1x1`) is best for screenshots, banners and buttons. There's finally compromise (`2x1`) is you're unsure what to use.</aside>
 
@@ -618,7 +618,7 @@ By reducing pixels in our chroma components, it’s possible to reduce the size 
 <figcaption>Chrome subsampling configurations for a JPEG at quality 80.</figcaption>
 </figure>
 
-Chroma subsampling is worth considering for most types of image. It does have some notable exceptions: as subsampling relies on limitations in our eyes, it is not great for compressing images where color detail may be as important as luminance (e.g medical images).
+Chroma subsampling is worth considering for most types of image. It does have some notable exceptions: as subsampling relies on limitations in our eyes, it is not great for compressing images where color detail may be as important as luminance (e.g. medical images).
 
 Images containing typefaces can also suffer as poor subsampling of text can decrease its legibility. Sharper edges are harder to compress with JPEG as it was designed to better handle photographic scenes with softer transitions.
 
@@ -694,7 +694,7 @@ If you're more visual, you might appreciate [one](https://people.xiph.org/~xiphm
 
 So, **browser support is fragmented** and if you wish to take advantage of any of the above you'll likely need to conditionally serve fallbacks for each of your target browsers. At Google, we've seen some promise with WebP so we'll dive into it in more depth shortly.
 
-You can also serve image formats (e.g WebP, JPEG 2000) with a .jpg extension (or any other) as the browser can render an image it can decide the media type. This allows for server-side [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/) to decide which image to send without needing to change the HTML at all. Services like Instart Logic use this approach when delivering images to their customers.
+You can also serve image formats (e.g. WebP, JPEG 2000) with a .jpg extension (or any other) as the browser can render an image it can decide the media type. This allows for server-side [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/) to decide which image to send without needing to change the HTML at all. Services like Instart Logic use this approach when delivering images to their customers.
 
 Next, let's talk about an option for when you can't conditionally serve different image formats: **optimising JPEG encoders**.
 
@@ -715,7 +715,7 @@ Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files whil
 
 ### <a id="what-is-mozjpeg" href="#what-is-mozjpeg">What is MozJPEG?</a>
 
-Mozilla offers a modernized JPEG encoder in the form of [MozJPEG](https://github.com/mozilla/mozjpeg). It [claims](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/) to shave up to 10% off JPEG files. Files compressed with MozJPEG work cross-browser and some of its features include progressive scan optimization, [trellis quantization](https://en.wikipedia.org/wiki/Trellis_quantization) (discarding details that compress the least) and a few decent [quantization table presets](https://calendar.perfplanet.com/2014/mozjpeg-3-0/) that help create smoother High-DPI images (although this is possible with ImageMagick if you're willing to wade through XML configs).
+Mozilla offers a modernized JPEG encoder in the form of [MozJPEG](https://github.com/mozilla/mozjpeg). It [claims](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/) to shave up to 10% off JPEG files. Files compressed with MozJPEG work cross-browser and some of its features include progressive scan optimization, [trellis quantization](https://en.wikipedia.org/wiki/Trellis_quantization) (discarding details that compress the least) and a few decent [quantization table presets](https://calendar.perfplanet.com/2014/mozjpeg-3-0/) that help create smoother High-DPI images (although this is possible with ImageMagick if you're willing to wade through XML configurations).
 
 MozJPEG is supported in both [ImageOptim](https://github.com/ImageOptim/ImageOptim/issues/45) and there's a relatively reliable configurable [imagemin plugin](https://github.com/imagemin/imagemin-mozjpeg) for it. Here's a sample implementation with Gulp:
 
@@ -866,7 +866,7 @@ It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using
 </figure>
 
 
-<aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g JPEGs of quality 84 or lower), results can be poorer.</aside>
+<aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g. uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g. JPEGs of quality 84 or lower), results can be poorer.</aside>
 
 While compressing an image with Guetzli is very (very) time-consuming and will make your fans spin, for larger images, it is worth it. I have seen a number of examples where it saved anywhere up to 40% on file size while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I have still seen some savings (in the 10-15KB range) but they were not quite as well pronounced. Guetzli can introduce more liquify-esque distortion on smaller images while compressing.
 
@@ -986,7 +986,7 @@ In the low-quality range (0-50), WebP has a large advantage over JPEG because it
 
 **Lossless Compression**
 
-[WebP lossless files are 26% smaller than PNG files](https://developers.google.com/speed/webp/docs/webp_lossless_alpha_study). The lossless load-time decrease compared to PNG is 3%. That said, you generally don't want to deliver your users lossless on the web. There's a difference between lossless and sharp edges (e.g non-JPEG). Lossless WebP may be more suitable for archival content.
+[WebP lossless files are 26% smaller than PNG files](https://developers.google.com/speed/webp/docs/webp_lossless_alpha_study). The lossless load-time decrease compared to PNG is 3%. That said, you generally don't want to deliver your users lossless on the web. There's a difference between lossless and sharp edges (e.g. non-JPEG). Lossless WebP may be more suitable for archival content.
 
 **Transparency**
 
@@ -1165,7 +1165,7 @@ To install imagemin and imagemin-webp run:
 > npm install --save imagemin imagemin-webp
 ```
 
-We can then require() in both modules and run them over any images (e.g JPEGs) in a project directory. Below we're using lossy encoding with a WebP encoder quality of 60:
+We can then require() in both modules and run them over any images (e.g. JPEGs) in a project directory. Below we're using lossy encoding with a WebP encoder quality of 60:
 
 
 ```js
@@ -1371,7 +1371,7 @@ Here's how to use a .htaccess file to serve WebP files to supported browsers whe
 
 Vincent Orback recommended this approach:
 
-Browsers can [signal WebP support explicitly](http://vincentorback.se/blog/using-webp-images-with-htaccess/) via an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept). If you control your backend, you can return a WebP version of an image if it exists on disk rather than formats like JPEG or PNG. This isn’t always possible however (e.g for static hosts like GitHub pages or S3) so be sure to check before considering this option.
+Browsers can [signal WebP support explicitly](http://vincentorback.se/blog/using-webp-images-with-htaccess/) via an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept). If you control your backend, you can return a WebP version of an image if it exists on disk rather than formats like JPEG or PNG. This isn’t always possible however (e.g. for static hosts like GitHub pages or S3) so be sure to check before considering this option.
 
 Here is a sample .htaccess file for the Apache web server:
 
@@ -1457,7 +1457,7 @@ Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service ca
 
 **Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin [Cache Enabler](https://wordpress.org/plugins/cache-enabler/) has a menu checkbox option for caching WebP images to be served if available and the current user’s browser supports them. This makes serving WebP images easy. There is a drawback: Cache Enabler requires the use of a sister program called Optimizer, which has an annual fee. This seems out of character for a genuinely open source solution.  
 
-**Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize upto 100 images a month for free.
+**Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize up to 100 images a month for free.
 
 **Compressing Animated GIFs and why `<video>` is better**
 
@@ -1744,7 +1744,7 @@ We've all shipped large, higher resolution images than needed to our users befor
 </noscript>
 </picture>
 <figcaption>
-When a browser fetches an image, it has to decode the image from the original source format (e.g JPEG) to a bitmap in memory. Often the image needs to be resized (e.g width has been set to a percentage of its container). Decoding and resizing images are expensive and can delay how long it takes for an image to be displayed. </figcaption>
+When a browser fetches an image, it has to decode the image from the original source format (e.g. JPEG) to a bitmap in memory. Often the image needs to be resized (e.g. width has been set to a percentage of its container). Decoding and resizing images are expensive and can delay how long it takes for an image to be displayed. </figcaption>
 </figure>
 
 Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) - we'll cover `srcset` shortly.
@@ -1834,7 +1834,7 @@ When building their new [mobile web experience](https://medium.com/@paularmstron
 
 Users may access your site through a range of mobile and desktop devices with high-resolution screens. The [Device Pixel Ratio](https://stackoverflow.com/a/21413366) (DPR) (also called the "CSS pixel ratio") determines how a device’s screen resolution is interpreted by CSS. DPR was created by phone manufacturers to enable increasing the resolution and sharpness of mobile screens without making elements appear too small.
 
-To match the image quality users might expect, deliver the most appropriate resolution images to their devices. Sharp, high-DPR images (e.g 2x, 3x) can be served to devices that support them. Low and standard-DPR images should be served to users without high-res screens as such 2x+ images will
+To match the image quality users might expect, deliver the most appropriate resolution images to their devices. Sharp, high-DPR images (e.g. 2x, 3x) can be served to devices that support them. Low and standard-DPR images should be served to users without high-res screens as such 2x+ images will
 often weigh significantly more bytes.
 
 <figure>
@@ -1863,7 +1863,7 @@ often weigh significantly more bytes.
 </figure>
 
 
-[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) allows a browser to select the best available image per device, e.g selecting a 2x image for a 2x mobile display. Browsers without `srcset` support can fallback to the default `src` specified in the `<img>` tag.
+[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) allows a browser to select the best available image per device, e.g. selecting a 2x image for a 2x mobile display. Browsers without `srcset` support can fallback to the default `src` specified in the `<img>` tag.
 
 ```
 <img srcset="paul-irish-320w.jpg,
@@ -1904,7 +1904,7 @@ Although shipping the right resolution to users is important, some sites also ne
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg"/>
 </noscript>
 </picture>
-<figcaption>Art direction: Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapt's the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
+<figcaption>Art direction: Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapts the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
 </figure>
 
 ## <a id="color-management" href="#color-management">Color management</a>
@@ -1915,7 +1915,7 @@ Ideally, every screen and web browser in the world would display color exactly t
 
 #### Color models
 
-[Color models](https://en.wikipedia.org/wiki/Gamma_correction) are a system for generating a complete range of colors from a smaller set of primary colors. There are different types of color spaces which use different parameters to control colors. Some color spaces have fewer control parameters than others - e.g grayscale only has a single parameter for controlling brightness between black and white colors. 
+[Color models](https://en.wikipedia.org/wiki/Gamma_correction) are a system for generating a complete range of colors from a smaller set of primary colors. There are different types of color spaces which use different parameters to control colors. Some color spaces have fewer control parameters than others - e.g. grayscale only has a single parameter for controlling brightness between black and white colors. 
 
 Two common color models are additive and subtractive. Additive color models (like RGB, used for digital displays) use light to show color while subtractive color models (like CMYK, used in printing) work by taking light away.
 
@@ -2036,7 +2036,7 @@ Embedded color profiles can also heavily increase the size of your images (100KB
 
 #### Color profiles and web browsers
 
-Earlier versions of Chrome did not have great support for color management, but this is improvng in 2017 with [Color Correct Rendering](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ptuKdRQwPAo). Displays that are not sRGB (newer Macbook Pros) will convert colors from sRGB to the display profile. This will mean colors should look more similar across different systems and browsers. Safari, Edge and Firefox can now also take ICC profiles into account, so images with a different color profile (e.g ICC) can now display them correctly whether your screen has wide gamut or not.
+Earlier versions of Chrome did not have great support for color management, but this is improving in 2017 with [Color Correct Rendering](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ptuKdRQwPAo). Displays that are not sRGB (newer MacBook Pros) will convert colors from sRGB to the display profile. This will mean colors should look more similar across different systems and browsers. Safari, Edge and Firefox can now also take ICC profiles into account, so images with a different color profile (e.g. ICC) can now display them correctly whether your screen has wide gamut or not.
 
 <aside class="key-point"><b>Note:</b> For a great guide on how color applies to a broader spectrum of ways we work on the web, see the [nerd’s guide to color on the web](https://css-tricks.com/nerds-guide-color-web/) by Sarah Drasner.</aside>
 
@@ -2114,7 +2114,7 @@ This "lazy" way of loading images only if and when necessary has many benefits:
 
 **But like all tools, with great power comes great responsibility.**
 
-**Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g products) or lists of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
+**Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g. products) or lists of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
 
 **Be very careful lazy-loading images when scrolling.**  If you wait until the user is scrolling they are likely to see placeholders and may eventually get images, if they haven’t already scrolled past them. One recommendation would be to start lazy-loading after the above-the-fold images have loaded, loading all of the images independent of user interaction.
 
@@ -2426,7 +2426,7 @@ Resources can specify a caching policy using [HTTP cache headers](https://develo
 
 Most of the images you deliver to users are static assets that will[ not change](http://kean.github.io/post/image-caching) in the future. The best caching strategy for such assets is aggressive caching.
 
-When setting your HTTP caching headers, set Cache-Control with a max-age of a year (e.g `Cache-Control:public; max-age=31536000`). This type of aggressive caching works well for most types of images, especially those that are long-lived like avatars and image headers.
+When setting your HTTP caching headers, set Cache-Control with a max-age of a year (e.g. `Cache-Control:public; max-age=31536000`). This type of aggressive caching works well for most types of images, especially those that are long-lived like avatars and image headers.
 
 <aside class="note"><b>Note:</b> If you're serving images using PHP, it can destroy caching due to the default [session_cache_limiter](http://php.net/manual/en/function.session-cache-limiter.php) setting. This can be a disaster for image caching and you may want to [work around](https://stackoverflow.com/a/3905468) this by setting session_cache_limiter('public') which will set public, max-age=. Disabling and setting custom cache-control headers is also fine.</aside>
 
@@ -2513,7 +2513,7 @@ Similarly, Wikipedia improved time-to-logo performance with the Link preload hea
 
 Be very certain that it's worth preloading image assets as, if they aren't critical to your user experience, there may be other content on the page worth focusing your efforts on loading earlier instead. By prioritizing image requests, you may end up pushing other resources further down the queue.
 
-It's important to avoid using `rel=preload` to preload image formats without broad browser support (e.g WebP). It's also good to avoid using it for responsive images defined in `srcset` where the retrieved source may vary based on device conditions. 
+It's important to avoid using `rel=preload` to preload image formats without broad browser support (e.g. WebP). It's also good to avoid using it for responsive images defined in `srcset` where the retrieved source may vary based on device conditions. 
 
 To learn more about preloading, see [Preload, Prefetch and Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
 
@@ -2601,7 +2601,7 @@ Happy compressing!
 
 ## <a id="trivia" href="#trivia">Trivia</a>
 
-* [JPEG XT](https://jpeg.org/jpegxt/) defines extensions to the 1992 JPEG specification. For extensions to have pixel-perfect rendering on-top of old JPEG, the specification had to clarify the old 1992 spec and [libjpeg-turbo](https://libjpeg-turbo.org/) was chosen as its reference implementation (baesd on popularity). 
+* [JPEG XT](https://jpeg.org/jpegxt/) defines extensions to the 1992 JPEG specification. For extensions to have pixel-perfect rendering on-top of old JPEG, the specification had to clarify the old 1992 spec and [libjpeg-turbo](https://libjpeg-turbo.org/) was chosen as its reference implementation (based on popularity). 
 * [PIK](https://github.com/google/pik) is a new image codec worth keeping an eye on. It's compatible with JPEG, has a more efficient color-space and utilizes similar benefits found in Guetzli. It decodes at 2/3 the speed of JPEG and offers 54% more file savings than libjpeg does. It is both faster to decode and compress than Guetzli-ified JPEGs. A [study](https://encode.ru/threads/2814-Psychovisual-analysis-on-modern-lossy-image-codecs) on psychovisual similarity of modern image codes showed PIK was less than half the size of alternatives. Unfortunately, it's still early days for the codec and encoding is unusably slow at this time (August, 2017).
 * [ImageMagick](https://www.imagemagick.org/script/index.php) is often recommended for image optimization. This write-up considers it a fine tool, but its output generally requires more optimization and other tools can offer better output. We recommend trying [libvps](https://github.com/jcupitt/libvips) instead, however it is lower-level and requires more technical skill to use. ImageMagick has also histortically had [noted](https://imagetragick.com/#moreinfo) security vulnerabilities you may want to be aware of.
 * Blink (the rendering engine used by Chrome) decodes images off the main thread. Moving the decode work to the compositor thread frees-up the main thread to work on other tasks. We call this deferred decoding. With deferred decoding, the decode work remains on the critical path for presenting a frame to the display, so it can still cause animation jank. The [`img.decode()`](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-decode) API should help with the jank problem.
