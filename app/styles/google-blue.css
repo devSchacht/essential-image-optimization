@@ -1,0 +1,483 @@
+
+
+aside,.caution,.dogfood,.key-point,.key-term,.note,.objective,.special,.success,.warning,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error {
+    display: block;
+    font-size: 14px;
+    margin: 16px 0;
+    padding: 12px 24px 12px 60px
+}
+
+aside::before,.caution::before,.dogfood::before,.key-point::before,.key-term::before,.note::before,.objective::before,.special::before,.success::before,.warning::before,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error .gwt-Label::before {
+    float: left;
+    font: normal normal normal 24px/1 'Material Icons';
+    font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    word-wrap: normal;
+    margin-left: -36px
+}
+
+aside :link,aside :visited,.caution :link,.caution :visited,.dogfood :link,.dogfood :visited,.key-point :link,.key-point :visited,.key-term :link,.key-term :visited,.note :link,.note :visited,.objective :link,.objective :visited,.special :link,.special :visited,.success :link,.success :visited,.warning :link,.warning :visited {
+    text-decoration: underline
+}
+
+aside a:focus,.caution a:focus,.dogfood a:focus,.key-point a:focus,.key-term a:focus,.note a:focus,.objective a:focus,.special a:focus,.success a:focus,.warning a:focus {
+    background: rgba(255,255,255,.7);
+    border-radius: 2px;
+    margin: -4px;
+    padding: 4px;
+    text-decoration: none
+}
+
+aside pre,.caution pre,.dogfood pre,.key-point pre,.key-term pre,.note pre,.objective pre,.special pre,.success pre,.warning pre {
+    background: rgba(255,255,255,.75)
+}
+
+aside code,aside var,.caution code,.dogfood code,.key-point code,.key-term code,.note code,.objective code,.special code,.success code,.warning code {
+    font-weight: 700;
+    padding: 0
+}
+
+aside,aside code,aside var,aside :link,aside :visited,.note,.note code,.note :link,.note :visited,.special,.special code,.special :link,.special :visited {
+    background: #e1f5fe;
+    color: #0288d1
+}
+
+aside::before,.note::before,.special::before {
+    color: #039be5;
+    content: 'star'
+}
+
+.caution,.caution code,.caution :link,.caution :visited {
+    background: #fff3e0;
+    color: #dd2c00
+}
+
+.caution::before {
+    color: #ff6e40;
+    content: 'error'
+}
+
+.dogfood,.dogfood code,.dogfood :link,.dogfood :visited {
+    background: #eceff1;
+    color: #546e7a
+}
+
+.dogfood::before {
+    color: #78909c;
+    content: 'pets'
+}
+
+.key-point,.key-point code,.key-point :link,.key-point :visited {
+    background: #e8eaf6;
+    color: #3f51b5
+}
+
+.key-point::before {
+    color: #536dfe;
+    content: 'lightbulb_outline'
+}
+
+.key-term,.key-term code,.key-term :link,.key-term :visited {
+    background: #f3e5f5;
+    color: #9c27b0
+}
+
+.key-term::before {
+    color: #d500f9;
+    content: 'font_download'
+}
+
+.objective,.objective code,.objective :link,.objective :visited,.success,.success code,.success :link,.success :visited {
+    background: #e0f2f1;
+    color: #00897b
+}
+
+.objective::before {
+    color: #00bfa5;
+    content: 'school'
+}
+
+.success::before {
+    color: #00bfa5;
+    content: 'check_circle'
+}
+
+.warning,.warning code,.warning :link,.warning :visited,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error :link,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error :visited {
+    background: #fbe9e7;
+    color: #d50000
+}
+
+.warning::before,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error .gwt-Label::before {
+    color: #ff1744;
+    content: 'warning'
+}
+
+.devsite-no-page-title>aside:first-child,.devsite-no-page-title>.caution:first-child,.devsite-no-page-title>.dogfood:first-child,.devsite-no-page-title>.key-point:first-child,.devsite-no-page-title>.key-term:first-child,.devsite-no-page-title>.note:first-child,.devsite-no-page-title>.objective:first-child,.devsite-no-page-title>.special:first-child,.devsite-no-page-title>.success:first-child,.devsite-no-page-title>.warning:first-child {
+    clear: right
+}
+
+.devsite-banner {
+    font-size: 14px;
+    margin: -40px -10024px 40px;
+    text-align: left
+}
+
+.devsite-landing-page .devsite-banner {
+    margin: 0 -10024px
+}
+
+.devsite-banner :link,.devsite-banner :visited {
+    text-decoration: underline
+}
+
+.devsite-banner a:focus {
+    background: rgba(255,255,255,.7);
+    border-radius: 2px;
+    margin: -4px;
+    padding: 4px;
+    text-decoration: none
+}
+
+.devsite-banner-confidential,.devsite-banner-confidential :link,.devsite-banner-confidential :visited {
+    background: #fbe9e7;
+    color: #d50000
+}
+
+.devsite-banner-announcement,.devsite-banner-announcement :link,.devsite-banner-announcement :visited {
+    background: #fff3e0;
+    color: #dd2c00;
+    font-weight: 500
+}
+
+.devsite-banner-inner {
+    margin: 0 10000px;
+    padding: 20px 24px
+}
+
+.devsite-banner-confidential .devsite-banner-inner {
+    padding-left: 60px
+}
+
+.devsite-banner-confidential .devsite-banner-inner::before {
+    color: #ff1744;
+    content: 'warning';
+    float: left;
+    font: normal normal normal 24px/1 'Material Icons';
+    font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    word-wrap: normal;
+    margin-left: -36px
+}
+
+.devsite-banner-icon {
+    display: inline;
+    height: 24px;
+    margin-right: 24px;
+    vertical-align: bottom;
+    width: 24px
+}
+
+.devsite-banner-header {
+    font-weight: bold
+}
+
+@media screen and (max-width: 720px) {
+    .devsite-banner {
+        margin:-40px -10016px 40px
+    }
+
+    .devsite-landing-page .devsite-banner {
+        margin: 0 -10016px
+    }
+
+    .devsite-banner-inner {
+        padding: 20px 16px
+    }
+
+    .devsite-banner-confidential .devsite-banner-inner {
+        padding-left: 52px
+    }
+}
+
+.button,.fc-button,button,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute,#embedded-explorer div.com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-showHideHeaders,.gwt-PopupPanel .popupContent button,input[type="button"],input[type="file"],input[type="image"],input[type="reset"],input[type="submit"] {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #039be5;
+    cursor: pointer;
+    display: inline-block;
+    font: 500 14px/20px Roboto,sans-serif;
+    height: 36px;
+    margin: 0;
+    min-width: 36px;
+    outline: 0;
+    overflow: hidden;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    transition: background-color .2s,box-shadow .2s;
+    vertical-align: middle;
+    white-space: nowrap
+}
+
+.button+.button,button+button,input[type="button"]+input[type="button"],input[type="file"]+input[type="file"],input[type="image"]+input[type="image"],input[type="reset"]+input[type="reset"],input[type="submit"]+input[type="submit"] {
+    margin-left: 16px
+}
+
+.button-flat+.button-flat,.button-white+.button-white,button+.button {
+    margin-left: 8px
+}
+
+.button:focus,.button:hover,button:focus,button:hover,#embedded-explorer button:focus,#embedded-explorer button:hover,#embedded-explorer div.com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-showHideHeaders:focus,#embedded-explorer div.com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-showHideHeaders:hover,.gwt-PopupPanel .popupContent button:focus,.gwt-PopupPanel .popupContent button:hover,input[type="button"]:focus,input[type="button"]:hover,input[type="file"]:focus,input[type="file"]:hover,input[type="image"]:focus,input[type="image"]:hover,input[type="reset"]:focus,input[type="reset"]:hover,input[type="submit"]:focus,input[type="submit"]:hover {
+    background-color: #e1f3fc
+}
+
+.button:active,button:active,#embedded-explorer button:active,#embedded-explorer div.com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-showHideHeaders:active,.gwt-PopupPanel .popupContent button:active,input[type="button"]:active,input[type="file"]:active,input[type="image"]:active,input[type="reset"]:active,input[type="submit"]:active {
+    background-color: #c3e7f9
+}
+
+.button,button,input[type="button"],input[type="file"],input[type="image"],input[type="reset"],input[type="submit"],#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    padding: 8px 16px
+}
+
+.button:focus {
+    text-decoration: none
+}
+
+.button:active,.button-blue:active,.button-green:active,.button-primary:active,.button-red:active,button:active,input[type="button"]:active,input[type="file"]:active,input[type="image"]:active,input[type="reset"]:active,input[type="submit"]:active,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute:active {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.38)
+}
+
+.button-blue,.button-green,.button-primary,.button-red,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute {
+    background-color: #039be5;
+    color: #fff
+}
+
+.button-blue:focus,.button-blue:hover,.button-green:focus,.button-green:hover,.button-primary:focus,.button-primary:hover,.button-red:focus,.button-red:hover,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute:focus,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute:hover {
+    background-color: #0388ca
+}
+
+.button-blue:active,.button-green:active,.button-primary:active,.button-red:active,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute:active {
+    background-color: #0277bd
+}
+
+.button-white,.fc-button,.gwt-PopupPanel .popupContent button {
+    background-color: transparent;
+    box-shadow: none;
+    color: #039be5;
+    padding: 8px
+}
+
+.button-white:focus,.button-white:hover {
+    box-shadow: none
+}
+
+.button-flat,.button-flat:focus,.button-flat:hover,.button-flat:active {
+    background: 0;
+    box-shadow: none
+}
+
+.button-transparent,.button-transparent:focus,.button-transparent:hover {
+    background-color: transparent;
+    box-shadow: none
+}
+
+.button-flat,.button-transparent {
+    padding: 8px
+}
+
+.fc-button:focus,.fc-button:hover {
+    background-color: #ebebeb
+}
+
+.fc-button:active {
+    background-color: #ddd
+}
+
+.devsite-top-button {
+    background: 0;
+    box-shadow: none;
+    color: rgba(255,255,255,.7);
+    transition: background-color .2s,color .2s;
+    padding: 8px
+}
+
+.devsite-top-button:focus,.devsite-top-button:hover {
+    background-color: rgba(204,204,204,.15);
+    box-shadow: none;
+    color: #fff
+}
+
+.devsite-top-button:active {
+    background-color: rgba(204,204,204,.3);
+    box-shadow: none;
+    color: #fff
+}
+
+.devsite-top-logo-row .devsite-top-button {
+    color: rgba(0,0,0,.54)
+}
+
+.devsite-top-logo-row .devsite-top-button:focus,.devsite-top-logo-row .devsite-top-button:hover,.devsite-top-logo-row .devsite-top-button:active {
+    color: rgba(0,0,0,.87)
+}
+
+.button-text-white {
+    color: #fff
+}
+
+.button-text-blue,#embedded-explorer div.com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-showHideHeaders {
+    color: #039be5
+}
+
+.button-lowercase {
+    text-transform: none
+}
+
+.button-unindented {
+    margin-left: -8px
+}
+
+.button.button-disabled,.button.button-disabled:hover,.button.button-disabled:focus,.button.button-disabled:active,button:disabled,.fc-button:disabled,#embedded-explorer button:disabled,#embedded-explorer .com-google-api-explorer-client-embedded-EmbeddedParameterForm_EmbeddedParameterFormUiBinderImpl_GenCss_style-execute:disabled,.gwt-PopupPanel .popupContent button:disabled,input[type="button"]:disabled,input[type="file"]:disabled,input[type="image"]:disabled,input[type="reset"]:disabled,input[type="submit"]:disabled {
+    background-color: #ddd;
+    box-shadow: none;
+    color: rgba(0,0,0,.26);
+    cursor: default
+}
+
+.button-flat:disabled,.button-white:disabled,.gwt-PopupPanel .popupContent button:disabled {
+    background-color: transparent
+}
+
+.devsite-crx-install {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.devsite-crx-install .material-icons {
+    margin-right: 4px
+}
+
+@media screen and (max-width: 720px) {
+    .kd-tabbutton {
+        padding:0 12px
+    }
+
+    .devsite-overflow-menu-button {
+        padding-right: 28px
+    }
+}
+
+.devsite-overflow-tabs-scroll-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%
+}
+
+.devsite-doc-set-nav-row .devsite-overflow-tabs-scroll-wrapper {
+    padding-right: 24px
+}
+
+.devsite-overflow-tabs-scroll {
+    left: 0;
+    position: relative;
+    transition: left .2s;
+    width: 100%
+}
+
+.devsite-overflow-tabs-scroll .devsite-feedback-button {
+    position: absolute;
+    right: 0;
+    margin: 6px -8px 6px 0
+}
+
+.devsite-overflow-tabs-scroll-button,.devsite-overflow-tabs-scroll-button:focus,.devsite-overflow-tabs-scroll-button:hover,.devsite-overflow-tabs-scroll-button:active {
+    background: #4285f4;
+    border-radius: 0;
+    height: 48px;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 48px
+}
+
+.devsite-top-logo-row .devsite-overflow-tabs-scroll-button,.devsite-top-logo-row .devsite-overflow-tabs-scroll-button:focus,.devsite-top-logo-row .devsite-overflow-tabs-scroll-button:hover,.devsite-top-logo-row .devsite-overflow-tabs-scroll-button:active {
+    background: #fff
+}
+
+.devsite-overflow-tabs-scroll-button::before {
+    content: 'chevron_right'
+}
+
+.devsite-overflow-tabs-scroll-button.devsite-scroll-back {
+    left: 0
+}
+
+.devsite-overflow-tabs-scroll-button.devsite-scroll-back::before {
+    content: 'chevron_left'
+}
+
+@media screen and (max-width: 720px) {
+    .devsite-overflow-tabs-scroll-wrapper {
+        padding-right:16px
+    }
+}
+
+@media print {
+    body,html,:link,:visited,h1,h2,h3,h4,h5,h6,code,pre,h1 code,h2 code,h3 code,h4 code,h5 code,h6 code,pre .com,pre .lit,pre .dec,pre .kwd,pre .tag,pre .str,pre .atv,pre .typ,pre .atn,a code,a .atv,a .atn,a .com,a .dec,a .kwd,a .lit,a .str,a .tag,a .typ,.prettyprint a,var,aside,aside :link,aside :visited,th,th code,td,td code,th :link,th :visited,.caution,.caution a,.dogfood,.devsite-banner,.devsite-banner a,.dogfood a,.key-point,.key-point a,.key-term,.key-term a,.note,.note a,.objective,.objective a,.special,.special a,.success,.success a,.warning,.warning a,#embedded-explorer .com-google-api-explorer-client-Resources-Css-jsonString,#embedded-explorer .com-google-api-explorer-client-history-EmbeddedHistoryItemView_HistoryItemUiBinderImpl_GenCss_style-error,#embedded-explorer .com-google-api-explorer-client-Resources-Css-jsonNumber,#embedded-explorer .com-google-api-explorer-client-Resources-Css-jsonBoolean,#embedded-explorer .com-google-api-explorer-client-Resources-Css-jsonKey {
+        color: #000;
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    .expandable>*:not(.showalways):not(.exw-control):not(.exw-expanded-content):not(.expand-control) {
+        display: block
+    }
+
+    :link,:visited {
+        text-decoration: underline
+    }
+
+    .devsite-top-section,.devsite-nav-responsive,.devsite-section-nav,.devsite-section-nav-responsive,.devsite-page-nav,.devsite-page-embedded,.devsite-rating-container,.devsite-googler-buttons,.devsite-googler-buttons-show,.devsite-footer,.devsite-site-footer,.devsite-utility-footer,.devsite-footer-linkboxes {
+        display: none
+    }
+
+    .devsite-main-content,.devsite-landing-page .devsite-main-content,.devsite-full-width-page .devsite-main-content,.devsite-article {
+        margin: 0!important;
+        max-width: none;
+        padding: 0;
+        width: auto
+    }
+
+    .devsite-banner {
+        margin-top: 0
+    }
+
+    .attempt-left,.attempt-right,.video-wrapper {
+        float: none;
+        margin: 16px 0
+    }
+
+    .devsite-main-content a[href]::after {
+        content: "\0000a0(" attr(href) ")";
+        display: inline-block;
+        font: 14px/20px Roboto,sans-serif;
+        max-width: 100%;
+        word-wrap: break-word
+    }
+}
+
+@page {
+    margin: 0.75in
+}

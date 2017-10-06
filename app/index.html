@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A free book on modern image optimization techniques. Formats, decoders, techniques for efficient compression and more are covered.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Image Optimization</title>
+
+    <link rel="preload" href="scripts/main.min.js" as="script">
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/touch/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/touch/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/touch/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="images/touch/safari-pinned-tab.svg" color="#009aff">
+    <link rel="shortcut icon" href="images/touch/favicon.ico">
+    <meta name="msapplication-config" content="images/touch/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Your styles -->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Essential Image Optimization">
+    <meta itemprop="description" content="A free book on modern image optimization techniques. Formats, decoders, techniques for efficient compression and more are covered.">
+    <meta itemprop="image" content="https://images.guide/images/logo-banner.jpg">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@addyosmani">
+    <meta name="twitter:title" content="Essential Image Optimization">
+    <meta name="twitter:description" content="A free book on modern image optimization techniques. Formats, decoders, techniques for efficient compression and more are covered.">
+    <meta name="twitter:creator" content="@addyosmani">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image" content="https://images.guide/images/logo-banner.jpg">
+    <meta name="twitter:image:alt" content="A free book on modern image optimization techniques">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://images.guide/">
+    <meta property="og:image" content="https://images.guide/images/logo-banner.jpg">
+    <meta property="og:description" content="A free book on modern image optimization techniques. Formats, decoders, techniques for efficient compression and more are covered.">
+    <meta property="fb:admins" content="129712729600">
+  </head>
+  <body>
+    <header>
+        <img alt="Essential Image Optimization" class="logo" src="/images/icons/logo.svg"/>
+        <div class="credits">
+          <div class="author">An eBook by <a href="https://twitter.com/addyosmani">Addy Osmani</a></div>
+          <div class="reviewers">With thanks to:
+            <a href="https://twitter.com/kornelski">Kornel Lesi&#x144;ski<a/>,
+            <a href="https://twitter.com/estellevw">Estelle Weyl</a>,
+            <a href="https://twitter.com/malchata">Jeremy Wagner</a>,
+            <a href="https://twitter.com/tkadlec">Tim Kadlec</a>,
+            <a href="https://twitter.com/NolanOBrien">Nolan O'Brien</a>,
+            <a href="https://twitter.com/patmeenan">Pat Meenan</a>,
+            <a href="https://twitter.com/kristoferbaxter">Kristofer Baxter</a>,
+            <a href="https://twitter.com/HenriHelvetica">Henri Helvetica</a>,
+            <a href="https://twitter.com/hdjirdeh">Houssein Djirdeh</a>,
+            <a href="https://twitter.com/una">Una Kravets</a>,
+            <a href="https://twitter.com/ARebelBelle">Elle Osmani</a> and
+            <a href="https://twitter.com/igrigorik">Ilya Grigorik</a> for their help and reviews.</div>
+        </div>
+        <a href="https://github.com/addyosmani/essential-image-optimisation" class="github-corner link" aria-label="View source on GitHub">
+              <!-- credit: Github Corners - http://tholman.com/github-corners/  -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250">
+            <path d="M0 0l115 115h15l12 27 108 108V0z" fill="#fff"></path>
+            <path class="octo-arm" d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16" style="-webkit-transform-origin: 130px 106px; transform-origin: 130px 106px"></path>
+            <path class="octo-body" d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z"></path>
+          </svg>
+        </a>
+    </header>
+    <div class="container">
+        <noscript><p>You are viewing this book without JavaScript enabled. Images will be loaded immediately rather than lazy-loaded.</p></noscript>
+        {{book.md}}
+    </div>
+    <!-- build:js scripts/main.min.js -->
+    <script src="scripts/main.js" async></script>
+    <!-- endbuild -->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-107163293-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
