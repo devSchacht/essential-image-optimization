@@ -1,4 +1,4 @@
-	**It's fork for translation to Russian! Original repo is [here](https://github.com/GoogleChrome/essential-image-optimization).**
+	It's fork for translation to Russian! Original repo: https://github.com/GoogleChrome/essential-image-optimization.
 
 <p align="center">
   <a href="https://images.guide/">
