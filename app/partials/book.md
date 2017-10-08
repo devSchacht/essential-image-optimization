@@ -352,14 +352,15 @@ Next, let's talk about JPEG's compression modes as these can have a large impact
 
 <aside class="note"><b>Note:</b> It's possible that we sometimes overestimate the image quality that our users need. Image quality could be considered a deviation from an ideal, uncompressed source. It can also be subjective.</aside>
 
-## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">JPEG compression modes</a>
+## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">Режимы сжатия JPEG</a>
 
-The JPEG image format has a number of different [compression modes](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Three popular modes are baseline (sequential), Progressive JPEG (PJPEG) and lossless.
+У формата изображений JPEG есть множество различных [режимов сжатия](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Три наиболее популярных это базовый режим сжатия или последовательный JPEG (baseline он же sequential), Прогрессивный режим сжатия JPEG (Прогрессивный JPEG или PJPEG, он же формат с чересстрочной разверткой) и JPEG со сжатием без потерь.
 
+_Прим. перев. В дальнейшем слова "режим сжатия" будут опущены, но будут иметься ввиду. Помните, что подразумеваются не какие-то разновидности формата JPEG, а различные режимы (или алгоритмы) обработки содержимого файла. Т.е. вместо "базовый режим сжатия JPEG", будет "базовый JPEG"._
 
-**How do baseline (or sequential) JPEGs and Progressive JPEGs differ?**
+**Чем отличаются базовый (или последовательный) JPEG и прогрессивный JPEG?**
 
-Baseline JPEGs (the default for most image editing and optimisation tools) are encoded and decoded in a relatively simple manner: top to bottom. When baseline JPEGs load on slow or spotty connections, users see the top of the image with more of it revealed as the image loads. Lossless JPEGs are similar but have a smaller compression ratio.
+Базовый JPEG (режим по умолчанию в большинстве графических редакторов и инструментов для оптимизации изображений) кодируется и декодируется в относительно простом порядке: сверху вниз. Когда базовый JPEG загружается при медленном или нестабильном соединении, пользователи видят верхнюю часть изображения, которая увеличивается по мере загрузки. JPEG со сжатием без потерь очень похож на базовый, но у него устанавливается меньший коэффициент сжатия.
 
 
 <figure>
@@ -382,10 +383,10 @@ Baseline JPEGs (the default for most image editing and optimisation tools) are e
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"/>
 </noscript>
 </picture>
-<figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
+<figcaption>JPEG с базовым режимом сжатия загружается сверху вниз, тогда как прогрессивный режим сжатия JPEG загружает изображение от размытого к более резкому.</figcaption>
 </figure>
 
-Progressive JPEGs divide the image into a number of scans. The first scan shows the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
+Прогрессивный JPEG делит изображение на несколько "слоёв" (чаще всего используется термин "проходов" или scans). Первый "слой" показывает изображение размытым или с настройками очень низкого качества, а каждые последующие слои улучшают качество изображения. Думайте об этом как о "прогрессивном" уточнении. У каждого "слоя" изображения более высокий уровень детализации и когда они соединяются вместе получается изображение исходного качества.
 
 <figure>
 <picture>
@@ -407,17 +408,17 @@ Progressive JPEGs divide the image into a number of scans. The first scan shows 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"/>
 </noscript>
 </picture>
-<figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. Pat Meenan wrote an [interactive tool](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) to test out and learn about Progressive JPEG scans too.</figcaption>
+<figcaption>Базовый JPEG загружает изображение сверху вниз. Прогрессивный JPEG загружает от низкого разрешения (размытого) к более высокому разрешению. Pat Meenan написал [интерактивный инструмент](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) для тестирования и изучения особенностей отображения "слоёв" прогрессивного JPEG.</figcaption>
 </figure>
 
-Lossless JPEG optimization can be achieved by [removing EXIF data](http://www.verexif.com/en/) added by digital cameras or editors, optimizing an image's [Huffman tables](https://en.wikipedia.org/wiki/Huffman_coding), or rescanning the image. Tools like [jpegtran](http://jpegclub.org/jpegtran/) achieve lossless compression by rearranging the compressed data without image degradation. [jpegrescan](https://github.com/kud/jpegrescan), [jpegoptim](https://github.com/tjko/jpegoptim) and [mozjpeg](https://github.com/mozilla/mozjpeg) (which we'll cover shortly) also support lossless JPEG compression.
+JPEG со сжатием без потерь может быть достигнуто путем [удаления данных EXIF](http://www.verexif.com/en/) добавленных цифровыми камерами или графическими редакторами, оптимизацией [таблиц Хаффмана](https://en.wikipedia.org/wiki/Huffman_coding) в изображении, или повторным сканированием изображения. Инструменты такие как [jpegtran](http://jpegclub.org/jpegtran/) позволяют добиться сжатия без потерь, за счет перераспределения сжатых данных, не ухудшая при этом качества изображения. [jpegrescan](https://github.com/kud/jpegrescan), [jpegoptim](https://github.com/tjko/jpegoptim) и [mozjpeg](https://github.com/mozilla/mozjpeg) (которые мы вскоре рассмотрим) также поддерживают JPEG со сжатием без потерь.
 
+### <a id="the-advantages-of-progressive-jpegs" href="#the-advantages-of-progressive-jpegs">Преимущества прогрессивного JPEG'а</a>
 
-### <a id="the-advantages-of-progressive-jpegs" href="#the-advantages-of-progressive-jpegs">The advantages of Progressive JPEGs</a>
+Способность прогрессивного JPEG показывать «приблизительный предварительный просмотр» изображения при загрузке повышает воспринимаемую производительность - пользователи могут чувствовать, что изображение быстрее загружается по сравнению с адаптивными изображениями. 
+_Прим. Скорее всего имеется ввиду сравнение с базовым JPEG._
 
-The ability for PJPEGs to offer low-resolution "previews" of an image as it loads improves perceived performance - users can feel like the image is loading faster compared to adaptive images.
-
-On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been received and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
+При медленном соединении, например 3G, это позволяет пользователю видеть что (примерно) изображено на картинке пока загружена только часть файла и дает возможность принять решение - ждать его полной загрузки или нет. Это может быть удобнее (и приятнее), чем отображение картинок сверху вниз в случае базового JPEG.
 
 <figure>
 <picture>
@@ -439,20 +440,20 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504993129/essential-image-optimization/pjpeg-graph.png"/>
 </noscript>
 </picture>
-<figcaption>In 2015, [Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time, as shown in the figure above.</figcaption>
+<figcaption>В 2015, [Facebook переключился на использование PJPEG (для их приложения для iOS)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) и обнаружил 10% сокращение использования данных. У них появилась возможность показывать качественное изображение на 15%  быстрее чем раньше, оптимизируя предполагаемое время загрузки, как показано на рисунке выше.</figcaption>
 </figure>
 
-PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g. [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) take advantage of PJPEG’s flexibility to pack data better.
+Прогрессивный JPEG может улучшить сжатие, требуя на [2-10%](http://www.bookofspeed.com/chapter5.html) меньше данных посравнению сбазовым/простым JPEG для изображений более 10KB. Более высокое качество сжатия достигается за счет того что каждый "слой" в JPEG изображении может иметь свою собственную выделенную [таблицу Хаффмана](https://en.wikipedia.org/wiki/Huffman_coding). Современные JPEG кодеки (такие как [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) используют преимущества прогрессивного JPEG для лучшей упаковки данных.
 
-<aside class="note"><b>Note:</b> Why do PJPEGs compress better? Baseline JPEG blocks are encoded one at a time. With PJPEGs, similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block can be encoded together leading to better compression.</aside>
+<aside class="note"><b>Примечание:</b> Почему прогрессивный JPEG сжимает лучше? Блоки базового JPEG кодируются за один раз. У прогрессивного JPEG, аналогичные коэффициенты [дискретного косинусного преобразования](https://ru.wikipedia.org/wiki/%D0%94%D0%B8%D1%81%D0%BA%D1%80%D0%B5%D1%82%D0%BD%D0%BE%D0%B5_%D0%BA%D0%BE%D1%81%D0%B8%D0%BD%D1%83%D1%81%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5) [англ. Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) в более чем одном блоке могут быть обработаны вместе, что приводит в лучшему сжатию</aside>
 
-### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Who's using Progressive JPEGs in production?</a>
+### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Кто использует прогрессивный JPEG?</a>
 
-*   [Twitter.com ships Progressive JPEGs](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) with a baseline of quality of 85%. They measured user perceived latency (time to first scan and overall load time) and found overall, PJPEGs were competitive at addressing their requirements for low file-sizes, acceptable transcode and decode times.
-*   [Facebook ships Progressive JPEGs for their iOS app](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). They found it reduced data-usage by 15% and enabling them to show a good quality image 15% faster.
-*   [Yelp switched to Progressive JPEGs](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) and found it was in part responsible for ~4.5% of their image size reduction savings. They also saved an extra 13.8% using MozJPEG.
+*   [Twitter.com переключился на использование прогрессивного JPEG](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) с уровнем качества (baseline of quality) 85%. Они измеряли задержку восприятия пользователя (время до первого отображения и общее время загрузки) и пришли к выводу, что прогрессивный JPEG были хорошим выбором с учетом их требований относительно небольшого размера файлов, приемлемого времени кодирования и декодирования.
+*   [Facebook переключился на использование прогрессивного JPEG в приложении для iOS](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). Они нашли что это уменьшает объём используемых данных на 15% и позволил им показывать изображение в хорошем качестве на 15% быстрее.
+*   [Yelp переключился на использование прогрессивного JPEG](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) и обнаружил что отчасти с этим связана экономия  объема хранения изображений примерно на 4.5%. Также они дополнительно сэкономили примерно 13.8% за счет применения MozJPEG.
 
-Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use Progressive JPEGs in production. 
+Множество других сайтов с большим количеством "тяжелых изображений", такие как [Pinterest](https://pinterest.com) также применяют прогрессивный JPEG. 
 
 <figure>
 <picture>
@@ -475,7 +476,7 @@ Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use P
 "/>
 </noscript>
 </picture>
-<figcaption>Pinterest's JPEGs are all progressively encoded. This optimizes the user experience by loading them each scan-by-scan.</figcaption>
+<figcaption>Все JPEG файлы Pinterest кодируются прогрессивно. Это оптимизирует пользовательский опыт за счет постепенной загрузки изображений.</figcaption>
 </figure>
 
 ### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a>
