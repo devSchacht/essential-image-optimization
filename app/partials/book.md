@@ -447,13 +447,13 @@ _Прим. Скорее всего имеется ввиду сравнение 
 
 <aside class="note"><b>Примечание:</b> Почему прогрессивный JPEG сжимает лучше? Блоки базового JPEG кодируются за один раз. У прогрессивного JPEG, аналогичные коэффициенты [дискретного косинусного преобразования](https://ru.wikipedia.org/wiki/%D0%94%D0%B8%D1%81%D0%BA%D1%80%D0%B5%D1%82%D0%BD%D0%BE%D0%B5_%D0%BA%D0%BE%D1%81%D0%B8%D0%BD%D1%83%D1%81%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5) [англ. Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) в более чем одном блоке могут быть обработаны вместе, что приводит в лучшему сжатию</aside>
 
-### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Кто использует прогрессивный JPEG?</a>
+### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Кто использует прогрессивный JPEG в продакшен?</a>
 
 *   [Twitter.com переключился на использование прогрессивного JPEG](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) с уровнем качества (baseline of quality) 85%. Они измеряли задержку восприятия пользователя (время до первого отображения и общее время загрузки) и пришли к выводу, что прогрессивный JPEG были хорошим выбором с учетом их требований относительно небольшого размера файлов, приемлемого времени кодирования и декодирования.
 *   [Facebook переключился на использование прогрессивного JPEG в приложении для iOS](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). Они нашли что это уменьшает объём используемых данных на 15% и позволил им показывать изображение в хорошем качестве на 15% быстрее.
 *   [Yelp переключился на использование прогрессивного JPEG](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) и обнаружил что отчасти с этим связана экономия  объема хранения изображений примерно на 4.5%. Также они дополнительно сэкономили примерно 13.8% за счет применения MozJPEG.
 
-Множество других сайтов с большим количеством "тяжелых изображений", такие как [Pinterest](https://pinterest.com) также применяют прогрессивный JPEG. 
+Множество других сайтов с большим количеством "тяжелых изображений", такие как [Pinterest](https://pinterest.com) также применяют прогрессивный JPEG в продакшен окружении. 
 
 <figure>
 <picture>
@@ -479,19 +479,20 @@ _Прим. Скорее всего имеется ввиду сравнение 
 <figcaption>Все JPEG файлы Pinterest кодируются прогрессивно. Это оптимизирует пользовательский опыт за счет постепенной загрузки изображений.</figcaption>
 </figure>
 
-### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a>
+### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">Недостатки прогрессивного JPEG</a>
 
-PJPEGs can be slower to decode than baseline JPEGs - sometimes taking 3x as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you're basically decoding the image multiple times. These multiple passes can eat CPU cycles.
+Прогрессивный JPEG может кодироваться медленнее, чем базовый JPEGs - иногда в 3 раза дольше. На настольных компьютерах с мощными процессорами это может быть менее затратно, чем на слабых мобильных устройствах с ограниченными ресурсами. Отображение неполных слоев требует работы, поскольку вы в основном декодируете изображение несколько раз. Эти множественные проходы могут потреблять ресурсы процессора. 
 
-Progressive JPEGs are also not *always* smaller. For very small images (like thumbnails), progressive JPEGs can be larger than their baseline counterparts. However for such small thumbnails, progressive rendering might not really offer as much value.
+Файл JPEG с прогрессивным сжатием также не *всегда* обладает наименьшим размером. Для очень маленьких изображений (например для миниатюр, иконок) прогрессивный JPEG может быть больше, чем вариант с базовым сжатием. Скорее всего для таких небольших изображений прогрессивное сжатие может не подходить.
 
-This means that when deciding whether or not to ship PJPEGs, you'll need to experiment and find the right balance of file-size, network latency and use of CPU cycles.
+Это означает, что при принятии решения о внедрении прогрессивного JPEG вам необходимо провести эксперимент и найти правильный баланс размера файла, задержки в сети и потреблении ресурсов процессора.
 
-Note: PJPEGs (and all JPEGs) can sometimes be hardware decodable on mobile devices. It doesn't improve on RAM impact, but it can negate some of the CPU concerns. Not all Android devices have hardware-acceleration support, but high end devices do, and so do all iOS devices.
+Примечание: PJPEG (как и все файлы JPEG) на мобильных устройствах иногда могут обрабатываться аппаратными средствами. Но не у всех Android устройств есть подобные средства, чаще всего они встречаются на дорогих устройствах и устройствах на базе iOS. То есть подобные изображения могут не снизить потребление оперативной памяти увеличив производительность, а наоборот, негативно повлиять на загрузку ЦП и скорость отрисовки в целом.  
 
-Some users may consider progressive loading to be a disadvantage as it can become hard to tell when an image has completed loading. As this can vary heavily per audience, evaluate what makes sense for your own users.
+Некоторые пользователи могут считать, что прогрессивная загрузка является недостатком, так как может быть трудно определить, когда изображение загрузилось полностью. Поскольку это может сильно различаться для каждой аудитории, оцените, что имеет смысл для вашей аудитории.
 
-### <a id="how-to-create-progressive-jpegs" href="#how-to-create-progressive-jpegs">How do you create Progressive JPEGs?</a>
+
+### <a id="how-to-create-progressive-jpegs" href="#how-to-create-progressive-jpegs">Как создать прогрессивный JPEG?</a>
 
 Tools and libraries like [ImageMagick](https://www.imagemagick.org/), [libjpeg](http://libjpeg.sourceforge.net/), [jpegtran](http://jpegclub.org/jpegtran/), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive) and [imagemin](https://github.com/imagemin/imagemin) support exporting Progressive JPEGs. If you have an existing image optimization pipeline, there's a good likelihood that adding progressive loading support could be straight-forward:
 
