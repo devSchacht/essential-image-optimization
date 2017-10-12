@@ -480,7 +480,7 @@ Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use P
 
 ### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a>
 
-PJPEGs can be slower to decode than baseline JPEGs – sometimes taking 3x as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you’re basically decoding the image multiple times. These multiple passes can eat CPU cycles.
+PJPEGs can be slower to decode than baseline JPEGs – sometimes taking 3× as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you’re basically decoding the image multiple times. These multiple passes can eat CPU cycles.
 
 Progressive JPEGs are also not *always* smaller. For very small images (like thumbnails), progressive JPEGs can be larger than their baseline counterparts. However for such small thumbnails, progressive rendering might not really offer as much value.
 
@@ -642,7 +642,7 @@ Images containing typefaces can also suffer as poor subsampling of text can decr
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"/>
 </noscript>
 </picture>
-<figcaption>[Understanding JPEG](http://compress-or-die.com/Understanding-JPG/) recommends sticking with a subsampling of 4:4:4 (1x1) when working with images containing text.</figcaption>
+<figcaption>[Understanding JPEG](http://compress-or-die.com/Understanding-JPG/) recommends sticking with a subsampling of 4:4:4 (1×1) when working with images containing text.</figcaption>
 </figure>
 
 Trivia: The exact method of Chroma subsampling wasn’t specified in the JPEG specification, so different decoders handle it differently. MozJPEG and libjpeg-turbo use the same scaling method. Older versions of libjpeg use a different method that adds ringing artifacts in colors.
@@ -688,7 +688,7 @@ For a further read on Chroma Subsampling, see [Why aren’t your images using Ch
 *   **[FLIF](https://en.wikipedia.org/wiki/Free_Lossless_Image_Format) (2015)** – lossless image format claiming to outperform PNG, lossless WebP, lossless BPG and lossless JPEG 2000 based on compression ratio. **Browser support: none. *Note that there is a [JS in-browser decoder](https://github.com/UprootLabs/poly-flif).***
 *   **HEIF and BPG.** From a compression perspective, they’re the same but have a different wrapper:
 *   **[BPG](https://en.wikipedia.org/wiki/Better_Portable_Graphics) (2015)** – intended to be more compression-efficient replacement for JPEG, based on HEVC ([High Efficiency Video Coding](http://wikivisually.com/wiki/High_Efficiency_Video_Coding)). Appears to offer better file size compared to MozJPEG and WebP. Unlikely to get broad traction due to licensing issues. **Browser support: none. *Note that there is a [JS in-browser decoder](https://bellard.org/bpg/).***
-*   **[HEIF](https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format) (2015)** – format for images and image sequences for storing HEVC-encoded images with constrained inter-prediction applied. Apple announced at [WWDC](https://www.cnet.com/news/apple-ios-boosts-heif-photos-over-jpeg-wwdc/) they would explore switching to HEIF over JPEG for iOS, citing up to 2x savings on file-size. **Browser support: None at the time of writing. Eventually, Safari desktop and iOS 11**
+*   **[HEIF](https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format) (2015)** – format for images and image sequences for storing HEVC-encoded images with constrained inter-prediction applied. Apple announced at [WWDC](https://www.cnet.com/news/apple-ios-boosts-heif-photos-over-jpeg-wwdc/) they would explore switching to HEIF over JPEG for iOS, citing up to 2× savings on file-size. **Browser support: None at the time of writing. Eventually, Safari desktop and iOS 11**
 
 If you’re more visual, you might appreciate [one](https://people.xiph.org/~xiphmont/demo/daala/update1-tool2b.shtml) of [these](http://xooyoozoo.github.io/yolo-octo-bugfixes/#cologne-cathedral&jpg=s&webp=s) visual comparison tools for some of the above.
 
@@ -996,7 +996,7 @@ WebP has a lossless 8-bit transparency channel with only 22% more bytes than PNG
 
 The WebP file format supports EXIF photo metadata and XMP digital document metadata. It also contains an ICC Color Profile.
 
-WebP offers better compression at the cost of being more CPU intensive. Back in 2013, the compression speed of WebP was ~10x slower than JPEG but is now negligible (some images may be 2x slower). For static images that are processed as part of your build, this shouldn’t be a large issue. Dynamically generated images will likely cause a perceivable CPU overhead and will be something you will need to evaluate.
+WebP offers better compression at the cost of being more CPU intensive. Back in 2013, the compression speed of WebP was ~10× slower than JPEG but is now negligible (some images may be 2× slower). For static images that are processed as part of your build, this shouldn’t be a large issue. Dynamically generated images will likely cause a perceivable CPU overhead and will be something you will need to evaluate.
 
 <aside class="note"><b>Note:</b> WebP lossy quality settings are not directly comparable to JPEG. A JPEG at ‘70% quality’ will be quite different to a WebP image at ‘70% quality’ because WebP achieves smaller file sizes by discarding more data.</aside>
 
@@ -1037,7 +1037,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 WebP’s lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP’s lossy encoding:
 
-**Macro-blocking** – splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision.
+**Macro-blocking** – splitting an image into 16×16 (macro) blocks of luma pixels and two 8×8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision.
 
 <figure>
 <picture>
@@ -1062,7 +1062,7 @@ WebP’s lossy encoding is designed to compete with JPEG for still images. There
 
 </figure>
 
-**Prediction** – every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block – A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Prediction** – every 4×4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block – A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4×4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <figure>
@@ -1801,7 +1801,7 @@ start memory swapping. So, keep an eye on your image decode, resize and memory c
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503695136/essential-image-optimization/image-decoding-mobile.jpg"/>
 </noscript>
 </picture>
-<figcaption>Decoding images can be incredibly costly on average and lower-end mobile phones. In some cases it can be 5x slower to decode (if not longer).</figcaption>
+<figcaption>Decoding images can be incredibly costly on average and lower-end mobile phones. In some cases it can be 5× slower to decode (if not longer).</figcaption>
 </figure>
 
 When building their new [mobile web experience](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), Twitter improved image decode performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
@@ -1834,7 +1834,7 @@ When building their new [mobile web experience](https://medium.com/@paularmstron
 
 Users may access your site through a range of mobile and desktop devices with high-resolution screens. The [Device Pixel Ratio](https://stackoverflow.com/a/21413366) (DPR) (also called the ‘CSS pixel ratio’) determines how a device’s screen resolution is interpreted by CSS. DPR was created by phone manufacturers to enable increasing the resolution and sharpness of mobile screens without making elements appear too small.
 
-To match the image quality users might expect, deliver the most appropriate resolution images to their devices. Sharp, high-DPR images (e.g. 2x, 3x) can be served to devices that support them. Low and standard-DPR images should be served to users without high-res screens as such 2x+ images will
+To match the image quality users might expect, deliver the most appropriate resolution images to their devices. Sharp, high-DPR images (e.g. 2×, 3×) can be served to devices that support them. Low and standard-DPR images should be served to users without high-res screens as such 2×+ images will
 often weigh significantly more bytes.
 
 <figure>
@@ -1852,7 +1852,7 @@ often weigh significantly more bytes.
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502570356/essential-image-optimization/device-pixel-ratio.jpg"
-        alt="A diagram of the device pixel ratio at 1x, 2x and 3x. Image quality appears to sharpen
+        alt="A diagram of the device pixel ratio at 1×, 2× and 3×. Image quality appears to sharpen
         as DPR increases and a visual is shown comparing device pixels to CSS pixels."
          />
 <noscript>
@@ -1863,7 +1863,7 @@ often weigh significantly more bytes.
 </figure>
 
 
-[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) allows a browser to select the best available image per device, e.g. selecting a 2x image for a 2x mobile display. Browsers without `srcset` support can fallback to the default `src` specified in the `<img>` tag.
+[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) allows a browser to select the best available image per device, e.g. selecting a 2× image for a 2× mobile display. Browsers without `srcset` support can fallback to the default `src` specified in the `<img>` tag.
 
 ```
 <img srcset="paul-irish-320w.jpg,
@@ -2585,7 +2585,7 @@ If you **can’t** invest in conditionally serving formats based on browser supp
 
 
 * Guetzli + MozJPEG’s jpegtran is a good format for JPEG quality > 90.
-    * For the web `q=90` is wastefully high. You can get away with `q=80`, and on 2x displays even with `q=50`. Since Guetzli doesn’t go that low, for the web you can MozJPEG.
+    * For the web `q=90` is wastefully high. You can get away with `q=80`, and on 2× displays even with `q=50`. Since Guetzli doesn’t go that low, for the web you can MozJPEG.
     * Kornel Lesi&#x144;ski recently improved mozjpeg’s cjpeg command to add tiny sRGB profile to help Chrome display natural color on wide-gamut displays
 * PNG pngquant + advpng has a pretty good speed/compression ratio
 * If you **can** conditionally serve (using `<picture>`, the [Accept header](https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/) or [Picturefill](https://scottjehl.github.io/picturefill/)):
