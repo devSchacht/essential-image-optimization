@@ -46,11 +46,11 @@ The smaller in file-size you can make your images, the better a network experien
                         <li><a href="#butteraugli">Butteraugli</a></li>
                 </ul>
         </li>
-        <li><a href="#what-is-webp">What is WebP?</a>
+        <li><a href="#what-is-webp">Что такое WebP?</a>
                 <ul>
                         <li><a href="#how-does-webp-perform">How does WebP perform?</a></li>
                         <li><a href="#whos-using-webp-in-production">Who's using WebP in production?</a></li>
-                        <li><a href="#how-does-webp-encoding-work">How does WebP encoding work?</a></li>
+                        <li><a href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a></li>
                         <li><a href="#webp-browser-support">WebP browser support</a></li>
                         <li><a href="#how-do-i-convert-to-webp">How do I convert my images to WebP?</a></li>
                         <li><a href="#how-do-i-view-webp-on-my-os">How do I view WebP images on my OS?</a></li>
@@ -947,11 +947,12 @@ For larger images, I found combining Guetzli with **lossless compression **in Mo
 
 MozJPEG is a beginner-friendly encoder for web assets that is relatively fast and produces good-quality images. As Guetzli is resource-intensive and works best on larger, higher-quality images, it's an option I would reserve for intermediate to advanced users.
 
-## <a id="what-is-webp" href="#what-is-webp">What is WebP?</a>
+## <a id="what-is-webp" href="#what-is-webp">Что такое WebP?*</a>
+*произносится как „weppy“
 
-[WebP](https://developers.google.com/speed/webp/) is a recent image format from Google aiming to offer lower file-sizes for lossless and lossy compression at an acceptable visual quality. It includes support for alpha-channel transparency and animation.
+[WebP](https://developers.google.com/speed/webp/) — это новый формат сжатия изображений без потери или с потерей качества при приемлемом качестве изображения, предложенный компанией Google. Включает поддержку прозрачности и анимацию.
 
-In the last year, WebP gained a few percent over compression-wise in lossy and lossless  modes and speed-wise the algorithm got twice as fast with a 10% improvement in decompression.  WebP is not a tool for all purposes, but it has some standing and a growing user base in the image compression community. Let's examine why.
+В прошлом году WebP улучшился в компрессии на несколько процентов при сжатии с потерями и без, а также в скорости: алгоритм стал вдвое быстрее на сжатии и на 10% быстрее на декомпрессии. WebP — не инструмент для всех случаев, но у него есть растущая аудитория в сообществе сжатия изображений. Давайте выясним, почему.
 
 <figure>
 <picture>
@@ -968,12 +969,12 @@ In the last year, WebP gained a few percent over compression-wise in lossy and l
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"
-        alt="comparison of webp at different quality settings. q=90, 646KB. q=80= 290KB. q=75, 219KB. q=70, 199KB" />
+        alt="сравнение webp на разных настройках качества. q=90, 646KB. q=80= 290KB. q=75, 219KB. q=70, 199KB" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"/>
 </noscript>
 </picture>
-<figcaption>WebP: A comparison of file sizes and visual similarity scores at different qualities.</figcaption>
+<figcaption>WebP: Сравнение размеров файлов и визуального сходства при разном качестве.</figcaption>
 </figure>
 
 ### <a id="how-does-webp-perform" href="#how-does-webp-perform">How does WebP perform?</a>
@@ -1033,9 +1034,13 @@ There are quite a few more companies on board than this sample list indicates.
 <figcaption>WebP usage at Google: 43 billion WebP image requests a day are served across YouTube, Google Play, Chrome Data Saver and G+.</figcaption>
 </figure>
 
-### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">How does WebP encoding work?</a>
+### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a>
 
-WebP's lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP's lossy encoding:
+Кодирование WebP с потерями призвано конкурировать с JPEG для неподвижных изображений. В lossy-кодировании WebP есть три ключевых этапа:
+
+**Макро-блоки** - разделение изображения на 16x16 (macro) блоки пикселей яркости и 2 8x8 блока пикселей цветности. Это может напоминать то, как JPEG преобразует цветовое пространтсво, chroma channel downsampling and image subdivision.
+
+--------
 
 **Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision.
 
