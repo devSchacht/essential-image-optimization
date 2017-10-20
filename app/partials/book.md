@@ -1277,7 +1277,7 @@ While you can drag and drop WebP images to Blink-based browsers (Chrome, Opera, 
 <ul>
 <li>"Save as" but unable to view WebP files locally. This was fixed by Chrome registering itself as a ".webp" handler.</li>
 <li> "Save as" then attaching the image to an email and sharing with someone without Chrome. Facebook solved this by introducing a prominent "download" button in their UI and returning a JPEG when users requested the download.</li>
-<li>Right click > copy URL -> share URL on the web. This was solved by [content-type negotation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/).</li>
+<li>Right click > copy URL -> share URL on the web. This was solved by [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/).</li>
 </ul>
 
 These issues might matter less to your users, but is an interesting note on social shareability in passing. Thankfully today, utilities exist for viewing and working with WebP on different operating systems.
