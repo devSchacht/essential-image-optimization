@@ -378,7 +378,7 @@ _Прим. перев. В дальнейшем слова "режим сжати
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"
-        alt="baseline JPEGs load top to bottom" />
+        alt="JPEG с базовым режимом сжатия загружается сверху вниз" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"/>
 </noscript>
@@ -403,12 +403,12 @@ _Прим. перев. В дальнейшем слова "режим сжати
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"
-        alt="progressive JPEGs load from low-resolution to high-resolution" />
+        alt="Прогрессивный JPEG загружается от низкого разрешения (размытого) к более высокому разрешению" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"/>
 </noscript>
 </picture>
-<figcaption>Базовый JPEG загружает изображение сверху вниз. Прогрессивный JPEG загружает от низкого разрешения (размытого) к более высокому разрешению. Pat Meenan написал [интерактивный инструмент](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) для тестирования и изучения особенностей отображения "слоёв" прогрессивного JPEG.</figcaption>
+<figcaption>Базовый JPEG загружает изображение сверху вниз. Прогрессивный JPEG загружается от низкого разрешения (размытого) к более высокому разрешению. Pat Meenan написал [интерактивный инструмент](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) для тестирования и изучения особенностей отображения "слоёв" прогрессивного JPEG.</figcaption>
 </figure>
 
 JPEG со сжатием без потерь может быть достигнуто путем [удаления данных EXIF](http://www.verexif.com/en/) добавленных цифровыми камерами или графическими редакторами, оптимизацией [таблиц Хаффмана](https://en.wikipedia.org/wiki/Huffman_coding) в изображении, или повторным сканированием изображения. Инструменты такие как [jpegtran](http://jpegclub.org/jpegtran/) позволяют добиться сжатия без потерь, за счет перераспределения сжатых данных, не ухудшая при этом качества изображения. [jpegrescan](https://github.com/kud/jpegrescan), [jpegoptim](https://github.com/tjko/jpegoptim) и [mozjpeg](https://github.com/mozilla/mozjpeg) (которые мы вскоре рассмотрим) также поддерживают JPEG со сжатием без потерь.
@@ -435,7 +435,7 @@ _Прим. Скорее всего имеется ввиду сравнение 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504993129/essential-image-optimization/pjpeg-graph.png"
-        alt="impact to wait time of switching to progressive jpeg" />
+        alt="уменьшение времени ожидания за счет использования прогрессивного JPEG" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504993129/essential-image-optimization/pjpeg-graph.png"/>
 </noscript>
@@ -470,7 +470,7 @@ _Прим. Скорее всего имеется ввиду сравнение 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1506382472/essential-image-optimization/pinterest-loading.png"
-        alt="Pinterests JPEGs are all progressively encoded. This optimizes the user experience by loading them each scan-by-scan." />
+        alt="Все JPEG файлы Pinterest кодируются прогрессивно. Это оптимизирует пользовательский опыт за счет постепенной загрузки изображений." />
 <noscript>
   <img src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1506382472/essential-image-optimization/pinterest-loading.png
 "/>
@@ -526,7 +526,7 @@ gulp.task('images', function () {
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg"
-        alt="photoshop supports exporting to progressive jpeg from the file export menu" />
+        alt="photoshop поддерживает экспорт в прогрессивный JPEG через меню Файл > Экспорт" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg"/>
 </noscript>
@@ -553,7 +553,7 @@ gulp.task('images', function () {
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683718/essential-image-optimization/luma-signal.jpg"
-        alt="signal = chroma + luma" />
+        alt="изображение = цвет + яркость (ориг. signal = chroma + luma)" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683718/essential-image-optimization/luma-signal.jpg"/>
 </noscript>
@@ -577,7 +577,7 @@ gulp.task('images', function () {
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg"
-        alt="JPEG includes support for numerous subsampling types: none, horizontal and horizontal and vertical." />
+        alt="JPEG поддерживает несколько различных типов субдискретизации: без субдискретизации (none), горизонтальный (horizontal), горизонтальный и вертикальный (horizontal and vertical)" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg"/>
 </noscript>
@@ -612,7 +612,7 @@ gulp.task('images', function () {
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg"
-        alt="Chrome subsampling configurations for a JPEG at quality 80." />
+        alt="Настройки цветовой субдискретизации файла JPEG с качеством изображения 80." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg"/>
 </noscript>
@@ -639,7 +639,7 @@ gulp.task('images', function () {
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"
-        alt="Be careful when using heavy subsampling with images containing text" />
+        alt="Будьте осторожны применяя сильную субдискретизацию к изображениям, содержащим текст." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"/>
 </noscript>
@@ -676,7 +676,7 @@ gulp.task('images', function () {
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"
-        alt="modern image formats compared based on quality." />
+        alt="современный форматы изображений в сравнении по качеству." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"/>
 </noscript>
@@ -749,7 +749,7 @@ gulp.task('mozjpeg', () =>
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image10.jpg"
-        alt="mozjpeg being run from the command-line" />
+        alt="mozjpeg запущенный в комманжной строке" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image10.jpg"/>
 </noscript>
@@ -772,7 +772,7 @@ gulp.task('mozjpeg', () =>
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"
-        alt="mozjpeg compression at different qualities. At q=90, 841KB. At q=85, 562KB. At q=75, 324KB. Similarly, Butteraugli and SSIM scores get slightly worse as we lower quality." />
+        alt="Сжатие mozjpeg с различным качеством. С качеством q=90, 841KB. С качеством  q=85, 562KB. С качеством  q=75, 324KB. При этом оценки Butteraugli и SSIM становятся немного хуже, поскольку мы понижаем качество." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"/>
 </noscript>
@@ -833,7 +833,7 @@ gulp.task('guetzli', () =>
 <img
         class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg"
-        alt="guetzli being run from gulp for optimisation" />
+        alt="guetzli запущенный через gulp для оптимизации" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg"/>
 </noscript>
@@ -858,7 +858,7 @@ gulp.task('guetzli', () =>
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"
-        alt="comparison of guetzli at different qualities. q=100, 945KB. q=90, 687KB. q=85, 542KB." />
+        alt="Сравнение guetzli при разных уровнях качества. q=100, 945KB. q=90, 687KB. q=85, 542KB." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"/>
 </noscript>
@@ -904,7 +904,7 @@ gulp.task('guetzli', () =>
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"
-        alt="butteraugli validating an image of a parrot" />
+        alt="butteraugli при оценке изображения попугаев" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"/>
 </noscript>
@@ -929,7 +929,7 @@ gulp.task('guetzli', () =>
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"
-        alt="butteraugli being run from the command line" />
+        alt="butteraugli, запущенный из коммандной строки" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"/>
 </noscript>
