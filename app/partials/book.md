@@ -1034,15 +1034,11 @@ There are quite a few more companies on board than this sample list indicates.
 <figcaption>WebP usage at Google: 43 billion WebP image requests a day are served across YouTube, Google Play, Chrome Data Saver and G+.</figcaption>
 </figure>
 
-### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a>
+### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">Как работает кодировка WebP?</a>
 
 Кодирование WebP с потерями призвано конкурировать с JPEG для неподвижных изображений. В lossy-кодировании WebP есть три ключевых этапа:
 
-**Макро-блоки** - разделение изображения на 16x16 (macro) блоки пикселей яркости и 2 8x8 блока пикселей цветности. Это может напоминать то, как JPEG преобразует цветовое пространтсво, chroma channel downsampling and image subdivision.
-
---------
-
-**Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision.
+**Макро-блоки** - разделение изображения на 16x16 (macro) блоки пикселей яркости и два 8x8 блока пикселей цветности. Это может напоминать то, как JPEG преобразует цветовое пространтсво, снижает семплрейт канала цветности и разбивает изображение.
 
 <figure>
 <picture>
@@ -1059,7 +1055,7 @@ There are quite a few more companies on board than this sample list indicates.
 <img
         class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"
-        alt="Macro-blocking example of a Google Doodle where we break a range of pixels down into luma and chroma blocks."/>
+        alt="Пример макро-блокинга Google Doodle, где мы разбиваем диапазон пикселей на блоки яркости и цветности"/>
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"/>
 </noscript>
@@ -1067,7 +1063,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 </figure>
 
-**Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Предсказание** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <figure>
