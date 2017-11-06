@@ -1063,7 +1063,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 </figure>
 
-**Предсказание** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Предсказание** - каждый 4x4 подблок макроблока имеет предсказательную модель, которая эффективно выполняет фильтрацию. Она определяет два набора пикселей вокруг блока: A (ряд непосредственно над блоком) и L (столбец слева от блока). Используя эти наборы, кодировщик заполняет тестовый блок 4x4 пикселями и определяет, какой создаёт значения, близкие к исходному блоку. Colt McAnlis говорит об этом более подробно в статье  [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <figure>
@@ -1081,7 +1081,7 @@ There are quite a few more companies on board than this sample list indicates.
 <img
         class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"
-        alt="Google Doodle example of a segment displaying the row, target block and column L when considering a prediction model."/>
+        alt="пример сегмента из Google Doodle, показывающий ряд, целевой блок и столбец L, при рассмотрении модели предсказания."/>
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"/>
 </noscript>
@@ -1089,9 +1089,9 @@ There are quite a few more companies on board than this sample list indicates.
 
 </figure>
 
-A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
+Дискретное косинусное преобразование (DCT) применяется в несколько шагов, подобно кодированию JPEG. Ключевое различие состоит в использовании [Арифметического компрессора](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) вместо кодирования Хаффмана в JPEG.
 
-If you want to dive deeper, Google Developer’s article [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) goes into this topic in depth.
+Если вы хотите узнать больше, статья Google Developer [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) углубляется в эту тему.
 
 ### <a id="webp-browser-support" href="#webp-browser-support">WebP browser support</a>
 
