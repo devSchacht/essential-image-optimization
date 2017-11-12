@@ -79,13 +79,13 @@ The smaller in file-size you can make your images, the better a network experien
 </p>
 </details>
 
-### <a id="introduction" href="#introduction">Introduction</a>
+### <a id="introduction" href="#introduction">Введение</a>
 
-**Images are still the number one cause of bloat on the web.**
+**Изображения по-прежнему являются главной причиной раздутия веба.**
 
-Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. As of July 2017, images accounted for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the 3.0MB average site.
+Изображения занимают огромные объемы пропускной способности интернета, потому что они часто имеют большие размеры файлов. Согласно [HTTP Archive](http://httparchive.org/), 60% данных передоваемых для загрузки веб страницы это изображения в формате JPEG, PNG и GIF. По состоянию на июль 2017, изображения составили [1.7MB](http://httparchive.org/interesting.php#bytesperpage) загруженного содержимого из 3.0MB среднего сайта.
 
-Per Tammy Everts, adding images to a page or making existing images larger have been [proven](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/) to increase conversion rates. It's unlikely that images will go away and so investing in an efficient compression strategy to minimize bloat becomes important.
+Согласно Tammy Everts, добавление изображений на страницу или увеличение размера существующих изображений, было [доказано](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/), что увеличивается конверсия. Маловероятно, что изображения исчезнут и поэтому инвестиции в эффективную стратегию сжатия для минимизации раздутия становятся важными.
 
 <figure>
 <picture>
@@ -102,15 +102,15 @@ Per Tammy Everts, adding images to a page or making existing images larger have 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
-        alt="Fewer images per page create more conversions. 19 images per page on average converted better than 31 images per page on average." />
+        alt="Меньшее количество изображений на странице увеличивает конверсию. 19 изображений на страницу в среднем конвертируют лучше, чем 31 изображение на страницу в среднем." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image00.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) from 2016, images were the 2nd highest predictor of conversions with the best pages having 38% fewer images.</figcaption>
+<figcaption>Согласно [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) от 2016, изображения были вторым важным средством предсказания конвресии на лучших страницах, имеющих на 38% меньше изображений.</figcaption>
 </figure>
 
-Image optimization consists of different measures that can reduce the file size of your images. It ultimately depends on what visual fidelity your images require.
+Оптимизация изображения состоит из различных мер, которые могут уменьшить размер файла ваших изображений. В конечном счете она зависит от того, что важна визуальная четкость изображения.
 
 <figure>
 <picture>
@@ -127,15 +127,15 @@ Image optimization consists of different measures that can reduce the file size 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
-        alt="Image optimization covers a number of different techniques" />
+        alt="Оптимизация изображения охватывает ряд различных методов" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"/>
 </noscript>
 </picture>
-<figcaption><strong>Image optimization:</strong> Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
+<figcaption><strong>Оптимизация изображения:</strong> выберите правильный формат, аккуратно сожмите и приоритезируйте важные изображений по сравнению с теми, которые могут быть загружены позже.</figcaption>
 </figure>
 
-Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), and resizing them to reduce image decode costs.
+Распространенные способы оптимизации изображений включают сжатие, отзывчивую загрузку на основе размера экрана используя [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) и изменение размера для уменьшения стоимости декодирования изображений.
 
 <figure>
 <picture>
@@ -152,15 +152,15 @@ Common image optimizations include compression, responsively serving them down b
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
-        alt="A histogram of potential image savings from the HTTP Archive validating the 30KB of potential image savings at the 95th percentile." />
+        alt="Гистограмма потенциальной экономии изображений от HTTP Archive подтверждает 30KB потенциальной экономии изображений на 95'ом процентиле." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), per-image savings at the 95th percentile (looking at the Cumulative Distribution Function) are 30KB!</strong></figcaption>
+<figcaption>Согласно [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), экономия на одно изображение на 95'ом процентиле (смотря на кумулятивную функцию распределения(Cumulative Distribution Function)) 30KB!</strong></figcaption>
 </figure>
 
-There's plenty of room for us to collectively optimize images better.
+Есть много места для нас, чтобы коллективно оптимизировать изображения лучше.
 
 <figure>
 <picture>
@@ -177,17 +177,17 @@ There's plenty of room for us to collectively optimize images better.
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"
-        alt="ImageOptim in use on Mac with a number of images that have been compressed with savings over 50%" />
+        alt="ImageOptim используемый на Mac с рядом изображений, которые были сжаты с экономией более 50%" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"/>
 </noscript>
 </picture>
 
-<figcaption>ImageOptim is free, reduces image size through modern compression techniques and by stripping unnecessary EXIF meta-data.
+<figcaption>ImageOptim является бесплатным, уменьшает размер изображения с помощью современных методов сжатия и зачистки ненужных EXIF мета-данных.
 </figcaption>
 </figure>
 
-If you're a designer, there's also an [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.
+Если вы дизайнер, есть также [плагин ImageOptim для Sketch](https://github.com/ImageOptim/Sketch-plugin), который будет оптимизировать ваши изображения при экспорте. Я считаю это большой экономией времени.
 
 ### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a>
 
