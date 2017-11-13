@@ -272,9 +272,9 @@ As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.goo
 
 You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit.
 
-## <a id="choosing-an-image-format" href="#choosing-an-image-format">How do I choose an image format?</a>
+## <a id="choosing-an-image-format" href="#choosing-an-image-format">Как выбрать формат изображения?</a>
 
-As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
+Как Ilya Grigorik отмечает в своем превосходном [руководстве по оптимизации изображений](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), "правильный формат" для изображения это сочетание желаемых визуальных результатов и функциональных требований. Вы работаете с растровыми или векторными изображениями?
 
 <figure>
 <picture>
@@ -291,7 +291,7 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 <img
         class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"
-        alt="vector vs raster images"
+        alt="векторные против растровых изображений"
          />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"/>
@@ -300,13 +300,13 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 </figure>
 
 
-[Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
+[Растровая графика](https://ru.wikipedia.org/wiki/Растровая_графика) представляет изображения путем кодирования значений каждого пикселя в прямоугольной сетке пикселей. Они не являются независимыми от разрешения или зума. WebP или широко поддерживаемые форматы, такие как JPEG или PNG хорошо подходят для графики где необходим фотореализм. Guetzli, MozJPEG и другие идеи, о которых мы говорили, хорошо применимы к растровой графике.
 
-[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g. logos) offering a high-resolution and zoom like SVG handle this use case better.
+[Векторная графика](https://ru.wikipedia.org/wiki/Векторная_графика) использует точки, линии и полигоны для представления изображений и формат используется для простых геометрические фигур (например, логотипов), SVG лучше всего подходит, когда нужно высокое разрешение и масштабирование.
 
-The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care. 
+Не тот формат может стоить вам. Логический выбора правильного формата может быть рискован, поэтому экспериментировать с форматами лучше с осторожностью.
 
-Jeremy Wagner has covered [trade-offs](http://jlwagner.net/talks/these-images/#/2/2) worth considering when evaluating formats in his image optimization talks.
+Jeremy Wagner рассказал про [компромиссы](http://jlwagner.net/talks/these-images/#/2/2), которые стоит учитывать при оценке форматов, в его презентации об оптимизации изображений.
 
 ## <a id="the-humble-jpeg" href="#the-humble-jpeg">The humble JPEG.</a>
 
