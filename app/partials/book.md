@@ -950,9 +950,9 @@ MozJPEG is a beginner-friendly encoder for web assets that is relatively fast an
 ## <a id="what-is-webp" href="#what-is-webp">Что такое WebP?*</a>
 *произносится как „weppy“
 
-[WebP](https://developers.google.com/speed/webp/) — это новый формат сжатия изображений без потери или с потерей качества при приемлемом качестве изображения, предложенный компанией Google. Включает поддержку прозрачности и анимацию.
+[WebP](https://developers.google.com/speed/webp/) — это новый формат сжатия изображений без потери или с потерей качества от Google. Включает поддержку прозрачности и анимацию.
 
-В прошлом году WebP улучшился в компрессии на несколько процентов при сжатии с потерями и без, а также в скорости: алгоритм стал вдвое быстрее на сжатии и на 10% быстрее на декомпрессии. WebP — не инструмент для всех случаев, но у него есть растущая аудитория в сообществе сжатия изображений. Давайте выясним, почему.
+В прошлом году WebP улучшил показатели сжатия с потерями и без, а также увеличился в скорости: алгоритм стал вдвое быстрее на компрессии и на 10% быстрее на декомпрессии. WebP — не универсальный инструмент, но количество его последователей растёт. Давайте выясним, почему.
 
 <figure>
 <picture>
@@ -1038,7 +1038,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 Кодирование WebP с потерями призвано конкурировать с JPEG для неподвижных изображений. В lossy-кодировании WebP есть три ключевых этапа:
 
-**Макро-блоки** - разделение изображения на 16x16 (macro) блоки пикселей яркости и два 8x8 блока пикселей цветности. Это может напоминать то, как JPEG преобразует цветовое пространтсво, снижает семплрейт канала цветности и разбивает изображение.
+**Макро-блоки** - разделение изображения на 16x16 (macro) блоки пикселей яркости и два 8x8 блока пикселей цветности. Это похоже на преобразование цветового пространства, снижение семплрейта в канале цветности и разбитие изображения в JPEG.
 
 <figure>
 <picture>
@@ -1063,7 +1063,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 </figure>
 
-**Предсказание** - каждый 4x4 подблок макроблока имеет предсказательную модель, которая эффективно выполняет фильтрацию. Она определяет два набора пикселей вокруг блока: A (ряд непосредственно над блоком) и L (столбец слева от блока). Используя эти наборы, кодировщик заполняет тестовый блок 4x4 пикселями и определяет, какой создаёт значения, близкие к исходному блоку. Colt McAnlis говорит об этом более подробно в статье  [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Предсказание** - каждый 4x4 подблок макроблока имеет предсказательную модель, которая эффективно выполняет фильтрацию. Она определяет два набора пикселей вокруг блока: A (ряд непосредственно над блоком) и L (столбец слева от блока). Используя эти наборы, кодировщик заполняет тестовый блок пикселями 4x4 и определяет, какой создаёт значения, близкие к исходному блоку. Colt McAnlis говорит об этом более подробно в статье  [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <figure>
@@ -1081,7 +1081,7 @@ There are quite a few more companies on board than this sample list indicates.
 <img
         class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"
-        alt="пример сегмента из Google Doodle, показывающий ряд, целевой блок и столбец L, при рассмотрении модели предсказания."/>
+        alt="Пример сегмента из Google Doodle, показывающий ряд, целевой блок и столбец L в модели предсказания."/>
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"/>
 </noscript>
@@ -1091,7 +1091,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 Дискретное косинусное преобразование (DCT) применяется в несколько шагов, подобно кодированию JPEG. Ключевое различие состоит в использовании [Арифметического компрессора](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) вместо кодирования Хаффмана в JPEG.
 
-Если вы хотите узнать больше, статья Google Developer [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) углубляется в эту тему.
+Если вы хотите узнать больше, в статья Google Developer [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) эта тема рассматривается глубже.
 
 ### <a id="webp-browser-support" href="#webp-browser-support">WebP browser support</a>
 
