@@ -1091,7 +1091,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 Дискретное косинусное преобразование (DCT) применяется в несколько шагов, подобно кодированию JPEG. Ключевое различие состоит в использовании [Арифметического компрессора](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) вместо кодирования Хаффмана в JPEG.
 
-Если вы хотите узнать больше, в статья Google Developer [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) эта тема рассматривается глубже.
+Если вы хотите узнать больше, в статье Google Developer [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) эта тема рассматривается глубже.
 
 ### <a id="webp-browser-support" href="#webp-browser-support">WebP browser support</a>
 
