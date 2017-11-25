@@ -83,9 +83,9 @@ The smaller in file-size you can make your images, the better a network experien
 
 **Изображения по-прежнему являются главной причиной раздутия веба.**
 
-Изображения занимают огромные объемы пропускной способности интернета, потому что они часто имеют большие размеры файлов. Согласно [HTTP Archive](http://httparchive.org/), 60% данных передоваемых для загрузки веб страницы это изображения в формате JPEG, PNG и GIF. По состоянию на июль 2017, изображения составили [1.7MB](http://httparchive.org/interesting.php#bytesperpage) загруженного содержимого из 3.0MB среднего сайта.
+На изображения приходится значительная часть пропускной способности интернета, потому что файлы изображений часто имеют большие размеры. Согласно [HTTP Archive](http://httparchive.org/), 60% данных, передаваемых для загрузки веб-страницы, - это изображения в формате JPEG, PNG и GIF. По состоянию на июль 2017, изображения составили [1.7MB](http://httparchive.org/interesting.php#bytesperpage) загруженного содержимого из 3.0MB среднего сайта.
 
-Согласно Tammy Everts, добавление изображений на страницу или увеличение размера существующих изображений, было [доказано](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/), что увеличивается конверсия. Маловероятно, что изображения исчезнут и поэтому инвестиции в эффективную стратегию сжатия для минимизации раздутия становятся важными.
+Согласно Tammy Everts, [доказано](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/), что добавление изображений на страницу или увеличение размера существующих изображений увеличивает конверсию. Маловероятно, что изображения исчезнут и поэтому инвестиции в эффективную стратегию сжатия для минимизации раздутия становятся важны.
 
 <figure>
 <picture>
@@ -102,15 +102,15 @@ The smaller in file-size you can make your images, the better a network experien
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
-        alt="Меньшее количество изображений на странице увеличивает конверсию. 19 изображений на страницу в среднем конвертируют лучше, чем 31 изображение на страницу в среднем." />
+        alt="Меньшее количество изображений на странице увеличивает конверсию. В среднем 19 изображений на страницу приносят конверсии больше, чем 31 изображение." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image00.jpg"/>
 </noscript>
 </picture>
-<figcaption>Согласно [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) от 2016, изображения были вторым важным средством предсказания конвресии на лучших страницах, имеющих на 38% меньше изображений.</figcaption>
+<figcaption>Согласно [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) от 2016, изображения были вторым важным средством предсказания конверсии и лучшие страницы имели на 38% меньше изображений.</figcaption>
 </figure>
 
-Оптимизация изображения состоит из различных мер, которые могут уменьшить размер файла ваших изображений. В конечном счете она зависит от того, что важна визуальная четкость изображения.
+Оптимизация изображений состоит из различных мер, помогающих уменьшить размер файла. В конечном счете она зависит от требуемого качества изображения.
 
 <figure>
 <picture>
@@ -127,7 +127,7 @@ The smaller in file-size you can make your images, the better a network experien
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
-        alt="Оптимизация изображения охватывает ряд различных методов" />
+        alt="Оптимизация изображений состоит из различных мер" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"/>
 </noscript>
@@ -135,7 +135,7 @@ The smaller in file-size you can make your images, the better a network experien
 <figcaption><strong>Оптимизация изображения:</strong> выберите правильный формат, аккуратно сожмите и приоритезируйте важные изображений по сравнению с теми, которые могут быть загружены позже.</figcaption>
 </figure>
 
-Распространенные способы оптимизации изображений включают сжатие, отзывчивую загрузку на основе размера экрана используя [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) и изменение размера для уменьшения стоимости декодирования изображений.
+Распространенные способы оптимизации изображений включают сжатие, отзывчивую загрузку на основе размера экрана, используя [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), и изменение размера для уменьшения стоимости декодирования изображений.
 
 <figure>
 <picture>
@@ -152,15 +152,15 @@ The smaller in file-size you can make your images, the better a network experien
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
-        alt="Гистограмма потенциальной экономии изображений от HTTP Archive подтверждает 30KB потенциальной экономии изображений на 95'ом процентиле." />
+        alt="Гистограмма потенциальной экономии изображений от HTTP Archive подтверждает 30KB потенциальной экономии изображений на 95 процентиле." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"/>
 </noscript>
 </picture>
-<figcaption>Согласно [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), экономия на одно изображение на 95'ом процентиле (смотря на кумулятивную функцию распределения(Cumulative Distribution Function)) 30KB!</strong></figcaption>
+<figcaption>Согласно [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), экономия на одно изображение на 95 процентиле (смотря на кумулятивную функцию распределения(*Cumulative Distribution Function*)) 30KB!</strong></figcaption>
 </figure>
 
-Есть много места для нас, чтобы коллективно оптимизировать изображения лучше.
+Большой простор, чтобы всем нам начать оптимизировать изображения лучше.
 
 <figure>
 <picture>
@@ -177,7 +177,7 @@ The smaller in file-size you can make your images, the better a network experien
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"
-        alt="ImageOptim используемый на Mac с рядом изображений, которые были сжаты с экономией более 50%" />
+        alt="ImageOptim, используемый на Mac, с рядом изображений, которые были сжаты с экономией более 50%" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"/>
 </noscript>
