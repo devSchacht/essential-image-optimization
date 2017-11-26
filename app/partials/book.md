@@ -1055,7 +1055,7 @@ There are quite a few more companies on board than this sample list indicates.
 <img
         class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"
-        alt="Пример макро-блокинга Google Doodle, где мы разбиваем диапазон пикселей на блоки яркости и цветности"/>
+        alt="Пример макроразбиения Google Doodle, где мы разбиваем диапазон пикселей на блоки яркости и цветности"/>
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"/>
 </noscript>
