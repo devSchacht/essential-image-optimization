@@ -948,11 +948,11 @@ For larger images, I found combining Guetzli with **lossless compression **in Mo
 MozJPEG is a beginner-friendly encoder for web assets that is relatively fast and produces good-quality images. As Guetzli is resource-intensive and works best on larger, higher-quality images, it's an option I would reserve for intermediate to advanced users.
 
 ## <a id="what-is-webp" href="#what-is-webp">Что такое WebP?*</a>
-*произносится как „weppy“
+*произносится как «веппи»
 
 [WebP](https://developers.google.com/speed/webp/) — это новый формат сжатия изображений без потери или с потерей качества при приемлемом качестве изображения, предложенный компанией Google. Включает поддержку прозрачности и анимацию.
 
-В прошлом году WebP улучшился в компрессии на несколько процентов при сжатии с потерями и без, а также в скорости: алгоритм стал вдвое быстрее на сжатии и на 10% быстрее на декомпрессии. WebP — не инструмент для всех случаев, но у него есть растущая аудитория в сообществе сжатия изображений. Давайте выясним, почему.
+За прошлый год WebP улучшился в компрессии на несколько процентов при сжатии с потерями и без, а также вдвое ускорился на компрессии и стал на 10% быстрее на декомпрессии. WebP — не инструмент для всех случаев, но у него есть растущая аудитория в сообществе сжатия изображений. Давайте выясним, почему.
 
 <figure>
 <picture>
@@ -1034,11 +1034,11 @@ There are quite a few more companies on board than this sample list indicates.
 <figcaption>WebP usage at Google: 43 billion WebP image requests a day are served across YouTube, Google Play, Chrome Data Saver and G+.</figcaption>
 </figure>
 
-### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">Как работает кодировка WebP?</a>
+### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a>
 
-Кодирование WebP с потерями призвано конкурировать с JPEG для неподвижных изображений. В lossy-кодировании WebP есть три ключевых этапа:
+Кодирование WebP с потерями призвано конкурировать с JPEG для неподвижных изображений. В этом виде кодирования есть три ключевых этапа:
 
-**Макро-блоки** - разделение изображения на 16x16 (macro) блоки пикселей яркости и два 8x8 блока пикселей цветности. Это может напоминать то, как JPEG преобразует цветовое пространтсво, снижает семплрейт канала цветности и разбивает изображение.
+**Макроразбиение** - разделение изображения на блоки 16x16 (macro) пикселей яркости и два 8x8 блока пикселей цветности. Это похоже  на алгоритм JPEG, в котором делаются преобразование цветового пространтсва, снижение частоты дискретезации канала цветности и разбиение изображения.
 
 <figure>
 <picture>
@@ -1063,7 +1063,7 @@ There are quite a few more companies on board than this sample list indicates.
 
 </figure>
 
-**Предсказание** - каждый 4x4 подблок макроблока имеет предсказательную модель, которая эффективно выполняет фильтрацию. Она определяет два набора пикселей вокруг блока: A (ряд непосредственно над блоком) и L (столбец слева от блока). Используя эти наборы, кодировщик заполняет тестовый блок 4x4 пикселями и определяет, какой создаёт значения, близкие к исходному блоку. Colt McAnlis говорит об этом более подробно в статье  [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Предсказание** - к каждому подблоку 4×4 макроблока применяется предиктивная модель, которая эффективно выполняет фильтрацию. Она определяет два набора пикселей вокруг блока: A (ряд непосредственно над блоком) и L (столбец слева от блока). Используя эти наборы, кодировщик заполняет тестовый блок пикселями размера 4x4  и определяет результат, наиболее близкий к исходному блоку. Colt McAnlis говорит об этом более подробно в статье  [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <figure>
@@ -1089,9 +1089,9 @@ There are quite a few more companies on board than this sample list indicates.
 
 </figure>
 
-Дискретное косинусное преобразование (DCT) применяется в несколько шагов, подобно кодированию JPEG. Ключевое различие состоит в использовании [Арифметического компрессора](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) вместо кодирования Хаффмана в JPEG.
+Дискретное косинусное преобразование (DCT) применяется в несколько шагов, подобно кодированию JPEG. Ключевое различие состоит в использовании [арифметического компрессора](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) вместо кодирования Хаффмана в JPEG.
 
-Если вы хотите узнать больше, статья Google Developer [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) углубляется в эту тему.
+Если вы хотите узнать больше, статья [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) углубляется в эту тему.
 
 ### <a id="webp-browser-support" href="#webp-browser-support">WebP browser support</a>
 
