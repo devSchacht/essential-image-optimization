@@ -305,9 +305,6 @@ gulp.task('generate-service-worker', () => {
       `*.html`
     ],
     runtimeCaching: [{
-      urlPattern: new RegExp('.*(?:googleapis|gstatic)\.com'),
-      handler: 'staleWhileRevalidate',
-    }, {
       urlPattern: new RegExp('^https://res.cloudinary.com'),
       handler: 'staleWhileRevalidate',
       options: {
