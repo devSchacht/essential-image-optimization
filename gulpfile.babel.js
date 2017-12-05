@@ -21,25 +21,20 @@
 // You can read more about the new JavaScript features here:
 // https://babeljs.io/docs/learn-es2015/
 
-import path from 'path';
 import gulp from 'gulp';
 import util from 'gulp-util';
 import del from 'del';
-import uncss from 'uncss';
 import {stream as critical} from 'critical';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import workboxBuild from 'workbox-build';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
-import pkg from './package.json';
 import template from 'gulp-md-template';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import imageminSVGO from 'imagemin-svgo';
 import rename from 'gulp-rename';
 import puppeteer from 'puppeteer';
-import glob from 'glob';
-import replace from 'replace';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -210,7 +205,7 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', 'app/third_party/', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles', 'html', 'third-party:dev'], () => {
+gulp.task('serve', ['scripts', 'styles', 'html'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -277,8 +272,7 @@ gulp.task('default', ['clean'], cb =>
   runSequence(
     ['markdown', 'lint', 'html', 'scripts', 'images', 'copy'],
     'styles',
-    ['third-party:prod', 'generate-service-worker'],
-    'service-worker:prod',
+    'generate-service-worker',
     cb
   )
 );
@@ -294,60 +288,32 @@ gulp.task('pagespeed', cb =>
   }, cb)
 );
 
-// Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
-gulp.task('third-party:dev', () => {
-  return gulp.src(['node_modules/workbox-sw/build/importScripts/workbox-sw.dev.*.js'])
-    .pipe($.rename('workbox-sw.dev.js'))
-    .pipe(gulp.dest('app/third_party/workbox-sw/'));
-});
-
-gulp.task('third-party:prod', () => {
-  return gulp.src(['node_modules/workbox-sw/build/importScripts/workbox-sw.prod.*.js'])
-    .pipe(gulp.dest('dist/third_party/workbox-sw/'));
-});
-
 // See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
 // an in-depth explanation of what service workers are and why you should care.
 // Generate a service worker file that will provide offline functionality for
 // local resources. This should only be done for the 'dist' directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
 gulp.task('generate-service-worker', () => {
-  return workboxBuild.injectManifest({
-    swSrc: `app/service-worker.js`,
+  return workboxBuild.generateSW({
     swDest: `dist/service-worker.js`,
-    globDirectory: `dist`,
+    globDirectory: `dist/`,
     // Add/remove glob patterns to match your directory setup.
     globPatterns: [
-      // Images will be cached on the fly
-      // as they are lazy-loaded in
-      `images/touch/**/*`,
+      `images/**/*.svg`,
       `scripts/**/*.js`,
       `styles/**/*.css`,
-      `*.{html,json}`
+      `*.html`
     ],
-    // Translates a static file path to the relative URL that it's served from.
-    // This is '/' rather than path.sep because the paths returned from
-    // glob always use '/'.
-    modifyUrlPrefix: {
-      'dist/': ''
-    }
-  });
-});
-
-gulp.task('service-worker:prod', () => {
-  const globResults = glob.sync('node_modules/workbox-sw/build/importScripts/workbox-sw.prod.*.js');
-  if (globResults.length !== 1) {
-    throw new Error('Unable to find the workbox-sw production file.');
-  }
-
-  return replace({
-    regex: 'workbox-sw.dev.js',
-    replacement: path.basename(globResults[0]),
-    paths: [
-      'dist/service-worker.js'
-    ],
-    recursive: true,
-    silent: true
+    runtimeCaching: [{
+      urlPattern: new RegExp('.*(?:googleapis|gstatic)\.com'),
+      handler: 'staleWhileRevalidate',
+    }, {
+      urlPattern: new RegExp('^https://res.cloudinary.com'),
+      handler: 'staleWhileRevalidate',
+      options: {
+        cacheName: 'cloudinary-images',
+      },
+    }],
   });
 });
 
