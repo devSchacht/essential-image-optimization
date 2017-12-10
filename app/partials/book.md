@@ -2586,7 +2586,7 @@ Ultimately, choosing an image optimization strategy will come down to the types 
 If you **can’t** invest in conditionally serving formats based on browser support:
 
 
-* Guetzli + MozJPEG’s jpegtran is a good format for JPEG quality > 90.
+* Guetzli + MozJPEG’s jpegtran are good optimizers for JPEG quality > 90.
     * For the web `q=90` is wastefully high. You can get away with `q=80`, and on 2× displays even with `q=50`. Since Guetzli doesn’t go that low, for the web you can MozJPEG.
     * Kornel Lesi&#x144;ski recently improved mozjpeg’s cjpeg command to add tiny sRGB profile to help Chrome display natural color on wide-gamut displays
 * PNG pngquant + advpng has a pretty good speed/compression ratio
