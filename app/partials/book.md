@@ -449,7 +449,7 @@ PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/cha
 ### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Who’s using Progressive JPEGs in production?</a>
 
 *   [Twitter.com ships Progressive JPEGs](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) with a baseline of quality of 85%. They measured user perceived latency (time to first scan and overall load time) and found overall, PJPEGs were competitive at addressing their requirements for low file-sizes, acceptable transcode and decode times.
-*   [Facebook ships Progressive JPEGs for their iOS app](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). They found it reduced data-usage by 15% and enabling them to show a good quality image 15% faster.
+*   [Facebook ships Progressive JPEGs for their iOS app](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). They found it reduced data usage by 10% and enabled them to show a good quality image 15% faster.
 *   [Yelp switched to Progressive JPEGs](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) and found it was in part responsible for ~4.5% of their image size reduction savings. They also saved an extra 13.8% using MozJPEG.
 
 Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use Progressive JPEGs in production. 
@@ -943,7 +943,7 @@ In practice, you would define a target goal for visual quality and then run thro
 
 **Combining encoders?**
 
-For larger images, I found combining Guetzli with **lossless compression **in MozJPEG (jpegtran, not cjpeg to avoid throwing away the work done by Guetzli) can lead to a further 10-15% decrease in filesize (55% overall) with only very minor decreases in SSIM. This is something I would caution requires experimentation and analysis but has also been tried by others in the field like [Ariya Hidayat](ariya.io/2017/03/squeezing-jpeg-images-with-guetzli) with promising results.
+For larger images, I found combining Guetzli with **lossless compression **in MozJPEG (jpegtran, not cjpeg to avoid throwing away the work done by Guetzli) can lead to a further 10-15% decrease in filesize (55% overall) with only very minor decreases in SSIM. This is something I would caution requires experimentation and analysis but has also been tried by others in the field like [Ariya Hidayat](https://ariya.io/2017/03/squeezing-jpeg-images-with-guetzli) with promising results.
 
 MozJPEG is a beginner-friendly encoder for web assets that is relatively fast and produces good-quality images. As Guetzli is resource-intensive and works best on larger, higher-quality images, it’s an option I would reserve for intermediate to advanced users.
 
@@ -1275,9 +1275,9 @@ While you can drag and drop WebP images to Blink-based browsers (Chrome, Opera, 
 [Facebook experimented with WebP](https://www.cnet.com/news/facebook-tries-googles-webp-image-format-users-squawk/) a few years ago and found that users who tried to right-click on photos and save them to disk noticed they wouldn’t be displayed outside their browser due to them being in WebP. There were three key problems here:
 
 <ul>
-<li>‘Save as’ but unable to view WebP files locally. This was fixed by Chrome registering itself as a ‘.webp’ handler.</li>
-<li>‘Save as’ then attaching the image to an email and sharing with someone without Chrome. Facebook solved this by introducing a prominent ‘download’ button in their UI and returning a JPEG when users requested the download.</li>
-<li>Right click > copy URL -> share URL on the web. This was solved by [content-type negotation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/).</li>
+<li>"Save as" but unable to view WebP files locally. This was fixed by Chrome registering itself as a ".webp" handler.</li>
+<li>"Save as" then attaching the image to an email and sharing with someone without Chrome. Facebook solved this by introducing a prominent "download" button in their UI and returning a JPEG when users requested the download.</li>
+<li>Right click > copy URL -> share URL on the web. This was solved by [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/).</li>
 </ul>
 
 These issues might matter less to your users, but is an interesting note on social shareability in passing. Thankfully today, utilities exist for viewing and working with WebP on different operating systems.
@@ -1453,7 +1453,7 @@ Some CDNs support automated conversion to WebP and can use client hints to serve
 
 **WordPress WebP support**
 
-Jetpack — Jetpack, a popular WordPress plugin, includes a CDN image service called [Photon](https://jetpack.com/support/photon/). With Photon you get seamless WebP image support. The Photon CDN is included in Jetpack’s free level, so this is a good value and a hands-off implementation. The drawback is that Photon resizes your image, puts a query string in your URL and there is an extra DNS lookup required for each image.
+**Jetpack** — Jetpack, a popular WordPress plugin, includes a CDN image service called [Photon](https://jetpack.com/support/photon/). With Photon you get seamless WebP image support. The Photon CDN is included in Jetpack's free level, so this is a good value and a hands-off implementation. The drawback is that Photon resizes your image, puts a query string in your URL and there is an extra DNS lookup required for each image.
 
 **Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin [Cache Enabler](https://wordpress.org/plugins/cache-enabler/) has a menu checkbox option for caching WebP images to be served if available and the current user’s browser supports them. This makes serving WebP images easy. There is a drawback: Cache Enabler requires the use of a sister program called Optimizer, which has an annual fee. This seems out of character for a genuinely open source solution.  
 
@@ -2152,6 +2152,8 @@ José M. Pérez has written about how to implement the Medium effect using [CSS 
 
 In fact, you can search for your favorite source of high-res photos and then scroll down the page. In almost all cases you’ll experience how the website loads only a few full-resolution images at a time, with the rest being placeholder colors or images. As you continue to scroll, the placeholder images are replaced with full-resolution images. This is lazy loading in action.
 
+A technique that has been making the rounds recently is *vector-* rather than pixel-based low-quality image previews, piloted by Tobias Baldauf in his tool [SQIP](https://github.com/technopagan/sqip). This approach makes use of the utility [Primitive](https://github.com/fogleman/primitive) to generate an SVG preview consisting of several simple shapes that approximate the main features visible inside the target image, optimizes the SVG using [SVGO](https://github.com/svg/svgo), and finally adds a Gaussian Blur filter to it; producing an SVG placeholder that weighs in at only ~800–1000 bytes, looks crisp on all screens, and provides a visual cue of the image contents to come. Both, lazy-loading and low-quality image previews, can obviously [be combined](https://calendar.perfplanet.com/2017/progressive-image-loading-using-intersection-observer-and-sqip/).
+
 **How Can I Apply Lazy Loading to My Pages?**
 
 There are a number of techniques and plugins available for lazy loading. I recommend [lazysizes](https://github.com/aFarkas/lazysizes) by Alexander Farkas because of its decent performance, features, its optional integration with [Intersection Observer](https://developers.google.com/web/updates/2016/04/intersectionobserver), and support for plugins.
@@ -2188,7 +2190,7 @@ Optionally you can also add a src attribute with a low quality image:
 </iframe>
 ```
 
-For the web version of this book, I paired Lazysizes (athough you can use any alternative)
+For the web version of this book, I paired Lazysizes (although you can use any alternative)
 with Cloudinary for on-demand responsive images. This allowed me the freedom to experiment
 with different values for scale, quality, format and whether or not to progressively load
 with minimal effort:
@@ -2446,7 +2448,7 @@ Image resources for `<img>`, `<picture>`, `srcset` and SVGs can all take advanta
 
 <aside class="note"><b>Note:</b> `<link rel="preload">` is [supported](http://caniuse.com/#search=preload) in Chrome and Blink-based browsers like Opera, [Safari Tech Preview](https://developer.apple.com/safari/technology-preview/release-notes/) and has been [implemented](https://bugzilla.mozilla.org/show_bug.cgi?id=1222633) in Firefox.</aside>
 
-Sites like [Philips](https://www.usa.philips.com/), [FlipKart](https://www.flipkart.com/) and [Xerox](https://www.xerox.com/) use `<link rel=preload>` to preload their main logo assets (often used early in the document). [Kayak](https://kayak.com/) also uses preload to ensure the hero image for their header is loaded as soon as possible.
+Sites like [Philips](https://www.usa.philips.com/), [Flipkart](https://www.flipkart.com/) and [Xerox](https://www.xerox.com/) use `<link rel=preload>` to preload their main logo assets (often used early in the document). [Kayak](https://kayak.com/) also uses preload to ensure the hero image for their header is loaded as soon as possible.
 
 <figure>
 <picture>
@@ -2567,7 +2569,7 @@ Calibre offers a similar feature with support for setting budgets for each devic
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805371/essential-image-optimization/budgets.jpg"
-        alt="Calibre supports bugets for image sizes."
+        alt="Calibre supports budgets for image sizes."
          />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1505805371/essential-image-optimization/budgets.jpg"/>

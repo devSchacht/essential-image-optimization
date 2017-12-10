@@ -27,11 +27,11 @@
     },
     "homepage": "https://github.com/addyosmani/essential-image-optimisation#readme",
     "devDependencies": {
-        "apache-server-configs": "^2.14.0",
-        "babel-core": "^6.14.0",
+        "apache-server-configs": "^2.15.0",
+        "babel-core": "^6.26.0",
         "babel-preset-es2015": "^6.0.15",
         "browser-sync": "^2.14.0",
-        "critical": "^0.8.0",
+        "critical": "^0.8.4",
         "del": "^2.2.2",
         "eslint-config-google": "^0.3.0",
         "gulp": "^3.9.1",
@@ -43,7 +43,7 @@
         "gulp-eslint": "^1.1.1",
         "gulp-htmlmin": "^2.0.0",
         "gulp-if": "^2.0.1",
-        "gulp-imagemin": "^3.3.0",
+        "gulp-imagemin": "^3.4.0",
         "gulp-load-plugins": "^1.2.4",
         "gulp-md-template": "^1.1.2",
         "gulp-newer": "^1.2.0",
@@ -53,16 +53,16 @@
         "gulp-sourcemaps": "^1.6.0",
         "gulp-uglify": "^1.5.4",
         "gulp-uncss": "^1.0.6",
-        "gulp-useref": "^3.1.0",
+        "gulp-useref": "^3.1.3",
         "gulp-util": "^3.0.8",
         "imagemin-jpeg-recompress": "^5.1.0",
         "imagemin-mozjpeg": "^6.0.0",
-        "imagemin-svgo": "^5.2.2",
+        "imagemin-svgo": "^5.2.4",
         "psi": "^2.0.4",
         "puppeteer": "^0.9.0",
         "replace": "^0.3.0",
         "run-sequence": "^1.0.1",
-        "workbox-build": "^1.3.0"
+        "workbox-build": "3.0.0-alpha.2"
     },
     "engines": {
         "node": ">=0.12"
@@ -72,6 +72,6 @@
         "extends": "google"
     },
     "dependencies": {
-        "lazysizes": "^4.0.0-rc3"
+        "lazysizes": "^4.0.1"
     }
 }
