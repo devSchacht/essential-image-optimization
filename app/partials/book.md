@@ -308,15 +308,15 @@
 
 Jeremy Wagner рассказал про [компромиссы](http://jlwagner.net/talks/these-images/#/2/2), которые стоит учитывать при оценке форматов, в его презентации об оптимизации изображений.
 
-## <a id="the-humble-jpeg" href="#the-humble-jpeg">The humble JPEG.</a>
+## <a id="the-humble-jpeg" href="#the-humble-jpeg">Скромный JPEG.</a>
 
-The [JPEG](https://en.wikipedia.org/wiki/JPEG) may well be the world's most widely used image format. As noted earlier, [45% of the images](http://httparchive.org/interesting.php) seen on sites crawled by HTTP Archive are JPEGs. Your phone, your digital SLR, that old webcam - everything pretty much supports this codec. It's also very old, dating all the way back to 1992 when it was first released. In that time, there's been an immense body of research done attempting to improve what it offers.
+[JPEG](https://ru.wikipedia.org/wiki/JPEG) может быть самым широко используемым форматом изображений в мире. Как отмечалось ранее, [45% изображений](http://httparchive.org/interesting.php) отображаемых на сайтах собранных HTTP Archive это JPEG'и. Ваш телефон, ваш цифровой фотоаппарат, даже старая веб-камера - всё в значительной степени поддерживает этот кодек. Также он очень старый, вернемся в 1992 год, когда он был впервые выпущен. В это время, было сделано огромное количество исследований, пытаясь улучшить то, что он предлагает.
 
-JPEG is a lossy compression algorithm that discards information in order to save space and many of the efforts that came after it attempted to preserve visual fidelity while keeping file sizes as small as possible.
+JPEG-это алгоритм сжатия с потерями, который отбрасывает информацию для экономии места и многих усилий, которые были предприняты после того, как он попытался сохранить визуальную точность, сохраняя при этом размеры файлов как можно меньше.
 
-**What image quality is acceptable for your use-case?**
+**Какое качество изображения приемлемо в вашем случае?**
 
-Formats like JPEG are best suited for photographs or images with a number of color regions. Most optimisation tools will allow you to set what level of compression you're happy with; higher compression reduces file size but can introduce artifacts, halos or blocky degrading.
+Форматы, такие как JPEG, лучше всего подходят для фотографий или изображений с несколькими цветовыми областями. Большинство инструментов оптимизации позволит вам установить, каким уровенем сжатия вы довольны; более высокое сжатие уменьшает размер файла, но может привести к артефактам, гало или блочной деградации.
 
 <figure>
 <picture>
@@ -333,24 +333,24 @@ Formats like JPEG are best suited for photographs or images with a number of col
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"
-        alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest" />
+        alt="Артефакты сжатия JPEG могут быть в большей степени восприняты по мере перехода от лучшего качества к низкому" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"/>
 </noscript>
 </picture>
-<figcaption>JPEG: Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest. Note that image quality scores in one tool can be very different to quality scores in another.</figcaption>
+<figcaption>JPEG: Воспринимаемые артефакты сжатия JPEG могут увеличиваться по мере перехода от лучшего качества к низкому. Обратите внимание, что оценки качества изображения в одном инструменте могут сильно отличаться от оценок качества в другом.</figcaption>
 </figure>
 
-When choosing what quality setting to opt for, consider what quality bucket your images fall into:
+При выборе какое качество настроить, надо учитывать в какую категорию попадает ваше изображение:
 
-*   **Best quality** - when quality matters more than bandwidth. This may be because the image has high prominence in your design or is displayed at full resolution.
-*   **Good quality** - when you care about shipping smaller file-sizes, but don't want to negatively impact image quality too much. Users still care about some level of image quality.
-*   **Low quality** - when you care enough about bandwidth that image degradation is okay. These images are suitable for spotty/poor network conditions.
-*   **Lowest quality** - bandwidth savings are paramount. Users want a decent experience but will accept a pretty degraded experience for the benefit of pages loading more quickly.
+*   **Лучшее качество** - когда качество имеет значение больше, чем пропускная способность. Оно может быть, потому что изображение имеет высокое значение в дизайне или отображается в полном разрешении.
+*   **Хорошее качество** - когда вы заботитесь о доставке небольшого размера файлов, но не хотите слишком сильно негативно влиять на качество изображения. Пользователи по-прежнему беспокоятся о каком-то уровне качества изображения.
+*   **Низкое качество** - когда вы заботитесь о пропускной способности и ухудшение изображения вам подходит. Эти изображения подходят для неоднородных/плохих условий сети.
+*   **Низкое качество** - экономия пропускной способности имеет первостепенное значение. Пользователи хотят качественного взаимодействия, но будут согласны на заниженное качество для более быстрой загрузки страниц.
 
-Next, let's talk about JPEG's compression modes as these can have a large impact on perceived performance.
+Далее поговорим о режимах сжатия JPEG, так как они могут сильно влиять на производительность.
 
-<aside class="note"><b>Note:</b> It's possible that we sometimes overestimate the image quality that our users need. Image quality could be considered a deviation from an ideal, uncompressed source. It can also be subjective.</aside>
+<aside class="note"><b>Заметка:</b> Возможно, мы иногда переоцениваем качество изображения, которое требуется нашим пользователям. Качество изображения можно считать отклонением от идеального несжатого источника. Оно может быть субъективно.</aside>
 
 ## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">JPEG compression modes</a>
 
