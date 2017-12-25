@@ -189,9 +189,9 @@
 
 Если вы дизайнер, есть также [плагин ImageOptim для Sketch](https://github.com/ImageOptim/Sketch-plugin), который будет оптимизировать ваши изображения при экспорте. Я считаю это большой экономией времени.
 
-### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a>
+### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">Как определить, нужно ли оптимизировать мои изображения?</a>
 
-Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images").
+Выполнить аудит сайта с помощью [WebPageTest.org](https://www.webpagetest.org/) и он покажет возможности для улучшения оптимизации ваших изображений (смотрите "Compress Images").
 
 <figure>
 <picture>
@@ -208,13 +208,13 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image1.jpg"
-        alt="WebPage test supports auditing for image compression via the compress images section" />
+        alt="тест WebPage поддерживает аудит сжатия изображений через раздел сжатие изображений" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image1.jpg"/>
 </noscript>
 </picture>
 
-<figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.
+<figcaption>Раздел "Compress Images" сайта WebPageTest показывает список изображений, которые можно сжать более эффективно и предполагает сколько сэкономишь на размере файла.
 </figcaption>
 </figure>
 
@@ -234,7 +234,7 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image2.jpg"
-        alt="image compression recommendations from webpagetest" />
+        alt="рекомендации по сжатию изображений из webpagetest" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image2.jpg"/>
 </noscript>
@@ -242,9 +242,9 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 </figure>
 
 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse/) audits for performance best practices. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded.
+[Lighthouse](https://developers.google.com/web/tools/lighthouse/) проверяет лучшие практики производительности. Он включает проверки для оптимизации изображений и может посоветовать изображения, которые могут быть сжаты сильнее или указать изображения, которые вне экрана и могут быть загружены позже.
 
-As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
+После выхода Chrome 60, Lighthouse теперь находится в [панели Audits](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) в Chrome DevTools:
 
 <figure>
 <picture>
@@ -261,16 +261,16 @@ As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.goo
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg"
-        alt="Lighthouse audit for HBO.com, displaying image optimisation recommendations" />
+        alt="Проверка Lighthouse для HBO.com, отображает рекомендации по оптимизации изображений" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg"/>
 </noscript>
 </picture>
-<figcaption>Lighthouse can audit for Web Performance, Best Practices and Progressive Web App features.</figcaption>
+<figcaption>Lighthouse может проверять произовдительность веба, лучшие практики и возможности прогрессивных веб приложений.</figcaption>
 </figure>
 
 
-You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit.
+Вы также можете быть знакомы с другими инструментами аудита производительности, такими как [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) или [Website Speed Test](https://webspeedtest.cloudinary.com/) от Cloudinary, который включает подробный аудит анализа изображений.
 
 ## <a id="choosing-an-image-format" href="#choosing-an-image-format">How do I choose an image format?</a>
 
