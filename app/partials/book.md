@@ -1,80 +1,80 @@
-### <a id="the-tldr" href="#the-tldr">The tl;dr</a>
+### <a id="the-tldr" href="#the-tldr">TL;DR</a>
 
-**We should all be automating our image compression.**
+**Мы все должны автоматизировать наш процесс сжатия изображений.**
 
-In 2017, image optimization should be automated. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
-To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvips](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist.
+В 2017 году оптимизация изображения должна быть автоматизирована. Легко забыть, сделать рекомендации и контент, который не проходит через процесс сборки, может лего проскочить.
+Для автоматизации: Используйте [imagemin](https://github.com/imagemin/imagemin) или [libvips](https://github.com/jcupitt/libvips) для вашего процесса сборки. Существует много альтернатив.
 
-Most CDNs (e.g. [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
+Большинство CDN'ов (например, [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) и сторонние решения, такие как [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) или [ImageOptim API](https://imageoptim.com/api) предлагают полноценные автоматизированные решения для оптимизации изображения.
 
-The amount of time you'll spend reading blog posts and tweaking your configuration is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
+Количество времени, которое вы будете тратить на чтение сообщений в блоге и настройки конфигурации больше, чем ежемесячная плата за услуги (у Cloudinary есть [бесплатный](http://cloudinary.com/pricing) план). Если вы не хотите передавать эту работу на аутсорсинг по соображениям затрат или задержек, приведенные выше программы с открытым исходным кодом являются надежными. Такие проекты как [Imageflow](https://github.com/imazen/imageflow) или [Thumbor](https://github.com/thumbor/thumbor) можно развернуть у себя на хосте.
 
-**Everyone should be compressing their images efficiently.**
+**Все должны эффективно сжимать свои изображения.**
 
-At minimum: use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. Windows and Linux [alternatives](https://imageoptim.com/versions.html) are also available.
+Минимум: используйте [ImageOptim](https://imageoptim.com/). Он может значительно уменьшить размер изображений, сохраняя при этом качество. Windows и Linux [альтернативы](https://imageoptim.com/versions.html) тоже есть.
 
-More specifically: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) and consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy).
-If you can spare the extra CPU cycles, need higher-than-web-average quality and are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
+Точнее: прогоняйте ваши JPEG'и через [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` или ниже отлично подходит для веб-контента) и рассматривайте поддержку [Progressive JPEG'а](http://cloudinary.com/blog/progressive_jpegs_and_green_martians), PNG через [pngquant](https://pngquant.org/) и SVG через [SVGO](https://github.com/svg/svgo). Однозначно удаляйте метаданные (`--strip` для pngquant) чтобы избежать раздутия. Вместо сумасшедше огромных анимационных GIF'ов, поставляйте [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) видео (или [WebM](https://www.webmproject.org/) для Chrome, Firefox и Opera)! Если вы не можете, по крайней мере используйте [Giflossy](https://github.com/pornel/giflossy).
+Если вы можете сэкономить дополнительные циклы процессора, нуждаетесь в качестве большем чем в среднем по вебу и не против медленного времени кодирования: попробуйте [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
 
-Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g. lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
+Некоторые браузеры заявляют о поддержке форматов изображения через заголовок запроса Accept. Он может использоваться для условной отправки форматов: например, формат с потерями [WebP](https://developers.google.com/speed/webp/) для браузеров на основе Blink, таких как Chrome, и фолбэк в виде JPEG/PNG для других браузеров.
 
-There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in-browser by heeding the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
+Всегда можно сделать больше. Есть инструменты для создания и обслуживания атрибута `srcset`. Выбор ресурсов может быть автоматизирован в браузерах на основе Blink с [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) и вы можете отправить меньшее количество байт для пользователей, которые выбрали "сохранение данных" в браузере, обратив внимание на [Save-Data](https://developers.google.com/web/updates/2016/02/save-data).
 
 
-The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality.
+Чем меньше размер файла вы можете сделать для ваших изображений, тем лучше сетевой опыт вы можете предложить своим пользователям, особенно на мобильных устройствах. В этой записи мы рассмотрим способы уменьшения размера изображения с помощью современных методов сжатия с минимальным воздействием на качество.
 
 <details>
-<summary><h2>Table of Contents</h2></summary>
+<summary><h2>Содержание</h2></summary>
 <p>
 <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a></li>
-        <li><a href="#choosing-an-image-format">How do I choose an image format?</a></li>
-        <li><a href="#the-humble-jpeg">The humble JPEG</a></li>
-        <li><a href="#jpeg-compression-modes">JPEG compression modes</a>
+        <li><a href="#introduction">Введение</a></li>
+        <li><a href="#do-my-images-need-optimization">Как определить, нужно ли оптимизировать мои изображения?</a></li>
+        <li><a href="#choosing-an-image-format">Как выбрать формат изображения?</a></li>
+        <li><a href="#the-humble-jpeg">Скромный JPEG</a></li>
+        <li><a href="#jpeg-compression-modes">Режимы сжатия JPEG</a>
                 <ul>
-                        <li><a href="#the-advantages-of-progressive-jpegs">The advantages of Progressive JPEGs</a></li>
-                        <li><a href="#whos-using-progressive-jpegs-in-production">Who's using Progressive JPEGs in production?</a></li>
-                        <li><a href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a></li>
-                        <li><a href="#how-to-create-progressive-jpegs">How do you create Progressive JPEGs?</a></li>
-                        <li><a href="#chroma-subsampling">Chroma (or Color) Subsampling</a></li>
-                        <li><a href="#how-far-have-we-come-from-the-jpeg">How far have we come from the JPEG?</a></li>
-                        <li><a href="#optimizing-jpeg-encoders">Optimizing JPEG Encoders</a></li>
-                        <li><a href="#what-is-mozjpeg">What is MozJPEG?</a></li>
-                        <li><a href="#what-is-guetzli">What is Guetzli?</a></li>
-                        <li><a href="#mozjpeg-vs-guetzli">How does MozJPEG compare to Guetzli?</a></li>
+                        <li><a href="#the-advantages-of-progressive-jpegs">Преимущества Progressive JPEG</a></li>
+                        <li><a href="#whos-using-progressive-jpegs-in-production">Кто использует Progressive JPEG в продакшене?</a></li>
+                        <li><a href="#the-disadvantages-of-progressive-jpegs">Недостатки Progressive JPEG</a></li>
+                        <li><a href="#how-to-create-progressive-jpegs">Как создать Progressive JPEG?</a></li>
+                        <li><a href="#chroma-subsampling">Прореживание цветности (или цвета)</a></li>
+                        <li><a href="#how-far-have-we-come-from-the-jpeg">Как далеко мы ушли от JPEG?</a></li>
+                        <li><a href="#optimizing-jpeg-encoders">Оптимизация JPEG кодировщиков</a></li>
+                        <li><a href="#what-is-mozjpeg">Что такое MozJPEG?</a></li>
+                        <li><a href="#what-is-guetzli">Что такое Guetzli?</a></li>
+                        <li><a href="#mozjpeg-vs-guetzli">Как MozJPEG в сравнении с Guetzli?</a></li>
                         <li><a href="#butteraugli">Butteraugli</a></li>
                 </ul>
         </li>
-        <li><a href="#what-is-webp">What is WebP?</a>
+        <li><a href="#what-is-webp">Что такое WebP?</a>
                 <ul>
-                        <li><a href="#how-does-webp-perform">How does WebP perform?</a></li>
-                        <li><a href="#whos-using-webp-in-production">Who's using WebP in production?</a></li>
-                        <li><a href="#how-does-webp-encoding-work">How does WebP encoding work?</a></li>
-                        <li><a href="#webp-browser-support">WebP browser support</a></li>
-                        <li><a href="#how-do-i-convert-to-webp">How do I convert my images to WebP?</a></li>
-                        <li><a href="#how-do-i-view-webp-on-my-os">How do I view WebP images on my OS?</a></li>
-                        <li><a href="#how-do-i-serve-webp">How do I serve WebP?</a></li>
+                        <li><a href="#how-does-webp-perform">Какая производительность у WebP?</a></li>
+                        <li><a href="#whos-using-webp-in-production">Кто использует WebP в продакшене?</a></li>
+                        <li><a href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a></li>
+                        <li><a href="#webp-browser-support">Поддержка браузерами WebP</a></li>
+                        <li><a href="#how-do-i-convert-to-webp">Как мне конвертировать изображения в WebP?</a></li>
+                        <li><a href="#how-do-i-view-webp-on-my-os">Как мне смотреть WebP изображения на моей ОС?</a></li>
+                        <li><a href="#how-do-i-serve-webp">Как мне доставлять WebP?</a></li>
                 </ul>
         </li>
-        <li><a href="#svg-optimization">SVG optimization</a></li>
-        <li><a href="#avoid-recompressing-images-lossy-codecs">Avoid recompressing images with lossy codecs</a></li>
-        <li><a href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
+        <li><a href="#svg-optimization">Оптимизация SVG</a></li>
+        <li><a href="#avoid-recompressing-images-lossy-codecs">Избегаем повторного сжатия изображений кодеком с потерями</a></li>
+        <li><a href="#reduce-unnecessary-image-decode-costs">Уменьшаем ненужное декодирование изображений и затраты на сжатие</a>
                 <ul>
-                        <li><a href="#delivering-hidpi-with-srcset">Delivering HiDPI images using <code>srcset</code></a></li>
-                        <li><a href="#art-direction">Art direction</a></li>
+                        <li><a href="#delivering-hidpi-with-srcset">Доставка HiDPI изображений, использую <code>srcset</code></a></li>
+                        <li><a href="#art-direction">Художественное направление</a></li>
                 </ul>
         </li>
-        <li><a href="#color-management">Color management</a></li>
-        <li><a href="#image-sprites">Image spriting</a></li>
-        <li><a href="#lazy-load-non-critical-images">Lazy-load non-critical images</a></li>
-        <li><a href="#display-none-trap">Avoiding the <code>display: none;</code> trap</a></li>
-        <li><a href="#image-processing-cdns">Does an image processing CDN make sense for you?</a></li>
-        <li><a href="#caching-image-assets">Caching image assets</a></li>
-        <li><a href="#preload-critical-image-assets">Preloading critical image assets</a></li>
-        <li><a href="#performance-budgets">Performance Budgets For Images</a></li>
-        <li><a href="#closing-recommendations">Closing recommendations</a></li>
-        <li><a href="#trivia">Trivia</a></li>
+        <li><a href="#color-management">Управление цветом</a></li>
+        <li><a href="#image-sprites">Изображения в спрайтах</a></li>
+        <li><a href="#lazy-load-non-critical-images">Ленивая загрузка некритичных изображений</a></li>
+        <li><a href="#display-none-trap">Избегаем <code>display: none;</code> ловушки</a></li>
+        <li><a href="#image-processing-cdns">Имеет ли смысл для вас обработка изображений в CDN?</a></li>
+        <li><a href="#caching-image-assets">Кэширование изображений</a></li>
+        <li><a href="#preload-critical-image-assets">Предварительная загрузка критически важных изображений</a></li>
+        <li><a href="#performance-budgets">Бюджеты производительности для изображений</a></li>
+        <li><a href="#closing-recommendations">Заключительные рекомендации</a></li>
+        <li><a href="#trivia">Мелочи</a></li>
 </ul>
 </p>
 </details>
