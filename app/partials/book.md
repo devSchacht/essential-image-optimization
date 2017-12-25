@@ -1,91 +1,91 @@
-### <a id="the-tldr" href="#the-tldr">The tl;dr</a>
+### <a id="the-tldr" href="#the-tldr">TL;DR</a>
 
-**We should all be automating our image compression.**
+**Мы все должны автоматизировать наш процесс сжатия изображений.**
 
-In 2017, image optimization should be automated. It's easy to forget, best practices change, and content that doesn't go through a build pipeline can easily slip.
-To automate: Use [imagemin](https://github.com/imagemin/imagemin) or [libvips](https://github.com/jcupitt/libvips) for your build process. Many alternatives exist.
+В 2017 году оптимизация изображения должна быть автоматизирована. Легко забыть, сделать рекомендации и контент, который не проходит через процесс сборки, может лего проскочить.
+Для автоматизации: Используйте [imagemin](https://github.com/imagemin/imagemin) или [libvips](https://github.com/jcupitt/libvips) для вашего процесса сборки. Существует много альтернатив.
 
-Most CDNs (e.g. [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) and third-party solutions like [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) or [ImageOptim API](https://imageoptim.com/api) offer comprehensive automated image optimization solutions.
+Большинство CDN'ов (например, [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) и сторонние решения, такие как [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) или [ImageOptim API](https://imageoptim.com/api) предлагают полноценные автоматизированные решения для оптимизации изображения.
 
-The amount of time you'll spend reading blog posts and tweaking your configuration is greater than the monthly fee for a service (Cloudinary has a [free](http://cloudinary.com/pricing) tier). If you don't want to outsource this work for cost or latency concerns, the open-source options above are solid. Projects like [Imageflow](https://github.com/imazen/imageflow) or [Thumbor](https://github.com/thumbor/thumbor) enable self-hosted alternatives.
+Количество времени, которое вы будете тратить на чтение сообщений в блоге и настройки конфигурации больше, чем ежемесячная плата за услуги (у Cloudinary есть [бесплатный](http://cloudinary.com/pricing) план). Если вы не хотите передавать эту работу на аутсорсинг по соображениям затрат или задержек, приведенные выше программы с открытым исходным кодом являются надежными. Такие проекты как [Imageflow](https://github.com/imazen/imageflow) или [Thumbor](https://github.com/thumbor/thumbor) можно развернуть у себя на хосте.
 
-**Everyone should be compressing their images efficiently.**
+**Все должны эффективно сжимать свои изображения.**
 
-At minimum: use [ImageOptim](https://imageoptim.com/). It can significantly reduce the size of images while preserving visual quality. Windows and Linux [alternatives](https://imageoptim.com/versions.html) are also available.
+Минимум: используйте [ImageOptim](https://imageoptim.com/). Он может значительно уменьшить размер изображений, сохраняя при этом качество. Windows и Linux [альтернативы](https://imageoptim.com/versions.html) тоже есть.
 
-More specifically: run your JPEGs through [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` or lower is fine for web content) and consider [Progressive JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians) support, PNGs through [pngquant](https://pngquant.org/) and SVGs through [SVGO](https://github.com/svg/svgo). Explicitly strip out metadata (`--strip` for pngquant) to avoid bloat. Instead of crazy huge animated GIFs, deliver [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) videos (or [WebM](https://www.webmproject.org/) for Chrome, Firefox and Opera)! If you can't at least use [Giflossy](https://github.com/pornel/giflossy).
-If you can spare the extra CPU cycles, need higher-than-web-average quality and are okay with slow encode times: try [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
+Точнее: прогоняйте ваши JPEG'и через [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` или ниже отлично подходит для веб-контента) и рассматривайте поддержку [Progressive JPEG'а](http://cloudinary.com/blog/progressive_jpegs_and_green_martians), PNG через [pngquant](https://pngquant.org/) и SVG через [SVGO](https://github.com/svg/svgo). Однозначно удаляйте метаданные (`--strip` для pngquant) чтобы избежать раздутия. Вместо сумасшедше огромных анимационных GIF'ов, поставляйте [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) видео (или [WebM](https://www.webmproject.org/) для Chrome, Firefox и Opera)! Если вы не можете, по крайней мере используйте [Giflossy](https://github.com/pornel/giflossy).
+Если вы можете сэкономить дополнительные циклы процессора, нуждаетесь в качестве большем чем в среднем по вебу и не против медленного времени кодирования: попробуйте [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
 
-Some browsers advertise support for image formats via the Accept request header. This can be used to conditionally serve formats: e.g. lossy [WebP](https://developers.google.com/speed/webp/) for Blink-based browsers like Chrome and fallbacks like JPEG/PNG for other browsers.
+Некоторые браузеры заявляют о поддержке форматов изображения через заголовок запроса Accept. Он может использоваться для условной отправки форматов: например, формат с потерями [WebP](https://developers.google.com/speed/webp/) для браузеров на основе Blink, таких как Chrome, и фолбэк в виде JPEG/PNG для других браузеров.
 
-There's always more you can do. Tools exists to generate and serve `srcset` breakpoints. Resource selection can be automated in Blink-based browsers with [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) and you can ship fewer bytes to users who opted into "data savings" in-browser by heeding the [Save-Data](https://developers.google.com/web/updates/2016/02/save-data) hint.
+Всегда можно сделать больше. Есть инструменты для создания и обслуживания атрибута `srcset`. Выбор ресурсов может быть автоматизирован в браузерах на основе Blink с [client-hints](https://developers.google.com/web/updates/2015/09/automating-resource-selection-with-client-hints) и вы можете отправить меньшее количество байт для пользователей, которые выбрали "сохранение данных" в браузере, обратив внимание на [Save-Data](https://developers.google.com/web/updates/2016/02/save-data).
 
 
-The smaller in file-size you can make your images, the better a network experience you can offer your users - especially on mobile. In this write-up, we'll look at ways to reduce image size through modern compression techniques with minimal impact to quality.
+Чем меньше размер файла вы можете сделать для ваших изображений, тем лучше сетевой опыт вы можете предложить своим пользователям, особенно на мобильных устройствах. В этой записи мы рассмотрим способы уменьшения размера изображения с помощью современных методов сжатия с минимальным воздействием на качество.
 
 <details>
-<summary><h2>Table of Contents</h2></summary>
+<summary><h2>Содержание</h2></summary>
 <p>
 <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a></li>
-        <li><a href="#choosing-an-image-format">How do I choose an image format?</a></li>
-        <li><a href="#the-humble-jpeg">The humble JPEG</a></li>
-        <li><a href="#jpeg-compression-modes">JPEG compression modes</a>
+        <li><a href="#introduction">Введение</a></li>
+        <li><a href="#do-my-images-need-optimization">Как определить, нужно ли оптимизировать мои изображения?</a></li>
+        <li><a href="#choosing-an-image-format">Как выбрать формат изображения?</a></li>
+        <li><a href="#the-humble-jpeg">Скромный JPEG</a></li>
+        <li><a href="#jpeg-compression-modes">Режимы сжатия JPEG</a>
                 <ul>
-                        <li><a href="#the-advantages-of-progressive-jpegs">The advantages of Progressive JPEGs</a></li>
-                        <li><a href="#whos-using-progressive-jpegs-in-production">Who's using Progressive JPEGs in production?</a></li>
-                        <li><a href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a></li>
-                        <li><a href="#how-to-create-progressive-jpegs">How do you create Progressive JPEGs?</a></li>
-                        <li><a href="#chroma-subsampling">Chroma (or Color) Subsampling</a></li>
-                        <li><a href="#how-far-have-we-come-from-the-jpeg">How far have we come from the JPEG?</a></li>
-                        <li><a href="#optimizing-jpeg-encoders">Optimizing JPEG Encoders</a></li>
-                        <li><a href="#what-is-mozjpeg">What is MozJPEG?</a></li>
-                        <li><a href="#what-is-guetzli">What is Guetzli?</a></li>
-                        <li><a href="#mozjpeg-vs-guetzli">How does MozJPEG compare to Guetzli?</a></li>
+                        <li><a href="#the-advantages-of-progressive-jpegs">Преимущества Progressive JPEG</a></li>
+                        <li><a href="#whos-using-progressive-jpegs-in-production">Кто использует Progressive JPEG в продакшене?</a></li>
+                        <li><a href="#the-disadvantages-of-progressive-jpegs">Недостатки Progressive JPEG</a></li>
+                        <li><a href="#how-to-create-progressive-jpegs">Как создать Progressive JPEG?</a></li>
+                        <li><a href="#chroma-subsampling">Прореживание цветности (или цвета)</a></li>
+                        <li><a href="#how-far-have-we-come-from-the-jpeg">Как далеко мы ушли от JPEG?</a></li>
+                        <li><a href="#optimizing-jpeg-encoders">Оптимизация JPEG кодировщиков</a></li>
+                        <li><a href="#what-is-mozjpeg">Что такое MozJPEG?</a></li>
+                        <li><a href="#what-is-guetzli">Что такое Guetzli?</a></li>
+                        <li><a href="#mozjpeg-vs-guetzli">Как MozJPEG в сравнении с Guetzli?</a></li>
                         <li><a href="#butteraugli">Butteraugli</a></li>
                 </ul>
         </li>
-        <li><a href="#what-is-webp">What is WebP?</a>
+        <li><a href="#what-is-webp">Что такое WebP?</a>
                 <ul>
-                        <li><a href="#how-does-webp-perform">How does WebP perform?</a></li>
-                        <li><a href="#whos-using-webp-in-production">Who's using WebP in production?</a></li>
-                        <li><a href="#how-does-webp-encoding-work">How does WebP encoding work?</a></li>
-                        <li><a href="#webp-browser-support">WebP browser support</a></li>
-                        <li><a href="#how-do-i-convert-to-webp">How do I convert my images to WebP?</a></li>
-                        <li><a href="#how-do-i-view-webp-on-my-os">How do I view WebP images on my OS?</a></li>
-                        <li><a href="#how-do-i-serve-webp">How do I serve WebP?</a></li>
+                        <li><a href="#how-does-webp-perform">Какая производительность у WebP?</a></li>
+                        <li><a href="#whos-using-webp-in-production">Кто использует WebP в продакшене?</a></li>
+                        <li><a href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a></li>
+                        <li><a href="#webp-browser-support">Поддержка браузерами WebP</a></li>
+                        <li><a href="#how-do-i-convert-to-webp">Как мне конвертировать изображения в WebP?</a></li>
+                        <li><a href="#how-do-i-view-webp-on-my-os">Как мне смотреть WebP изображения на моей ОС?</a></li>
+                        <li><a href="#how-do-i-serve-webp">Как мне доставлять WebP?</a></li>
                 </ul>
         </li>
-        <li><a href="#svg-optimization">SVG optimization</a></li>
-        <li><a href="#avoid-recompressing-images-lossy-codecs">Avoid recompressing images with lossy codecs</a></li>
-        <li><a href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
+        <li><a href="#svg-optimization">Оптимизация SVG</a></li>
+        <li><a href="#avoid-recompressing-images-lossy-codecs">Избегаем повторного сжатия изображений кодеком с потерями</a></li>
+        <li><a href="#reduce-unnecessary-image-decode-costs">Уменьшаем ненужное декодирование изображений и затраты на сжатие</a>
                 <ul>
-                        <li><a href="#delivering-hidpi-with-srcset">Delivering HiDPI images using <code>srcset</code></a></li>
-                        <li><a href="#art-direction">Art direction</a></li>
+                        <li><a href="#delivering-hidpi-with-srcset">Доставка HiDPI изображений, использую <code>srcset</code></a></li>
+                        <li><a href="#art-direction">Художественное направление</a></li>
                 </ul>
         </li>
-        <li><a href="#color-management">Color management</a></li>
-        <li><a href="#image-sprites">Image spriting</a></li>
-        <li><a href="#lazy-load-non-critical-images">Lazy-load non-critical images</a></li>
-        <li><a href="#display-none-trap">Avoiding the <code>display: none;</code> trap</a></li>
-        <li><a href="#image-processing-cdns">Does an image processing CDN make sense for you?</a></li>
-        <li><a href="#caching-image-assets">Caching image assets</a></li>
-        <li><a href="#preload-critical-image-assets">Preloading critical image assets</a></li>
-        <li><a href="#performance-budgets">Performance Budgets For Images</a></li>
-        <li><a href="#closing-recommendations">Closing recommendations</a></li>
-        <li><a href="#trivia">Trivia</a></li>
+        <li><a href="#color-management">Управление цветом</a></li>
+        <li><a href="#image-sprites">Изображения в спрайтах</a></li>
+        <li><a href="#lazy-load-non-critical-images">Ленивая загрузка некритичных изображений</a></li>
+        <li><a href="#display-none-trap">Избегаем <code>display: none;</code> ловушки</a></li>
+        <li><a href="#image-processing-cdns">Имеет ли смысл для вас обработка изображений в CDN?</a></li>
+        <li><a href="#caching-image-assets">Кэширование изображений</a></li>
+        <li><a href="#preload-critical-image-assets">Предварительная загрузка критически важных изображений</a></li>
+        <li><a href="#performance-budgets">Бюджеты производительности для изображений</a></li>
+        <li><a href="#closing-recommendations">Заключительные рекомендации</a></li>
+        <li><a href="#trivia">Мелочи</a></li>
 </ul>
 </p>
 </details>
 
-### <a id="introduction" href="#introduction">Introduction</a>
+### <a id="introduction" href="#introduction">Введение</a>
 
-**Images are still the number one cause of bloat on the web.**
+**Изображения по-прежнему являются главной причиной раздутия веба.**
 
-Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. As of July 2017, images accounted for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the 3.0MB average site.
+На изображения приходится значительная часть пропускной способности интернета, потому что файлы изображений часто имеют большие размеры. Согласно [HTTP Archive](http://httparchive.org/), 60% данных, передаваемых для загрузки веб-страницы, - это изображения в формате JPEG, PNG и GIF. По состоянию на июль 2017, изображения составили [1.7MB](http://httparchive.org/interesting.php#bytesperpage) загруженного содержимого из 3.0MB среднего сайта.
 
-Per Tammy Everts, adding images to a page or making existing images larger have been [proven](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/) to increase conversion rates. It's unlikely that images will go away and so investing in an efficient compression strategy to minimize bloat becomes important.
+Согласно Tammy Everts, [доказано](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/), что добавление изображений на страницу или увеличение размера существующих изображений увеличивает конверсию. Маловероятно, что изображения исчезнут и поэтому инвестиции в эффективную стратегию сжатия для минимизации раздутия становятся важны.
 
 <figure>
 <picture>
@@ -102,15 +102,15 @@ Per Tammy Everts, adding images to a page or making existing images larger have 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image00.jpg"
-        alt="Fewer images per page create more conversions. 19 images per page on average converted better than 31 images per page on average." />
+        alt="Меньшее количество изображений на странице увеличивает конверсию. В среднем 19 изображений на страницу приносят конверсии больше, чем 31 изображение." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image00.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) from 2016, images were the 2nd highest predictor of conversions with the best pages having 38% fewer images.</figcaption>
+<figcaption>Согласно [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) от 2016, изображения были вторым важным средством предсказания конверсии и лучшие страницы имели на 38% меньше изображений.</figcaption>
 </figure>
 
-Image optimization consists of different measures that can reduce the file size of your images. It ultimately depends on what visual fidelity your images require.
+Оптимизация изображений состоит из различных мер, помогающих уменьшить размер файла. В конечном счете она зависит от требуемого качества изображения.
 
 <figure>
 <picture>
@@ -127,15 +127,15 @@ Image optimization consists of different measures that can reduce the file size 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"
-        alt="Image optimization covers a number of different techniques" />
+        alt="Оптимизация изображений состоит из различных мер" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"/>
 </noscript>
 </picture>
-<figcaption><strong>Image optimization:</strong> Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
+<figcaption><strong>Оптимизация изображения:</strong> выберите правильный формат, аккуратно сожмите и приоритезируйте важные изображений по сравнению с теми, которые могут быть загружены позже.</figcaption>
 </figure>
 
-Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), and resizing them to reduce image decode costs.
+Распространенные способы оптимизации изображений включают сжатие, отзывчивую загрузку на основе размера экрана, используя [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), и изменение размера для уменьшения стоимости декодирования изображений.
 
 <figure>
 <picture>
@@ -152,15 +152,15 @@ Common image optimizations include compression, responsively serving them down b
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"
-        alt="A histogram of potential image savings from the HTTP Archive validating the 30KB of potential image savings at the 95th percentile." />
+        alt="Гистограмма потенциальной экономии изображений от HTTP Archive подтверждает 30KB потенциальной экономии изображений на 95 процентиле." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), per-image savings at the 95th percentile (looking at the Cumulative Distribution Function) are 30KB!</strong></figcaption>
+<figcaption>Согласно [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), экономия на одно изображение на 95 процентиле (смотря на кумулятивную функцию распределения(*Cumulative Distribution Function*)) 30KB!</strong></figcaption>
 </figure>
 
-There's plenty of room for us to collectively optimize images better.
+Большой простор, чтобы всем нам начать оптимизировать изображения лучше.
 
 <figure>
 <picture>
@@ -177,21 +177,21 @@ There's plenty of room for us to collectively optimize images better.
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"
-        alt="ImageOptim in use on Mac with a number of images that have been compressed with savings over 50%" />
+        alt="ImageOptim, используемый на Mac, с рядом изображений, которые были сжаты с экономией более 50%" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502519576/essential-image-optimization/image-optim.jpg"/>
 </noscript>
 </picture>
 
-<figcaption>ImageOptim is free, reduces image size through modern compression techniques and by stripping unnecessary EXIF meta-data.
+<figcaption>ImageOptim является бесплатным, уменьшает размер изображения с помощью современных методов сжатия и зачистки ненужных EXIF мета-данных.
 </figcaption>
 </figure>
 
-If you're a designer, there's also an [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.
+Если вы дизайнер, есть также [плагин ImageOptim для Sketch](https://github.com/ImageOptim/Sketch-plugin), который будет оптимизировать ваши изображения при экспорте. Я считаю это большой экономией времени.
 
-### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a>
+### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">Как определить, нужно ли оптимизировать мои изображения?</a>
 
-Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images").
+Выполнить аудит сайта с помощью [WebPageTest.org](https://www.webpagetest.org/) и он покажет возможности для улучшения оптимизации ваших изображений (смотрите "Compress Images").
 
 <figure>
 <picture>
@@ -208,13 +208,13 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image1.jpg"
-        alt="WebPage test supports auditing for image compression via the compress images section" />
+        alt="тест WebPage поддерживает аудит сжатия изображений через раздел сжатие изображений" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image1.jpg"/>
 </noscript>
 </picture>
 
-<figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.
+<figcaption>Раздел "Compress Images" сайта WebPageTest показывает список изображений, которые можно сжать более эффективно и предполагает сколько сэкономишь на размере файла.
 </figcaption>
 </figure>
 
@@ -234,7 +234,7 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image2.jpg"
-        alt="image compression recommendations from webpagetest" />
+        alt="рекомендации по сжатию изображений из webpagetest" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image2.jpg"/>
 </noscript>
@@ -242,9 +242,9 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 </figure>
 
 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse/) audits for performance best practices. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded.
+[Lighthouse](https://developers.google.com/web/tools/lighthouse/) проверяет лучшие практики производительности. Он включает проверки для оптимизации изображений и может посоветовать изображения, которые могут быть сжаты сильнее или указать изображения, которые вне экрана и могут быть загружены позже.
 
-As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
+После выхода Chrome 60, Lighthouse теперь находится в [панели Audits](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) в Chrome DevTools:
 
 <figure>
 <picture>
@@ -261,20 +261,20 @@ As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.goo
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg"
-        alt="Lighthouse audit for HBO.com, displaying image optimisation recommendations" />
+        alt="Проверка Lighthouse для HBO.com, отображает рекомендации по оптимизации изображений" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg"/>
 </noscript>
 </picture>
-<figcaption>Lighthouse can audit for Web Performance, Best Practices and Progressive Web App features.</figcaption>
+<figcaption>Lighthouse может проверять произовдительность веба, лучшие практики и возможности прогрессивных веб приложений.</figcaption>
 </figure>
 
 
-You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit.
+Вы также можете быть знакомы с другими инструментами аудита производительности, такими как [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) или [Website Speed Test](https://webspeedtest.cloudinary.com/) от Cloudinary, который включает подробный аудит анализа изображений.
 
-## <a id="choosing-an-image-format" href="#choosing-an-image-format">How do I choose an image format?</a>
+## <a id="choosing-an-image-format" href="#choosing-an-image-format">Как выбрать формат изображения?</a>
 
-As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
+Как Ilya Grigorik отмечает в своем превосходном [руководстве по оптимизации изображений](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), "правильный формат" для изображения это сочетание желаемых визуальных результатов и функциональных требований. Вы работаете с растровыми или векторными изображениями?
 
 <figure>
 <picture>
@@ -291,7 +291,7 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 <img
         class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"
-        alt="vector vs raster images"
+        alt="векторные против растровых изображений"
          />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502469573/essential-image-optimization/rastervvector.png"/>
@@ -300,23 +300,23 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 </figure>
 
 
-[Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
+[Растровая графика](https://ru.wikipedia.org/wiki/Растровая_графика) представляет изображения путем кодирования значений каждого пикселя в прямоугольной сетке пикселей. Они не являются независимыми от разрешения или зума. WebP или широко поддерживаемые форматы, такие как JPEG или PNG хорошо подходят для графики где необходим фотореализм. Guetzli, MozJPEG и другие идеи, о которых мы говорили, хорошо применимы к растровой графике.
 
-[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g. logos) offering a high-resolution and zoom like SVG handle this use case better.
+[Векторная графика](https://ru.wikipedia.org/wiki/Векторная_графика) использует точки, линии и полигоны для представления изображений и формат используется для простых геометрические фигур (например, логотипов), SVG лучше всего подходит, когда нужно высокое разрешение и масштабирование.
 
-The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care. 
+Не тот формат может стоить вам. Логический выбора правильного формата может быть рискован, поэтому экспериментировать с форматами лучше с осторожностью.
 
-Jeremy Wagner has covered [trade-offs](http://jlwagner.net/talks/these-images/#/2/2) worth considering when evaluating formats in his image optimization talks.
+Jeremy Wagner рассказал про [компромиссы](http://jlwagner.net/talks/these-images/#/2/2), которые стоит учитывать при оценке форматов, в его презентации об оптимизации изображений.
 
-## <a id="the-humble-jpeg" href="#the-humble-jpeg">The humble JPEG.</a>
+## <a id="the-humble-jpeg" href="#the-humble-jpeg">Скромный JPEG.</a>
 
-The [JPEG](https://en.wikipedia.org/wiki/JPEG) may well be the world's most widely used image format. As noted earlier, [45% of the images](http://httparchive.org/interesting.php) seen on sites crawled by HTTP Archive are JPEGs. Your phone, your digital SLR, that old webcam - everything pretty much supports this codec. It's also very old, dating all the way back to 1992 when it was first released. In that time, there's been an immense body of research done attempting to improve what it offers.
+[JPEG](https://ru.wikipedia.org/wiki/JPEG) может быть самым широко используемым форматом изображений в мире. Как отмечалось ранее, [45% изображений](http://httparchive.org/interesting.php) отображаемых на сайтах собранных HTTP Archive это JPEG'и. Ваш телефон, ваш цифровой фотоаппарат, даже старая веб-камера - всё в значительной степени поддерживает этот кодек. Также он очень старый, вернемся в 1992 год, когда он был впервые выпущен. В это время, было сделано огромное количество исследований, пытаясь улучшить то, что он предлагает.
 
-JPEG is a lossy compression algorithm that discards information in order to save space and many of the efforts that came after it attempted to preserve visual fidelity while keeping file sizes as small as possible.
+JPEG-это алгоритм сжатия с потерями, который отбрасывает информацию для экономии места и многих усилий, которые были предприняты после того, как он попытался сохранить визуальную точность, сохраняя при этом размеры файлов как можно меньше.
 
-**What image quality is acceptable for your use-case?**
+**Какое качество изображения приемлемо в вашем случае?**
 
-Formats like JPEG are best suited for photographs or images with a number of color regions. Most optimisation tools will allow you to set what level of compression you're happy with; higher compression reduces file size but can introduce artifacts, halos or blocky degrading.
+Форматы, такие как JPEG, лучше всего подходят для фотографий или изображений с несколькими цветовыми областями. Большинство инструментов оптимизации позволит вам установить, каким уровенем сжатия вы довольны; более высокое сжатие уменьшает размер файла, но может привести к артефактам, гало или блочной деградации.
 
 <figure>
 <picture>
@@ -333,33 +333,34 @@ Formats like JPEG are best suited for photographs or images with a number of col
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"
-        alt="JPEG compression artifacts can be increasingly perceived as we shift from best quality to lowest" />
+        alt="Артефакты сжатия JPEG могут быть в большей степени восприняты по мере перехода от лучшего качества к низкому" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"/>
 </noscript>
 </picture>
-<figcaption>JPEG: Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest. Note that image quality scores in one tool can be very different to quality scores in another.</figcaption>
+<figcaption>JPEG: Воспринимаемые артефакты сжатия JPEG могут увеличиваться по мере перехода от лучшего качества к низкому. Обратите внимание, что оценки качества изображения в одном инструменте могут сильно отличаться от оценок качества в другом.</figcaption>
 </figure>
 
-When choosing what quality setting to opt for, consider what quality bucket your images fall into:
+При выборе какое качество настроить, надо учитывать в какую категорию попадает ваше изображение:
 
-*   **Best quality** - when quality matters more than bandwidth. This may be because the image has high prominence in your design or is displayed at full resolution.
-*   **Good quality** - when you care about shipping smaller file-sizes, but don't want to negatively impact image quality too much. Users still care about some level of image quality.
-*   **Low quality** - when you care enough about bandwidth that image degradation is okay. These images are suitable for spotty/poor network conditions.
-*   **Lowest quality** - bandwidth savings are paramount. Users want a decent experience but will accept a pretty degraded experience for the benefit of pages loading more quickly.
+*   **Лучшее качество** - когда качество имеет значение больше, чем пропускная способность. Оно может быть, потому что изображение имеет высокое значение в дизайне или отображается в полном разрешении.
+*   **Хорошее качество** - когда вы заботитесь о доставке небольшого размера файлов, но не хотите слишком сильно негативно влиять на качество изображения. Пользователи по-прежнему беспокоятся о каком-то уровне качества изображения.
+*   **Низкое качество** - когда вы заботитесь о пропускной способности и ухудшение изображения вам подходит. Эти изображения подходят для неоднородных/плохих условий сети.
+*   **Низкое качество** - экономия пропускной способности имеет первостепенное значение. Пользователи хотят качественного взаимодействия, но будут согласны на заниженное качество для более быстрой загрузки страниц.
 
-Next, let's talk about JPEG's compression modes as these can have a large impact on perceived performance.
+Далее поговорим о режимах сжатия JPEG, так как они могут сильно влиять на производительность.
 
-<aside class="note"><b>Note:</b> It's possible that we sometimes overestimate the image quality that our users need. Image quality could be considered a deviation from an ideal, uncompressed source. It can also be subjective.</aside>
+<aside class="note"><b>Заметка:</b> Возможно, мы иногда переоцениваем качество изображения, которое требуется нашим пользователям. Качество изображения можно считать отклонением от идеального несжатого источника. Оно может быть субъективно.</aside>
 
-## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">JPEG compression modes</a>
+## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">Режимы сжатия JPEG</a>
 
-The JPEG image format has a number of different [compression modes](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Three popular modes are baseline (sequential), Progressive JPEG (PJPEG) and lossless.
+У формата изображений JPEG есть множество различных [режимов сжатия](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Три наиболее популярных - это базовый режим сжатия или последовательный JPEG (*baseline*, он же *sequential*), Прогрессивный режим сжатия JPEG (прогрессивный JPEG или PJPEG, он же формат с чересстрочной разверткой) и JPEG со сжатием без потерь.
 
+_Прим. пер.: В дальнейшем слова «режим сжатия» будут опущены, но будут иметься ввиду. Помните, что подразумеваются не какие-то разновидности формата JPEG, а различные режимы (или алгоритмы) обработки содержимого файла. То есть вместо «базовый режим сжатия JPEG», будет «базовый JPEG»._
 
-**How do baseline (or sequential) JPEGs and Progressive JPEGs differ?**
+**Чем отличаются базовый (или последовательный) JPEG и прогрессивный JPEG?**
 
-Baseline JPEGs (the default for most image editing and optimisation tools) are encoded and decoded in a relatively simple manner: top to bottom. When baseline JPEGs load on slow or spotty connections, users see the top of the image with more of it revealed as the image loads. Lossless JPEGs are similar but have a smaller compression ratio.
+Базовый JPEG (режим по умолчанию в большинстве графических редакторов и инструментов для оптимизации изображений) кодируется и декодируется в относительно простом порядке: сверху вниз. Когда базовый JPEG загружается при медленном или нестабильном соединении, пользователи видят верхнюю часть изображения, которая увеличивается по мере загрузки. JPEG со сжатием без потерь очень похож на базовый, но у него устанавливается меньший коэффициент сжатия.
 
 
 <figure>
@@ -377,15 +378,15 @@ Baseline JPEGs (the default for most image editing and optimisation tools) are e
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"
-        alt="baseline JPEGs load top to bottom" />
+        alt="JPEG с базовым режимом сжатия загружается сверху вниз" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"/>
 </noscript>
 </picture>
-<figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
+<figcaption>JPEG с базовым режимом сжатия загружается сверху вниз, тогда как прогрессивный режим сжатия JPEG загружает изображение от размытого к более резкому.</figcaption>
 </figure>
 
-Progressive JPEGs divide the image into a number of scans. The first scan shows the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
+Прогрессивный JPEG делит изображение на несколько слоёв (*scans*). Первый слой показывает изображение размытым или с настройками очень низкого качества, а каждые последующие слои улучшают качество изображения. Думайте об этом как о прогрессивном уточнении. У каждого слоя изображения более высокий уровень детализации и, когда они соединяются вместе, получается изображение исходного качества.
 
 <figure>
 <picture>
@@ -402,22 +403,22 @@ Progressive JPEGs divide the image into a number of scans. The first scan shows 
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"
-        alt="progressive JPEGs load from low-resolution to high-resolution" />
+        alt="Прогрессивный JPEG загружается от низкого разрешения (размытого) к более высокому разрешению" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"/>
 </noscript>
 </picture>
-<figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. Pat Meenan wrote an [interactive tool](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) to test out and learn about Progressive JPEG scans too.</figcaption>
+<figcaption>Базовый JPEG загружает изображение сверху вниз. Прогрессивный JPEG загружается от низкого разрешения (размытого) к более высокому разрешению. Pat Meenan написал [интерактивный инструмент](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) для тестирования и изучения особенностей отображения "слоёв" прогрессивного JPEG.</figcaption>
 </figure>
 
-Lossless JPEG optimization can be achieved by [removing EXIF data](http://www.verexif.com/en/) added by digital cameras or editors, optimizing an image's [Huffman tables](https://en.wikipedia.org/wiki/Huffman_coding), or rescanning the image. Tools like [jpegtran](http://jpegclub.org/jpegtran/) achieve lossless compression by rearranging the compressed data without image degradation. [jpegrescan](https://github.com/kud/jpegrescan), [jpegoptim](https://github.com/tjko/jpegoptim) and [mozjpeg](https://github.com/mozilla/mozjpeg) (which we'll cover shortly) also support lossless JPEG compression.
+JPEG со сжатием без потерь может быть достигнут путем [удаления данных EXIF](http://www.verexif.com/en/), добавленных цифровыми камерами или графическими редакторами, оптимизацией [таблиц Хаффмана](https://ru.wikipedia.org/wiki/Код_Хаффмана) в изображении или повторным сканированием изображения. Такие инструменты как [jpegtran](http://jpegclub.org/jpegtran/) позволяют добиться сжатия без потерь за счет перераспределения сжатых данных, не ухудшая при этом качества изображения. [jpegrescan](https://github.com/kud/jpegrescan), [jpegoptim](https://github.com/tjko/jpegoptim) и [mozjpeg](https://github.com/mozilla/mozjpeg) (которые мы вскоре рассмотрим) также поддерживают JPEG со сжатием без потерь.
 
+### <a id="the-advantages-of-progressive-jpegs" href="#the-advantages-of-progressive-jpegs">Преимущества прогрессивного JPEG</a>
 
-### <a id="the-advantages-of-progressive-jpegs" href="#the-advantages-of-progressive-jpegs">The advantages of Progressive JPEGs</a>
+Способность прогрессивного JPEG показывать «приблизительный предварительный просмотр» изображения при загрузке повышает воспринимаемую производительность: пользователи могут чувствовать, что изображение быстрее загружается по сравнению с адаптивными изображениями. 
+_Прим. пер.: Скорее всего имеется ввиду сравнение с базовым JPEG._
 
-The ability for PJPEGs to offer low-resolution "previews" of an image as it loads improves perceived performance - users can feel like the image is loading faster compared to adaptive images.
-
-On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been received and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
+При медленном соединении, например 3G, это позволяет пользователю видеть что (примерно) изображено на картинке пока загружена только часть файла и дает возможность принять решение: ждать его полной загрузки или нет. Это может быть удобнее (и приятнее), чем отображение картинок сверху вниз в случае базового JPEG.
 
 <figure>
 <picture>
@@ -434,25 +435,25 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504993129/essential-image-optimization/pjpeg-graph.png"
-        alt="impact to wait time of switching to progressive jpeg" />
+        alt="уменьшение времени ожидания за счет использования прогрессивного JPEG" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504993129/essential-image-optimization/pjpeg-graph.png"/>
 </noscript>
 </picture>
-<figcaption>In 2015, [Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time, as shown in the figure above.</figcaption>
+<figcaption>В 2015, [Facebook переключился на использование PJPEG (для их iOS приложения)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) и обнаружил 10% сокращение использования данных. У них появилась возможность показывать качественное изображение на 15% быстрее, чем раньше, оптимизируя предполагаемое время загрузки, как показано на рисунке выше.</figcaption>
 </figure>
 
-PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g. [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) take advantage of PJPEG’s flexibility to pack data better.
+Прогрессивный JPEG может улучшить сжатие, требуя на [2-10%](http://www.bookofspeed.com/chapter5.html) меньше данных по сравнению с базовым/простым JPEG для изображений более 10KB. Более высокое качество сжатия достигается за счет того, что каждый слой в JPEG изображении может иметь свою собственную выделенную [таблицу Хаффмана](https://ru.wikipedia.org/wiki/Код_Хаффмана). Современные JPEG кодеки (такие как [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG и так далее) используют преимущества прогрессивного JPEG для лучшей упаковки данных.
 
-<aside class="note"><b>Note:</b> Why do PJPEGs compress better? Baseline JPEG blocks are encoded one at a time. With PJPEGs, similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block can be encoded together leading to better compression.</aside>
+<aside class="note"><b>Примечание:</b> Почему прогрессивный JPEG сжимает лучше? Блоки базового JPEG кодируются за один раз. У прогрессивного JPEG, аналогичные коэффициенты [дискретного косинусного преобразования](https://ru.wikipedia.org/wiki/Дискретное_косинусное_преобразование) в более чем одном блоке могут быть обработаны вместе, что приводит к лучшему сжатию</aside>
 
-### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Who's using Progressive JPEGs in production?</a>
+### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Кто использует прогрессивный JPEG в продакшен?</a>
 
-*   [Twitter.com ships Progressive JPEGs](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) with a baseline of quality of 85%. They measured user perceived latency (time to first scan and overall load time) and found overall, PJPEGs were competitive at addressing their requirements for low file-sizes, acceptable transcode and decode times.
-*   [Facebook ships Progressive JPEGs for their iOS app](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). They found it reduced data-usage by 15% and enabling them to show a good quality image 15% faster.
-*   [Yelp switched to Progressive JPEGs](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) and found it was in part responsible for ~4.5% of their image size reduction savings. They also saved an extra 13.8% using MozJPEG.
+* [Twitter.com переключился на использование прогрессивного JPEG](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) с уровнем качества (*baseline of quality*) 85%. Они измеряли задержку восприятия пользователя (время до первого отображения и общее время загрузки) и пришли к выводу, что прогрессивный JPEG был хорошим выбором с учетом их требований относительно небольшого размера файлов, приемлемого времени кодирования и декодирования.
+* [Facebook переключился на использование прогрессивного JPEG в приложении для iOS](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). Они заметили, что это уменьшает объём используемых данных на 15% и позволил им показывать изображение в хорошем качестве на 15% быстрее.
+* [Yelp переключился на использование прогрессивного JPEG](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) и обнаружил, что отчасти с этим связана экономия объема хранения изображений примерно на 4.5%. Также они дополнительно сэкономили примерно 13.8% за счет применения MozJPEG.
 
-Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use Progressive JPEGs in production. 
+Множество других сайтов с большим количеством тяжелых изображений, такие как [Pinterest](https://pinterest.com), также применяют прогрессивный JPEG в продакшен окружении. 
 
 <figure>
 <picture>
@@ -469,30 +470,31 @@ Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use P
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1506382472/essential-image-optimization/pinterest-loading.png"
-        alt="Pinterests JPEGs are all progressively encoded. This optimizes the user experience by loading them each scan-by-scan." />
+        alt="Все JPEG файлы Pinterest кодируются прогрессивно. Это оптимизирует пользовательский опыт за счет постепенной загрузки изображений." />
 <noscript>
   <img src="http://res.cloudinary.com/ddxwdqwkr/image/upload/v1506382472/essential-image-optimization/pinterest-loading.png
 "/>
 </noscript>
 </picture>
-<figcaption>Pinterest's JPEGs are all progressively encoded. This optimizes the user experience by loading them each scan-by-scan.</figcaption>
+<figcaption>Все JPEG файлы Pinterest кодируются прогрессивно. Это оптимизирует пользовательский опыт за счет постепенной загрузки изображений.</figcaption>
 </figure>
 
-### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a>
+### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">Недостатки прогрессивного JPEG</a>
 
-PJPEGs can be slower to decode than baseline JPEGs - sometimes taking 3x as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you're basically decoding the image multiple times. These multiple passes can eat CPU cycles.
+Прогрессивный JPEG может кодироваться медленнее, чем базовый JPEG - иногда в 3 раза дольше. На настольных компьютерах с мощными процессорами это может быть менее затратно, чем на слабых мобильных устройствах с ограниченными ресурсами. Отображение неполных слоев требует работы, поскольку вы в основном декодируете изображение несколько раз. Эти множественные проходы могут потреблять ресурсы процессора. 
 
-Progressive JPEGs are also not *always* smaller. For very small images (like thumbnails), progressive JPEGs can be larger than their baseline counterparts. However for such small thumbnails, progressive rendering might not really offer as much value.
+Файл JPEG с прогрессивным сжатием также не *всегда* обладает наименьшим размером. Для очень маленьких изображений (например для миниатюр, иконок) прогрессивный JPEG может быть больше, чем вариант с базовым сжатием. Скорее всего для таких небольших изображений прогрессивное сжатие может не подходить.
 
-This means that when deciding whether or not to ship PJPEGs, you'll need to experiment and find the right balance of file-size, network latency and use of CPU cycles.
+Это означает, что при принятии решения о внедрении прогрессивного JPEG вам необходимо провести эксперимент и найти правильный баланс размера файла, задержки в сети и потреблении ресурсов процессора.
 
-Note: PJPEGs (and all JPEGs) can sometimes be hardware decodable on mobile devices. It doesn't improve on RAM impact, but it can negate some of the CPU concerns. Not all Android devices have hardware-acceleration support, but high end devices do, and so do all iOS devices.
+Примечание: PJPEG (как и все файлы JPEG) на мобильных устройствах иногда могут обрабатываться аппаратными средствами. Но не у всех Android устройств есть подобные средства, чаще всего они встречаются на дорогих устройствах и устройствах на базе iOS. То есть подобные изображения могут не снизить потребление оперативной памяти увеличив производительность, а наоборот, негативно повлиять на загрузку ЦП и скорость отрисовки в целом.  
 
-Some users may consider progressive loading to be a disadvantage as it can become hard to tell when an image has completed loading. As this can vary heavily per audience, evaluate what makes sense for your own users.
+Некоторые пользователи могут считать, что прогрессивная загрузка является недостатком, так как может быть трудно определить, когда изображение загрузилось полностью. Поскольку это может сильно различаться для каждой аудитории, оцените, что имеет смысл для вашей аудитории.
 
-### <a id="how-to-create-progressive-jpegs" href="#how-to-create-progressive-jpegs">How do you create Progressive JPEGs?</a>
 
-Tools and libraries like [ImageMagick](https://www.imagemagick.org/), [libjpeg](http://libjpeg.sourceforge.net/), [jpegtran](http://jpegclub.org/jpegtran/), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive) and [imagemin](https://github.com/imagemin/imagemin) support exporting Progressive JPEGs. If you have an existing image optimization pipeline, there's a good likelihood that adding progressive loading support could be straight-forward:
+### <a id="how-to-create-progressive-jpegs" href="#how-to-create-progressive-jpegs">Как создать прогрессивный JPEG?</a>
+
+Инструменты и библиотеки, такие как [ImageMagick](https://www.imagemagick.org/), [libjpeg](http://libjpeg.sourceforge.net/), [jpegtran](http://jpegclub.org/jpegtran/), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive) и [imagemin](https://github.com/imagemin/imagemin) позволяют экспортировать прогрессивный JPEG. Если у вас уже есть существующий процесс оптимизации изображений, скорее всего, что добавление поддержки прогрессивной загрузки может быть достаточно простым:
 
 ```js
 const gulp = require('gulp');
@@ -507,7 +509,7 @@ gulp.task('images', function () {
 });
 ```
 
-Most image editing tools save images as Baseline JPEG files by default.
+Большинство инструментов для редактирования изображений по умолчанию сохраняют изображения JPEG с базовым режимом сжатия.
 
 <figure>
 <picture>
@@ -524,17 +526,17 @@ Most image editing tools save images as Baseline JPEG files by default.
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg"
-        alt="photoshop supports exporting to progressive jpeg from the file export menu" />
+        alt="photoshop поддерживает экспорт в прогрессивный JPEG через меню экспорта файлов" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg"/>
 </noscript>
 </picture>
-<figcaption>Most image editing tools save images as Baseline JPEG files by default. You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the ‘Progressive’ checkbox while saving your images.</figcaption>
+<figcaption>Большинство редакторов изображений по умолчанию, сохраняют картинки именно в виде базового JPEG. В Photoshop вы можете сохранить любе изображение как прогрессивный JPEG, выбрав File -> Export -> Save for Web (legacy) и выбрав параметр Progressive. Sketch также поддерживает экспорт в прогрессивный JPEG - export as JPG и отметить пункт  ‘Progressive’ во время сохранения изображения.</figcaption>
 </figure>
 
-### <a id="chroma-subsampling" href="#chroma-subsampling">Chroma (or Color) Subsampling</a>
+### <a id="chroma-subsampling" href="#chroma-subsampling">Цветовая субдискретизация</a>
 
-Our eyes are more forgiving to loss of color detail in an image (chroma) than they are luminance (or luma for short - a measure of brightness). [Chroma subsampling](https://en.wikipedia.org/wiki/Chroma_subsampling) is a form of compression that reduces the precision of color in a signal in favor of luma. This reduces file size, in some cases by up to [15-17%](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/), without adversely affecting image quality and is an option available for JPEG images. Subsampling can also reduce image memory usage.
+Наши глаза больше склонны к потере деталей цвета в изображении (цветности), чем яркости (luminance или luma, яркость как мера светлоты). [Цветовая субдискретизация](https://ru.wikipedia.org/wiki/Цветовая_субдискретизация) (или [Chroma subsampling](https://en.wikipedia.org/wiki/Chroma_subsampling)) представляет собой вид сжатия, который снижает точность воспроизведения цвета в сигнале в пользу яркости. Это уменьшает размер файла, в некоторых случаях до [15-17%](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/), без отрицательного влияния на качество изображения и может быть использовано в JPEG изображениях. Субдискретизация также может уменьшить потребление памяти изображениями.
 
 <figure>
 <picture>
@@ -551,14 +553,14 @@ Our eyes are more forgiving to loss of color detail in an image (chroma) than th
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683718/essential-image-optimization/luma-signal.jpg"
-        alt="signal = chroma + luma" />
+        alt="изображение = цвет + яркость (ориг. signal = chroma + luma)" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683718/essential-image-optimization/luma-signal.jpg"/>
 </noscript>
 </picture>
 </figure>
 
-As contrast is responsible for forming shapes that we see in an image, luma, which defines it, is pretty important. Older or filtered black and white photos may not contain color, but thanks to luma, they can be just as detailed as their color counterparts. Chroma (color) has less of an impact on visual perception.
+Контраст образующий формы, которые мы видим на изображении, определяется в первую очередь яркостью. Например, старые или отфильтрованные черно-белые фотографии могут не содержать цвета, но благодаря яркости они могут быть столь же подробными, как и их цветовые контрасты. Цветность (цвет) оказывает меньшее влияние на зрительное восприятие.
 
 <figure>
 <picture>
@@ -575,25 +577,25 @@ As contrast is responsible for forming shapes that we see in an image, luma, whi
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg"
-        alt="JPEG includes support for numerous subsampling types: none, horizontal and horizontal and vertical." />
+        alt="JPEG поддерживает несколько различных типов субдискретизации: без субдискретизации (none), горизонтальный (horizontal), горизонтальный и вертикальный (horizontal and vertical)" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg"/>
 </noscript>
 </picture>
-<figcaption>JPEG supports a number of different subsampling types: none, horizontal and horizontal and vertical. This diagram is from [JPEGs for the horseshoe crabs](http://frdx.free.fr/JPEG_for_the_horseshoe_crabs.pdf) by Frédéric Kayser.</figcaption>
+<figcaption>JPEG поддерживает несколько различных типов субдискретизации: без субдискретизации (none), горизонтальный (horizontal), горизонтальный и вертикальный (horizontal and vertical). Эта диаграмма из работы Фредерика Кайзера [JPEGs for the horseshoe crabs](http://frdx.free.fr/JPEG_for_the_horseshoe_crabs.pdf)</figcaption>
 </figure>
 
-There are a number of common samples discussed when talking about subsampling. Generally, `4:4:4`, `4:2:2` and `4:2:0`. But what do these represent? Let’s say a subsample takes the format A:B:C. A is the number of pixels in a row and for JPEGs this is usually 4. B represents the amount of color in the first row and C the color in the second.
+Вот несколько общих примеров, обсуждаемых при разговоре о субдискретизации. Обычно говорят  `4: 4: 4`,` 4: 2: 2` и `4: 2: 0`. Но что они означают? Предположим, что субдискретизации принимает формат A: B: C. A - количество пикселей в строке, для JPEG - это обычно 4. B представляет количество цветов в первой строке, а C - цвет во второй.
 
-* `4:4:4` has no compression, so color and luma are transported completely.
-* `4:2:2` has half sampling horizontally and full sampling vertically.
-* `4:2:0` samples colors out of half the first row’s pixels and ignores the second row.
+* `4:4:4` не имеет сжатия, поэтому цвет и яркость передаются без преобразований.
+* `4:2:2` дискретизация на половину горизонтальной строки, при этом преобразований по вертикали не происходит.
+* `4:2:0` дискретизация на половину горизонтальной строки, при этом содержимое второй строки игнорируется. (_прим. перев. В последней картинке указано что дискретизация происходит на основании первой половины первой и второй строк, т.е. одной половины блока из 8 пикселей_)
 
-<aside class="note"><b>Note:</b> jpegtran and cjpeg support separate quality configuration of luminance and chroma. This can be done adding the `-sample` flag (e.g. `-sample 2x1`).
+<aside class="note"><b>Примечание:</b> jpegtran и cjpeg поддерживают раздельную настройку качества для яркости и для цветности. Это может быть сделано с помощью флага `-sample` (например, `-sample 2x1`).
 
-Some good general rules:  subsampling (`-sample 2x2`) is great for photos. no-subsampling (`-sample 1x1`) is best for screenshots, banners and buttons. There's finally compromise (`2x1`) is you're unsure what to use.</aside>
+Вот несколько хороших главных правил:  субдискретизация (`-sample 2x2`) прекрасна для фотографий. Отсутствие субдискретизации (`-sample 1x1`) лучше всего подходит для скриншотов, баннеров и кнопок. И как следствие - компромиссный вариант (`2x1`), когда вы не знаете что использовать.</aside>
 
-By reducing pixels in our chroma components, it’s possible to reduce the size of color components significantly, ultimately reducing byte size.
+Уменьшая количество пикселей в цветовой составляющей изображения, можно значительно уменьшить размер составляющих цвета, и в конечном счете уменьшить размер файла в байтах.
 
 <figure>
 <picture>
@@ -610,17 +612,17 @@ By reducing pixels in our chroma components, it’s possible to reduce the size 
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg"
-        alt="Chrome subsampling configurations for a JPEG at quality 80." />
+        alt="Настройки цветовой субдискретизации файла JPEG с качеством изображения 80." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg"/>
 </noscript>
 </picture>
-<figcaption>Chrome subsampling configurations for a JPEG at quality 80.</figcaption>
+<figcaption>Настройки цветовой субдискретизации файла JPEG с качеством изображения 80.</figcaption>
 </figure>
 
-Chroma subsampling is worth considering for most types of image. It does have some notable exceptions: as subsampling relies on limitations in our eyes, it is not great for compressing images where color detail may be as important as luminance (e.g. medical images).
+Цветовую субдискретизацию стоит рассматривать для большинства типов изображений. Но у этого способа сжатия есть некоторые важные исключения: поскольку подвыборка зависит от того как цвет воспринимается нашими глазами, данный способ не очень подходит для сжатия изображений, где детали цвета могут быть столь же важны, как яркость (например, медицинские изображения). 
 
-Images containing typefaces can also suffer as poor subsampling of text can decrease its legibility. Sharper edges are harder to compress with JPEG as it was designed to better handle photographic scenes with softer transitions.
+Изображения, содержащие шрифты, также могут пострадать, поскольку плохое схатие текста может уменьшить его разборчивость. Более контрастные переходы цвета сложнее сжимать с помощью JPEG, поскольку он был разработан для лучшей обработки фотографических сцен с более мягкими переходами.
 
 <figure>
 <picture>
@@ -637,27 +639,27 @@ Images containing typefaces can also suffer as poor subsampling of text can decr
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"
-        alt="Be careful when using heavy subsampling with images containing text" />
+        alt="Будьте осторожны применяя сильную субдискретизацию к изображениям, содержащим текст." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"/>
 </noscript>
 </picture>
-<figcaption>[Understanding JPEG](http://compress-or-die.com/Understanding-JPG/) recommends sticking with a subsampling of 4:4:4 (1x1) when working with images containing text.</figcaption>
+<figcaption>[Understanding JPEG](http://compress-or-die.com/Understanding-JPG/) рекомендует придерживаться варианта 4: 4: 4 (1x1) при работе с изображениями, содержащими текст.</figcaption>
 </figure>
 
-Trivia: The exact method of Chroma subsampling wasn’t specified in the JPEG specification, so different decoders handle it differently. MozJPEG and libjpeg-turbo use the same scaling method. Older versions of libjpeg use a different method that adds ringing artifacts in colors.
+Общая информация: Точный метод цветовой субдискретизации в спецификации JPEG указан не был, поэтому разные декодеры обрабатывают его по-разному. MozJPEG и libjpeg-turbo используют один и тот же метод обработки. В старых версиях libjpeg используется другой метод, который добавляет кольцевые артифакты ([ringing artifacts](https://en.wikipedia.org/wiki/Ringing_artifacts)) в цветах.
 
-<aside class="note"><b>Note:</b> Photoshop sets Chroma subsampling automatically when using the ‘Save for web’ feature. When image quality is set between 51-100, no subsampling is used at all (`4:4:4`). When quality is below this, a `4:2:0` subsampling is used instead. This is one reason a far greater file-size reduction can be observed when switching quality from 51 to 50.</aside>
+<aside class="note"><b>Примечание:</b> Photoshop автоматический выбирает уровень цветовой субдискретизации, когда используется опция ‘Save for web’. Когда уровень качества изображения выставлен в промежутке 51-100, никакой субдискретизации не применяется (`4:4:4`). Когда уровень качества ниже, применяется сжатие типа `4:2:0`. Это одна из причин того, что при уменьшении уровня качества с 51 до 50 наблюдается значительное уменьшение размера файла.</aside>
 
-<aside class="note"><b>Note:</b> In subsampling discussions the term [YCbCr](https://en.wikipedia.org/wiki/YCbCr) is often mentioned. This is a model that can represent gamma-corrected [RGB](https://en.wikipedia.org/wiki/RGB_color_model) color spaces. Y is gamma-corrected luminance, Cb is the blue color’s chroma component and Cr is the red color’s chroma component. If you look at ExifData, you’ll see YCbCr next to sampling levels.</aside>
+<aside class="note"><b>Примечание:</b> В разговорах о субдискретизации часто упоминается термин [YCbCr](https://en.wikipedia.org/wiki/YCbCr). Это цветовая модель, которая может представлять цветовые пространства [RGB](https://en.wikipedia.org/wiki/RGB_color_model) с гамма-коррекцией. Y - яркость с гамма-коррекцией, Cb - компонент цветности синего цвета, а Cr - компонент цветности красного цвета. Если вы посмотрите на ExifData, вы увидите YCbCr рядом с уровнями дискретизации.</aside>
 
-For a further read on Chroma Subsampling, see [Why aren’t your images using Chroma subsampling?](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/).
+Для дополнительной информации о цветовой субдискретизации, см. [Why aren’t your images using Chroma subsampling?](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/).
 
-### <a id="how-far-have-we-come-from-the-jpeg" href="#how-far-have-we-come-from-the-jpeg">How far have we come from the JPEG?</a>
+### <a id="how-far-have-we-come-from-the-jpeg" href="#how-far-have-we-come-from-the-jpeg">Как далеко мы ушли от JPEG?</a>
 
-**Here's the current state of image formats on the web:**
+**Ниже представлены современные форматы изображений в Интернете:**
 
-*tl;dr - there's a lot of fragmentation. We often need to conditionally serve different formats to different browsers to take advantage of anything modern.*
+*tl;dr - большая фрагментация. Нам часто приходится готовить разные форматы изображений для разных браузеров, чтобы иметь возможность использовать что-либо современное.*
 
 <figure>
 <picture>
@@ -674,50 +676,49 @@ For a further read on Chroma Subsampling, see [Why aren’t your images using Ch
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"
-        alt="modern image formats compared based on quality." />
+        alt="современный форматы изображений в сравнении по качеству." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"/>
 </noscript>
 </picture>
-<figcaption>Different modern image formats (and optimizers) used to demonstrate what is possible at a target file-size of 26KB. We can compare quality using [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity) or [Butteraugli](https://github.com/google/butteraugli), which we'll cover in more detail later.</figcaption>
+<figcaption>Различные современные форматы изображений (и их оптимизаторы) используются для демонстрации того, что можно использовать для достижения размера файла 26 КБ. Мы можем сравнивать качество, используя [SSIM](https://ru.wikipedia.org/wiki/SSIM) (структурное сходство) или [Butteraugli](https://github.com/google/butteraugli), о котором мы позже расскажем более подробно.</figcaption>
 </figure>
 
-*   **[JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) (2000)** - an improvement to JPEG switching from a discrete cosine based transform to a wavelet-based method. **Browser support: Safari desktop + iOS**
-*   **[JPEG XR](https://en.wikipedia.org/wiki/JPEG_XR) (2009)** - alternative to JPEG and JPEG 2000 supporting [HDR](http://wikivisually.com/wiki/High_dynamic_range_imaging) and wide [gamut](http://wikivisually.com/wiki/Gamut) color spaces. Produces smaller files than JPEG at slightly slower encode/decode speeds. **Browser support: Edge, IE.**
-*   **[WebP](https://en.wikipedia.org/wiki/WebP) (2010)** - block-prediction based format by Google with support for lossy and lossless compression. Offers byte savings associated with JPEG and transparency support byte-heavy PNGs are often used for. Lacks chroma subsampling configuration and progressive loading. Decode times are also slower than JPEG decoding. **Browser support: Chrome, Opera. Experimented with by Safari and Firefox.**
-*   **[FLIF](https://en.wikipedia.org/wiki/Free_Lossless_Image_Format) (2015)** - lossless image format claiming to outperform PNG, lossless WebP, lossless BPG and lossless JPEG 2000 based on compression ratio. **Browser support: none. *Note that there is a [JS in-browser decoder](https://github.com/UprootLabs/poly-flif).***
-*   **HEIF and BPG.** From a compression perspective, they're the same but have a different wrapper:
-*   **[BPG](https://en.wikipedia.org/wiki/Better_Portable_Graphics) (2015)** - intended to be more compression-efficient replacement for JPEG, based on HEVC ([High Efficiency Video Coding](http://wikivisually.com/wiki/High_Efficiency_Video_Coding)). Appears to offer better file size compared to MozJPEG and WebP. Unlikely to get broad traction due to licensing issues. **Browser support: none. *Note that there is a [JS in-browser decoder](https://bellard.org/bpg/).***
-*   **[HEIF](https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format) (2015)** - format for images and image sequences for storing HEVC-encoded images with constrained inter-prediction applied. Apple announced at [WWDC](https://www.cnet.com/news/apple-ios-boosts-heif-photos-over-jpeg-wwdc/) they would explore switching to HEIF over JPEG for iOS, citing up to 2x savings on file-size. **Browser support: None at the time of writing. Eventually, Safari desktop and iOS 11**
+*   **[JPEG 2000](https://ru.wikipedia.org/wiki/JPEG_2000) (2000)** - улучшенный JPEG основанный на отказе от преобразования на основе дискретного косинуса в пользу метода, основанного на вейвлетах. **Поддержка браузерами Safari desktop + iOS**
+*   **[JPEG XR](https://ru.wikipedia.org/wiki/JPEG_XR) (2009)** - альтернатива JPEG и JPEG 2000 с поддержкой [HDR](http://wikivisually.com/wiki/High_dynamic_range_imaging) и широким [охватом](https://ru.wikipedia.org/wiki/Цветовая_модель#Цветовой_охват_моделей_устройств_вывода) (англ. [gamut](http://wikivisually.com/wiki/Gamut)) цветовых пространств. Производит файлы меньшего размера, чем JPEG, при немного меньшей скорости кодирования/декодирования. **Поддержка браузерами Edge, IE.**
+*   **[WebP](https://ru.wikipedia.org/wiki/WebP) (2010)** - формат от Google, основанный на блочном прогнозе ([block-prediction](http://www.bilsen.com/aic/blockprediction.shtml)), с поддержкой сжатия с потерями и без потерь. Оптимизация обычных изображений похожа на JPEG, а изображений с прозрачностью на PNG. Отсутствует настройка цветовой субдискретизации и прогрессивная загрузка. Время декодирования также медленнее, чем декодирование JPEG. **Поддержка браузерами Chrome, Opera. Экспериментальная поддержка в Safari и Firefox.**
+*   **[FLIF](https://ru.wikipedia.org/wiki/Free_Lossless_Image_Format) (2015)** - свободный формат сжатия изображений без потери качества, который по степени сжатия превосходит PNG, WebP бех сжатия, BPG без сжатия и JPEG 2000 без сжатия. **Поддержки браузерами нет *Обратите внимание, что еть [браузерный JS декодер](https://github.com/UprootLabs/poly-flif).***
+*   **HEIF и BPG.** С точки зрания сжатия они одинаковы, но у каждого свой контейнер (wrapper):
+*   **[BPG](https://en.wikipedia.org/wiki/Better_Portable_Graphics) (2015)** - предназначенная для более эффективной с точки зрения сжатия замены JPEG'у, на основе HEVC ([High Efficiency Video Coding](http://wikivisually.com/wiki/High_Efficiency_Video_Coding)). Позиционируется, как формат, способный предложить лучший размер файла по сравнению с MozJPEG и WebP. Что маловероятно из-за проблем с лицензированием. **Поддержки браузерами нет. *Обратите внимание, что еть [браузерный JS декодер](https://bellard.org/bpg/).***
+*   **[HEIF](https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format) (2015)** - формат изображений и последовательностей изображений для хранения изображений, кодированных HEVC, с применением ограниченного межкадрового предсказания (в ориг. [inter-prediction](https://en.wikipedia.org/wiki/Inter_frame#Inter_frame_prediction)). Apple объявила на WWDC, что они будут изучать переключение на HEIF через JPEG для iOS, ссылаясь на 2x кратную экономию на размере файла. **Поддержки браузерами во время написания книги нет. Со временем в Safari desktop and iOS 11**
 
-If you're more visual, you might appreciate [one](https://people.xiph.org/~xiphmont/demo/daala/update1-tool2b.shtml) of [these](http://xooyoozoo.github.io/yolo-octo-bugfixes/#cologne-cathedral&jpg=s&webp=s) visual comparison tools for some of the above.
+Для более наглядного сравнения вы можете обратиться к [этому](https://people.xiph.org/~xiphmont/demo/daala/update1-tool2b.shtml) или [этому](http://xooyoozoo.github.io/yolo-octo-bugfixes/#cologne-cathedral&jpg=s&webp=s) сравнению, перечисленных выше форматов.
 
-So, **browser support is fragmented** and if you wish to take advantage of any of the above you'll likely need to conditionally serve fallbacks for each of your target browsers. At Google, we've seen some promise with WebP so we'll dive into it in more depth shortly.
+Таким образом, поддержка браузера фрагментирована, и если вы хотите воспользоваться преимуществами любого из вышеперечисленных форматов, вам, скорее всего, придется делать копии изображения разных типов для каждого из ваших целевых браузеров. Мы в Google увидели некоторые преимущества в WebP, поэтому в ближайшее время мы займемся им более плотно.
 
-You can also serve image formats (e.g. WebP, JPEG 2000) with a .jpg extension (or any other) as the browser can render an image it can decide the media type. This allows for server-side [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/) to decide which image to send without needing to change the HTML at all. Services like Instart Logic use this approach when delivering images to their customers.
+Вы также можете использовать форматы изображений (например, WebP, JPEG 2000) с расширением .jpg (или любым другим), поскольку браузер может отображать изображение, выбирая при этом тип содержимого (media type). Это позволяет согласовать тип содержимого ([content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/)) на стороне сервера, чтобы решить, какое изображение отправить, без необходимости правки HTML. Такие сервисы, как Instart Logic, используют этот подход при доставке изображений своим клиентам.
 
-Next, let's talk about an option for when you can't conditionally serve different image formats: **optimising JPEG encoders**.
-
-
-### <a id="optimizing-jpeg-encoders" href="#optimizing-jpeg-encoders">Optimizing JPEG Encoders</a>
-
-Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files while maintaining compatibility with existing browsers and image processing apps. They avoid the need to introduce new image formats or changes in the ecosystem in order for compression gains to be possible. Two such encoders are MozJPEG and Guetzli.
-
-***tl;dr Which optimising JPEG Encoder should you use?***
-
-* General web assets: MozJPEG
-* Quality is your key concern and you don't mind long encode times: use Guetzli
-* If you need configurability:
- * [JPEGRecompress](https://github.com/danielgtaylor/jpeg-archive) (which uses MozJPEG under the hood)
- * [JPEGMini](http://www.jpegmini.com/). It's similar to Guetzli - chooses best quality automatically. It's not as technically sophisticated as Guetzli, but it's faster, and aims at quality range more suitable for the web.
- * [ImageOptim API](https://imageoptim.com/api) (with free online interface [here](https://imageoptim.com/online)) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
+А сейчас, давайте поговорим о том случае, когда вы не можете готовить разные форматы изображений для разных браузеров, об **оптимизации кодировщиков JPEG**.
 
 
-### <a id="what-is-mozjpeg" href="#what-is-mozjpeg">What is MozJPEG?</a>
+### <a id="optimizing-jpeg-encoders" href="#optimizing-jpeg-encoders">Оптимизация кодировщиков JPEG</a>
 
-Mozilla offers a modernized JPEG encoder in the form of [MozJPEG](https://github.com/mozilla/mozjpeg). It [claims](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/) to shave up to 10% off JPEG files. Files compressed with MozJPEG work cross-browser and some of its features include progressive scan optimization, [trellis quantization](https://en.wikipedia.org/wiki/Trellis_quantization) (discarding details that compress the least) and a few decent [quantization table presets](https://calendar.perfplanet.com/2014/mozjpeg-3-0/) that help create smoother High-DPI images (although this is possible with ImageMagick if you're willing to wade through XML configurations).
+Современные кодировщики JPEG пытаются создавать более мелкие файлы с высоким качеством воспроизведения, поддерживая совместимость с существующими браузерами и приложениями для обработки изображений. Они избегают необходимости вводить новые форматы изображений или изменения в экосистеме, чтобы повысить эффективность сжатия. Два таких кодировщика - MozJPEG и Guetzli.
 
-MozJPEG is supported in both [ImageOptim](https://github.com/ImageOptim/ImageOptim/issues/45) and there's a relatively reliable configurable [imagemin plugin](https://github.com/imagemin/imagemin-mozjpeg) for it. Here's a sample implementation with Gulp:
+***tl;dr Какой оптимизирующий кодировщик JPEG вы должны использовать?***
+
+* Большинство задач: MozJPEG
+* Качество - это ваша главная проблема, и вы не возражаете против долгого времени кодирования: используйте Guetzli
+* Если вам нужна возможность настройки:
+ * [JPEGRecompress](https://github.com/danielgtaylor/jpeg-archive) (который под капотом использует MozJPEG)
+ * [JPEGMini](http://www.jpegmini.com/). Он похож на Guetzli - автоматически выбирает лучшее качество. Он не настолько сложен, как Guetzli, но он быстрее и нацелен на качество сжатия, более подходящее для Интернета.
+ * [ImageOptim API](https://imageoptim.com/api) (с бесплатным онлайн [интерфейсом](https://imageoptim.com/online)) - он уникален в обработке цвета. Вы можете выбрать качество цвета отдельно от общего качества. Он автоматически выбирает уровень цветовой субдискретизации для сохранения цветов с высоким разрешением в скриншотах, но избегает ненужных байтов на плавных переходах цветах на естественных фотографиях.
+
+### <a id="what-is-mozjpeg" href="#what-is-mozjpeg">Что такое MozJPEG?</a>
+
+Mozilla предлагает модернизированный кодировщик JPEG под названием [MozJPEG](https://github.com/mozilla/mozjpeg). [Утверждается](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/), что сжатие эффективнее до 10% от обычного сжатия в JPEG. Файлы, сжатые с помощью MozJPEG, работают кросс-браузерно, а некоторые из его функций включают в себя оптимизацию прогрессивного режима сжатия, [треллис-квантование](https://ru.wikipedia.org/wiki/Треллис-квантование)  (англ. [trellis quantization](https://en.wikipedia.org/wiki/Trellis_quantization)) (отбрасывание деталей, которые сжимаются хуже), и несколько достойных пресетов таблицы квантования, которые помогают создавать более плавные изображения с высоким разрешением (также это возможно и в ImageMagick, если вы захотите пробиваться через его XML-конфигурации).
+
+MozJPEG поддерживается как в ImageOptim, так и в imagemin, плагине для ImageOptim. Этот плагин относительно надежен и довольно просто настраивается. Вот пример реализации с Gulp:
 
 ```js
 const gulp = require('gulp');
@@ -748,7 +749,7 @@ gulp.task('mozjpeg', () =>
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image10.jpg"
-        alt="mozjpeg being run from the command-line" />
+        alt="mozjpeg запущенный в коммандной строке" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image10.jpg"/>
 </noscript>
@@ -771,35 +772,34 @@ gulp.task('mozjpeg', () =>
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"
-        alt="mozjpeg compression at different qualities. At q=90, 841KB. At q=85, 562KB. At q=75, 324KB. Similarly, Butteraugli and SSIM scores get slightly worse as we lower quality." />
+        alt="Сжатие mozjpeg с различным качеством. С качеством q=90, 841KB. С качеством  q=85, 562KB. С качеством  q=75, 324KB. При этом оценки Butteraugli и SSIM становятся немного хуже, поскольку мы понижаем качество." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"/>
 </noscript>
 </picture>
-<figcaption>MozJPEG: A comparison of file-sizes and visual similarity scores at different qualities.</figcaption>
+<figcaption>MozJPEG: сравнение размеров файлов и визуального сходства с разными установками качества.</figcaption>
 </figure>
 
 
-I used [jpeg-compress](https://github.com/imagemin/imagemin-jpeg-recompress) from the [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive) project to calculate the SSIM (The Structural Similarity) scores for a source image. SSIM is a method for measuring the similarity between two images, where the SSIM score is a quality measure of one image given the other is considered "perfect".
+Я использовал [jpeg-compress](https://github.com/imagemin/imagemin-jpeg-recompress) из проекта [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive) для расчета степени SSIM (структурного сходства) с исходным изображением. SSIM представляет собой метод измерения сходства между двумя изображениями, где степень SSIM является мерой качества одного изображения, относительно второго, «идеального» изображения.
 
-In my experience, MozJPEG is a good option for compressing images for the web at a high visual quality while delivering reductions on file size. For small to medium sized images, I found MozJPEG (at quality=80-85) led to 30-40% savings on file size while maintaining acceptable SSIM, offering a 5-6% improvement on jpeg-turbo. It does come with a [slower encoding cost](http://www.libjpeg-turbo.org/About/Mozjpeg) than baseline JPEG, but you may not find this a show stopper.
+По моему опыту, MozJPEG - хороший вариант для сжатия изображений для Интернета с высоким качеством изображения при одновременном сокращении размера файла. В случае небольших и средних файлов я обнаружил, что MozJPEG (при качестве = 80-85) обеспечил 30-40% экономии на размере файла при сохранении приемлемого SSIM, с 5-6% улучшением в режиме jpeg-turbo. Но он повышает [затраты на кодирование](http://www.libjpeg-turbo.org/About/Mozjpeg), по сравнению с исходным JPEG, так что его преимущества не будут для вас актуальны.
 
-<aside class="note"><b>Note:</b> if you need a tool supporting MozJPEG with additional configuration support and some complimentary utilities for image comparison, check out [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive). Jeremy Wagner, author of Web Performance in Action has had some success using it with [this](https://twitter.com/malchata/status/884836650563579904) configuration.</aside>
+<aside class="note"><b>Примечание:</b> если вам нужен инструмент, поддерживающий MozJPEG с дополнительной возможностью настройки и некоторые бесплатные утилиты для сравнения изображений, посмотрите в сторону [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive). Джереми Вагнер, автор Web Performance in Action, с успехом использовал его с [этой](https://twitter.com/malchata/status/884836650563579904) конфигурацией.
 
-### <a id="what-is-guetzli" href="#what-is-guetzli">What is Guetzli?</a>
+### <a id="what-is-guetzli" href="#what-is-guetzli">Что такое Guetzli?</a>
 
-[Guetzli](https://github.com/google/guetzli) is a promising, if slow, perceptual JPEG encoder from Google that tries to find the smallest JPEG that is perceptually indistinguishable from the original to the human eye. It performs a sequence of experiments that produces a proposal for the final JPEG, accounting for the psychovisual error of each proposal. Out of these, it selects the highest-scoring proposal as the final output.
+[Guetzli](https://github.com/google/guetzli) это многообещающий, хотя и медленный, JPEG-кодировщик от Google, который пытается найти самый маленький JPEG, который на глаз неотличим от оригинала. Он выполняет последовательность экспериментов, которые делают предложение для окончательного JPEG, учитывающего психовизуальную ошибку каждого предположения. Из них он выбирает вариант с наивысшим баллом в качестве конечного результата.
 
-To measure the differences between images, Guetzli uses [Butteraugli](https://github.com/google/butteraugli), a model for measuring image difference based on human perception (discussed below). Guetzli can take into account a few properties of vision that other JPEG encoders do not. For example, there is a relationship between the amount of green light seen and sensitivity to blue, so changes in blue in the vicinity of green can be encoded a little less precisely.
+Чтобы измерить различия между изображениями, Guetzli использует [Butteraugli](https://github.com/google/butteraugli), модель для измерения разности изображений, основанной на восприятии человека (см. ниже). Guetzli может принять во внимание несколько свойств зрения, в отличие от других кодировщиков JPEG. Например, существует связь между количеством видимого зеленого света и восприятием синего, поэтому изменения в синем рядом с зеленым могут быть закодированы не так точно.
 
-<aside class="note"><b>Note:</b> Image file-size is **much** more dependent on the choice of **quality** than the choice of **codec**. There are far far larger file-size differences between the lowest and highest quality JPEGs compared to the file-size savings made possible by  switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
+<aside class="note"><b>Примечание:</b> Размер файла изображения **намного** больше зависит от выбора **качества**, а не **кодека**. Есть гораздо большие различия в размерах файлов между JPEG самого низкого качества по сжатию экономией достигнутой за счет смены кодировщика. Использование самого низкого приемлемого качества очень важно. Избегайте не обдуманного выставления сжатия на самое высокое качество.</aside>
 
-Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with Guetzli in [this GitHub thread](https://github.com/google/guetzli/issues/50). It can be ideal for when you’re optimizing images as part of a build process for a static site but less so when performed on demand.
+Guetzli [утверждает](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ), что он достигает 20-30 процентного сокращения размера изображений для заданного Butteraugli по сравнению с другими кодировщиками. Основным минусом Guetzli является то, что он чрезвычайно, очень медленный и в настоящее время подходит только для статического контента. Из README мы можем отметить, что для Guetzli требуется большой объем памяти - это может занять 1 минуту + 200 МБ оперативной памяти на мегапиксель. В этом [обсуждении на GitHub](https://github.com/google/guetzli/issues/50) описано применение Guetzli на практике. Он может быть идеальным, когда вы оптимизируете изображения в процессе сборки статического сайта, но не в случае выполнения в режиме реального времени.
 
-<aside class="note"><b>Note:</b> Guetzli may be more suitable when you're optimizing images
-as part of a build process for a static site, or situations where image optimization is not performed on demand.</aside>
+<aside class="note"><b>Примечание:</b> Guetzli может быть более подходящим, когда вы оптимизируете изображения в процессе сборки статического сайта или ситуации, когда оптимизация изображения не выполняется в режиме реального времени.</aside>
 
-Tools like ImageOptim support Guetzli optimization (in [the latest versions](https://imageoptim.com/)).
+Инструменты, такие как ImageOptim поддерживают оптимизацию Guetzli (в [самой последней версии](https://imageoptim.com/)).
 
 ```js
 const gulp = require('gulp');
@@ -833,14 +833,15 @@ gulp.task('guetzli', () =>
 <img
         class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg"
-        alt="guetzli being run from gulp for optimisation" />
+        alt="guetzli запущенный через gulp для оптимизации" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image12.jpg"/>
 </noscript>
 </picture>
 </figure>
 
-It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
+Потребовалось почти семь минут (при высокой загрузке процессора) для кодирования трех 3MP изображений с использованием Guetzli с различными режимами сжатия. Думаю, что этот вариант более ценен для архивирования фотографий с более высоким разрешением.
+
 
 <figure>
 <picture>
@@ -857,36 +858,36 @@ It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"
-        alt="comparison of guetzli at different qualities. q=100, 945KB. q=90, 687KB. q=85, 542KB." />
+        alt="Сравнение guetzli при разных уровнях качества. q=100, 945KB. q=90, 687KB. q=85, 542KB." />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"/>
 </noscript>
 </picture>
-<figcaption>Guetzli: A comparison of file sizes and visual similarity scores at different qualities. </figcaption>
+<figcaption>Guetzli: Сравнение размеров файлов и оценок визуального сходства с различными уровнями сжатия.</figcaption>
 </figure>
 
 
-<aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g. uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g. JPEGs of quality 84 or lower), results can be poorer.</aside>
+<aside class="note"><b>Примечание:</b> Рекомендуется запускать Guetzli на высококачественных изображениях (например, несжатые входные изображения, источники PNG или JPEG со 100% качеством или около того). Он будет работать и на других изображениях (например, JPEG с качеством 84 или ниже), но результаты могут быть хуже.</aside>
 
-While compressing an image with Guetzli is very (very) time-consuming and will make your fans spin, for larger images, it is worth it. I have seen a number of examples where it saved anywhere up to 40% on file size while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I have still seen some savings (in the 10-15KB range) but they were not quite as well pronounced. Guetzli can introduce more liquify-esque distortion on smaller images while compressing.
+Хотя сжатие изображения с помощью Guetzli занимает очень (очень) много времени и заставляет ваши кулеры шуметь, в случае больших изображений оно того стоит. У меня было несколько случаев, где он сохранял до 40% размера файла при сохранении визуальной точности. Это делает его идеальным для архивирования фотографий. На изображениях малого и среднего размера наблюдалась некоторая экономия размера (в диапазоне 10-15 КБ), и она не была ярко выражена. Guetzli при сжатии может искажать (добавлять волноподобные искажения) мелкие изображения .
 
-You may also be interested in Eric Portis research [comparing](https://cloudinary.com/blog/a_closer_look_at_guetzli) Guetzli to Cloudinary's auto-compression for a different data point on effectiveness.
+Вам также может быть интересно исследование Eric Portis, [сравнивающего](https://cloudinary.com/blog/a_closer_look_at_guetzli) Guetzli с автоматическим сжатием Cloudinary для другой точки зрения об эффективности алгоритма.
 
-### <a id="mozjpeg-vs-guetzli" href="#mozjpeg-vs-guetzli">How does MozJPEG compare to Guetzli?</a>
+### <a id="mozjpeg-vs-guetzli" href="#mozjpeg-vs-guetzli">MozJPEG в сравнении с Guetzli</a>
 
-Comparing different JPEG encoders is complex - one needs to compare both the quality and fidelity of the compressed image as well as the final size. As image compression expert Kornel Lesi&#x144;ski notes, benchmarking one but not both of these aspects could lead to [invalid](https://kornel.ski/faircomparison) conclusions.
+Сравнение разных кодировщиков JPEG сложная задача - нужно сравнить качество и точность соответствия сжатого изображения оригиналу, а также конечный размер. Как отмечает эксперт по сжатию изображений Kornel Lesi&#x144;ski, сравнительный анализ одного, но не всех этих аспектов может привести к [неверным](https://kornel.ski/faircomparison) выводам.
 
-How does Guetzli compare to MozJPEG? - Kornel's take:
+Как же Guetzli сравнить с MozJPEG? - Kornel считает что:
 
-* Guetzli is tuned for higher-quality images (butteraugli is said to be best for `q=90`+, MozJPEG's sweet spot is around `q=75`)
-* Guetzli is much slower to compress (both produce standard JPEGs, so decoding is fast as usual)
-* MozJPEG doesn't automagically pick quality setting, but you can find optimal quality using an external tool, e.g. [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive)
+* Guetzli ориентирован на высококачественные изображения (butteraugli говорит, что на качество `q=90`+, MozJPEG же лучше работает при качестве `q=75`)
+* Guetzli намного медленнее при сжатии (оба генерируют стандартный JPEG, так что декодирование выполняется как обычно)
+* MozJPEG не устанавливает настройки качества автоматически, но вы можете подобрать параметры с помощию сторонних инструментов, например [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive)
 
-A number of methods exist for determining if compressed images are visually similar or perceivably similar to their sources. Image quality studies often use methods like [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity). Guetzli however optimizes for Butteraugli.
+Существует ряд методов для определения, являются ли сжатые изображения визуально или воспринимаемо, похожими на их источники. Исследования качества изображения часто используют такие методы, как [SSIM](https://ru.wikipedia.org/wiki/SSIM) (структурное сходство). Однако Guetzli оптимизирован для Butteraugli.
 
 ### <a id="butteraugli" href="#butteraugli">Butteraugli</a>
 
-[Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a person may notice visual image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
+[Butteraugli](https://github.com/google/butteraugli) - это проект Google, который оценивает тот момент, когда человек может заметить визуальное ухудшение (психовизуальное сходство) среди двух изображений. Он дает оценку для едва заметных различий. Butteraugli не только дает скалярную оценку, но и вычисляет пространственную карту уровня различий. Т.е. SSIM определяет совокупность ошибок в изображении и на этом основании ставит оценку, Butteraugli оценивает по худшей области изображения.
 
 <figure>
 <picture>
@@ -903,16 +904,15 @@ A number of methods exist for determining if compressed images are visually simi
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"
-        alt="butteraugli validating an image of a parrot" />
+        alt="butteraugli при оценке изображения попугаев" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"/>
 </noscript>
 </picture>
-<figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough for a user to notice something wasn’t clear. It resulted in a 65% reduction in total file size.</figcaption>
+<figcaption>Выше приведен пример, в котором для определения минимального порога качества JPEG использовался Butteraugli. Сжатие проводился до тех пор, пока ухудшение качества изображения не распознавалось пользователем. Сжатие привело к 65 процентному уменьшению общего размера файла.</figcaption>
 </figure>
 
-
-In practice, you would define a target goal for visual quality and then run through a number of different image optimisation strategies, looking at your Butteraugli scores, before choosing something that fits the best balance of file- size and level.
+На практике вы определяете целевой уровень визуального качества, а затем выполняете несколько различных стратегий оптимизации изображений, глядя на оценки Butteraugli, прежде чем выбрать то, что соответствует лучшему балансу размера файла и уровня.
 
 <figure>
 <picture>
@@ -929,23 +929,23 @@ In practice, you would define a target goal for visual quality and then run thro
 <img
         class="lazyload small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"
-        alt="butteraugli being run from the command line" />
+        alt="butteraugli, запущенный из коммандной строки" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"/>
 </noscript>
 </picture>
-<figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward: specify the two images to compare (a source and compressed version) and it will give you a score to work from.</figcaption>
+<figcaption>В общем, мне потребовалось около 30 минут, чтобы локально настроить Butteraugli после установки Bazel и получить сборку из исходных кодов на C++ для правильной компиляции на моем Mac. Работа с ним довольно проста: укажите два изображения для сравнения (исходная и сжатая версия), и это даст вам оценку качества сжатого изображения.</figcaption>
 </figure>
 
-**How does Butteraugli differ to other ways of comparing visual similarity?**
+**Что отличает Butteraugli от других способов сравнения визуального сходства?**
 
-[This comment](https://github.com/google/guetzli/issues/10#issuecomment-276295265) from a Guetzli project member suggests Guetzli scores best on Butteraugli, worst on SSIM and MozJPEG scores about as well on both. This is in line with the research I've put into my own image optimisation strategy. I run Butteraugli and a Node module like [img-ssim](https://www.npmjs.com/package/img-ssim) over images comparing the source to their SSIM scores before/after Guetzli and MozJPEG.
+[Этот комментарий](https://github.com/google/guetzli/issues/10#issuecomment-276295265) от участника проекта Guetzli предполагает, что Guetzli лучше всего при сравнении с помощью Butteraugli и хуже всего на SSIM, тогда как оценки MozJPEG одинаковы в обоих тестах. Это соответствует исследованию, на основании которого я составил свою собственную стратегию оптимизации изображений. Я использую Butteraugli и Node модуль вроде [img-ssim](https://www.npmjs.com/package/img-ssim), которым даю сжатые изображения, и они сравниваю исходное изображение с их оценками SSIM до/после Guetzli и MozJPEG.
 
-**Combining encoders?**
+**Можно ли комбинировать кодировщики?**
 
-For larger images, I found combining Guetzli with **lossless compression **in MozJPEG (jpegtran, not cjpeg to avoid throwing away the work done by Guetzli) can lead to a further 10-15% decrease in filesize (55% overall) with only very minor decreases in SSIM. This is something I would caution requires experimentation and analysis but has also been tried by others in the field like [Ariya Hidayat](ariya.io/2017/03/squeezing-jpeg-images-with-guetzli) with promising results.
+Для больших изображений я обнаружил, что сочетание Guetzli **со сжатием без потерь** и MozJPEG (с испольщованием jpegtran, а не cjpeg, чтобы избежать отбрасывания работы, сделанной Guetzli), может привести к дополнительному уменьшению размера файла на 10-15% (всего 55%) с очень незначительными сокращениями по SSIM. Этот вариант требует анализа, и я бы поостерегся использовать его в работе, но он был опробован другими специалистами, например [Ariya Hidayat](ariya.io/2017/03/squeezing-jpeg-images-with-guetzli), и их исследования показали перспективы данного варианта.
 
-MozJPEG is a beginner-friendly encoder for web assets that is relatively fast and produces good-quality images. As Guetzli is resource-intensive and works best on larger, higher-quality images, it's an option I would reserve for intermediate to advanced users.
+MozJPEG - удобный для новичков кодировщик веб-ресурсов, относительно быстрый и создающий на выходе качественные изображения. Поскольку Guetzli является ресурсоемким и работает лучше всего на больших высококачественных изображениях, я бы его оставил более продвинутым пользователям.
 
 ## <a id="what-is-webp" href="#what-is-webp">What is WebP?</a>
 
