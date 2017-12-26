@@ -75,11 +75,11 @@ workbox.precache([
   },
   {
     "url": "book.html",
-    "revision": "8266b71e7378526134f5873a4b22cf53"
+    "revision": "fbde5155df040ea9db0949f46beb5b0f"
   },
   {
     "url": "index.html",
-    "revision": "25173258d9f7127c7c4c9dea07fba5a8"
+    "revision": "90ee822d8e9fa02027b99d7b3c9ded88"
   },
   {
     "url": "manifest.json",
