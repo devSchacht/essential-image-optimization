@@ -71,15 +71,15 @@ workbox.precache([
   },
   {
     "url": "styles/main.css",
-    "revision": "29afbb8d896cbc2f6e806d717ea86335"
+    "revision": "f650fd86c970a9a6bb5a49d9fd170cca"
   },
   {
     "url": "book.html",
-    "revision": "fbde5155df040ea9db0949f46beb5b0f"
+    "revision": "c60290e088f3cdf0b5e78b454108ec3d"
   },
   {
     "url": "index.html",
-    "revision": "90ee822d8e9fa02027b99d7b3c9ded88"
+    "revision": "a20398687e36a442f7da459727180fac"
   },
   {
     "url": "manifest.json",
