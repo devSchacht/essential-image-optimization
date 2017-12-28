@@ -3,7 +3,7 @@
 **Мы все должны автоматизировать наш процесс сжатия изображений.**
 
 В 2017 году оптимизация изображения должна быть автоматизирована. Легко забыть, сделать рекомендации и контент, который не проходит через процесс сборки, может лего проскочить.
-Для автоматизации: Используйте [imagemin](https://github.com/imagemin/imagemin) или [libvips](https://github.com/jcupitt/libvips) для вашего процесса сборки. Существует много альтернатив.
+Для автоматизации: используйте [imagemin](https://github.com/imagemin/imagemin) или [libvips](https://github.com/jcupitt/libvips) для вашего процесса сборки. Существует много альтернатив.
 
 Большинство CDN'ов (например, [Akamai](https://www.akamai.com/us/en/solutions/why-akamai/image-management.jsp)) и сторонние решения, такие как [Cloudinary](https://cloudinary.com), [imgix](https://imgix.com), [Fastly's Image Optimizer](https://www.fastly.com/io/), [Instart Logic's SmartVision](https://www.instartlogic.com/technology/machine-learning/smartvision) или [ImageOptim API](https://imageoptim.com/api) предлагают полноценные автоматизированные решения для оптимизации изображения.
 
@@ -13,7 +13,7 @@
 
 Минимум: используйте [ImageOptim](https://imageoptim.com/). Он может значительно уменьшить размер изображений, сохраняя при этом качество. Windows и Linux [альтернативы](https://imageoptim.com/versions.html) тоже есть.
 
-Точнее: прогоняйте ваши JPEG'и через [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` или ниже отлично подходит для веб-контента) и рассматривайте поддержку [Progressive JPEG'а](http://cloudinary.com/blog/progressive_jpegs_and_green_martians), PNG через [pngquant](https://pngquant.org/) и SVG через [SVGO](https://github.com/svg/svgo). Однозначно удаляйте метаданные (`--strip` для pngquant) чтобы избежать раздутия. Вместо сумасшедше огромных анимационных GIF'ов, поставляйте [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) видео (или [WebM](https://www.webmproject.org/) для Chrome, Firefox и Opera)! Если вы не можете, по крайней мере используйте [Giflossy](https://github.com/pornel/giflossy).
+Точнее: прогоняйте ваши JPEG'и через [MozJPEG](https://github.com/mozilla/mozjpeg) (`q=80` или ниже отлично подходит для веб-контента) и рассматривайте поддержку [Progressive JPEG'а](http://cloudinary.com/blog/progressive_jpegs_and_green_martians), PNG через [pngquant](https://pngquant.org/) и SVG через [SVGO](https://github.com/svg/svgo). Однозначно удаляйте метаданные (`--strip` для pngquant) чтобы избежать раздутия. Вместо сумасшедше огромных анимированных GIF'ок, поставляйте [H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC) видео (или [WebM](https://www.webmproject.org/) для Chrome, Firefox и Opera)! Если вы не можете, по крайней мере используйте [Giflossy](https://github.com/pornel/giflossy).
 Если вы можете сэкономить дополнительные циклы процессора, нуждаетесь в качестве большем чем в среднем по вебу и не против медленного времени кодирования: попробуйте [Guetzli](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html).
 
 Некоторые браузеры заявляют о поддержке форматов изображения через заголовок запроса Accept. Он может использоваться для условной отправки форматов: например, формат с потерями [WebP](https://developers.google.com/speed/webp/) для браузеров на основе Blink, таких как Chrome, и фолбэк в виде JPEG/PNG для других браузеров.
@@ -191,7 +191,7 @@
 
 ### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">Как определить, нужно ли оптимизировать мои изображения?</a>
 
-Выполнить аудит сайта с помощью [WebPageTest.org](https://www.webpagetest.org/) и он покажет возможности для улучшения оптимизации ваших изображений (смотрите "Compress Images").
+Выполните аудит сайта с помощью [WebPageTest.org](https://www.webpagetest.org/) и он покажет возможности для улучшения оптимизации ваших изображений (смотрите "Compress Images").
 
 <figure>
 <picture>
@@ -274,7 +274,7 @@
 
 ## <a id="choosing-an-image-format" href="#choosing-an-image-format">Как выбрать формат изображения?</a>
 
-Как Илья Григорик(Ilya Grigorik) отмечает в своем превосходном [руководстве по оптимизации изображений](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), "правильный формат" для изображения это сочетание желаемых визуальных результатов и функциональных требований. Вы работаете с растровыми или векторными изображениями?
+Как Илья Григорик(Ilya Grigorik) отмечает в своем превосходном [руководстве по оптимизации изображений](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), «правильный формат» для изображения это сочетание желаемых визуальных результатов и функциональных требований. Вы работаете с растровыми или векторными изображениями?
 
 <figure>
 <picture>
@@ -304,9 +304,9 @@
 
 [Векторная графика](https://ru.wikipedia.org/wiki/Векторная_графика) использует точки, линии и полигоны для представления изображений и формат используется для простых геометрические фигур (например, логотипов), SVG лучше всего подходит, когда нужно высокое разрешение и масштабирование.
 
-Не тот формат может стоить вам. Логический выбора правильного формата может быть рискован, поэтому экспериментировать с форматами лучше с осторожностью.
+Не тот формат может стоить вам. Логический выбор правильного формата может быть рискован, поэтому экспериментировать с форматами лучше с осторожностью.
 
-Джереми Вагнер (Jeremy Wagner) рассказал про [компромиссы](http://jlwagner.net/talks/these-images/#/2/2), которые стоит учитывать при оценке форматов, в его презентации об оптимизации изображений.
+Джереми Вагнер(Jeremy Wagner) рассказал про [компромиссы](http://jlwagner.net/talks/these-images/#/2/2), которые стоит учитывать при оценке форматов, в его презентации об оптимизации изображений.
 
 ## <a id="the-humble-jpeg" href="#the-humble-jpeg">Скромный JPEG.</a>
 
