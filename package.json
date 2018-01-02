@@ -5,7 +5,8 @@
     "main": "index.md",
     "scripts": {
         "build": "gulp build",
-        "pdf": "gulp generate-pdf"
+        "pdf": "gulp generate-pdf",
+        "test": "yaspeller app --check-yo -e '.md'"
     },
     "repository": {
         "type": "git",
@@ -72,6 +73,7 @@
         "extends": "google"
     },
     "dependencies": {
-        "lazysizes": "^4.0.0-rc3"
+        "lazysizes": "^4.0.0-rc3",
+        "yaspeller": "^4.0.3"
     }
 }
