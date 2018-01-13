@@ -947,11 +947,12 @@ gulp.task('guetzli', () =>
 
 MozJPEG - удобный для новичков кодировщик веб-ресурсов, относительно быстрый и создающий на выходе качественные изображения. Поскольку Guetzli является ресурсоёмким и работает лучше всего на больших высококачественных изображениях, я бы его оставил более продвинутым пользователям.
 
-## <a id="what-is-webp" href="#what-is-webp">What is WebP?</a>
+## <a id="what-is-webp" href="#what-is-webp">Что такое WebP?*</a>
+*произносится как «веппи»
 
-[WebP](https://developers.google.com/speed/webp/) is a recent image format from Google aiming to offer lower file-sizes for lossless and lossy compression at an acceptable visual quality. It includes support for alpha-channel transparency and animation.
+[WebP](https://developers.google.com/speed/webp/) — это новый формат сжатия изображений без потери или с потерей качества при приемлемом качестве изображения, предложенный компанией Google. Включает поддержку прозрачности и анимацию.
 
-In the last year, WebP gained a few percent over compression-wise in lossy and lossless  modes and speed-wise the algorithm got twice as fast with a 10% improvement in decompression.  WebP is not a tool for all purposes, but it has some standing and a growing user base in the image compression community. Let's examine why.
+За прошлый год WebP улучшился в компрессии на несколько процентов при сжатии с потерями и без, а также вдвое ускорился на компрессии и стал на 10% быстрее на декомпрессии. WebP — не инструмент для всех случаев, но у него есть растущая аудитория в сообществе сжатия изображений. Давайте выясним, почему.
 
 <figure>
 <picture>
@@ -968,12 +969,12 @@ In the last year, WebP gained a few percent over compression-wise in lossy and l
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"
-        alt="comparison of webp at different quality settings. q=90, 646KB. q=80= 290KB. q=75, 219KB. q=70, 199KB" />
+        alt="сравнение webp на разных настройках качества. q=90, 646KB. q=80= 290KB. q=75, 219KB. q=70, 199KB" />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"/>
 </noscript>
 </picture>
-<figcaption>WebP: A comparison of file sizes and visual similarity scores at different qualities.</figcaption>
+<figcaption>WebP: Сравнение размеров файлов и визуального сходства при разном качестве.</figcaption>
 </figure>
 
 ### <a id="how-does-webp-perform" href="#how-does-webp-perform">How does WebP perform?</a>
@@ -1033,11 +1034,11 @@ There are quite a few more companies on board than this sample list indicates.
 <figcaption>WebP usage at Google: 43 billion WebP image requests a day are served across YouTube, Google Play, Chrome Data Saver and G+.</figcaption>
 </figure>
 
-### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">How does WebP encoding work?</a>
+### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">Как работает кодирование WebP?</a>
 
-WebP's lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP's lossy encoding:
+Кодирование WebP с потерями призвано конкурировать с JPEG для неподвижных изображений. В этом виде кодирования есть три ключевых этапа:
 
-**Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision.
+**Макроразбиение** - разделение изображения на блоки 16x16 (macro) пикселей яркости и два 8x8 блока пикселей цветности. Это похоже  на алгоритм JPEG, в котором делаются преобразование цветового пространтсва, снижение частоты дискретезации канала цветности и разбиение изображения.
 
 <figure>
 <picture>
@@ -1054,7 +1055,7 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
 <img
         class="small lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"
-        alt="Macro-blocking example of a Google Doodle where we break a range of pixels down into luma and chroma blocks."/>
+        alt="Пример макроразбиения Google Doodle, где мы разбиваем диапазон пикселей на блоки яркости и цветности"/>
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image18.png"/>
 </noscript>
@@ -1062,7 +1063,7 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
 
 </figure>
 
-**Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**Предсказание** - к каждому подблоку 4×4 макроблока применяется предиктивная модель, которая эффективно выполняет фильтрацию. Она определяет два набора пикселей вокруг блока: A (ряд непосредственно над блоком) и L (столбец слева от блока). Используя эти наборы, кодировщик заполняет тестовый блок пикселями размера 4x4  и определяет результат, наиболее близкий к исходному блоку. Colt McAnlis говорит об этом более подробно в статье  [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
 
 
 <figure>
@@ -1080,7 +1081,7 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
 <img
         class="lazyload very-small"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"
-        alt="Google Doodle example of a segment displaying the row, target block and column L when considering a prediction model."/>
+        alt="пример сегмента из Google Doodle, показывающий ряд, целевой блок и столбец L, при рассмотрении модели предсказания."/>
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image19.png"/>
 </noscript>
@@ -1088,9 +1089,9 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
 
 </figure>
 
-A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
+Дискретное косинусное преобразование (DCT) применяется в несколько шагов, подобно кодированию JPEG. Ключевое различие состоит в использовании [арифметического компрессора](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) вместо кодирования Хаффмана в JPEG.
 
-If you want to dive deeper, Google Developer’s article [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) goes into this topic in depth.
+Если вы хотите узнать больше, статья [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) углубляется в эту тему.
 
 ### <a id="webp-browser-support" href="#webp-browser-support">WebP browser support</a>
 
