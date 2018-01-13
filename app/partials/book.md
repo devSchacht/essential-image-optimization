@@ -1681,13 +1681,13 @@ Tools like [svg-sprite](https://github.com/jkphl/svg-sprite) and [IcoMoon](https
 
 Sara Soueidan's [tips for optimising SVG delivery for the web](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) and Chris Coyier's [Practical SVG book](https://abookapart.com/products/practical-svg) are excellent. I've also found Andreas Larsen's optimizing SVG posts enlightening ([part 1](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035),[part 2](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)).[Preparing and exporting SVG icons in Sketch](https://medium.com/sketch-app-sources/preparing-and-exporting-svg-icons-in-sketch-1a3d65b239bb) was also a great read.
 
-## <a id="avoid-recompressing-images-lossy-codecs" href="#avoid-recompressing-images-lossy-codecs">Avoid recompressing images with lossy codecs</a>
+## <a id="avoid-recompressing-images-lossy-codecs" href="#avoid-recompressing-images-lossy-codecs">Избегаем повторного сжатия изображений при помощи кодеков сжатия с потерями</a>
 
-It is recommended to always compress from the original image. Recompressing images has consequences. Let's say you take a JPEG that's already been compressed with a quality of 60. If you recompress this image with lossy encoding, it will look worse. Each additional round of compression is going to introduce generational loss - information will be lost and compression artifacts will start to build up. Even if you're re-compressing at a high quality setting.
+Рекомендуется всегда сжимать исходное изображение. Повторное сжатие изображений имеет последствия. Предположим, вы взяли JPEG, который уже сжат с качеством 60. Если вы повторно сжимаете это изображение кодированием с потерями, то изображение будет выглядеть хуже. Каждый дополнительный раунд сжатия приводит к потере поколений — информация будет потеряна, и артефакты сжатия начнут нарастать. Даже если вы повторно сжимаете на высоких настройках качества.
 
-To avoid this trap, **set the lowest good quality you're willing to accept in the first place** and you'll get maximum file savings from the start. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
+Чтобы избежать этой ловушки, **установите самое низкое хорошее качество, которое вы готовы принять в первую очередь**, и вы получите максимальное сохранение файлов с самого начала. Вы избегаете эту ловушку, потому что любое уменьшение размера файла с помощью снижения качества будет выглядеть плохо.
 
-Re-encoding a lossy file will almost always give you a smaller file, but this doesn’t mean you’re getting as much quality out of it as you may think.
+Повторное кодирование файла с потерями почти всегда даст вам меньший файл, но это не означает, что вы получите как можно больше качества из него, как вы думаете.
 
 <figure>
 <picture>
@@ -1704,19 +1704,18 @@ Re-encoding a lossy file will almost always give you a smaller file, but this do
 <img
         class="lazyload"
         data-src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/generational-loss.jpg"
-        alt="generational loss when re-encoding an image multiple times"
+        alt="потери поколений при повторном кодировании изображения несколько раз"
          />
 <noscript>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/generational-loss.jpg"/>
 </noscript>
 </picture>
-<figcaption>Above, from this [excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and [accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.</figcaption>
+<figcaption>Выше, из этого [отличного видео](https://www.youtube.com/watch?v=w7vXJbLhTyI) и [сопутствующей статьи](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) от Джона Снейера, мы можем видеть влияние потери поколений на повторное сжатие с использованием нескольких форматов. Эта проблема, с которой вы могли столкнуться, если сохранить (уже сжатые) изображения из социальных сетей и повторно загрузить их (вызывая повторное сжатие). Потеря качества будет нарастать.</figcaption>
 </figure>
 
+MozJPEG (возможно, случайно) имеет лучшую устойчивость к деградации повторного сжатия благодаря квантованию. Вместо сжатия всех значений DCT, как они есть, он может проверить близкие значения в пределах диапазона +1/-1, чтобы увидеть, сжимаются ли аналогичные значения до меньшего количества бит. У формата с потерями FLIF есть хак аналогичный формату с потерями PNG, который состоит в том, что до (пере)сжатия он может посмотреть на данные и решить, что выбросить. Перепакованые файлы PNG имеют "дыры", которые можно обнаружить, чтобы избежать дальнейшего изменения данных.
 
-MozJPEG (perhaps accidentally) has a better resistance to recompression degradation thanks to trellis quantization. Instead of compressing all DCT values as they are exactly, it can check close values within a +1/-1 range to see if similar values compress to fewer bits. Lossy FLIF has a hack similar to lossy PNG in that prior to (re)compression, it can look at the data and decide what to throw away. Recompressed PNGs have "holes" it can detect to avoid changing data further.
-
-**When editing your source files, store them in a lossless format like PNG or TIFF, so you preserve as much quality as you can.** Your build tools or image compression service than then handle outputting the compressed version you serve to users with minimal loss in quality.
+**При редактировании исходных файлов храните их в формате без потерь, таком как PNG или TIFF, чтобы сохранить столько качества, сколько сможете.** Ваши инструменты сборки или служба сжатия изображений обрабатывают вывод сжатой версии с минимальной потерей качества, которая используется для пользователей.
 
 ## <a id="reduce-unnecessary-image-decode-costs" href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
 
