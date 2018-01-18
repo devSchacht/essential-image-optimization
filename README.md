@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-	It's fork for translation to Russian! Original repo: https://github.com/GoogleChrome/essential-image-optimization.
-
-=======
->>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 <p align="center">
   <a href="https://images.guide/">
     <img src='/app/images/logo-banner.jpg' alt="Essential Image Optimization"/>
@@ -86,11 +81,7 @@ It is important to note a difference between the `serve` and `serve:dist` tasks.
 * `serve:dist` uses the `workbox`-generated output and can run offline.
 
 The `serve` task runs on port 3000 and `serve:dist` runs on port 3001.
-<<<<<<< HEAD
 The main purpose is to ensure that different service workers will not impact each other's environment.
-=======
-The main purpose is to ensure that different service workers will not impact each other's environment. 
->>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 Using the `workbox`-generated output makes it very difficult to quickly test local changes which is not ideal for a development server environment.
 
 #### Generate a PDF of the book
@@ -111,22 +102,13 @@ to ensure all images are lazy-loaded in and then safely print to PDF as per any 
 
 ##### Templating
 
-<<<<<<< HEAD
 This repo uses a very simplistic templating setup. `app/partials/book.md` is converted from markdown into HTML and
-=======
-This repo uses a very simplistic templating setup. `app/partials/book.md` is converted from markdown into HTML and 
->>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 injected into a primary book template in `app/index.html`. I use `gulp-md-template` to achieve this.
 
 ##### Images
 
-<<<<<<< HEAD
 The vast majority of images in the book are hosted on my Cloudinary account. If a PR wishes to improve or add any
 additional graphics, feel free to assume you can use `app/images/` to temporarily add them directly. I will take care
-=======
-The vast majority of images in the book are hosted on my Cloudinary account. If a PR wishes to improve or add any 
-additional graphics, feel free to assume you can use `app/images/` to temporarily add them directly. I will take care 
->>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 of appending commits that host any graphics back to Cloudinary as needed. Alternatively, just ping me on a PR and I can
 usually get back with a Cloudinary-hosted URL for the graphic you want to add.
 
@@ -140,11 +122,7 @@ load it in a way that doesn't impact the critical-path performance of the page.
 
 I'd love your help improving this book. If interested in contributing a pull request, please:
 
-<<<<<<< HEAD
 1. Make sure your PR has a valid title and description.
-=======
-1. Make sure your PR has a valid title and description. 
->>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 2. Your PR updates only touch the parts of the repo it needs to. In most cases this will be `app/partials/book.md`.
 
 If updating an opinion or recommendation in the book, please help us by providing data to back the change. This helps equip us with tools to make the best call on such updates.
@@ -157,13 +135,8 @@ serve readers in a way that keeps all versions of the book as synchronized as po
 
 ## Pagination
 
-<<<<<<< HEAD
 The content in this book is being ported over to [Web Fundamentals](https://developers.google.com/web/fundamentals/). We'll be turning it into a new
 chapter on automating image optimization, splitting the content here into different pages.
-=======
-The content in this book is being ported over to [Web Fundamentals](https://developers.google.com/web/fundamentals/). We'll be turning it into a new 
-chapter on automating image optimization, splitting the content here into different pages. 
->>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 In the mean time, we're going to keep Essential Image Optimization a one-page format.
 
 ## License
