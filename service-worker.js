@@ -1,65 +1,48 @@
 /**
- * Copyright 2017 Google Inc. All rights reserved.
+ * Welcome to your Workbox-powered service worker!
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/YYPcyY
  */
-'use strict';
 
-/* eslint-env serviceworker */
-/* global WorkboxSW */
 
-// This script is added to app/third_party/ by gulp and swapped for a prod
-// file name in production build.
-importScripts('/third_party/workbox-sw/workbox-sw.prod.v1.3.0.js');
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.2/workbox-sw.js");
 
-self.workbox = self.workbox || {};
-self.workbox.LOG_LEVEL = 0;
 
-const workbox = new WorkboxSW();
 
-// workbox-build will swap out the empty array with a list of files to precache.
-workbox.precache([
+
+
+
+
+
+
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [
   {
-    "url": "images/touch/android-chrome-192x192.png",
-    "revision": "07464b00b199df2081be1879eba8b2d5"
+    "url": "images/hamburger.svg",
+    "revision": "d2cb0dda3e8313b990e8dcf5e25d2d0f"
   },
   {
-    "url": "images/touch/android-chrome-512x512.png",
-    "revision": "5c53e6d8c734a68776bd479f79f04584"
+    "url": "images/icons/lightbulb.svg",
+    "revision": "8c9fa41fd10124bd50ff27a026372ae2"
   },
   {
-    "url": "images/touch/apple-touch-icon.png",
-    "revision": "6c7cb4b2633f537694f896c951e96f9b"
+    "url": "images/icons/logo.svg",
+    "revision": "a1e23ac638258bc05f84eebcd3ee0f1c"
   },
   {
-    "url": "images/touch/browserconfig.xml",
-    "revision": "8cdede5414e6e7615a261041cea7c393"
-  },
-  {
-    "url": "images/touch/favicon-16x16.png",
-    "revision": "d24fc2371be3e18754f94e82a6446e7e"
-  },
-  {
-    "url": "images/touch/favicon-32x32.png",
-    "revision": "bc524ec7444b5b1495abbd798ffb0fd3"
-  },
-  {
-    "url": "images/touch/favicon.ico",
-    "revision": "f1c194386ae310a898854d2b12fcd307"
-  },
-  {
-    "url": "images/touch/mstile-150x150.png",
-    "revision": "fa3db3434294525d4b76b8c32854a5d5"
+    "url": "images/icons/star.svg",
+    "revision": "5de8294cfcc3ced51cc478287fed403b"
   },
   {
     "url": "images/touch/safari-pinned-tab.svg",
@@ -67,7 +50,7 @@ workbox.precache([
   },
   {
     "url": "scripts/main.min.js",
-    "revision": "5859ccfb557928073d12a296279c5fa1"
+    "revision": "f5d2d1888d2ebd32b086a4aa0e379c81"
   },
   {
     "url": "styles/main.css",
@@ -75,32 +58,19 @@ workbox.precache([
   },
   {
     "url": "book.html",
-    "revision": "c60290e088f3cdf0b5e78b454108ec3d"
+    "revision": "7c09d0a7c0409d8c946c05a144097cbd"
   },
   {
     "url": "index.html",
-    "revision": "a20398687e36a442f7da459727180fac"
-  },
-  {
-    "url": "manifest.json",
-    "revision": "127f5f91c51b7cafcbb1a324c695a614"
+    "revision": "3471930f697d5dd86d7b6991689cdae1"
   }
-]);
+].concat(self.__precacheManifest || []);
 
-// Register route for Google static files.
-workbox.router
-.registerRoute(/.*(?:googleapis|gstatic)\.com.*$/,
-workbox.strategies.staleWhileRevalidate());
+if (Array.isArray(self.__precacheManifest)) {
+  workbox.precaching.suppressWarnings();
+  workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+}
 
-// Cloudinary-hosted images
-workbox.router.registerRoute('https://res.cloudinary.com/(.*)',
-workbox.strategies.staleWhileRevalidate({
-  cacheName: 'cloudinary-images'
-}));
 
-// Any images loaded from the origin
-// workbox.router.registerRoute('/\/images\/(.*)/',
-// workbox.strategies.staleWhileRevalidate({
-//   cacheName: 'site-images'
-// }));
 
+workbox.routing.registerRoute(/^https:\/\/res.cloudinary.com/, workbox.strategies.staleWhileRevalidate({ cacheName: "cloudinary-images", plugins: [] }), 'GET');
