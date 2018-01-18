@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Copyright 2017 Google Inc. All rights reserved.
  *
@@ -47,3 +48,6 @@ workbox.strategies.staleWhileRevalidate({
 //   cacheName: 'site-images'
 // }));
 
+=======
+// No-op service worker for dev.
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53

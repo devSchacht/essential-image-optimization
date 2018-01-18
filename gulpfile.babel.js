@@ -21,25 +21,37 @@
 // You can read more about the new JavaScript features here:
 // https://babeljs.io/docs/learn-es2015/
 
+<<<<<<< HEAD
 import path from 'path';
 import gulp from 'gulp';
 import util from 'gulp-util';
 import del from 'del';
 import uncss from 'uncss';
+=======
+import gulp from 'gulp';
+import util from 'gulp-util';
+import del from 'del';
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 import {stream as critical} from 'critical';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import workboxBuild from 'workbox-build';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
+<<<<<<< HEAD
 import pkg from './package.json';
+=======
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 import template from 'gulp-md-template';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import imageminSVGO from 'imagemin-svgo';
 import rename from 'gulp-rename';
 import puppeteer from 'puppeteer';
+<<<<<<< HEAD
 import glob from 'glob';
 import replace from 'replace';
+=======
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -210,7 +222,11 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', 'app/third_party/', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
+<<<<<<< HEAD
 gulp.task('serve', ['scripts', 'styles', 'html', 'third-party:dev'], () => {
+=======
+gulp.task('serve', ['scripts', 'styles', 'html'], () => {
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -277,8 +293,12 @@ gulp.task('default', ['clean'], cb =>
   runSequence(
     ['markdown', 'lint', 'html', 'scripts', 'images', 'copy'],
     'styles',
+<<<<<<< HEAD
     ['third-party:prod', 'generate-service-worker'],
     'service-worker:prod',
+=======
+    'generate-service-worker',
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
     cb
   )
 );
@@ -294,6 +314,7 @@ gulp.task('pagespeed', cb =>
   }, cb)
 );
 
+<<<<<<< HEAD
 // Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
 gulp.task('third-party:dev', () => {
   return gulp.src(['node_modules/workbox-sw/build/importScripts/workbox-sw.dev.*.js'])
@@ -306,12 +327,15 @@ gulp.task('third-party:prod', () => {
     .pipe(gulp.dest('dist/third_party/workbox-sw/'));
 });
 
+=======
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
 // See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
 // an in-depth explanation of what service workers are and why you should care.
 // Generate a service worker file that will provide offline functionality for
 // local resources. This should only be done for the 'dist' directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
 gulp.task('generate-service-worker', () => {
+<<<<<<< HEAD
   return workboxBuild.injectManifest({
     swSrc: `app/service-worker.js`,
     swDest: `dist/service-worker.js`,
@@ -348,6 +372,25 @@ gulp.task('service-worker:prod', () => {
     ],
     recursive: true,
     silent: true
+=======
+  return workboxBuild.generateSW({
+    swDest: `dist/service-worker.js`,
+    globDirectory: `dist/`,
+    // Add/remove glob patterns to match your directory setup.
+    globPatterns: [
+      `images/**/*.svg`,
+      `scripts/**/*.js`,
+      `styles/**/*.css`,
+      `*.html`
+    ],
+    runtimeCaching: [{
+      urlPattern: new RegExp('^https://res.cloudinary.com'),
+      handler: 'staleWhileRevalidate',
+      options: {
+        cacheName: 'cloudinary-images',
+      },
+    }],
+>>>>>>> 8617ddead102811108519a85ce54f4de5175fa53
   });
 });
 
