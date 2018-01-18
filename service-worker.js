@@ -58,11 +58,11 @@ self.__precacheManifest = [
   },
   {
     "url": "book.html",
-    "revision": "7c09d0a7c0409d8c946c05a144097cbd"
+    "revision": "818c3e09d068e9e5b470afc32f790436"
   },
   {
     "url": "index.html",
-    "revision": "3471930f697d5dd86d7b6991689cdae1"
+    "revision": "fa95dc63e8487d513102f250c9d3bbc4"
   }
 ].concat(self.__precacheManifest || []);
 
