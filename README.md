@@ -1,5 +1,3 @@
-	It's fork for translation to Russian! Original repo: https://github.com/GoogleChrome/essential-image-optimization.
-
 <p align="center">
   <a href="https://images.guide/">
     <img src='/app/images/logo-banner.jpg' alt="Essential Image Optimization"/>
